@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Publicaciones.Infrastructure.Core
 {
-    public class BaseRepsitory
+    public class BaseRepository
     {
     }
 }
