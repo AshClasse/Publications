@@ -5,4 +5,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\" />
+    <Folder Include="Diagram\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 </Project>
