@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Publicaciones.Infrastructure.Context
 {
-    internal class ContextEjemplo
+    public class PubsContext
     {
     }
 }

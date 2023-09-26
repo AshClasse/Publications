@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Publicaciones.Domain.Repository
+namespace Publicaciones.Infrastructure.Core
 {
-    internal interface IEjemplo
+    public class BaseRepsitory
     {
     }
 }

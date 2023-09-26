@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lqBEpSpMrLyeIZ0E+QZ+gRZ3RIudOtS0AT1IQGIJgwFIzP3crtByN+JoXKc1SVoqcDB3VAAe8RO89vZtXDbJ9A==",
+  "dgSpecHash": "NJl/6UiXN+4j4+rAlpr3rLx39diY+WoL/eUooX1zZRnIg2ImRd7/NHFRlsZYHzlN8CHf/oddn8TIqFE6VqINqg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rachely Perez\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+  "projectFilePath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
