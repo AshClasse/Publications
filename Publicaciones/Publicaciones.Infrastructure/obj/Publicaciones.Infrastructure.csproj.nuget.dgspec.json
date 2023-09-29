@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {}
+    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
+    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
         "projectName": "Publicaciones.Infrastructure",
-        "projectPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
+        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
