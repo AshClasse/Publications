@@ -11,7 +11,7 @@ namespace Publicaciones.Domain.Repository
         void Update(Store sale);
         void Remove(Store sale);
         List<Sale> GetStores();
-        Sale GetStoreByID(int ID);
+        Store GetStoreByID(int ID);
 
     }
 
