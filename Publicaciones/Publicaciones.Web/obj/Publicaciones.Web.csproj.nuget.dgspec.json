@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {}
+    "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {}
   },
   "projects": {
-    "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {
+    "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+        "projectUniqueName": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
         "projectName": "Publicaciones.Web",
-        "projectPath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+        "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
         "packagesPath": "C:\\Users\\misam\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\obj\\",
+        "outputPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\misam\\AppData\\Roaming\\NuGet\\NuGet.Config",

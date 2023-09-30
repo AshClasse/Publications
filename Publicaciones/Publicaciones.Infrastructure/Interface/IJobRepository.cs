@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Publicaciones.Domain.Entities
+namespace Publicaciones.Infrastructure.Interface
 {
-    internal class EntitieExamplecs
+    public interface IJobRepository
     {
     }
 }
