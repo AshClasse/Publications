@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Publicaciones.Domain.Core.BaseEntity">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAkAAAAgAAIAAACAAAAAAAAAg=</HashCode>
+      <FileName>Core\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Publicaciones.Domain.Entities.TitleAuthor">
+    <Position X="6.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAIAAAAAIAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Entities\TitleAuthor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Publicaciones.Domain.Entities.Authors">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAIAQCAAAAAAABAACAAAIJAAAAAA=</HashCode>
+      <FileName>Entities\Authors.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -23,7 +23,7 @@ namespace Publicaciones.Infrastructure.Repository
         public Authors GetEntityByID(int Id)
         {
             return context.Authors.Find(Id);
-            
+        }
 
         public Authors GetEntityByID(string Id)
         {
@@ -44,25 +44,7 @@ namespace Publicaciones.Infrastructure.Repository
         {
             context.Authors.Update(entity);
         }
+
+
     }
-
-        public Authors GetEntityByID(string Id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(Authors entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save(Authors entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Authors entity)
-        {
-            throw new NotImplementedException();
-        }
-    }
+}
