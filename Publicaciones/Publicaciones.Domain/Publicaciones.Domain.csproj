@@ -11,8 +11,4 @@
     <None Remove="Diagram\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>
