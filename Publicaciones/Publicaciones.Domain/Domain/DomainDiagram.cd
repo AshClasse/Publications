@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Publicaciones.Domain.Core.BaseEntity" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAkAAAAgAAIAAACAAAAAAAAAg=</HashCode>
+      <FileName>Core\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Publicaciones.Domain.Entities.Pub_Info">
+    <Position X="6.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAAAAAA=</HashCode>
+      <FileName>Entities\Pub_Info.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Publicaciones.Domain.Entities.RoySched">
+    <Position X="3.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAIAAIIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\RoySched.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Publicaciones.Domain.Entities.Titles">
+    <Position X="1.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAIBQAAIEAAAAIAAAAIAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\Titles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
