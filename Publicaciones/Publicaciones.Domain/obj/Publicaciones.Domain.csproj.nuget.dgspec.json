@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {}
+    "C:\\Pubs_Proj\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
+    "C:\\Pubs_Proj\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+        "projectUniqueName": "C:\\Pubs_Proj\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
         "projectName": "Publicaciones.Domain",
-        "projectPath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
-        "packagesPath": "C:\\Users\\misam\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Domain\\obj\\",
+        "projectPath": "C:\\Pubs_Proj\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+        "packagesPath": "C:\\Users\\Rachely Perez\\.nuget\\packages\\",
+        "outputPath": "C:\\Pubs_Proj\\Publicaciones\\Publicaciones.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\misam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Rachely Perez\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
