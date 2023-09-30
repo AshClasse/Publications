@@ -11,7 +11,7 @@ namespace Publicaciones.Domain.Repository
         void Update(Discount discount);
         void Remove(Discount discount);
         List<Discount> GetDiscounts();
-        Discount GetDiscountByID(int ID);
+        //Discount GetDiscountByID(int ID);
 
     }
 }
