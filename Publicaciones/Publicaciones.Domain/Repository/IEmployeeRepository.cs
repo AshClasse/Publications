@@ -14,7 +14,7 @@ namespace Publicaciones.Domain.Repository
         void Update(Employee employee);
         void Remove(Employee employee);
         List<Employee> GetEmployees();
-        Employee GetEmployeeID(int ID);
+        Employee GetEmployeeID(string ID);
 
     }
 }

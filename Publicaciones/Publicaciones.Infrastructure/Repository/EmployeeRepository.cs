@@ -14,7 +14,7 @@ namespace Publicaciones.Infrastructure.Repository
         {
             this.context = context;
         }
-        public Employee GetEmployeeID(int ID)
+        public Employee GetEmployeeID(string ID)
         {
             return this.context.Employees.Find(ID);
         }

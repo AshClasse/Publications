@@ -15,7 +15,7 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public Publisher GetPublisherID(int ID)
+        public Publisher GetPublisherID(string ID)
         {
             return this.context.Publishers.Find(ID);
         }

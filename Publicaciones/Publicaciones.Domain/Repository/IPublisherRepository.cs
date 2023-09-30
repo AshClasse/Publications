@@ -13,7 +13,7 @@ namespace Publicaciones.Domain.Repository
         void Update(Publisher publisher);
         void Remove(Publisher publisher);
         List<Publisher> GetPublishers();
-        Publisher GetPublisherID(int ID);
+        Publisher GetPublisherID(string ID);
 
     }
 }
