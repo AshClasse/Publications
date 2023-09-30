@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+      "projectUniqueName": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
       "projectName": "Publicaciones.Application",
-      "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+      "projectPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
       "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-      "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\obj\\",
+      "outputPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

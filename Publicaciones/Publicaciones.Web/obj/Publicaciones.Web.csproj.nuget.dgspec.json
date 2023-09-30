@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {}
+    "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {}
   },
   "projects": {
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {
+    "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+        "projectUniqueName": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
         "projectName": "Publicaciones.Web",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+        "projectPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
         "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\obj\\",
+        "outputPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

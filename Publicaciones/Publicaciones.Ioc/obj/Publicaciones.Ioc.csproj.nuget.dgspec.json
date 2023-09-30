@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {}
+    "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {}
   },
   "projects": {
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+    "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "projectUniqueName": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
         "projectName": "Publicaciones.Ioc",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "projectPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
         "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\obj\\",
+        "outputPath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

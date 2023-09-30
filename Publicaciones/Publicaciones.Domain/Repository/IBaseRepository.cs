@@ -12,6 +12,7 @@ namespace Publicaciones.Domain.Repository
         void Remove(TEntity entity);
         List<TEntity> GetEntities();
         TEntity GetEntityByID(int Id);
+        TEntity GetEntityByID(string Id);
     }
 }
 

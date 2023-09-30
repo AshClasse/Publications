@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rEOXyaS6wjQQr+LcVifPaN/ktzL+w+71WXIQbnI/0UQGK/uycbqVsXQczBwElJSh5MoeOokdij6WVLnKQgh3dw==",
+  "dgSpecHash": "SE4snKksaxAZTYDTStn/AJBm2+tb/wPVOWtsLgrxaklb21b2eyuOb/geQbDIyOg8RxA7Zr1JW7GQt6pICvqe6w==",
   "success": true,
-  "projectFilePath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
+  "projectFilePath": "C:\\Users\\class\\Source\\Repos\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
