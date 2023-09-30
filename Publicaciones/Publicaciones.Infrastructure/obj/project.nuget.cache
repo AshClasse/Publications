@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8D1rqSQk702MWjQ+1CaI8xUTSHpPf7Z5Xnxhd8S6YxhVJVMLFNV+d7taCsL5fioAa1PvOs8XryK/RO8fpmL4dQ==",
+  "dgSpecHash": "2+RnKS9JOoufvTCofQtXnU6FR16X9rPldQ55mf6V5naV6GIw+GwGVCbmV6vBLUtrJdK3GmU6iKnTdKiCkYtTgQ==",
   "success": true,
-  "projectFilePath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+  "projectFilePath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
