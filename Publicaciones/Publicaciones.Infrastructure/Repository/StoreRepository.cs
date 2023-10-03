@@ -1,6 +1,6 @@
 ﻿using Publicaciones.Domain.Entities;
+using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,34 +15,29 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public Store GetEntityByID(int Id)
+        public Store GetStoreByID(string id)
         {
-            return this.context.Stores.Find(Id);
+            return this.context.Stores.Find(id);
         }
 
-        public Store GetEntityByID(string Id)
+        public List<Store> GetStores()
         {
-            return this.context.Stores.Find(Id);
+            return this.context.Stores.Where(s => !s.Deleted).ToList();
         }
 
-        public List<Store> GetEntities()
+        public void Remove(Store store)
         {
-            return context.Stores.ToList();
+            this.context.Stores.Remove(store);
         }
 
-        public void Remove(Store entity)
+        public void Save(Store store)
         {
-            this.context.Stores.Remove(entity);
+            this.context.Stores.Add(store);
         }
 
-        public void Save(Store entity)
+        public void Update(Store store)
         {
-            this.context.Stores.Add(entity);
-        }
-
-        public void Update(Store entity)
-        {
-            this.context.Stores.Update(entity);
+            this.context.Stores.Update(store);
         }
     }
 }

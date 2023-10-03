@@ -11,7 +11,7 @@ namespace Publicaciones.Domain.Repository
         void Update(Sale sale);
         void Remove(Sale sale);
         List<Sale> GetSales();
-        Sale GetSaleByID(int ID);
+        Sale GetSaleByID(string storId, string ordNum, string titleId);
 
     }
 }

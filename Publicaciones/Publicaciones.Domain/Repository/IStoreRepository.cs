@@ -10,9 +10,8 @@ namespace Publicaciones.Domain.Repository
         void Save(Store sale);
         void Update(Store sale);
         void Remove(Store sale);
-        List<Sale> GetStores();
-        Store GetStoreByID(int ID);
-
+        List<Store> GetStores();
+        Store GetStoreByID(string id);
     }
 
 }

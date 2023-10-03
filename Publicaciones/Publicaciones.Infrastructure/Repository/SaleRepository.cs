@@ -1,6 +1,6 @@
 ﻿using Publicaciones.Domain.Entities;
+using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,37 +12,32 @@ namespace Publicaciones.Infrastructure.Repository
 
         public SaleRepository(PublicacionesContext context)
         {
-            this.context = context;
+            this.context = context;   
         }
 
-        public Sale GetEntityByID(int Id)
+        public Sale GetSaleByID(string storId, string ordNum, string titleId)
         {
-            return this.context.Sales.Find(Id);
+            return this.context.Sales.Find(storId, ordNum, titleId);
         }
 
-        public Sale GetEntityByID(string Id)
+        public List<Sale> GetSales()
         {
-            return this.context.Sales.Find(Id);
+            return this.context.Sales.Where(s => !s.Deleted).ToList();
         }
 
-        public List<Sale> GetEntities()
+        public void Remove(Sale sale)
         {
-            return context.Sales.ToList();
+            this.context.Sales.Remove(sale);
         }
 
-        public void Remove(Sale entity)
+        public void Save(Sale sale)
         {
-            this.context.Sales.Remove(entity);
+            this.context.Sales.Add(sale);
         }
 
-        public void Save(Sale entity)
+        public void Update(Sale sale)
         {
-            this.context.Sales.Add(entity);
-        }
-
-        public void Update(Sale entity)
-        {
-            this.context.Sales.Update(entity);
+            this.context.Sales.Update(sale);
         }
     }
 }
