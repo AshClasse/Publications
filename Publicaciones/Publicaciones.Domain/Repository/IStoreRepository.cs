@@ -7,9 +7,9 @@ namespace Publicaciones.Domain.Repository
 {
     public interface IStoreRepository
     {
-        void Save(Store sale);
-        void Update(Store sale);
-        void Remove(Store sale);
+        void Save(Store store);
+        void Update(Store store);
+        void Remove(Store store);
         List<Store> GetStores();
         Store GetStoreByID(string id);
     }
