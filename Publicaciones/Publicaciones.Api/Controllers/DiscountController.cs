@@ -23,11 +23,11 @@ namespace Publicaciones.Api.Controllers
         }
 
         // GET api/<DiscountController>/5
-        [HttpGet("{id}")]
+        /*[HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
-        }
+        }*/
 
         // POST api/<DiscountController>
         [HttpPost]
