@@ -25,7 +25,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         // GET api/<SaleController>/5
-        [HttpGet("{storID}/{ordNum}/{titleID}")]
+        [HttpGet("{storeID}/{ordNum}/{titleID}")]
         public Sale Get(string storeID, string ordNum, string titleID)
         {
             return this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
