@@ -11,8 +11,8 @@ namespace Publicaciones.Domain.Repository
         void Update(TEntity entity);
         void Remove(TEntity entity);
         List<TEntity> GetEntities();
-        TEntity GetEntityByID(int Id);
-        TEntity GetEntityByID(string Id);
+        TEntity GetEntityByID(int ID);
+        TEntity GetEntityByID(string ID);
     }
 }
 
