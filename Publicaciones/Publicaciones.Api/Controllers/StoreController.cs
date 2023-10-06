@@ -10,26 +10,26 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class StoreController : ControllerBase
     {
-        private readonly IStoreRepository storeRepository;
+        private readonly IStoreRepository _storeRepository;
 
         public StoreController(IStoreRepository storeRepository)
         {
-            this.storeRepository = storeRepository;
+            this._storeRepository = storeRepository;
         }
 
         // GET: api/<StoreController>
         [HttpGet]
         public IEnumerable<Store> Get()
         {
-            var stores = this.storeRepository.GetStores();
+            var stores = this._storeRepository.GetStores();
             return stores;
         }
 
         // GET api/<StoreController>/5
-        [HttpGet("{id}")]
-        public Store Get(string id)
+        [HttpGet("{ID}")]
+        public Store Get(string ID)
         {
-            return this.storeRepository.GetStoreByID(id);
+            return this._storeRepository.GetStoreByID(ID);
         }
 
         // POST api/<StoreController>
@@ -39,14 +39,14 @@ namespace Publicaciones.Api.Controllers
         }
 
         // PUT api/<StoreController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{ID}")]
+        public void Put(int ID, [FromBody] string value)
         {
         }
 
         // DELETE api/<StoreController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{ID}")]
+        public void Delete(int ID)
         {
         }
     }

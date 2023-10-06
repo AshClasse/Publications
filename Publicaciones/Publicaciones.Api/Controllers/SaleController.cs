@@ -10,25 +10,25 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class SaleController : ControllerBase
     {
-        private readonly ISaleRepository saleRepository;
+        private readonly ISaleRepository _saleRepository;
 
         public SaleController(ISaleRepository saleRepository)
         {
-            this.saleRepository = saleRepository;
+            this._saleRepository = saleRepository;
         }
         // GET: api/<SaleController>
         [HttpGet]
         public IEnumerable<Sale> Get()
         {
-            var sales = this.saleRepository.GetSales();
+            var sales = this._saleRepository.GetSales();
             return sales;
         }
 
         // GET api/<SaleController>/5
-        [HttpGet("{storId}/{ordNum}/{titleId}")]
-        public Sale Get(string storId, string ordNum, string titleId)
+        [HttpGet("{storID}/{ordNum}/{titleID}")]
+        public Sale Get(string storeID, string ordNum, string titleID)
         {
-            return this.saleRepository.GetSaleByID(storId, ordNum, titleId);
+            return this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
         }
 
         // POST api/<SaleController>
@@ -38,14 +38,14 @@ namespace Publicaciones.Api.Controllers
         }
 
         // PUT api/<SaleController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{ID}")]
+        public void Put(int ID, [FromBody] string value)
         {
         }
 
         // DELETE api/<SaleController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{ID}")]
+        public void Delete(int ID)
         {
         }
     }

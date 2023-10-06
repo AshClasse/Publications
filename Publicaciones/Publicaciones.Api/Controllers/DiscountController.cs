@@ -10,16 +10,16 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class DiscountController : ControllerBase
     {
-        private readonly IDiscountRepository discountRepository;
+        private readonly IDiscountRepository _discountRepository;
         public DiscountController(IDiscountRepository discountRepository)
         {
-            this.discountRepository = discountRepository;
+            this._discountRepository = discountRepository;
         }
         // GET: api/<DiscountController>
         [HttpGet]
         public IEnumerable<Discount> Get()
         {
-            return this.discountRepository.GetDiscounts();
+            return this._discountRepository.GetDiscounts();
         }
 
         // GET api/<DiscountController>/5
@@ -36,14 +36,14 @@ namespace Publicaciones.Api.Controllers
         }
 
         // PUT api/<DiscountController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{ID}")]
+        public void Put(int ID, [FromBody] string value)
         {
         }
 
         // DELETE api/<DiscountController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{ID}")]
+        public void Delete(int ID)
         {
         }
     }
