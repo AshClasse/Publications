@@ -15,9 +15,9 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;   
         }
 
-        public Sale GetSaleByID(string storId, string ordNum, string titleId)
+        public Sale GetSaleByID(string storeID, string ordNum, string titleID)
         {
-            return this.context.Sales.Find(storId, ordNum, titleId);
+            return this.context.Sales.Find(storeID, ordNum, titleID);
         }
 
         public List<Sale> GetSales()

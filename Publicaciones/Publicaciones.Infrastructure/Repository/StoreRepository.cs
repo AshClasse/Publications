@@ -15,9 +15,9 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public Store GetStoreByID(string id)
+        public Store GetStoreByID(string ID)
         {
-            return this.context.Stores.Find(id);
+            return this.context.Stores.Find(ID);
         }
 
         public List<Store> GetStores()
