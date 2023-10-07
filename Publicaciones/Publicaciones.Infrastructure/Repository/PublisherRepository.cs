@@ -15,14 +15,14 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public Publisher GetPublisherID(string ID)
+        public Publisher GetPublisherID(int ID)
         {
-            return this.context.Publishers.Find(ID);
+            return this.context.publishers.Find(ID);
         }
 
         public List<Publisher> GetPublishers()
         {
-            return this.context.Publishers.ToList();
+            return this.context.publishers.ToList();
         }
 
         public void Remove(Publisher publisher)

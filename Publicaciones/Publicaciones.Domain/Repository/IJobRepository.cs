@@ -13,7 +13,7 @@ namespace Publicaciones.Domain.Repository
         void Updater(Jobs jobs);
         void Remove(Jobs jobs);
         List<Jobs> GetJobs();
-        Jobs GetJosbsID(int ID);
+        Jobs GetJosbsID(short ID);
 
     }
 }

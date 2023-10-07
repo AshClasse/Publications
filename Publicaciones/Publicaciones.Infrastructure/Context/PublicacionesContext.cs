@@ -13,8 +13,15 @@ namespace Publicaciones.Infrastructure.Context
 
         }
 
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Jobs> Jobs { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Employee> employee { get; set; }
+        public DbSet<Jobs> jobs { get; set; }
+        public DbSet<Publisher> publishers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Jobs>().HasKey(e => e.JobID);
+            modelBuilder.Entity<Employee>().HasKey(e => e.EmpID);
+            modelBuilder.Entity<Publisher>().HasKey(e => e.PubID);
+        }
     }
 }

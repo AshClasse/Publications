@@ -17,12 +17,12 @@ namespace Publicaciones.Infrastructure.Repository
 
         public List<Jobs> GetJobs()
         {
-            return this.context.Jobs.ToList();
+            return this.context.jobs.ToList();
         }
 
-        public Jobs GetJosbsID(int ID)
+        public Jobs GetJosbsID(short ID)
         {
-            return this.context.Jobs.Find(ID);
+            return this.context.jobs.Find(ID);
         }
 
         public void Remove(Jobs jobs)

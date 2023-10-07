@@ -16,12 +16,12 @@ namespace Publicaciones.Infrastructure.Repository
         }
         public Employee GetEmployeeID(string ID)
         {
-            return this.context.Employees.Find(ID);
+            return this.context.employee.Find(ID);
         }
 
         public List<Employee> GetEmployees()
         {
-            return context.Employees.ToList();
+            return context.employee.ToList();
         }
 
         public void Remove(Employee employee)

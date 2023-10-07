@@ -9,10 +9,10 @@ namespace Publicaciones.Domain.Entities
 {
     public class Publisher : BaseEntity
     {
-        public string PubID { get; set; }
+        public int PubID { get; set; }
         public string PubName { get; set; }
         public string? City { get; set; }
-        public int? State { get; set; }
+        public string? State { get; set; }
         public string? Country { get; set; }
     }
 }
