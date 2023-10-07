@@ -1,6 +1,6 @@
 ﻿using Publicaciones.Domain.Entities;
+using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,34 +15,34 @@ namespace Publicaciones.Infrastructure.Repository
         {
             this.context = context;
         }
-        public List<RoySched> GetEntities()
+
+        public RoySched GetRoySched(int ID)
         {
-            return context.RoyScheds.ToList();
+            return context.RoySched.Find(ID);
         }
 
-        public RoySched GetEntityByID(int Id)
+        public RoySched GetRoySched(string ID)
         {
-            return context.RoyScheds.Find(Id);
+            return context.RoySched.Find(ID);
+        }
+        public List<RoySched> GetRoyScheds()
+        {
+            return context.RoySched.ToList();
         }
 
-        public RoySched GetEntityByID(string Id)
+        public void Remove(RoySched roySched)
         {
-            return context.RoyScheds.Find(Id);
+            context.RoySched.Remove(roySched);
         }
 
-        public void Remove(RoySched entity)
+        public void Save(RoySched roySched)
         {
-            context.RoyScheds.Remove(entity);
+            context.RoySched.Add(roySched);
         }
 
-        public void Save(RoySched entity)
+        public void Update(RoySched roySched)
         {
-            context.RoyScheds.Add(entity);
-        }
-
-        public void Update(RoySched entity)
-        {
-            context.RoyScheds.Update(entity);
+            context.RoySched.Update(roySched);
         }
     }
 }

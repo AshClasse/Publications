@@ -11,6 +11,6 @@ namespace Publicaciones.Domain.Repository
         void Update(Titles title);
         void Remove(Titles title);
         List<Titles> GetTitles();
-        Titles GetTitle(string Title_ID);
+        Titles GetTitle(string ID);
     }
 }

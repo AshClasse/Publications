@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Publicaciones.Domain.Entities;
+using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Infrastructure.Interfaces;
 
 namespace Publicaciones.Infrastructure.Repository
 {
@@ -17,35 +17,29 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public Pub_Info GetEntityByID(int Id)
+        public Pub_Info GetPub_Info(string ID)
         {
-            return context.Pub_Infos.Find(Id);
+            return this.context.Pub_Info.Find(ID);
         }
 
-        public Pub_Info GetEntityByID(string Id)
+        public List<Pub_Info> GetPub_Infos()
         {
-            return context.Pub_Infos.Find(Id);
+            return this.context.Pub_Info.ToList();
         }
 
-        public List<Pub_Info> GetEntities()
+        public void Remove(Pub_Info pub_info)
         {
-            return context.Pub_Infos.ToList();
+            this.context.Pub_Info.Remove(pub_info);
         }
 
-        public void Remove(Pub_Info entity)
+        public void Save(Pub_Info pub_info)
         {
-            context.Pub_Infos.Remove(entity);
+            this.context.Pub_Info.Add(pub_info);
         }
 
-        public void Save(Pub_Info entity)
+        public void Update(Pub_Info pub_info)
         {
-            context.Pub_Infos.Add(entity);
+            this.context.Pub_Info.Update(pub_info);
         }
-
-        public void Update(Pub_Info entity)
-        {
-            context.Pub_Infos.Update(entity);
-        }
-
     }
 }
