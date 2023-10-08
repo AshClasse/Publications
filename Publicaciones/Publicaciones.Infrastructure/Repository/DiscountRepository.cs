@@ -1,37 +1,29 @@
 ﻿using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class DiscountRepository : IDiscountRepository
+    public class DiscountRepository : BaseRepository<Discount>, IDiscountRepository
     {
         private readonly PublicacionesContext context;
 
-        public DiscountRepository(PublicacionesContext context)
+        public DiscountRepository(PublicacionesContext context) : base(context)
         {
             this.context = context;
         }
-        public List<Discount> GetDiscounts()
+        public List<Discount> GetDiscountsByStore(string storeID)
         {
-            return this.context.Discounts.Where(d => !d.Deleted).ToList();
+            return this.context.Discounts.Where(sd => sd.StoreID == storeID
+                                                && !sd.Deleted).ToList();
         }
 
-        public void Remove(Discount discount)
+        public override List<Discount> GetEntities()
         {
-            this.context.Discounts.Remove(discount);
-        }
-
-        public void Save(Discount discount)
-        {
-            this.context.Discounts.Add(discount);
-        }
-
-        public void Update(Discount discount)
-        {
-            this.context.Discounts.Update(discount);
+            return base.GetEntities().Where(d => !d.Deleted).ToList();
         }
     }
 }

@@ -1,43 +1,42 @@
 ﻿using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class SaleRepository : ISaleRepository
+    public class SaleRepository : BaseRepository<Sale>, ISaleRepository
     {
         private readonly PublicacionesContext context;
 
-        public SaleRepository(PublicacionesContext context)
+        public SaleRepository(PublicacionesContext context) : base(context)
         {
-            this.context = context;   
+            this.context = context;
         }
 
-        public Sale GetSaleByID(string storeID, string ordNum, string titleID)
+        public List<Sale> GetSalesByOrdNum(string ordNum)
         {
-            return this.context.Sales.Find(storeID, ordNum, titleID);
+            return this.context.Sales.Where(so => so.OrdNum == ordNum 
+                                            && !so.Deleted).ToList();
         }
 
-        public List<Sale> GetSales()
+        public List<Sale> GetSalesByStore(string storeID)
         {
-            return this.context.Sales.Where(s => !s.Deleted).ToList();
+            return this.context.Sales.Where(ss => ss.StoreID == storeID
+                                            && !ss.Deleted).ToList();       
         }
 
-        public void Remove(Sale sale)
+        public List<Sale> GetSalesByTitle(string titleID)
         {
-            this.context.Sales.Remove(sale);
+            return this.context.Sales.Where(st => st.TitleID == titleID
+                                            && !st.Deleted).ToList();   
         }
 
-        public void Save(Sale sale)
+        public override List<Sale> GetEntities()
         {
-            this.context.Sales.Add(sale);
-        }
-
-        public void Update(Sale sale)
-        {
-            this.context.Sales.Update(sale);
+            return base.GetEntities().Where(s => !s.Deleted).ToList();
         }
     }
 }
