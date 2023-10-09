@@ -86,7 +86,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(sale);
         }
 
-        [HttpPost("UpdateSale")]
+        [HttpPut("UpdateSale")]
         public IActionResult Put([FromBody] SaleUpdateModel saleUpdate)
         {
             Sale sale = new Sale()

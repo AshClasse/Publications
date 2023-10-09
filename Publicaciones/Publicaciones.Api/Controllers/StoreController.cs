@@ -63,7 +63,7 @@ namespace Publicaciones.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("UpdateStore")]
+        [HttpPut("UpdateStore")]
         public IActionResult Put([FromBody] StoreUpdateModel storeUpdate)
         {
             Store store = new Store()

@@ -41,7 +41,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(discounts);
         }
 
-        [HttpGet("SaveDiscount")]
+        [HttpPost("SaveDiscount")]
         public IActionResult Post([FromBody] DiscountAddModel discountAdd)
         {
             Discount discount = new Discount()
@@ -60,7 +60,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(discount);
         }
 
-        [HttpPost("UpdateDiscount")]
+        [HttpPut("UpdateDiscount")]
         public IActionResult Put([FromBody] DiscountUpdateModel discountUpdate)
         {
             Discount discount = new Discount()
