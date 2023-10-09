@@ -20,7 +20,7 @@ namespace Publicaciones.Infrastructure.Core
             this.entities = context.Set<TEntity>();
         }
 
-        public bool Exists(Expression<Func<TEntity, bool>> filter)
+        public virtual bool Exists(Expression<Func<TEntity, bool>> filter)
         {
             return this.entities.Any(filter);
         }
