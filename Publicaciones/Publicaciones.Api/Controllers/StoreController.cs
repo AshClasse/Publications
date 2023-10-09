@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Module_Store;
 using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,37 +18,69 @@ namespace Publicaciones.Api.Controllers
             this._storeRepository = storeRepository;
         }
 
-        // GET: api/<StoreController>
-        [HttpGet]
-        public IEnumerable<Store> Get()
-        {
-            var stores = this._storeRepository.GetStores();
-            return stores;
+        [HttpGet("GetStores")]
+        public IActionResult GetStores() 
+        { 
+            var stores = this._storeRepository.GetEntities().Select(st => new StoreGetAllModel()
+            {
+                StoreID = st.StoreID,
+                ChangeDate = st.CreationDate,
+                ChangeUser = st.IDCreationUser,
+                StoreName = st.StoreName,
+                StoreAddress = st.StoreAddress,
+                City = st.City,
+                State = st.State,
+                Zip = st.Zip
+            }
+            ).ToList();
+
+            return Ok(stores);
         }
 
-        // GET api/<StoreController>/5
-        [HttpGet("{ID}")]
-        public Store Get(string ID)
+        [HttpGet("GetStore")]
+        public IActionResult GetStore(string storeID)
         {
-            return this._storeRepository.GetStoreByID(ID);
+            var store = this._storeRepository.GetEntityByID(storeID);
+            return Ok(store);
         }
 
-        // POST api/<StoreController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("SaveStore")]
+        public IActionResult Post([FromBody] StoreAddModel storeAdd)
         {
+            Store store = new Store()
+            {
+                CreationDate = storeAdd.ChangeDate,
+                IDCreationUser = storeAdd.ChangeUser,
+                StoreName = storeAdd.StoreName,
+                StoreAddress = storeAdd.StoreAddress,
+                City = storeAdd.City,
+                State = storeAdd.State,
+                Zip = storeAdd.Zip
+            };
+
+            this._storeRepository.Save(store);
+
+            return Ok();
         }
 
-        // PUT api/<StoreController>/5
-        [HttpPut("{ID}")]
-        public void Put(int ID, [FromBody] string value)
+        [HttpPost("UpdateStore")]
+        public IActionResult Put([FromBody] StoreUpdateModel storeUpdate)
         {
-        }
+            Store store = new Store()
+            {
+                StoreID = storeUpdate.StoreID,
+                CreationDate = storeUpdate.ChangeDate,
+                IDCreationUser = storeUpdate.ChangeUser,
+                StoreName = storeUpdate.StoreName,
+                StoreAddress = storeUpdate.StoreAddress,
+                City = storeUpdate.City,
+                State = storeUpdate.State,
+                Zip = storeUpdate.Zip
+            };
 
-        // DELETE api/<StoreController>/5
-        [HttpDelete("{ID}")]
-        public void Delete(int ID)
-        {
+            this._storeRepository.Update(store);
+
+            return Ok();
         }
     }
 }

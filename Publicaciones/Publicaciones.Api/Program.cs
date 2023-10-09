@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Interfaces;
 using Publicaciones.Infrastructure.Repository;
 
 namespace Publicaciones.Api
@@ -19,8 +20,8 @@ namespace Publicaciones.Api
             // Repositories dependencies
 
             builder.Services.AddTransient<IDiscountRepository, DiscountRepository>();
-            builder.Services.AddTransient<ISaleRepository, SaleRepository>();
-            builder.Services.AddTransient<IStoreRepository, StoreRepository>();
+            builder.Services.AddTransient<ISaleRepository, SaleRepository>();   
+            builder.Services.AddTransient<IStoreRepository, StoreRepository>(); 
 
             // App services dependencies
 

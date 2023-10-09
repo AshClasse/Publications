@@ -16,22 +16,27 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public List<Sale> GetSalesByOrdNum(string ordNum)
+        public Sale GetSaleByID(string storeID, string ordNum, string titleID)
         {
-            return this.context.Sales.Where(so => so.OrdNum == ordNum 
+            return context.Sales.Find(storeID, ordNum, titleID);
+        }
+
+        public List<Sale> GetSaleByOrdNum(string ordNum)
+        {
+            return this.context.Sales.Where(so => so.OrdNum == ordNum
                                             && !so.Deleted).ToList();
         }
 
-        public List<Sale> GetSalesByStore(string storeID)
+        public List<Sale> GetSaleByStore(string storeID)
         {
             return this.context.Sales.Where(ss => ss.StoreID == storeID
-                                            && !ss.Deleted).ToList();       
+                                            && !ss.Deleted).ToList();
         }
 
-        public List<Sale> GetSalesByTitle(string titleID)
+        public List<Sale> GetSaleByTitle(string titleID)
         {
             return this.context.Sales.Where(st => st.TitleID == titleID
-                                            && !st.Deleted).ToList();   
+                                            && !st.Deleted).ToList();
         }
 
         public override List<Sale> GetEntities()

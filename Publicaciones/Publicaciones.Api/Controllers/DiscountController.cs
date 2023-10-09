@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Module_Discount;
 using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,36 +16,67 @@ namespace Publicaciones.Api.Controllers
         {
             this._discountRepository = discountRepository;
         }
-        // GET: api/<DiscountController>
-        [HttpGet]
-        public IEnumerable<Discount> Get()
+
+        [HttpGet("GetDiscountByStoreID")]
+        public IActionResult GetDiscountByStoreID(string storeID)
         {
-            return this._discountRepository.GetDiscounts();
+            var discounts = this._discountRepository.GetDiscountsByStore(storeID);
+            return Ok(discounts);
         }
 
-        // GET api/<DiscountController>/5
-        /*[HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetDiscounts")]
+        public IActionResult GetDiscounts()
         {
-            return "value";
-        }*/
+            var discounts = this._discountRepository.GetEntities().Select(d => new DiscountGetAllModel()
+            {
+                ChangeDate = d.CreationDate,
+                ChangeUser = d.IDCreationUser,
+                DiscountAmount = d.DiscountAmount,
+                DiscountType = d.DiscountType,
+                HighQty = d.HighQty,
+                LowQty = d.LowQty,
+                StoreID = d.StoreID
+            }).ToList();
 
-        // POST api/<DiscountController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
+            return Ok(discounts);
         }
 
-        // PUT api/<DiscountController>/5
-        [HttpPut("{ID}")]
-        public void Put(int ID, [FromBody] string value)
+        [HttpGet("SaveDiscount")]
+        public IActionResult Post([FromBody] DiscountAddModel discountAdd)
         {
+            Discount discount = new Discount()
+            {
+                CreationDate = discountAdd.ChangeDate,
+                IDCreationUser = discountAdd.ChangeUser,
+                DiscountAmount = discountAdd.DiscountAmount,
+                DiscountType = discountAdd.DiscountType,
+                HighQty = discountAdd.HighQty,
+                LowQty = discountAdd.LowQty,
+                StoreID = discountAdd.StoreID
+            };
+
+            this._discountRepository.Save(discount);
+
+            return Ok(discount);
         }
 
-        // DELETE api/<DiscountController>/5
-        [HttpDelete("{ID}")]
-        public void Delete(int ID)
+        [HttpPost("UpdateDiscount")]
+        public IActionResult Put([FromBody] DiscountUpdateModel discountUpdate)
         {
+            Discount discount = new Discount()
+            {
+                CreationDate = discountUpdate.ChangeDate,
+                IDCreationUser = discountUpdate.ChangeUser,
+                DiscountAmount = discountUpdate.DiscountAmount,
+                DiscountType = discountUpdate.DiscountType,
+                HighQty = discountUpdate.HighQty,
+                LowQty = discountUpdate.LowQty,
+                StoreID = discountUpdate.StoreID
+            };
+
+            this._discountRepository.Update(discount);
+
+            return Ok();
         }
     }
 }

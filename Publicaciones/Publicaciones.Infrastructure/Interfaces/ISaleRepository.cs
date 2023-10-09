@@ -8,8 +8,9 @@ namespace Publicaciones.Infrastructure.Interfaces
 {
     public interface ISaleRepository : IBaseRepository<Sale>
     {
-        List<Sale> GetSalesByStore(string storeID);
-        List<Sale> GetSalesByTitle(string titleID);
-        List<Sale> GetSalesByOrdNum(string ordNum);
+        Sale GetSaleByID(string storeID, string ordNum, string titleID);
+        List<Sale> GetSaleByStore(string storeID);
+        List<Sale> GetSaleByTitle(string titleID);
+        List<Sale> GetSaleByOrdNum(string ordNum);
     }
 }
