@@ -12,7 +12,7 @@ namespace Publicaciones.Infrastructure.Context
         {
 
         }
-
+        
         public DbSet<Employee> employee { get; set; }
         public DbSet<Jobs> jobs { get; set; }
         public DbSet<Publisher> publishers { get; set; }

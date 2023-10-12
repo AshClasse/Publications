@@ -3,40 +3,18 @@ using System.Linq;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interface;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
         private readonly PublicacionesContext context;
 
-        public EmployeeRepository(PublicacionesContext context)
+        public EmployeeRepository(PublicacionesContext context) : base(context)
         {
             this.context = context;
-        }
-        public Employee GetEmployeeID(string ID)
-        {
-            return this.context.employee.Find(ID);
-        }
-
-        public List<Employee> GetEmployees()
-        {
-            return context.employee.ToList();
-        }
-
-        public void Remove(Employee employee)
-        {
-            this.context.Remove(employee);
-        }
-
-        public void Save(Employee employee)
-        {
-            this.context.Add(employee);
-        }
-
-        public void Update(Employee employee)
-        {
-            this.context.Update(employee);
         }
     }
 }
