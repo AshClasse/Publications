@@ -48,11 +48,13 @@ namespace Publicaciones.Infrastructure.Core
         public virtual void Save(TEntity entity)
         {
             this.entities.Add(entity);
+            this.context.SaveChanges();
         }
 
         public virtual void Update(TEntity entity)
         {
             this.entities.Update(entity);
+            this.context.SaveChanges();
         }
     }
 }
