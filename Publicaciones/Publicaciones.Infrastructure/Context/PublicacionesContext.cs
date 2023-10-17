@@ -19,7 +19,7 @@ namespace Publicaciones.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Discount>().HasNoKey();
+            modelBuilder.Entity<Discount>().HasKey(s => s.DiscountID);
             modelBuilder.Entity<Sale>().HasKey(s => new { s.StoreID, s.OrdNum, s.TitleID });
             modelBuilder.Entity<Store>().HasKey(s => s.StoreID);
 

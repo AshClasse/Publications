@@ -8,6 +8,6 @@ namespace Publicaciones.Infrastructure.Interfaces
 {
     public interface IDiscountRepository : IBaseRepository<Discount>
     {
-        List<Discount> GetDiscountsByStore(string storeID);
+        List<Discount> GetDiscountsByStore(int storeID);
     }
 }

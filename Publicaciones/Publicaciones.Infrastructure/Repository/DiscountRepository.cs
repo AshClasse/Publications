@@ -15,7 +15,7 @@ namespace Publicaciones.Infrastructure.Repository
         {
             this.context = context;
         }
-        public List<Discount> GetDiscountsByStore(string storeID)
+        public List<Discount> GetDiscountsByStore(int storeID)
         {
             return this.context.Discounts.Where(sd => sd.StoreID == storeID
                                                 && !sd.Deleted).ToList();

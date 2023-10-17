@@ -35,7 +35,7 @@ namespace Publicaciones.Infrastructure.Core
             return this.entities.ToList();
         }
 
-        public virtual TEntity GetEntityByID(string ID)
+        public virtual TEntity GetEntityByID(int ID)
         {
             return this.entities.Find(ID);
         }

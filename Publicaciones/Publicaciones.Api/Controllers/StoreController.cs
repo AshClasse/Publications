@@ -38,7 +38,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         [HttpGet("GetStore")]
-        public IActionResult GetStore(string storeID)
+        public IActionResult GetStore(int storeID)
         {
             var store = this._storeRepository.GetEntityByID(storeID);
             return Ok(store);

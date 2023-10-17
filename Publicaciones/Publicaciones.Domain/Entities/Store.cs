@@ -7,7 +7,7 @@ namespace Publicaciones.Domain.Entities
 {
     public class Store : BaseEntity
     {
-        public string StoreID { get; set; }
+        public int StoreID { get; set; }
         public string? StoreName { get; set; }
         public string? StoreAddress { get; set; }
         public string? City { get; set; }

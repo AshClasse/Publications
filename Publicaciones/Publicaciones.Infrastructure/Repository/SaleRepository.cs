@@ -16,7 +16,7 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public Sale GetSaleByID(string storeID, string ordNum, string titleID)
+        public Sale GetSaleByID(int storeID, string ordNum, int titleID)
         {
             return context.Sales.Find(storeID, ordNum, titleID);
         }
@@ -27,13 +27,13 @@ namespace Publicaciones.Infrastructure.Repository
                                             && !so.Deleted).ToList();
         }
 
-        public List<Sale> GetSaleByStore(string storeID)
+        public List<Sale> GetSaleByStore(int storeID)
         {
             return this.context.Sales.Where(ss => ss.StoreID == storeID
                                             && !ss.Deleted).ToList();
         }
 
-        public List<Sale> GetSaleByTitle(string titleID)
+        public List<Sale> GetSaleByTitle(int titleID)
         {
             return this.context.Sales.Where(st => st.TitleID == titleID
                                             && !st.Deleted).ToList();

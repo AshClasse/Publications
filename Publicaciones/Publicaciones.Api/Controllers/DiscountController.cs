@@ -17,18 +17,12 @@ namespace Publicaciones.Api.Controllers
             this._discountRepository = discountRepository;
         }
 
-        [HttpGet("GetDiscountByStoreID")]
-        public IActionResult GetDiscountByStoreID(string storeID)
-        {
-            var discounts = this._discountRepository.GetDiscountsByStore(storeID);
-            return Ok(discounts);
-        }
-
         [HttpGet("GetDiscounts")]
         public IActionResult GetDiscounts()
         {
             var discounts = this._discountRepository.GetEntities().Select(d => new DiscountGetAllModel()
             {
+                DiscountID = d.DiscountID,
                 ChangeDate = d.CreationDate,
                 ChangeUser = d.IDCreationUser,
                 DiscountAmount = d.DiscountAmount,
@@ -38,6 +32,20 @@ namespace Publicaciones.Api.Controllers
                 StoreID = d.StoreID
             }).ToList();
 
+            return Ok(discounts);
+        }
+
+        [HttpGet("GetDiscount")]
+        public IActionResult GetDiscount(int discountID)
+        {
+            var discounts = this._discountRepository.GetEntityByID(discountID);
+            return Ok(discounts);
+        }
+
+        [HttpGet("GetDiscountByStoreID")]
+        public IActionResult GetDiscountByStoreID(int storeID)
+        {
+            var discounts = this._discountRepository.GetDiscountsByStore(storeID);
             return Ok(discounts);
         }
 
@@ -65,6 +73,7 @@ namespace Publicaciones.Api.Controllers
         {
             Discount discount = new Discount()
             {
+                DiscountID = discountUpdate.DiscountID,
                 CreationDate = discountUpdate.ChangeDate,
                 IDCreationUser = discountUpdate.ChangeUser,
                 DiscountAmount = discountUpdate.DiscountAmount,

@@ -19,7 +19,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         [HttpGet("GetSaleByStoreID")]
-        public IActionResult GetSaleByStoreID(string storeID)
+        public IActionResult GetSaleByStoreID(int storeID)
         {
             var sales = this._saleRepository.GetSaleByStore(storeID);
             return Ok(sales);
@@ -33,7 +33,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         [HttpGet("GetSaleByTitleID")]
-        public IActionResult GetSaleByTitleID(string titleID)
+        public IActionResult GetSaleByTitleID(int titleID)
         {
             var sales = this._saleRepository.GetSaleByTitle(titleID);
             return Ok(sales);
@@ -60,7 +60,7 @@ namespace Publicaciones.Api.Controllers
 
         // GET api/<SaleController>/5
         [HttpGet("GetSale")]
-        public IActionResult GetSale(string storeID, string ordNum, string titleID)
+        public IActionResult GetSale(int storeID, string ordNum, int titleID)
         {
             var sale = this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
             return Ok(sale);

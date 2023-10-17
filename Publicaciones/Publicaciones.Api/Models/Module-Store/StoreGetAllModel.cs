@@ -4,6 +4,6 @@ namespace Publicaciones.Api.Models.Module_Store
 {
     public class StoreGetAllModel : StoreBaseModel
     {
-        public string StoreID { get; set; }
+        public int StoreID { get; set; }
     }
 }
