@@ -1,8 +1,6 @@
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore;
-using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interfaces;
 using Publicaciones.Infrastructure.Repository;
 
 namespace Publicaciones.Api

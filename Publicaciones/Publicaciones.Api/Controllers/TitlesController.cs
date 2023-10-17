@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,21 +15,6 @@ namespace Publicaciones.Api.Controllers
         public TitlesController(ITitlesRepository titlesRepository) 
         {
             this._titlesRepository = titlesRepository;
-        }
-
-        // GET: api/<TitlesController>
-        [HttpGet]
-        public IEnumerable<Titles> Get()
-        {
-            var titles = this._titlesRepository.GetTitles();
-            return titles;
-        }
-
-        // GET api/<TitlesController>/5
-        [HttpGet("{ID}")]
-        public Titles Get(string ID)
-        {
-            return _titlesRepository.GetTitle(ID);
         }
 
         // POST api/<TitlesController>

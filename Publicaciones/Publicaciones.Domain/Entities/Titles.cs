@@ -11,7 +11,7 @@ namespace Publicaciones.Domain.Entities
         public string Title_ID { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }
-        public string? PubID { get; set; }
+        public int PubID { get; set; }
         public decimal? Price { get; set; }
         public decimal? Advance { get; set; }
         public int? Royalty { get; set; }

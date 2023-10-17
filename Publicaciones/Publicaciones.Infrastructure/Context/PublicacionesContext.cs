@@ -20,8 +20,8 @@ namespace Publicaciones.Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pub_Info>().HasKey(s => s.PubID);
-            modelBuilder.Entity<RoySched>().HasKey(s => s.Title_ID);
-            modelBuilder.Entity<Titles>().HasKey(s => s.Title_ID);
+			modelBuilder.Entity<RoySched>().HasKey(s => s.Title_ID);
+			modelBuilder.Entity<Titles>().HasKey(s => s.Title_ID);
 
             base.OnModelCreating(modelBuilder);
         }

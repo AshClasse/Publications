@@ -1,48 +1,34 @@
-﻿using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
-using System;
+using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class RoySchedRepository : IRoySchedRepository
+    public class RoySchedRepository : BaseRepository<RoySched>, IRoySchedRepository
     {
         private readonly PublicacionesContext context;
-        public RoySchedRepository(PublicacionesContext context)
+        public RoySchedRepository(PublicacionesContext context) : base(context)
         {
             this.context = context;
         }
 
-        public RoySched GetRoySched(int ID)
-        {
-            return context.RoySched.Find(ID);
-        }
+		public bool ExistsInTitles(string titleId)
+		{
+			return this.context.Set<Titles>().Any(t => t.Title_ID == titleId);
+		}
 
-        public RoySched GetRoySched(string ID)
-        {
-            return context.RoySched.Find(ID);
-        }
-        public List<RoySched> GetRoyScheds()
-        {
-            return context.RoySched.ToList();
-        }
+		public List<RoySched> GetRoySchedsByRoyalty(int royalty)
+		{
+			throw new System.NotImplementedException();
+		}
 
-        public void Remove(RoySched roySched)
-        {
-            context.RoySched.Remove(roySched);
-        }
-
-        public void Save(RoySched roySched)
-        {
-            context.RoySched.Add(roySched);
-        }
-
-        public void Update(RoySched roySched)
-        {
-            context.RoySched.Update(roySched);
-        }
-    }
+		public List<RoySched> GetRoySchedsByTitle(string titleId)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
 }

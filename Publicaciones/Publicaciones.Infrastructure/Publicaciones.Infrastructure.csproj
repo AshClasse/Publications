@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Publicaciones.Domain\Publicaciones.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

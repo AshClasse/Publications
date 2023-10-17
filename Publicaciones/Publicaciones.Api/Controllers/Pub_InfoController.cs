@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Domain.Repository;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Publicaciones.Infrastructure.Interfaces;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -17,26 +16,27 @@ namespace Publicaciones.Api.Controllers
             this._pub_info_repository = pub_info_repository;
         }
 
-        // GET: api/<Pub_InfoController>
-        [HttpGet]
+        [HttpGet("GetPub_Infos")]
         public IEnumerable<Pub_Info> Get()
         {
-            var pub_infos = this._pub_info_repository.GetPub_Infos();
-            return pub_infos;
+            var pubInfos = this._pub_info_repository.GetEntities();
+            return pubInfos;
         }
 
-        // GET api/<Pub_InfoController>/5
-        [HttpGet("{ID}")]
-        public Pub_Info Get(string ID)
+
+        [HttpGet("GetPub_InfoByID")]
+        public IActionResult GetPub_InfoByID(string ID)
         {
-            return this._pub_info_repository.GetPub_Info(ID);
+            var pub_infos = this._pub_info_repository.GetEntityByID(ID);
+            return Ok(pub_infos);
         }
+
 
         // POST api/<Pub_InfoController>
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //public IActionResult Post([FromBody] Pub_Info pub_Info)
+        //{     
+        //}
 
         // PUT api/<Pub_InfoController>/5
         [HttpPut("{id}")]
@@ -44,10 +44,6 @@ namespace Publicaciones.Api.Controllers
         {
         }
 
-        // DELETE api/<Pub_InfoController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        // DELETE NO VA
     }
 }

@@ -1,45 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
+﻿using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interfaces;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class Pub_InfoRepository : IPub_InfoRepository
+    public class Pub_InfoRepository : BaseRepository<Pub_Info>, IPub_InfoRepository
     {
         private readonly PublicacionesContext context;
-
-        public Pub_InfoRepository(PublicacionesContext context)
+        public Pub_InfoRepository(PublicacionesContext context) : base(context)
         {
             this.context = context;
         }
 
-        public Pub_Info GetPub_Info(string ID)
+        public override void Save(Pub_Info entity)
         {
-            return this.context.Pub_Info.Find(ID);
-        }
-
-        public List<Pub_Info> GetPub_Infos()
-        {
-            return this.context.Pub_Info.ToList();
-        }
-
-        public void Remove(Pub_Info pub_info)
-        {
-            this.context.Pub_Info.Remove(pub_info);
-        }
-
-        public void Save(Pub_Info pub_info)
-        {
-            this.context.Pub_Info.Add(pub_info);
-        }
-
-        public void Update(Pub_Info pub_info)
-        {
-            this.context.Pub_Info.Update(pub_info);
+            this.context.SaveChanges();
         }
     }
 }

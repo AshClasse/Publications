@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq.Expressions;
 
 namespace Publicaciones.Domain.Repository
 {
@@ -13,6 +13,8 @@ namespace Publicaciones.Domain.Repository
         List<TEntity> GetEntities();
         TEntity GetEntityByID(int ID);
         TEntity GetEntityByID(string ID);
+        List<TEntity> FindAll(Expression<Func<TEntity, bool>> filter);
+        bool Exists(Expression<Func<TEntity, bool>> filter);
     }
 }
 

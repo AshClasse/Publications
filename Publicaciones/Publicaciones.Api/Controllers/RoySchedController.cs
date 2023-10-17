@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,30 +17,23 @@ namespace Publicaciones.Api.Controllers
             this._roySchedRepository = roySchedRepository;
         }
 
-        // GET: api/<RoySchedController>
-        [HttpGet]
-        public IEnumerable<RoySched> Get()
-        {
-            var royscheds = this._roySchedRepository.GetRoyScheds();
-            return royscheds;
-        }
-
-        // GET api/<RoySchedController>/5
-        [HttpGet("{ID}")]
-        public RoySched Get(string ID)
-        {
-            return this._roySchedRepository.GetRoySched(ID);
-        }
 
         // POST api/<RoySchedController>
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        public IActionResult Post([FromBody] RoySched roySched)
+        {	
+			if (!_roySchedRepository.ExistsInTitles(roySched.Title_ID))
+			{
+				return BadRequest("Título no existente.");
+			}
+
+			_roySchedRepository.Save(roySched);
+			return Ok("Registro creado exitosamente");
+		}
 
         // PUT api/<RoySchedController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(string id, [FromBody] string value)
         {
         }
 

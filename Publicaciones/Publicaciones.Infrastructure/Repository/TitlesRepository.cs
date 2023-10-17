@@ -1,6 +1,8 @@
 ﻿using Publicaciones.Domain.Entities;
 using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Core;
+using Publicaciones.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,41 +10,27 @@ using System.Text;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class TitlesRepository : ITitlesRepository
+    public class TitlesRepository : BaseRepository<Titles>, ITitlesRepository
     {
         private readonly PublicacionesContext context;
-        public TitlesRepository(PublicacionesContext context)
+        public TitlesRepository(PublicacionesContext context) : base(context)
         {
             this.context = context;
         }
 
-        public Titles GetTitle(int ID)
-        {
-            return context.Titles.Find(ID);
-        }
+		public List<Titles> GetTitlesByPrice(decimal price)
+		{
+			throw new NotImplementedException();
+		}
 
-        public Titles GetTitle(string ID)
-        {
-            return context.Titles.Find(ID);
-        }
-        public List<Titles> GetTitles()
-        {
-            return context.Titles.ToList();
-        }
+		public List<Titles> GetTitlesByPublisher(int pubId)
+		{
+			throw new NotImplementedException();
+		}
 
-        public void Remove(Titles titles)
-        {
-            context.Titles.Remove(titles);
-        }
-
-        public void Save(Titles titles)
-        {
-            context.Titles.Add(titles);
-        }
-
-        public void Update(Titles titles)
-        {
-            context.Titles.Update(titles);
-        }
-    }
+		public List<Titles> GetTitlesByType(string type)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
