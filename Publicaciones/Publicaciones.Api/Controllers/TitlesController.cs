@@ -17,8 +17,23 @@ namespace Publicaciones.Api.Controllers
             this._titlesRepository = titlesRepository;
         }
 
-        // POST api/<TitlesController>
-        [HttpPost]
+		[HttpGet("GetTitles")]
+		public IEnumerable<Titles> Get()
+		{
+			var titles = this._titlesRepository.GetEntities();
+			return titles;
+		}
+
+
+		[HttpGet("GetTitleByID")]
+		public IActionResult GetTitleByID(string ID)
+		{
+			var titles = this._titlesRepository.GetEntityByID(ID);
+			return Ok(titles);
+		}
+
+		// POST api/<TitlesController>
+		[HttpPost]
         public void Post([FromBody] string value)
         {
         }

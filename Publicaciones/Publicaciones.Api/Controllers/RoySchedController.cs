@@ -17,9 +17,22 @@ namespace Publicaciones.Api.Controllers
             this._roySchedRepository = roySchedRepository;
         }
 
+		[HttpGet("GetRoyScheds")]
+		public IEnumerable<RoySched> Get()
+		{
+			var royScheds = this._roySchedRepository.GetEntities();
+			return royScheds;
+		}
 
-        // POST api/<RoySchedController>
-        [HttpPost]
+		[HttpGet("GetRoySchedByTitle")]
+		public IActionResult GetRoySchedByTitle(string titleId)
+		{
+			var royScheds = this._roySchedRepository.GetRoySchedsByTitle(titleId);
+			return Ok(royScheds);
+		}
+
+		// POST api/<RoySchedController>
+		[HttpPost]
         public IActionResult Post([FromBody] RoySched roySched)
         {	
 			if (!_roySchedRepository.ExistsInTitles(roySched.Title_ID))
