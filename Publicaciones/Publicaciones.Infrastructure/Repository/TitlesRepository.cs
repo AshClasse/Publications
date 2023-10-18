@@ -20,17 +20,21 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public List<Titles> GetTitlesByPrice(decimal price)
 		{
-			throw new NotImplementedException();
+			return this.context.Titles.Where(t => t.Price == price).ToList();
 		}
 
 		public List<Titles> GetTitlesByPublisher(int pubId)
 		{
-			throw new NotImplementedException();
+			return this.context.Titles.Where(t => t.PubID == pubId).ToList();
 		}
 
 		public List<Titles> GetTitlesByType(string type)
 		{
-			throw new NotImplementedException();
+			return this.context.Titles.Where(t =>t.Type == type).ToList();
+		}
+		public override void Save(Titles entity)
+		{
+			this.context.SaveChanges();
 		}
 	}
 }

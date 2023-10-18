@@ -23,12 +23,16 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public List<RoySched> GetRoySchedsByRoyalty(int royalty)
 		{
-			throw new System.NotImplementedException();
+			return this.context.RoySched.Where(r => r.Royalty == royalty).ToList();
 		}
 
 		public List<RoySched> GetRoySchedsByTitle(string titleId)
 		{
-			throw new System.NotImplementedException();
+			return this.context.RoySched.Where(r => r.Title_ID == titleId).ToList();
+		}
+		public override void Save(RoySched entity)
+		{
+			this.context.SaveChanges();
 		}
 	}
 }
