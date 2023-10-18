@@ -2,6 +2,8 @@
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
@@ -13,5 +15,9 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-    }
+		public override List<Pub_Info> GetEntities()
+		{
+			return base.GetEntities().Where(s => !s.Deleted).ToList();
+		}
+	}
 }

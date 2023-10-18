@@ -32,6 +32,9 @@ namespace Publicaciones.Infrastructure.Repository
 		{
 			return this.context.Titles.Where(t =>t.Type == type).ToList();
 		}
-
+		public override List<Titles> GetEntities()
+		{
+			return base.GetEntities().Where(s => !s.Deleted).ToList();
+		}
 	}
 }
