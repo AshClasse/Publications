@@ -30,9 +30,6 @@ namespace Publicaciones.Infrastructure.Repository
 		{
 			return this.context.RoySched.Where(r => r.Title_ID == titleId).ToList();
 		}
-		public override void Save(RoySched entity)
-		{
-			this.context.SaveChanges();
-		}
+
 	}
 }

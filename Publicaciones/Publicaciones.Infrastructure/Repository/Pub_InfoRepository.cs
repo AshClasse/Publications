@@ -13,9 +13,5 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public override void Save(Pub_Info entity)
-        {
-            this.context.SaveChanges();
-        }
     }
 }

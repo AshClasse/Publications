@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Interfaces;
 
 namespace Publicaciones.Api.Controllers

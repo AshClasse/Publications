@@ -32,9 +32,6 @@ namespace Publicaciones.Infrastructure.Repository
 		{
 			return this.context.Titles.Where(t =>t.Type == type).ToList();
 		}
-		public override void Save(Titles entity)
-		{
-			this.context.SaveChanges();
-		}
+
 	}
 }
