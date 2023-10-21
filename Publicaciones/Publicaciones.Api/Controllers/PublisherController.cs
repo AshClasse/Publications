@@ -58,7 +58,7 @@ namespace Publicaciones.Api.Controllers
 
 
         // POST api/<PublisherController>
-        [HttpPost("PublisherCreation")]
+        [HttpPost("SavePublisher")]
         public IActionResult Post([FromBody] PublisherAddModel PubAdd)
         {
             Publisher pub = new Publisher()
@@ -96,7 +96,7 @@ namespace Publicaciones.Api.Controllers
 
             _publisherRepository.Update(ExistPub);
 
-            return NoContent();
+            return Ok();
         }
     }
 }

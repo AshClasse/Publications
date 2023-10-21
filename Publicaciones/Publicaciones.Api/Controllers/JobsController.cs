@@ -55,7 +55,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         // POST api/<JobsController>
-        [HttpPost("JobCreation")]
+        [HttpPost("SaveJobs")]
         public IActionResult Post([FromBody] JobAddModel JobADD)
         {
             Jobs jobs = new Jobs()
@@ -89,7 +89,7 @@ namespace Publicaciones.Api.Controllers
             JobExist.IDModifiedUser = JobsU.ChangeUser;
 
             this._jobsRepository.Update(JobExist);
-            return NoContent();
+            return Ok();
 
         }
     }

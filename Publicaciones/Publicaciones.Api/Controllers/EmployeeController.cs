@@ -54,7 +54,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         // GET api/<EmployeeControler>/5
-        [HttpGet("GetEmplopyeeByID")]
+        [HttpGet("GetEmployeeByID")]
         public IActionResult GetEmployeesByID (int ID)
         {
             var EmpGet = this._employeeRepository.GetEntityByID(ID);
@@ -76,7 +76,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         // POST api/<EmployeeController>
-        [HttpPost("EmployeeCreation")]
+        [HttpPost("SaveEmployee")]
         public IActionResult Post([FromBody] EmployeeAddModel EmpAdd)
         {
             Employee employee = new Employee()
@@ -87,9 +87,11 @@ namespace Publicaciones.Api.Controllers
                 Minit = EmpAdd.Minit,
                 HireDate = EmpAdd.HireDate,
                 JobID = EmpAdd.JobID,
+                Joblvl = EmpAdd.Joblvl,
                 CreationDate = EmpAdd.ChangeDate,
                 IDCreationUser = EmpAdd.ChangeUser
             };
+            this._employeeRepository.Save(employee);
             return Created("Object Created",employee);
         }
 
@@ -111,10 +113,11 @@ namespace Publicaciones.Api.Controllers
             ExistEmp.HireDate = EmpUpdate.HireDate;
             ExistEmp.JobID = EmpUpdate.JobID;
             ExistEmp.CreationDate = EmpUpdate.ChangeDate;
+            ExistEmp.Joblvl = EmpUpdate.Joblvl;
             ExistEmp.IDCreationUser = EmpUpdate.ChangeUser;
 
             this._employeeRepository.Update(ExistEmp);
-            return NoContent();
+            return Ok();
         }
     }
 }
