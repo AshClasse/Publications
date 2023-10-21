@@ -39,9 +39,27 @@ namespace Publicaciones.Infrastructure.Repository
                                             && !st.Deleted).ToList();
         }
 
-        public override List<Sale> GetEntities()
+        public override void Save(Sale entity)
         {
-            return base.GetEntities().Where(s => !s.Deleted).ToList();
+            context.Sales.Add(entity);
+            context.SaveChanges();
+        }
+
+        public override void Update(Sale entity)
+        {
+            var saleToUpdate = GetSaleByID(entity.StoreID, entity.OrdNum, entity.TitleID);
+
+            saleToUpdate.StoreID = entity.StoreID;
+            saleToUpdate.OrdNum = entity.OrdNum;
+            saleToUpdate.TitleID = entity.TitleID;
+            saleToUpdate.OrdDate = entity.OrdDate;
+            saleToUpdate.Qty = entity.Qty;
+            saleToUpdate.Payterms = entity.Payterms;
+            saleToUpdate.ModifiedDate = entity.ModifiedDate;
+            saleToUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+            context.Sales.Update(saleToUpdate);
+            context.SaveChanges();
         }
     }
 }

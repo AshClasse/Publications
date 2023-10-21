@@ -16,9 +16,27 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-        public override List<Store> GetEntities()
+        public override void Save(Store entity)
         {
-            return base.GetEntities().Where(s => !s.Deleted).ToList();
+            context.Stores.Add(entity);
+            context.SaveChanges();
+        }
+
+        public override void Update(Store entity)
+        {
+            var storeToUpdate = base.GetEntityByID(entity.StoreID);
+
+            storeToUpdate.StoreName = entity.StoreName;
+            storeToUpdate.StoreAddress = entity.StoreAddress;
+            storeToUpdate.StoreAddress = entity.StoreAddress;
+            storeToUpdate.City = entity.City;
+            storeToUpdate.State = entity.State;
+            storeToUpdate.Zip = entity.Zip;
+            storeToUpdate.ModifiedDate = entity.ModifiedDate;
+            storeToUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+            context.Stores.Update(storeToUpdate);
+            context.SaveChanges();
         }
     }
 }

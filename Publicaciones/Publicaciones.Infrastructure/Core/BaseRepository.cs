@@ -11,7 +11,6 @@ namespace Publicaciones.Infrastructure.Core
      public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         private readonly PublicacionesContext context;
-
         private DbSet<TEntity> entities;
 
         public BaseRepository(PublicacionesContext context)

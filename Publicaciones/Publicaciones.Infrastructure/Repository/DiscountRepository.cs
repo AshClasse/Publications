@@ -21,9 +21,26 @@ namespace Publicaciones.Infrastructure.Repository
                                                 && !sd.Deleted).ToList();
         }
 
-        public override List<Discount> GetEntities()
+        public override void Save(Discount entity)
         {
-            return base.GetEntities().Where(d => !d.Deleted).ToList();
+            context.Discounts.Add(entity);
+            context.SaveChanges();
+        }
+
+        public override void Update(Discount entity)
+        {
+            var discountToUpdate = base.GetEntityByID(entity.StoreID);
+
+            discountToUpdate.DiscountType = entity.DiscountType;
+            discountToUpdate.StoreID = entity.StoreID;
+            discountToUpdate.LowQty = entity.LowQty;
+            discountToUpdate.HighQty = entity.HighQty;
+            discountToUpdate.DiscountAmount = entity.DiscountAmount;
+            discountToUpdate.ModifiedDate = entity.ModifiedDate;
+            discountToUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+            context.Update(discountToUpdate);
+            context.SaveChanges();
         }
     }
 }
