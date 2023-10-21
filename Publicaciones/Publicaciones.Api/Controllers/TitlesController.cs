@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Modules.Pub_InfoModels;
+using Publicaciones.Api.Models.Modules.Titles;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Publicaciones.Api.Controllers
 {
@@ -31,22 +31,45 @@ namespace Publicaciones.Api.Controllers
 			return Ok(titles);
 		}
 
-		// POST api/<TitlesController>
-		[HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+		[HttpPost("SaveTitle")]
+		public IActionResult Post([FromBody] TitlesAddModel titlesAdd)
+		{
+			this._titlesRepository.Save(new Titles()
+			{
+				Title = titlesAdd.Title,
+				Royalty = titlesAdd.Royalty,
+				Type = titlesAdd.Type,
+				Ytd_Sales = titlesAdd.Ytd_Sales,
+				Price = titlesAdd.Price,
+				Advance = titlesAdd.Advance,
+				PubID = titlesAdd.PubID,
+				Notes = titlesAdd.Notes,
+				PubDate = titlesAdd.PubDate,
+				CreationDate = titlesAdd.ChangeDate,
+				IDCreationUser = titlesAdd.ChangeUser
+		});
+			return Ok();
+		}
 
-        // PUT api/<TitlesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<TitlesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
+		[HttpPost("UpdateTitle")]
+		public IActionResult Put([FromBody] TitlesUpdateModel titlesUpdate)
+		{
+			this._titlesRepository.Update(new Titles()
+			{
+				Title_ID = titlesUpdate.Title_ID,
+				Title = titlesUpdate.Title,
+				Royalty = titlesUpdate.Royalty,
+				Type = titlesUpdate.Type,
+				Ytd_Sales = titlesUpdate.Ytd_Sales,
+				Price = titlesUpdate.Price,
+				Advance = titlesUpdate.Advance,
+				PubID = titlesUpdate.PubID,
+				Notes = titlesUpdate.Notes,
+				PubDate = titlesUpdate.PubDate,
+				ModifiedDate = titlesUpdate.ChangeDate,
+				IDModifiedUser = titlesUpdate.ChangeUser
+			});
+			return Ok();
+		}
+	}
 }

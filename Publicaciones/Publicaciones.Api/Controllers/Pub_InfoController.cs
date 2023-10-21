@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Modules.Pub_InfoModels;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
@@ -30,19 +31,33 @@ namespace Publicaciones.Api.Controllers
             return Ok(pub_infos);
         }
 
-
-        // POST api/<Pub_InfoController>
-        [HttpPost]
-        //public IActionResult Post([FromBody] Pub_Info pub_Info)
-        //{     
-        //}
-
-        // PUT api/<Pub_InfoController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost("SavePub_Info")]
+        public IActionResult Post([FromBody] Pub_InfoAddModel pub_InfoAdd)
         {
+            this._pub_info_repository.Save(new Pub_Info()
+            {
+                CreationDate = pub_InfoAdd.ChangeDate,
+                IDCreationUser = pub_InfoAdd.ChangeUser,
+                PubID = pub_InfoAdd.PubID,
+                Pr_Info = pub_InfoAdd.Pr_Info,
+                Logo = pub_InfoAdd.Logo,
+            });
+            return Ok();
         }
 
-        // DELETE NO VA
+		[HttpPost("UpdatePub_Info")]
+		public IActionResult Put([FromBody] Pub_InfoUpdateModel pub_InfoUpdate)
+        {
+			this._pub_info_repository.Update(new Pub_Info()
+			{
+				ModifiedDate = pub_InfoUpdate.ChangeDate,
+				IDModifiedUser = pub_InfoUpdate.ChangeUser,
+				PubID = pub_InfoUpdate.PubID,
+				Pr_Info = pub_InfoUpdate.Pr_Info,
+				Logo = pub_InfoUpdate.Logo,
+			});
+			return Ok();
+		}
+
     }
 }

@@ -36,5 +36,31 @@ namespace Publicaciones.Infrastructure.Repository
 		{
 			return base.GetEntities().Where(s => !s.Deleted).ToList();
 		}
+
+		public override void Save(Titles entity)
+		{
+			context.Titles.Add(entity);
+			context.SaveChanges();
+		}
+
+		public override void Update(Titles entity)
+		{
+			var titlesToUpdate = base.GetEntityByID(entity.Title_ID);
+
+			titlesToUpdate.Title = entity.Title;
+			titlesToUpdate.Royalty = entity.Royalty;
+			titlesToUpdate.Type = entity.Type;
+			titlesToUpdate.Ytd_Sales = entity.Ytd_Sales;
+			titlesToUpdate.Price = entity.Price;	
+			titlesToUpdate.Advance = entity.Advance;
+			titlesToUpdate.PubID = entity.PubID;
+			titlesToUpdate.Notes = entity.Notes;
+			titlesToUpdate.PubDate = entity.PubDate;
+			titlesToUpdate.ModifiedDate = entity.ModifiedDate;
+			titlesToUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+			context.Titles.Update(titlesToUpdate);
+			context.SaveChanges();
+		}
 	}
 }

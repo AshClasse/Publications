@@ -34,5 +34,25 @@ namespace Publicaciones.Infrastructure.Repository
 		{
 			return base.GetEntities().Where(s => !s.Deleted).ToList();
 		}
+
+		public override void Save(RoySched entity)
+		{
+			context.RoySched.Add(entity);
+			context.SaveChanges();
+		}
+
+		public override void Update(RoySched entity)
+		{
+			var roySchedToUpdate = base.GetEntityByID(entity.Title_ID);
+
+			roySchedToUpdate.Royalty = entity.Royalty;
+			roySchedToUpdate.HiRange = entity.HiRange;
+			roySchedToUpdate.LoRange = entity.LoRange;
+			roySchedToUpdate.ModifiedDate = entity.ModifiedDate;
+			roySchedToUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+			context.RoySched.Update(roySchedToUpdate);
+			context.SaveChanges();
+		}
 	}
 }

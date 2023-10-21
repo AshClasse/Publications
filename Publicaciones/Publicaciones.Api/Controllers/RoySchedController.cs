@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Modules.Pub_InfoModels;
+using Publicaciones.Api.Models.Modules.RoySched;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
@@ -31,29 +33,39 @@ namespace Publicaciones.Api.Controllers
 			return Ok(royScheds);
 		}
 
-		// POST api/<RoySchedController>
-		[HttpPost]
-        public IActionResult Post([FromBody] RoySched roySched)
-        {	
-			if (!_roySchedRepository.ExistsInTitles(roySched.Title_ID))
+		[HttpPost("SaveRoySched")]
+		public IActionResult Post([FromBody] RoySchedAddModel roySchedAdd)
+		{
+			if (!_roySchedRepository.ExistsInTitles(roySchedAdd.Title_ID))
 			{
 				return BadRequest("Título no existente.");
 			}
 
-			_roySchedRepository.Save(roySched);
-			return Ok("Registro creado exitosamente");
+			this._roySchedRepository.Save(new RoySched()
+			{
+				CreationDate = roySchedAdd.ChangeDate,
+				IDCreationUser = roySchedAdd.ChangeUser,
+				Title_ID = roySchedAdd.Title_ID,
+				LoRange = roySchedAdd.LoRange,
+				HiRange = roySchedAdd.HiRange,
+				Royalty = roySchedAdd.Royalty
+			});
+			return Ok();
 		}
 
-        // PUT api/<RoySchedController>/5
-        [HttpPut("{id}")]
-        public void Put(string id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<RoySchedController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-    }
+		[HttpPost("UpdateRoySched")]
+		public IActionResult Put([FromBody] RoySchedUpdateModel roySchedUpdate)
+		{
+			this._roySchedRepository.Update(new RoySched()
+			{
+				ModifiedDate = roySchedUpdate.ChangeDate,
+				IDModifiedUser = roySchedUpdate.ChangeUser,
+				Title_ID = roySchedUpdate.Title_ID,
+				LoRange = roySchedUpdate.LoRange,
+				HiRange = roySchedUpdate.HiRange,
+				Royalty = roySchedUpdate.Royalty
+			});
+			return Ok();
+		}
+	}
 }

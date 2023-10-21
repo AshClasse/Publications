@@ -1,6 +1,6 @@
 ﻿namespace Publicaciones.Api.Models.Core
 {
-    public abstract class Pub_InfoBaseModel
+    public class Pub_InfoBaseModel : BaseModel
     {
         public string PubID { get; set; }
         public byte[]? Logo { get; set; }
