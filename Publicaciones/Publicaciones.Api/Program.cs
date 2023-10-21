@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interface;
 using Publicaciones.Infrastructure.Repository;
 using Publicaciones.Infrastructure.Context;
 

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Publicaciones.Infrastructure.Interface
 {
-    public interface IJobRepository : IBaseRepository<Jobs>
+    public interface IJobsRepository : IBaseRepository<Jobs>
     {
 
     }

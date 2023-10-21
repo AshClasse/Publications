@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace Publicaciones.Infrastructure.Core
 {
@@ -21,37 +20,37 @@ namespace Publicaciones.Infrastructure.Core
             this.entities = context.Set<TEntity>();
         }
 
-        public bool Exists(Expression<Func<TEntity, bool>> filter)
+        public virtual bool Exists(Expression<Func<TEntity, bool>> filter)
         {
             return this.entities.Any(filter);
         }
 
-        public List<TEntity> FindAll(Expression<Func<TEntity, bool>> filter)
+        public virtual List<TEntity> FindAll(Expression<Func<TEntity, bool>> filter)
         {
             return this.entities.Where(filter).ToList();
         }
 
-        public List<TEntity> GetEntities()
+        public virtual List<TEntity> GetEntities()
         {
             return this.entities.ToList();
         }
 
-        public TEntity GetEntityByID(object ID)
+        public virtual TEntity GetEntityByID(object ID)
         {
             return this.entities.Find(ID);
         }
 
-        public void Remove(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             entities.Remove(entity);
         }
 
-        public void Save(TEntity entity)
+        public virtual void Save(TEntity entity)
         {
             entities.Add(entity);
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             entities.Update(entity);
         }

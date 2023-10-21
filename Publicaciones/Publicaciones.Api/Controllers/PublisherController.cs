@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interface;
 using Publicaciones.Domain.Entities;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +20,7 @@ namespace Publicaciones.Api.Controllers
         [HttpGet]
         public IEnumerable<Publisher> Get()
         {
-            var publishers = _publisherRepository.GetPublishers();
+            var publishers = _publisherRepository.GetEntities();
             return publishers;
         }
 
@@ -28,7 +28,7 @@ namespace Publicaciones.Api.Controllers
         [HttpGet("{ID}")]
         public Publisher Get(int ID)
         {
-            var publisher = _publisherRepository.GetPublisherID(ID);
+            var publisher = _publisherRepository.GetEntityByID(ID);
             return publisher;
         }
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Domain.Entities;
-using Publicaciones.Domain.Repository;
+using Publicaciones.Infrastructure.Interface;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,7 +21,7 @@ namespace Publicaciones.Api.Controllers
         [HttpGet]
         public List<Jobs> Get()
         {
-            var jobs = _jobsRepository.GetJobs();
+            var jobs = _jobsRepository.GetEntities();
             return jobs;
         }
 
@@ -29,7 +29,7 @@ namespace Publicaciones.Api.Controllers
         [HttpGet("{ID}")]
         public Jobs Get(short ID)
         {
-            var jobs = _jobsRepository.GetJosbsID(ID);
+            var jobs = _jobsRepository.GetEntityByID(ID);
             return jobs;
         }
 

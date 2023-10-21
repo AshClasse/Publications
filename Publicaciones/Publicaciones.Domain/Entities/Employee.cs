@@ -7,13 +7,13 @@ namespace Publicaciones.Domain.Entities
 {
     public class Employee : BaseEntity
     {
-        public string EmpID { get; set; }
+        public int EmpID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public char? Minit { get; set; }
-        public short JobID { get; set; }
-        public byte? Joblvl { get; set; }
-        public char PubID { get; set; }
+        public int JobID { get; set; }
+        public int? Joblvl { get; set; }
+        public int PubID { get; set; }
         public DateTime HireDate { get; set; }
 
     }
