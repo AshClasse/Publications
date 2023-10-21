@@ -2,7 +2,7 @@
 
 namespace Publicaciones.Api.Models.Module_Sale
 {
-    public class SaleGetAllModel : SaleBaseModel
+    public class SaleGetModel : SaleBaseModel
     {
         public int StoreID { get; set; }
         public string OrdNum { get; set; }

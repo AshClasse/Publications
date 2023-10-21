@@ -18,6 +18,46 @@ namespace Publicaciones.Api.Controllers
             this._saleRepository = saleRepository;
         }
 
+        [HttpGet("GetSales")]
+        public IActionResult GetSales()
+        {
+            var sales = this._saleRepository.GetEntities().Select(s => new SaleGetModel()
+            {
+                StoreID = s.StoreID,
+                ChangeDate = s.CreationDate,
+                ChangeUser = s.IDCreationUser,
+                OrdNum = s.OrdNum,
+                OrdDate = s.OrdDate,
+                Qty = s.Qty,
+                Payterms = s.Payterms,
+                TitleID = s.TitleID
+            }
+            ).ToList();
+
+            return Ok(sales);
+        }
+
+        // GET api/<SaleController>/5
+        [HttpGet("GetSale")]
+        public IActionResult GetSaleByID(int storeID, string ordNum, int titleID)
+        {
+            var sale = this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
+
+            SaleGetModel saleModel = new SaleGetModel()
+            {
+                StoreID = sale.StoreID,
+                ChangeDate = sale.CreationDate,
+                ChangeUser = sale.IDCreationUser,
+                OrdNum = sale.OrdNum,
+                OrdDate = sale.OrdDate,
+                Qty = sale.Qty,
+                Payterms = sale.Payterms,
+                TitleID = sale.TitleID
+            };
+
+            return Ok(sale);
+        }
+
         [HttpGet("GetSaleByStoreID")]
         public IActionResult GetSaleByStoreID(int storeID)
         {
@@ -39,71 +79,42 @@ namespace Publicaciones.Api.Controllers
             return Ok(sales);
         }
 
-        [HttpGet("GetSales")]
-        public IActionResult GetSales()
-        {
-            var sales = this._saleRepository.GetEntities().Select(s => new SaleGetAllModel()
-            {
-                ChangeDate = s.CreationDate,
-                ChangeUser = s.IDCreationUser,
-                OrdNum = s.OrdNum,
-                OrdDate = s.OrdDate,
-                Payterms = s.Payterms,
-                Qty = s.Qty,
-                StoreID = s.StoreID,
-                TitleID = s.TitleID
-            }
-            ).ToList();
-
-            return Ok(sales);
-        }
-
-        // GET api/<SaleController>/5
-        [HttpGet("GetSale")]
-        public IActionResult GetSale(int storeID, string ordNum, int titleID)
-        {
-            var sale = this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
-            return Ok(sale);
-        }
-
         [HttpPost("SaveSale")]
         public IActionResult Post([FromBody] SaleAddModel saleAdd)
         {
-            Sale sale = new Sale()
+            this._saleRepository.Save(new Sale()
             {
-                CreationDate = saleAdd.ChangeDate,
-                IDCreationUser = saleAdd.ChangeUser,
-                OrdNum = saleAdd.OrdNum,
-                OrdDate = saleAdd.OrdDate,
-                Payterms = saleAdd.Payterms,
-                Qty = saleAdd.Qty,
-                StoreID = saleAdd.StoreID,
-                TitleID = saleAdd.TitleID
-            };
+               StoreID = saleAdd.StoreID,
+               OrdNum = saleAdd.OrdNum,
+               TitleID = saleAdd.TitleID,
+               OrdDate = saleAdd.OrdDate,
+               Qty = saleAdd.Qty,
+               Payterms = saleAdd.Payterms,
+               CreationDate = saleAdd.ChangeDate,
+               IDCreationUser = saleAdd.ChangeUser
+            }
+                );
 
-            this._saleRepository.Save(sale);
-
-            return Ok(sale);
+            return Ok();
         }
 
         [HttpPut("UpdateSale")]
         public IActionResult Put([FromBody] SaleUpdateModel saleUpdate)
         {
-            Sale sale = new Sale()
+            this._saleRepository.Update(new Sale()
             {
                 StoreID = saleUpdate.StoreID,
                 OrdNum = saleUpdate.OrdNum,
                 TitleID = saleUpdate.TitleID,
-                CreationDate = saleUpdate.ChangeDate,
-                IDCreationUser = saleUpdate.ChangeUser,
-                OrdDate = saleUpdate.ChangeDate,
+                OrdDate = saleUpdate.OrdDate,
+                Qty = saleUpdate.Qty,
                 Payterms = saleUpdate.Payterms,
-                Qty = saleUpdate.Qty
-            };
+                ModifiedDate = saleUpdate.ChangeDate,
+                IDModifiedUser = saleUpdate.ChangeUser
+            }
+                );
 
-            this._saleRepository.Save(sale);
-
-            return Ok(sale);
+            return Ok();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Publicaciones.Api.Controllers
         [HttpGet("GetStores")]
         public IActionResult GetStores() 
         { 
-            var stores = this._storeRepository.GetEntities().Select(st => new StoreGetAllModel()
+            var stores = this._storeRepository.GetEntities().Select(st => new StoreGetModel()
             {
                 StoreID = st.StoreID,
                 ChangeDate = st.CreationDate,
@@ -38,27 +38,39 @@ namespace Publicaciones.Api.Controllers
         }
 
         [HttpGet("GetStore")]
-        public IActionResult GetStore(int storeID)
+        public IActionResult GetStoreByID(int storeID)
         {
             var store = this._storeRepository.GetEntityByID(storeID);
+
+            StoreGetModel storeModel = new StoreGetModel()
+            {
+                StoreID = store.StoreID,
+                ChangeDate = store.CreationDate,
+                ChangeUser = store.IDCreationUser,
+                StoreName = store.StoreName,
+                StoreAddress = store.StoreAddress,
+                City = store.City,
+                State = store.State,
+                Zip = store.Zip
+            };
+
             return Ok(store);
         }
 
         [HttpPost("SaveStore")]
         public IActionResult Post([FromBody] StoreAddModel storeAdd)
         {
-            Store store = new Store()
+            this._storeRepository.Save(new Store()
             {
-                CreationDate = storeAdd.ChangeDate,
-                IDCreationUser = storeAdd.ChangeUser,
                 StoreName = storeAdd.StoreName,
                 StoreAddress = storeAdd.StoreAddress,
                 City = storeAdd.City,
                 State = storeAdd.State,
-                Zip = storeAdd.Zip
-            };
-
-            this._storeRepository.Save(store);
+                Zip = storeAdd.Zip,
+                CreationDate = storeAdd.ChangeDate,
+                IDCreationUser = storeAdd.ChangeUser
+            }
+                );
 
             return Ok();
         }
@@ -66,19 +78,18 @@ namespace Publicaciones.Api.Controllers
         [HttpPut("UpdateStore")]
         public IActionResult Put([FromBody] StoreUpdateModel storeUpdate)
         {
-            Store store = new Store()
+            this._storeRepository.Update(new Store()
             {
                 StoreID = storeUpdate.StoreID,
-                CreationDate = storeUpdate.ChangeDate,
-                IDCreationUser = storeUpdate.ChangeUser,
                 StoreName = storeUpdate.StoreName,
                 StoreAddress = storeUpdate.StoreAddress,
                 City = storeUpdate.City,
                 State = storeUpdate.State,
-                Zip = storeUpdate.Zip
-            };
-
-            this._storeRepository.Update(store);
+                Zip = storeUpdate.Zip,
+                CreationDate = storeUpdate.ChangeDate,
+                IDCreationUser = storeUpdate.ChangeUser
+            }
+            );
 
             return Ok();
         }

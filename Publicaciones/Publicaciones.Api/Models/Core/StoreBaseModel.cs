@@ -1,6 +1,6 @@
 ﻿namespace Publicaciones.Api.Models.Core
 {
-    public class StoreBaseModel : ModelBase
+    public abstract class StoreBaseModel : ModelBase
     {
         public string? StoreName { get; set; }
         public string? StoreAddress { get; set; }

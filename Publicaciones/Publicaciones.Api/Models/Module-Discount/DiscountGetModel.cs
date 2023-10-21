@@ -2,7 +2,7 @@
 
 namespace Publicaciones.Api.Models.Module_Discount
 {
-    public class DiscountGetAllModel : DiscountBaseModel
+    public class DiscountGetModel : DiscountBaseModel
     {
         public int DiscountID { get; set; }
     }

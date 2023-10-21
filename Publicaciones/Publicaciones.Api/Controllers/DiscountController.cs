@@ -20,7 +20,7 @@ namespace Publicaciones.Api.Controllers
         [HttpGet("GetDiscounts")]
         public IActionResult GetDiscounts()
         {
-            var discounts = this._discountRepository.GetEntities().Select(d => new DiscountGetAllModel()
+            var discounts = this._discountRepository.GetEntities().Select(d => new DiscountGetModel()
             {
                 DiscountID = d.DiscountID,
                 ChangeDate = d.CreationDate,
@@ -36,10 +36,23 @@ namespace Publicaciones.Api.Controllers
         }
 
         [HttpGet("GetDiscount")]
-        public IActionResult GetDiscount(int discountID)
+        public IActionResult GetDiscountByID(int discountID)
         {
-            var discounts = this._discountRepository.GetEntityByID(discountID);
-            return Ok(discounts);
+            var discount = this._discountRepository.GetEntityByID(discountID);
+            
+            DiscountGetModel discountModel = new DiscountGetModel() 
+            {
+                DiscountID = discount.DiscountID,
+                DiscountType = discount.DiscountType,
+                ChangeDate = discount.CreationDate,
+                ChangeUser = discount.IDCreationUser,
+                StoreID = discount.StoreID,
+                LowQty = discount.HighQty,
+                HighQty = discount.LowQty,
+                DiscountAmount = discount.DiscountAmount
+            };
+
+            return Ok(discount);
         }
 
         [HttpGet("GetDiscountByStoreID")]
@@ -52,38 +65,36 @@ namespace Publicaciones.Api.Controllers
         [HttpPost("SaveDiscount")]
         public IActionResult Post([FromBody] DiscountAddModel discountAdd)
         {
-            Discount discount = new Discount()
+            this._discountRepository.Save(new Discount()
             {
-                CreationDate = discountAdd.ChangeDate,
-                IDCreationUser = discountAdd.ChangeUser,
-                DiscountAmount = discountAdd.DiscountAmount,
                 DiscountType = discountAdd.DiscountType,
-                HighQty = discountAdd.HighQty,
+                StoreID = discountAdd.StoreID,
                 LowQty = discountAdd.LowQty,
-                StoreID = discountAdd.StoreID
-            };
+                HighQty = discountAdd.HighQty,
+                DiscountAmount = discountAdd.DiscountAmount,
+                CreationDate = discountAdd.ChangeDate,
+                IDCreationUser = discountAdd.ChangeUser
+            }
+                );
 
-            this._discountRepository.Save(discount);
-
-            return Ok(discount);
+            return Ok();
         }
 
         [HttpPut("UpdateDiscount")]
         public IActionResult Put([FromBody] DiscountUpdateModel discountUpdate)
         {
-            Discount discount = new Discount()
+            this._discountRepository.Update(new Discount()
             {
                 DiscountID = discountUpdate.DiscountID,
-                CreationDate = discountUpdate.ChangeDate,
-                IDCreationUser = discountUpdate.ChangeUser,
-                DiscountAmount = discountUpdate.DiscountAmount,
                 DiscountType = discountUpdate.DiscountType,
-                HighQty = discountUpdate.HighQty,
+                StoreID = discountUpdate.StoreID,
                 LowQty = discountUpdate.LowQty,
-                StoreID = discountUpdate.StoreID
-            };
-
-            this._discountRepository.Update(discount);
+                HighQty = discountUpdate.HighQty,
+                DiscountAmount = discountUpdate.DiscountAmount,
+                ModifiedDate = discountUpdate.ChangeDate,
+                IDModifiedUser = discountUpdate.ChangeUser
+            }
+                );
 
             return Ok();
         }

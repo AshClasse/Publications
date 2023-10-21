@@ -1,6 +1,6 @@
 ﻿namespace Publicaciones.Api.Models.Core
 {
-    public class DiscountBaseModel : ModelBase
+    public abstract class DiscountBaseModel : ModelBase
     {
         public int StoreID { get; set; }
         public string DiscountType { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Publicaciones.Api.Models.Core
 {
-    public class SaleBaseModel : ModelBase
+    public abstract class SaleBaseModel : ModelBase
     {
         public int StoreID { get; set; }
         public DateTime OrdDate { get; set; }

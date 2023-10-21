@@ -2,7 +2,7 @@
 
 namespace Publicaciones.Api.Models.Module_Store
 {
-    public class StoreGetAllModel : StoreBaseModel
+    public class StoreGetModel : StoreBaseModel
     {
         public int StoreID { get; set; }
     }
