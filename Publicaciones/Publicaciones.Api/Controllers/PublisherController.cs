@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Infrastructure.Interface;
 using Publicaciones.Domain.Entities;
+using Publicaciones.Api.Models.Publisher_Module;
+using Publicaciones.Infrastructure.Interface;
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Publicaciones.Api.Controllers
@@ -17,37 +19,85 @@ namespace Publicaciones.Api.Controllers
         }
 
         // GET: api/<PublisherController>
-        [HttpGet]
-        public IEnumerable<Publisher> Get()
+        [HttpGet("GetPublishers")]
+        public IActionResult GetPublisher()
         {
-            var publishers = _publisherRepository.GetEntities();
-            return publishers;
+            var publishers = _publisherRepository.GetEntities().Select(PubsGet => new PublisherGetModel()
+            {
+                PubID = PubsGet.PubID,
+                PubName = PubsGet.PubName,
+                State = PubsGet.State,
+                Country = PubsGet.Country,
+                City = PubsGet.City,
+                ChangeDate = PubsGet.CreationDate,
+                ChangeUser = PubsGet.IDCreationUser
+
+            }).ToList();
+            return Ok(publishers);
         }
 
         // GET api/<PublisherController>/5
-        [HttpGet("{ID}")]
-        public Publisher Get(int ID)
+        [HttpGet("GetPublisherID")]
+        public IActionResult GetPublisherByID(int ID)
         {
-            var publisher = _publisherRepository.GetEntityByID(ID);
-            return publisher;
+            var PubsGet = _publisherRepository.GetEntityByID(ID);
+
+            PublisherGetModel PublisherGetM = new PublisherGetModel()
+            {
+                PubID = PubsGet.PubID,
+                PubName = PubsGet.PubName,
+                State = PubsGet.State,
+                Country = PubsGet.Country,
+                City = PubsGet.City,
+                ChangeDate = PubsGet.CreationDate,
+                ChangeUser = PubsGet.IDCreationUser
+            };
+
+            return Ok(PublisherGetM);
         }
 
+
         // POST api/<PublisherController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("PublisherCreation")]
+        public IActionResult Post([FromBody] PublisherAddModel PubAdd)
         {
+            Publisher pub = new Publisher()
+            {
+                PubName = PubAdd.PubName,
+                State = PubAdd.State,
+                Country = PubAdd.Country,
+                City = PubAdd.City,
+                CreationDate = PubAdd.ChangeDate,
+                IDCreationUser = PubAdd.ChangeUser
+
+            };
+            _publisherRepository.Save(pub);
+            return Created("Object Created", pub);
         }
 
         // PUT api/<PublisherController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("UpdatePublisher")]
+        public IActionResult Put([FromBody] PublisherUpdateModel EmpUpdate)
         {
-        }
+            Publisher ExistPub = _publisherRepository.GetEntityByID(EmpUpdate.PubID);
 
-        // DELETE api/<PublisherController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            //Validacion de (Pub si existe)
+            if (ExistPub == null)
+            {
+                return NotFound();
+            }
+
+            ExistPub.PubName = EmpUpdate.PubName;
+            ExistPub.State = EmpUpdate.State;
+            ExistPub.Country = EmpUpdate.Country;
+            ExistPub.City = EmpUpdate.City;
+            ExistPub.CreationDate = EmpUpdate.ChangeDate;
+            ExistPub.IDCreationUser = EmpUpdate.ChangeUser;
+
+            _publisherRepository.Update(ExistPub);
+
+            return NoContent();
         }
     }
 }
+

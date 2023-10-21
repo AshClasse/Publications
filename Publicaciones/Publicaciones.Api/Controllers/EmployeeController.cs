@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Domain.Repository;
 using Publicaciones.Domain.Entities;
-using System.Reflection.Metadata.Ecma335;
 using Publicaciones.Infrastructure.Interface;
 using Publicaciones.Api.Models.Employee_Module;
-using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -98,13 +95,13 @@ namespace Publicaciones.Api.Controllers
 
         // PUT api/<EmployeeController>/5
         [HttpPut("UpdateEmployee")]
-        public IActionResult Put(int ID, [FromBody] EmployeeUpdateModel EmpUpdate)
+        public IActionResult Put([FromBody] EmployeeUpdateModel EmpUpdate)
         {
-            Employee ExistEmp = _employeeRepository.GetEntityByID(ID);
+            Employee ExistEmp = _employeeRepository.GetEntityByID(EmpUpdate.PubID);
 
             if(ExistEmp == null)
             {
-                return NotFound();
+                return NoContent();
             }
 
             ExistEmp.FirstName = EmpUpdate.FirstName;
@@ -116,6 +113,7 @@ namespace Publicaciones.Api.Controllers
             ExistEmp.CreationDate = EmpUpdate.ChangeDate;
             ExistEmp.IDCreationUser = EmpUpdate.ChangeUser;
 
+            this._employeeRepository.Update(ExistEmp);
             return NoContent();
         }
     }

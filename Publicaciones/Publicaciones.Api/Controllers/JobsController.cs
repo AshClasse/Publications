@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Jobs_Module;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interface;
 
@@ -18,37 +19,78 @@ namespace Publicaciones.Api.Controllers
         }
 
         // GET: api/<JobsController>
-        [HttpGet]
-        public List<Jobs> Get()
+        [HttpGet("GetJobs")]
+        public IActionResult GetEmployees()
         {
-            var jobs = _jobsRepository.GetEntities();
-            return jobs;
+            var jobs = _jobsRepository.GetEntities().Select(JobbGet => new Jobs()
+            {
+                JobID = JobbGet.JobID,
+                JobDescription = JobbGet.JobDescription,
+                Minlvl = JobbGet.Minlvl,
+                Maxlvl = JobbGet.Maxlvl,
+                ModifiedDate = JobbGet.CreationDate,
+                IDModifiedUser = JobbGet.IDModifiedUser
+            }).ToList();
+
+            return Ok(jobs);
         }
 
         // GET api/<JobsController>/5
-        [HttpGet("{ID}")]
-        public Jobs Get(short ID)
+        [HttpGet("GetJobsByID")]
+        public IActionResult GetJobsByID(int ID)
         {
-            var jobs = _jobsRepository.GetEntityByID(ID);
-            return jobs;
+            var JobbGet = _jobsRepository.GetEntityByID(ID);
+
+            JobGetModel jobgetm = new JobGetModel()
+            {
+                JobID = JobbGet.JobID,
+                JobDescription = JobbGet.JobDescription,
+                Minlvl = JobbGet.Minlvl,
+                Maxlvl = JobbGet.Maxlvl,
+                ChangeDate = JobbGet.CreationDate,
+                ChangeUser = JobbGet.IDCreationUser,
+            };
+
+            return Ok(jobgetm);
         }
 
         // POST api/<JobsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("JobCreation")]
+        public IActionResult Post([FromBody] JobAddModel JobADD)
         {
+            Jobs jobs = new Jobs()
+            {
+                JobDescription = JobADD.JobDescription,
+                Minlvl = JobADD.Minlvl,
+                Maxlvl = JobADD.Maxlvl,
+                CreationDate = JobADD.ChangeDate,
+                IDModifiedUser = JobADD.ChangeUser
+            };
+
+            this._jobsRepository.Save(jobs);
+            return Created("Object Created", jobs);
         }
 
         // PUT api/<JobsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("UpdateJobs")]
+        public IActionResult Put([FromBody] JobUpdateModel JobsU)
         {
-        }
+            Jobs JobExist = _jobsRepository.GetEntityByID(JobsU.JobID);
 
-        // DELETE api/<JobsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (JobExist == null)
+            {
+                NoContent();
+            }
+
+            JobExist.JobDescription = JobsU.JobDescription;
+            JobExist.Minlvl = JobsU.Minlvl;
+            JobExist.Maxlvl = JobsU.Maxlvl;
+            JobExist.CreationDate = JobsU.ChangeDate;
+            JobExist.IDModifiedUser = JobsU.ChangeUser;
+
+            this._jobsRepository.Update(JobExist);
+            return NoContent();
+
         }
     }
 }
