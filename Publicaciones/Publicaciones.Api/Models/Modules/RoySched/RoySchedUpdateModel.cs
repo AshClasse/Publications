@@ -4,7 +4,6 @@ namespace Publicaciones.Api.Models.Modules.RoySched
 {
 	public class RoySchedUpdateModel : RoySchedBaseModel
 	{
-		public int? IDModifiedUser { get; set; }
-		public DateTime? ModifiedDate { get; set; }
+		public int RoySched_ID { get; set; }
 	}
 }

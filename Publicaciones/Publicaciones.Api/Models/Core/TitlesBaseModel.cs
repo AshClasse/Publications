@@ -2,7 +2,6 @@
 {
 	public class TitlesBaseModel : BaseModel
 	{
-		public string Title_ID { get; set; }
 		public string Title { get; set; }
 		public string Type { get; set; }
 		public int PubID { get; set; }

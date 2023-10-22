@@ -38,11 +38,6 @@ namespace Publicaciones.Infrastructure.Core
             return this.entities.Find(ID);
         }
 
-        public virtual TEntity GetEntityByID(string ID)
-        {
-            return this.entities.Find(ID);
-        }
-
         public virtual void Remove(TEntity entity)
         {
             this.entities.Remove(entity);

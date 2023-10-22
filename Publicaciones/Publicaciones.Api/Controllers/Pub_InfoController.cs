@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Publicaciones.Api.Models.Modules.Pub_Info;
 using Publicaciones.Api.Models.Modules.Pub_InfoModels;
+using Publicaciones.Api.Models.Modules.RoySched;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
@@ -17,15 +19,22 @@ namespace Publicaciones.Api.Controllers
         }
 
         [HttpGet("GetPub_Infos")]
-        public IEnumerable<Pub_Info> Get()
+        public IActionResult GetPub_Infos()
         {
-            var pubInfos = this._pub_info_repository.GetEntities();
-            return pubInfos;
+            var pubInfos = this._pub_info_repository.GetEntities().Select(pi => new Pub_InfoGetModel()
+			{
+				PubID = pi.PubID,
+				Logo = pi.Logo,
+				Pr_Info = pi.Pr_Info,
+				ChangeDate = pi.CreationDate,
+				ChangeUser = pi.IDCreationUser
+
+			}).ToList(); ;
+            return Ok(pubInfos);
         }
 
-
         [HttpGet("GetPub_InfoByID")]
-        public IActionResult GetPub_InfoByID(string ID)
+        public IActionResult GetPub_InfoByID(int ID)
         {
             var pub_infos = this._pub_info_repository.GetEntityByID(ID);
             return Ok(pub_infos);
@@ -34,28 +43,30 @@ namespace Publicaciones.Api.Controllers
         [HttpPost("SavePub_Info")]
         public IActionResult Post([FromBody] Pub_InfoAddModel pub_InfoAdd)
         {
-            this._pub_info_repository.Save(new Pub_Info()
+            Pub_Info pub_Info = new Pub_Info() 
             {
                 CreationDate = pub_InfoAdd.ChangeDate,
                 IDCreationUser = pub_InfoAdd.ChangeUser,
-                PubID = pub_InfoAdd.PubID,
                 Pr_Info = pub_InfoAdd.Pr_Info,
                 Logo = pub_InfoAdd.Logo,
-            });
-            return Ok();
+            };
+
+            this._pub_info_repository.Save(pub_Info);
+            return Created("Object Created", pub_Info);
         }
 
-		[HttpPost("UpdatePub_Info")]
+		[HttpPut("UpdatePub_Info")]
 		public IActionResult Put([FromBody] Pub_InfoUpdateModel pub_InfoUpdate)
         {
-			this._pub_info_repository.Update(new Pub_Info()
+			Pub_Info pubInfo = new Pub_Info()
 			{
-				ModifiedDate = pub_InfoUpdate.ChangeDate,
-				IDModifiedUser = pub_InfoUpdate.ChangeUser,
 				PubID = pub_InfoUpdate.PubID,
 				Pr_Info = pub_InfoUpdate.Pr_Info,
-				Logo = pub_InfoUpdate.Logo,
-			});
+				Logo = pub_InfoUpdate.Logo,				
+                ModifiedDate = pub_InfoUpdate.ChangeDate,
+				IDModifiedUser = pub_InfoUpdate.ChangeUser
+			};
+            this._pub_info_repository.Update(pubInfo);
 			return Ok();
 		}
 

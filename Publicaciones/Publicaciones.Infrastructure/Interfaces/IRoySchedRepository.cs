@@ -6,8 +6,8 @@ namespace Publicaciones.Infrastructure.Interfaces
 {
     public interface IRoySchedRepository : IBaseRepository<RoySched>
     {
-		bool ExistsInTitles(string titleId);
-		List<RoySched> GetRoySchedsByTitle(string titleId);
+		bool ExistsInTitles(int titleId);
+		List<RoySched> GetRoySchedsByTitle(int titleId);
 		List<RoySched> GetRoySchedsByRoyalty(int royalty);
 	}
 }

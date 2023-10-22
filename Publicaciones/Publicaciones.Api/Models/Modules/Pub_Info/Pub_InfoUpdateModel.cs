@@ -4,7 +4,6 @@ namespace Publicaciones.Api.Models.Modules.Pub_InfoModels
 {
     public class Pub_InfoUpdateModel : Pub_InfoBaseModel
     {
-		public int? IDModifiedUser { get; set; }
-		public DateTime? ModifiedDate { get; set; }
+		public int PubID { get; set; }
 	}
 }

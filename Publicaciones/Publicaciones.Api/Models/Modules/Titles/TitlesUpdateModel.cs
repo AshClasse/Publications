@@ -4,7 +4,6 @@ namespace Publicaciones.Api.Models.Modules.Titles
 {
 	public class TitlesUpdateModel : TitlesBaseModel
 	{
-		public int? IDModifiedUser { get; set; }
-		public DateTime? ModifiedDate { get; set; }
+		public int Title_ID { get; set; }
 	}
 }

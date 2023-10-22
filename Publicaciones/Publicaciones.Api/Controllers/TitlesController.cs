@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Api.Models.Modules.Pub_InfoModels;
+using Publicaciones.Api.Models.Modules.RoySched;
 using Publicaciones.Api.Models.Modules.Titles;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
@@ -17,24 +18,58 @@ namespace Publicaciones.Api.Controllers
         }
 
 		[HttpGet("GetTitles")]
-		public IEnumerable<Titles> Get()
+		public IActionResult GetTitles()
 		{
-			var titles = this._titlesRepository.GetEntities();
-			return titles;
+			var titles = this._titlesRepository.GetEntities().Select(tt => new TitlesGetModel()
+			{
+				Title_ID = tt.Title_ID,
+				Title = tt.Title,
+				PubID = tt.PubID,
+				Royalty = tt.Royalty,
+				Advance = tt.Advance,
+				Price = tt.Price,
+				Notes = tt.Notes,
+				PubDate	= tt.PubDate,
+				Ytd_Sales = tt.Ytd_Sales,
+				Type = tt.Type,
+				ChangeDate = tt.CreationDate,
+				ChangeUser = tt.IDCreationUser
+			}).ToList(); ;
+			return Ok(titles);
 		}
 
-
 		[HttpGet("GetTitleByID")]
-		public IActionResult GetTitleByID(string ID)
+		public IActionResult GetTitleByID(int ID)
 		{
 			var titles = this._titlesRepository.GetEntityByID(ID);
+			return Ok(titles);
+		}
+
+		[HttpGet("GetTitleByPublisher")]
+		public IActionResult GetTitleByPublisher(int pubId)
+		{
+			var titles = this._titlesRepository.GetTitlesByPublisher(pubId);
+			return Ok(titles);
+		}
+
+		[HttpGet("GetTitleByPrice")]
+		public IActionResult GetTitleByPrice(decimal price)
+		{
+			var titles = this._titlesRepository.GetTitlesByPrice(price);
+			return Ok(titles);
+		}
+
+		[HttpGet("GetTitleByType")]
+		public IActionResult GetTitleByType(string type)
+		{
+			var titles = this._titlesRepository.GetTitlesByType(type);
 			return Ok(titles);
 		}
 
 		[HttpPost("SaveTitle")]
 		public IActionResult Post([FromBody] TitlesAddModel titlesAdd)
 		{
-			this._titlesRepository.Save(new Titles()
+			Titles titles = new Titles()
 			{
 				Title = titlesAdd.Title,
 				Royalty = titlesAdd.Royalty,
@@ -47,14 +82,15 @@ namespace Publicaciones.Api.Controllers
 				PubDate = titlesAdd.PubDate,
 				CreationDate = titlesAdd.ChangeDate,
 				IDCreationUser = titlesAdd.ChangeUser
-		});
-			return Ok();
+		};
+			this._titlesRepository.Save(titles);
+			return Created("Object Created", titles);
 		}
 
-		[HttpPost("UpdateTitle")]
+		[HttpPut("UpdateTitle")]
 		public IActionResult Put([FromBody] TitlesUpdateModel titlesUpdate)
 		{
-			this._titlesRepository.Update(new Titles()
+			Titles titles = new Titles()
 			{
 				Title_ID = titlesUpdate.Title_ID,
 				Title = titlesUpdate.Title,
@@ -68,7 +104,9 @@ namespace Publicaciones.Api.Controllers
 				PubDate = titlesUpdate.PubDate,
 				ModifiedDate = titlesUpdate.ChangeDate,
 				IDModifiedUser = titlesUpdate.ChangeUser
-			});
+			};
+
+			this._titlesRepository.Update(titles);
 			return Ok();
 		}
 	}

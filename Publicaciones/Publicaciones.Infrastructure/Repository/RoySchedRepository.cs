@@ -16,7 +16,7 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
-		public bool ExistsInTitles(string titleId)
+		public bool ExistsInTitles(int titleId)
 		{
 			return this.context.Set<Titles>().Any(t => t.Title_ID == titleId);
 		}
@@ -26,7 +26,7 @@ namespace Publicaciones.Infrastructure.Repository
 			return this.context.RoySched.Where(r => r.Royalty == royalty).ToList();
 		}
 
-		public List<RoySched> GetRoySchedsByTitle(string titleId)
+		public List<RoySched> GetRoySchedsByTitle(int titleId)
 		{
 			return this.context.RoySched.Where(r => r.Title_ID == titleId).ToList();
 		}
@@ -43,8 +43,9 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public override void Update(RoySched entity)
 		{
-			var roySchedToUpdate = base.GetEntityByID(entity.Title_ID);
+			var roySchedToUpdate = base.GetEntityByID(entity.RoySched_ID);
 
+			roySchedToUpdate.Title_ID = entity.Title_ID;
 			roySchedToUpdate.Royalty = entity.Royalty;
 			roySchedToUpdate.HiRange = entity.HiRange;
 			roySchedToUpdate.LoRange = entity.LoRange;
