@@ -63,7 +63,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(sales);
         }
 
-        [HttpGet("GetSaleByOrdNumID")]
+        [HttpGet("GetSaleByOrdNum")]
         public IActionResult GetSaleByOrdNum(string ordNum)
         {
             var sales = this._saleRepository.GetSaleByOrdNum(ordNum);
