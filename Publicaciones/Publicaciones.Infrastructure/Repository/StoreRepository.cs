@@ -2,8 +2,6 @@
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {

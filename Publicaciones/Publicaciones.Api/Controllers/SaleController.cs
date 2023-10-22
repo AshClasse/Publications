@@ -3,8 +3,6 @@ using Publicaciones.Api.Models.Module_Sale;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Publicaciones.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -38,7 +36,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         // GET api/<SaleController>/5
-        [HttpGet("GetSale")]
+        [HttpGet("GetSaleByID")]
         public IActionResult GetSaleByID(int storeID, string ordNum, int titleID)
         {
             var sale = this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
@@ -82,7 +80,7 @@ namespace Publicaciones.Api.Controllers
         [HttpPost("SaveSale")]
         public IActionResult Post([FromBody] SaleAddModel saleAdd)
         {
-            this._saleRepository.Save(new Sale()
+            Sale sale = new Sale()
             {
                StoreID = saleAdd.StoreID,
                OrdNum = saleAdd.OrdNum,
@@ -92,16 +90,15 @@ namespace Publicaciones.Api.Controllers
                Payterms = saleAdd.Payterms,
                CreationDate = saleAdd.ChangeDate,
                IDCreationUser = saleAdd.ChangeUser
-            }
-                );
-
-            return Ok();
+            };
+            this._saleRepository.Save(sale);
+            return Created("Object created", sale);
         }
 
         [HttpPut("UpdateSale")]
         public IActionResult Put([FromBody] SaleUpdateModel saleUpdate)
         {
-            this._saleRepository.Update(new Sale()
+            Sale sale = new Sale()
             {
                 StoreID = saleUpdate.StoreID,
                 OrdNum = saleUpdate.OrdNum,
@@ -111,9 +108,8 @@ namespace Publicaciones.Api.Controllers
                 Payterms = saleUpdate.Payterms,
                 ModifiedDate = saleUpdate.ChangeDate,
                 IDModifiedUser = saleUpdate.ChangeUser
-            }
-                );
-
+            };
+            this._saleRepository.Update(sale);
             return Ok();
         }
     }

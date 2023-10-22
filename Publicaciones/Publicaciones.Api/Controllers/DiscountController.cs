@@ -3,8 +3,6 @@ using Publicaciones.Api.Models.Module_Discount;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Publicaciones.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -35,7 +33,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(discounts);
         }
 
-        [HttpGet("GetDiscount")]
+        [HttpGet("GetDiscountByID")]
         public IActionResult GetDiscountByID(int discountID)
         {
             var discount = this._discountRepository.GetEntityByID(discountID);
@@ -65,7 +63,7 @@ namespace Publicaciones.Api.Controllers
         [HttpPost("SaveDiscount")]
         public IActionResult Post([FromBody] DiscountAddModel discountAdd)
         {
-            this._discountRepository.Save(new Discount()
+            Discount discount = new Discount()
             {
                 DiscountType = discountAdd.DiscountType,
                 StoreID = discountAdd.StoreID,
@@ -74,16 +72,15 @@ namespace Publicaciones.Api.Controllers
                 DiscountAmount = discountAdd.DiscountAmount,
                 CreationDate = discountAdd.ChangeDate,
                 IDCreationUser = discountAdd.ChangeUser
-            }
-                );
-
-            return Ok();
+            };
+            this._discountRepository.Save(discount);
+            return Created("Object Created", discount);
         }
 
         [HttpPut("UpdateDiscount")]
         public IActionResult Put([FromBody] DiscountUpdateModel discountUpdate)
         {
-            this._discountRepository.Update(new Discount()
+            Discount discount = new Discount()
             {
                 DiscountID = discountUpdate.DiscountID,
                 DiscountType = discountUpdate.DiscountType,
@@ -93,9 +90,8 @@ namespace Publicaciones.Api.Controllers
                 DiscountAmount = discountUpdate.DiscountAmount,
                 ModifiedDate = discountUpdate.ChangeDate,
                 IDModifiedUser = discountUpdate.ChangeUser
-            }
-                );
-
+            };
+            this._discountRepository.Update(discount);
             return Ok();
         }
     }

@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Publicaciones.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Publicaciones.Infrastructure.Context
 {

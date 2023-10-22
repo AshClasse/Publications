@@ -3,8 +3,6 @@ using Publicaciones.Api.Models.Module_Store;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Publicaciones.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -37,7 +35,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(stores);
         }
 
-        [HttpGet("GetStore")]
+        [HttpGet("GetStoreByID")]
         public IActionResult GetStoreByID(int storeID)
         {
             var store = this._storeRepository.GetEntityByID(storeID);
@@ -53,14 +51,13 @@ namespace Publicaciones.Api.Controllers
                 State = store.State,
                 Zip = store.Zip
             };
-
             return Ok(store);
         }
 
         [HttpPost("SaveStore")]
         public IActionResult Post([FromBody] StoreAddModel storeAdd)
         {
-            this._storeRepository.Save(new Store()
+            Store store = new Store()
             {
                 StoreName = storeAdd.StoreName,
                 StoreAddress = storeAdd.StoreAddress,
@@ -69,16 +66,15 @@ namespace Publicaciones.Api.Controllers
                 Zip = storeAdd.Zip,
                 CreationDate = storeAdd.ChangeDate,
                 IDCreationUser = storeAdd.ChangeUser
-            }
-                );
-
-            return Ok();
+            };
+            this._storeRepository.Save(store);
+            return Created("Object created", store);
         }
 
         [HttpPut("UpdateStore")]
         public IActionResult Put([FromBody] StoreUpdateModel storeUpdate)
         {
-            this._storeRepository.Update(new Store()
+            Store store = new Store()
             {
                 StoreID = storeUpdate.StoreID,
                 StoreName = storeUpdate.StoreName,
@@ -88,9 +84,8 @@ namespace Publicaciones.Api.Controllers
                 Zip = storeUpdate.Zip,
                 CreationDate = storeUpdate.ChangeDate,
                 IDCreationUser = storeUpdate.ChangeUser
-            }
-            );
-
+            };
+            this._storeRepository.Update(store);
             return Ok();
         }
     }
