@@ -8,6 +8,8 @@ namespace Publicaciones.Infrastructure.Interfaces
 {
     public interface IAuthorsRepository : IBaseRepository<Authors>
     {
-        // Métodos exclusivos de la entidad
-    }
+		List<Authors> GetAuthorsByState(string state);
+		List<Authors> GetAuthorsByCity(string city);
+		List<Authors> GetAuthorsByContract(int contract);
+	}
 }

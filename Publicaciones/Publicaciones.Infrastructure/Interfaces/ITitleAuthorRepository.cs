@@ -8,6 +8,10 @@ namespace Publicaciones.Infrastructure.Interfaces
 {
     public interface ITitleAuthorRepository : IBaseRepository<TitleAuthor>
     {
-        // Métodos exclusivos de la entidad
+		bool ExistsInAuthors(int authorID);
+		List<TitleAuthor> GetTitleAuthorByAuthor(int authorID);
+        List<TitleAuthor> GetTitleAuthorByTitle(int titleID);
+        List<TitleAuthor> GetTitleAuthorByAuthorOrder(int authorOrd);
+        List<TitleAuthor> GetTitleAuthorByRoyalty(int royalty);
     }
 }

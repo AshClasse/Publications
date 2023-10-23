@@ -10,10 +10,16 @@ namespace Publicaciones.Infrastructure.Context
     {
         public PublicacionesContext(DbContextOptions<PublicacionesContext> options) : base(options)
         {
-
         }
 
         public DbSet<Authors> Authors { get; set; }
         public DbSet<TitleAuthor> TitleAuthors { get; set; }
-    }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+            modelBuilder.Entity<Authors>().HasKey(au => au.Au_ID);
+            modelBuilder.Entity<TitleAuthor>().HasKey(au => new { au.Title_ID, au.Au_ID });
+			base.OnModelCreating(modelBuilder);
+		}
+	}
 }

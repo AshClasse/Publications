@@ -10,7 +10,7 @@ namespace Publicaciones.Domain.Entities
 {
     public class Authors : BaseEntity
     {
-        public string Au_ID { get; set; }
+        public int Au_ID { get; set; }
         public string Au_LName { get; set; }
         public string Au_FName { get; set; }
         public string Phone { get; set; }

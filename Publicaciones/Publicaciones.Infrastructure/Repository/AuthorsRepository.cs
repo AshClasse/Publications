@@ -1,5 +1,6 @@
 ﻿using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -8,43 +9,53 @@ using System.Text;
 
 namespace Publicaciones.Infrastructure.Repository
 {
-    public class AuthorsRepository : IAuthorsRepository
+    public class AuthorsRepository : BaseRepository<Authors>, IAuthorsRepository
     {
         private readonly PublicacionesContext context;
-        public AuthorsRepository(PublicacionesContext context)
+        public AuthorsRepository(PublicacionesContext context) : base(context) 
         {
             this.context = context;
         }
-        public List<Authors> GetEntities()
-        {
-            return context.Authors.ToList();
-        }
 
-        public Authors GetEntityByID(int Id)
-        {
-            return context.Authors.Find(Id);
-        }
+		public override List<Authors> GetEntities()
+		{
+			return base.GetEntities().Where(s => !s.Deleted).ToList();
+		}
+		public List<Authors> GetAuthorsByCity(string city)
+		{
+			return this.context.Authors.Where(au => au.City == city).ToList();
+		}
 
-        public Authors GetEntityByID(string Id)
-        {
-            return context.Authors.Find(Id);
-        }
+		public List<Authors> GetAuthorsByContract(int contract)
+		{
+			return this.context.Authors.Where(au => au.Contract == contract).ToList();
+		}
 
-        public void Remove(Authors entity)
-        {
-            context.Authors.Remove(entity);
-        }
+		public List<Authors> GetAuthorsByState(string state)
+		{
+			return this.context.Authors.Where(au =>au.State == state).ToList();
+		}
+		public override void Save(Authors entity)
+		{
+			context.Authors.Add(entity);
+			context.SaveChanges();
+		}
 
-        public void Save(Authors entity)
-        {
-            context.Authors.Add(entity);
-        }
+		public override void Update(Authors entity)
+		{
+			var authorsToUpdate = base.GetEntityByID(entity.Au_ID);
 
-        public void Update(Authors entity)
-        {
-            context.Authors.Update(entity);
-        }
+			authorsToUpdate.Au_FName = entity.Au_FName;
+			authorsToUpdate.Au_LName = entity.Au_LName;
+			authorsToUpdate.Phone = entity.Phone;
+			authorsToUpdate.Address = entity.Address;
+			authorsToUpdate.City = entity.City;
+			authorsToUpdate.Contract = entity.Contract;
+			authorsToUpdate.State = entity.State;
+			authorsToUpdate.Zip	= entity.Zip;
 
-
-    }
+			context.Authors.Update(authorsToUpdate);
+			context.SaveChanges();
+		}
+	}
 }
