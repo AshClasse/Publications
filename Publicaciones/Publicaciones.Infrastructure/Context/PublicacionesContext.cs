@@ -18,7 +18,7 @@ namespace Publicaciones.Infrastructure.Context
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
             modelBuilder.Entity<Authors>().HasKey(au => au.Au_ID);
-            modelBuilder.Entity<TitleAuthor>().HasKey(au => new { au.Title_ID, au.Au_ID });
+			modelBuilder.Entity<TitleAuthor>().HasKey(ta => new { ta.Title_ID, ta.Au_ID });
 			base.OnModelCreating(modelBuilder);
 		}
 	}

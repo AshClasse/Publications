@@ -23,16 +23,18 @@ namespace Publicaciones.Api.Controllers
 				Au_ID = ta.Au_ID,
 				Title_ID = ta.Title_ID,
 				Au_Ord = ta.Au_Ord,
-				RoyaltyPer = ta.RoyaltyPer
+				RoyaltyPer = ta.RoyaltyPer,
+				ChangeDate = ta.CreationDate,
+				ChangeUser = ta.IDCreationUser
 			}).ToList();
 
 			return Ok(titleAuthors);
 		}
 
 		[HttpGet("GetTitlesAuthorByID")]
-		public IActionResult GetTitlesAuthorByID(int IDa, int IDb)
+		public IActionResult GetTitlesAuthorByID(int title_ID, int author_ID)
 		{
-			var titleAuthors = this._titleAuthorRepository.GetEntityByID(IDa, IDb);
+			var titleAuthors = this._titleAuthorRepository.GetEntityByID(title_ID, author_ID);
 			return Ok(titleAuthors);
 		}
 
@@ -74,10 +76,12 @@ namespace Publicaciones.Api.Controllers
 
 			TitleAuthor titleAuthor = new TitleAuthor()
 			{
+				Title_ID = titleAuthorAdd.Title_ID,
+				Au_ID = titleAuthorAdd.Au_ID,
+				Au_Ord = titleAuthorAdd.Au_Ord,
+				RoyaltyPer= titleAuthorAdd.RoyaltyPer,			
 				CreationDate = titleAuthorAdd.ChangeDate,
 				IDCreationUser = titleAuthorAdd.ChangeUser,
-				Au_Ord = titleAuthorAdd.Au_Ord,
-				RoyaltyPer= titleAuthorAdd.RoyaltyPer
 			};
 
 			this._titleAuthorRepository.Save(titleAuthor);

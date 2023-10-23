@@ -53,6 +53,8 @@ namespace Publicaciones.Infrastructure.Repository
 			authorsToUpdate.Contract = entity.Contract;
 			authorsToUpdate.State = entity.State;
 			authorsToUpdate.Zip	= entity.Zip;
+			authorsToUpdate.ModifiedDate = entity.ModifiedDate;
+			authorsToUpdate.IDModifiedUser = entity.IDModifiedUser;
 
 			context.Authors.Update(authorsToUpdate);
 			context.SaveChanges();

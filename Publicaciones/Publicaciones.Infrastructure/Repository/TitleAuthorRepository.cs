@@ -52,12 +52,12 @@ namespace Publicaciones.Infrastructure.Repository
 		}
 		public override void Update(TitleAuthor entity)
 		{
-			var titleAuthorToUpdate = base.GetEntityByID(entity.Au_ID, entity.Title_ID);
+			var titleAuthorToUpdate = base.GetEntityByID( entity.Title_ID, entity.Au_ID);
 
-			titleAuthorToUpdate.Au_ID = entity.Au_ID;
 			titleAuthorToUpdate.Au_Ord = entity.Au_Ord;
-			titleAuthorToUpdate.Title_ID = entity.Title_ID;
 			titleAuthorToUpdate.RoyaltyPer = entity.RoyaltyPer;
+			titleAuthorToUpdate.ModifiedDate = entity.ModifiedDate;
+			titleAuthorToUpdate.IDModifiedUser = entity.IDModifiedUser;
 
 			context.TitleAuthor.Update(titleAuthorToUpdate);
 			context.SaveChanges();
