@@ -13,7 +13,7 @@ namespace Publicaciones.Infrastructure.Context
         }
 
         public DbSet<Authors> Authors { get; set; }
-        public DbSet<TitleAuthor> TitleAuthors { get; set; }
+        public DbSet<TitleAuthor> TitleAuthor { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

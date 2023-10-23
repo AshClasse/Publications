@@ -12,6 +12,7 @@ namespace Publicaciones.Domain.Repository
 		void Remove(TEntity entity);
 		List<TEntity> GetEntities();
 		TEntity GetEntityByID(int ID);
+		TEntity GetEntityByID(int ID, int Id);
 		List<TEntity> FindAll(Expression<Func<TEntity, bool>> filter);
 		bool Exists(Expression<Func<TEntity, bool>> filter);
 	}

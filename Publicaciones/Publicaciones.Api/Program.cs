@@ -1,3 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using Publicaciones.Infrastructure.Context;
+using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Infrastructure.Repository;
+
 namespace Publicaciones.Api
 {
     public class Program
@@ -6,9 +11,17 @@ namespace Publicaciones.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+			/// Add context dependencies
+			builder.Services.AddDbContext<PublicacionesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PubsContext")));
 
-            builder.Services.AddControllers();
+			// Repositories dependencies
+
+			builder.Services.AddTransient<IAuthorsRepository, AuthorsRepository>();
+			builder.Services.AddTransient<ITitleAuthorRepository, TitleAuthorRepository>();
+
+			// Add services to the container.
+
+			builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

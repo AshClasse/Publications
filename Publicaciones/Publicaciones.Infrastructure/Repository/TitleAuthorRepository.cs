@@ -24,22 +24,22 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public List<TitleAuthor> GetTitleAuthorByAuthor(int authorID)
 		{
-			return this.context.TitleAuthors.Where(ta => ta.Au_ID == authorID).ToList();
+			return this.context.TitleAuthor.Where(ta => ta.Au_ID == authorID).ToList();
 		}
 
 		public List<TitleAuthor> GetTitleAuthorByAuthorOrder(int authorOrd)
 		{
-			return this.context.TitleAuthors.Where(ta => ta.Au_Ord == authorOrd).ToList();
+			return this.context.TitleAuthor.Where(ta => ta.Au_Ord == authorOrd).ToList();
 		}
 
 		public List<TitleAuthor> GetTitleAuthorByRoyalty(int royalty)
 		{
-			return this.context.TitleAuthors.Where(ta => ta.RoyaltyPer == royalty).ToList();
+			return this.context.TitleAuthor.Where(ta => ta.RoyaltyPer == royalty).ToList();
 		}
 
 		public List<TitleAuthor> GetTitleAuthorByTitle(int titleID)
 		{
-			return this.context.TitleAuthors.Where(ta => ta.Title_ID == titleID).ToList();
+			return this.context.TitleAuthor.Where(ta => ta.Title_ID == titleID).ToList();
 		}
 		public override List<TitleAuthor> GetEntities()
 		{
@@ -47,19 +47,19 @@ namespace Publicaciones.Infrastructure.Repository
 		}
 		public override void Save(TitleAuthor entity)
 		{
-			context.TitleAuthors.Add(entity);
+			context.TitleAuthor.Add(entity);
 			context.SaveChanges();
 		}
 		public override void Update(TitleAuthor entity)
 		{
-			var titleAuthorToUpdate = base.GetEntityByID(entity.Au_ID);
+			var titleAuthorToUpdate = base.GetEntityByID(entity.Au_ID, entity.Title_ID);
 
 			titleAuthorToUpdate.Au_ID = entity.Au_ID;
 			titleAuthorToUpdate.Au_Ord = entity.Au_Ord;
 			titleAuthorToUpdate.Title_ID = entity.Title_ID;
 			titleAuthorToUpdate.RoyaltyPer = entity.RoyaltyPer;
 
-			context.TitleAuthors.Update(titleAuthorToUpdate);
+			context.TitleAuthor.Update(titleAuthorToUpdate);
 			context.SaveChanges();
 		}
 	}
