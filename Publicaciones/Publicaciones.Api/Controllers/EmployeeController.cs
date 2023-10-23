@@ -72,7 +72,7 @@ namespace Publicaciones.Api.Controllers
                 Joblvl = EmpGet.Joblvl,
                 Minit = EmpGet.Minit
             };
-            return Ok(EmpGet);
+            return Ok(employeeGetM);
         }
 
         // POST api/<EmployeeController>
@@ -91,7 +91,7 @@ namespace Publicaciones.Api.Controllers
                 CreationDate = EmpAdd.ChangeDate,
                 IDCreationUser = EmpAdd.ChangeUser
             };
-            this._employeeRepository.Save(employee);
+            _employeeRepository.Save(employee);
             return Created("Object Created",employee);
         }
 
@@ -106,6 +106,7 @@ namespace Publicaciones.Api.Controllers
                 return NoContent();
             }
 
+            ExistEmp.EmpID = EmpUpdate.EmpID;
             ExistEmp.FirstName = EmpUpdate.FirstName;
             ExistEmp.LastName = EmpUpdate.LastName;
             ExistEmp.PubID = EmpUpdate.PubID;

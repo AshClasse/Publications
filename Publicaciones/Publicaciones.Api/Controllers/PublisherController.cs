@@ -87,6 +87,7 @@ namespace Publicaciones.Api.Controllers
                 return NotFound();
             }
 
+            ExistPub.PubID = EmpUpdate.PubID;
             ExistPub.PubName = EmpUpdate.PubName;
             ExistPub.State = EmpUpdate.State;
             ExistPub.Country = EmpUpdate.Country;

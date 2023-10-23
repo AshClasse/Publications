@@ -81,7 +81,7 @@ namespace Publicaciones.Api.Controllers
             {
                 NoContent();
             }
-
+            JobExist.JobID = JobsU.JobID;
             JobExist.JobDescription = JobsU.JobDescription;
             JobExist.Minlvl = JobsU.Minlvl;
             JobExist.Maxlvl = JobsU.Maxlvl;
