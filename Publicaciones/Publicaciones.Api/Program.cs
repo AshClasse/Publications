@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Publicaciones.Infrastructure.Interface;
-using Publicaciones.Infrastructure.Repository;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Ioc.EmployeeDependency;
+using Publicaciones.Ioc.JobDependency;
+using Publicaciones.Ioc.PublisherDependency;
 
 namespace Publicaciones.Api
 {
@@ -21,9 +22,9 @@ namespace Publicaciones.Api
 
             //Dependencias de los respositorios//
 
-            builder.Services.AddTransient<IJobsRepository, JobRepository>();
-            builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
-            builder.Services.AddTransient<IPublisherRepository, PublisherRepository>();
+            builder.Services.AddJobDependency();
+            builder.Services.AddEmployeeDependency();
+            builder.Services.AddPublisherDependency();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

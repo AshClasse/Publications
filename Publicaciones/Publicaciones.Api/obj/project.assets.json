@@ -1779,6 +1779,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Publicaciones.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Publicaciones.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Publicaciones.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Publicaciones.Application.dll": {}
+        }
+      },
       "Publicaciones.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1802,6 +1815,19 @@
         },
         "runtime": {
           "bin/placeholder/Publicaciones.Infrastructure.dll": {}
+        }
+      },
+      "Publicaciones.Ioc/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Publicaciones.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Publicaciones.Ioc.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Publicaciones.Ioc.dll": {}
         }
       }
     }
@@ -6318,6 +6344,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Publicaciones.Application/1.0.0": {
+      "type": "project",
+      "path": "../Publicaciones.Application/Publicaciones.Application.csproj",
+      "msbuildProject": "../Publicaciones.Application/Publicaciones.Application.csproj"
+    },
     "Publicaciones.Domain/1.0.0": {
       "type": "project",
       "path": "../Publicaciones.Domain/Publicaciones.Domain.csproj",
@@ -6327,12 +6358,17 @@
       "type": "project",
       "path": "../Publicaciones.Infrastructure/Publicaciones.Infrastructure.csproj",
       "msbuildProject": "../Publicaciones.Infrastructure/Publicaciones.Infrastructure.csproj"
+    },
+    "Publicaciones.Ioc/1.0.0": {
+      "type": "project",
+      "path": "../Publicaciones.Ioc/Publicaciones.Ioc.csproj",
+      "msbuildProject": "../Publicaciones.Ioc/Publicaciones.Ioc.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Publicaciones.Domain >= 1.0.0",
-      "Publicaciones.Infrastructure >= 1.0.0",
+      "Publicaciones.Application >= 1.0.0",
+      "Publicaciones.Ioc >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -6363,11 +6399,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
-              "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj"
+            "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+              "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
             },
-            "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
-              "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj"
+            "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+              "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj"
             }
           }
         }

@@ -92,4 +92,7 @@ C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Public
 C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Infrastructure.dll
 C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Domain.pdb
 C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Infrastructure.pdb
-C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.dll
+C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.dll
+C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.pdb
+C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.pdb

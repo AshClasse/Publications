@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Publicaciones.Api/1.0.0": {
         "dependencies": {
-          "Publicaciones.Domain": "1.0.0",
-          "Publicaciones.Infrastructure": "1.0.0",
+          "Publicaciones.Application": "1.0.0",
+          "Publicaciones.Ioc": "1.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -980,6 +980,14 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "Publicaciones.Application/1.0.0": {
+        "dependencies": {
+          "Publicaciones.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "Publicaciones.Application.dll": {}
+        }
+      },
       "Publicaciones.Domain/1.0.0": {
         "runtime": {
           "Publicaciones.Domain.dll": {}
@@ -993,6 +1001,14 @@
         },
         "runtime": {
           "Publicaciones.Infrastructure.dll": {}
+        }
+      },
+      "Publicaciones.Ioc/1.0.0": {
+        "dependencies": {
+          "Publicaciones.Application": "1.0.0"
+        },
+        "runtime": {
+          "Publicaciones.Ioc.dll": {}
         }
       }
     }
@@ -1731,12 +1747,22 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
+    "Publicaciones.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Publicaciones.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Publicaciones.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Publicaciones.Ioc/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

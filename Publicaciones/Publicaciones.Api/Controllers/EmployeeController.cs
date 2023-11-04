@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interface;
-using Publicaciones.Api.Models.Employee_Module;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.DTO.Employee;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,114 +10,76 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeService _employeeService;
 
-        public EmployeeController(IEmployeeRepository _employeeRepository)
+        public EmployeeController(IEmployeeService _employeeService)
         {
-            this._employeeRepository = _employeeRepository;
+            this._employeeService = _employeeService;
         }
 
-        [HttpGet("GetEmployeeByPubID")]
-        public IActionResult GetEmployeeByPubID(int ID)
+        // GETEMPBYID ENDPOINT
+        [HttpGet("GetEmployeesByID")]
+        public IActionResult GetEmployeesByID(int ID)
         {
-            var employee = _employeeRepository.GetEmployeeByPubID(ID);
-            return Ok(employee);
+            var result = _employeeService.GetByID(ID);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
-        [HttpGet("GetEmployeesByJobID")]
-        public IActionResult GetEmployeeByJobID (int ID)
-        {
-            var employee = _employeeRepository.GetEmployeeByJobID(ID);
-            return Ok(employee);
-        }
-
-        // GET: api/<EmployeeController>
+        //GETEMP ENDPOINT
         [HttpGet("GetEmployees")]
-        public IActionResult GetEmployees()
-        {
-            var employees = _employeeRepository.GetEntities().Select(EmpGet => new EmployeeGetModel() 
-            {
-                EmpID = EmpGet.EmpID,
-                JobID = EmpGet.JobID,
-                PubID = EmpGet.PubID,
-                FirstName = EmpGet.FirstName,
-                LastName = EmpGet.LastName,
-                ChangeDate = EmpGet.CreationDate,
-                ChangeUser = EmpGet.IDCreationUser,
-                HireDate = EmpGet.HireDate,
-                Joblvl = EmpGet.Joblvl,
-                Minit = EmpGet.Minit
-            }).ToList();
 
-            return Ok(employees);
+        public IActionResult GetAll()
+        {
+            var result = _employeeService.GetAll();
+            
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
-        // GET api/<EmployeeControler>/5
-        [HttpGet("GetEmployeeByID")]
-        public IActionResult GetEmployeesByID (int ID)
-        {
-            var EmpGet = this._employeeRepository.GetEntityByID(ID);
-
-            EmployeeGetModel employeeGetM = new EmployeeGetModel()
-            {
-                EmpID = EmpGet.EmpID,
-                JobID = EmpGet.JobID,
-                PubID = EmpGet.PubID,
-                FirstName = EmpGet.FirstName,
-                LastName = EmpGet.LastName,
-                ChangeDate = EmpGet.CreationDate,
-                ChangeUser = EmpGet.IDCreationUser,
-                HireDate = EmpGet.HireDate,
-                Joblvl = EmpGet.Joblvl,
-                Minit = EmpGet.Minit
-            };
-            return Ok(employeeGetM);
-        }
-
-        // POST api/<EmployeeController>
+        //SAVE_EMP ENDPOINT
         [HttpPost("SaveEmployee")]
-        public IActionResult Post([FromBody] EmployeeAddModel EmpAdd)
+
+        public IActionResult SaveEmployees([FromBody] EmployeeDtoAdd empdtoadd)
         {
-            Employee employee = new Employee()
-            {
-                FirstName = EmpAdd.FirstName,
-                LastName = EmpAdd.LastName,
-                PubID = EmpAdd.PubID,
-                Minit = EmpAdd.Minit,
-                HireDate = EmpAdd.HireDate,
-                JobID = EmpAdd.JobID,
-                Joblvl = EmpAdd.Joblvl,
-                CreationDate = EmpAdd.ChangeDate,
-                IDCreationUser = EmpAdd.ChangeUser
-            };
-            _employeeRepository.Save(employee);
-            return Created("Object Created",employee);
+            var result = _employeeService.Save(empdtoadd);
+            
+            if (!result.Success)
+                return BadRequest(result);
+           
+            return Ok(result);
         }
 
-        // PUT api/<EmployeeController>/5
-        [HttpPut("UpdateEmployee")]
-        public IActionResult Put([FromBody] EmployeeUpdateModel EmpUpdate)
+        //UPDATE_ENDPOINT
+        [HttpPut("UpdateEmployees")]
+
+        public IActionResult UpdateEmployees([FromBody] EmployeeDtoUpdate empdtoupdate)
         {
-            Employee ExistEmp = _employeeRepository.GetEntityByID(EmpUpdate.PubID);
+            var result = _employeeService.Update(empdtoupdate);
+            
+            if (!result.Success)
+                return BadRequest(result);
 
-            if(ExistEmp == null)
-            {
-                return NoContent();
-            }
-
-            ExistEmp.EmpID = EmpUpdate.EmpID;
-            ExistEmp.FirstName = EmpUpdate.FirstName;
-            ExistEmp.LastName = EmpUpdate.LastName;
-            ExistEmp.PubID = EmpUpdate.PubID;
-            ExistEmp.Minit = EmpUpdate.Minit;
-            ExistEmp.HireDate = EmpUpdate.HireDate;
-            ExistEmp.JobID = EmpUpdate.JobID;
-            ExistEmp.CreationDate = EmpUpdate.ChangeDate;
-            ExistEmp.Joblvl = EmpUpdate.Joblvl;
-            ExistEmp.IDCreationUser = EmpUpdate.ChangeUser;
-
-            this._employeeRepository.Update(ExistEmp);
-            return Ok();
+            return Ok(result);
         }
+
+        //DELETE_ENDPOINT
+        [HttpDelete("DeleteEmployees")]
+
+        public IActionResult RemoveEmployees([FromBody] EmployeeDtoRemove empdtoremove)
+        {
+            var result = _employeeService.Remove(empdtoremove);
+            
+            if (!result.Success)
+                return BadRequest();
+
+            return Ok(result);
+        }
+
     }
 }

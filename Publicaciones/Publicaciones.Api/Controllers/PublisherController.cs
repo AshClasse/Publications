@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Api.Models.Publisher_Module;
-using Publicaciones.Infrastructure.Interface;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.DTO.Publishers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,93 +10,74 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class PublisherController : ControllerBase
     {
-        private readonly IPublisherRepository _publisherRepository;
+        private readonly IPublisherService _publisherService;
 
-        public PublisherController(IPublisherRepository _publisherRepository)
+        public PublisherController(IPublisherService _publisherService)
         {
-            this._publisherRepository = _publisherRepository;
+            this._publisherService = _publisherService;
         }
+
 
         // GET: api/<PublisherController>
         [HttpGet("GetPublishers")]
         public IActionResult GetPublisher()
         {
-            var publishers = _publisherRepository.GetEntities().Select(PubsGet => new PublisherGetModel()
+            var result = _publisherService.GetAll();
+            if (!result.Success)
             {
-                PubID = PubsGet.PubID,
-                PubName = PubsGet.PubName,
-                State = PubsGet.State,
-                Country = PubsGet.Country,
-                City = PubsGet.City,
-                ChangeDate = PubsGet.CreationDate,
-                ChangeUser = PubsGet.IDCreationUser
-
-            }).ToList();
-            return Ok(publishers);
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
 
         // GET api/<PublisherController>/5
         [HttpGet("GetPublisherID")]
         public IActionResult GetPublisherByID(int ID)
         {
-            var PubsGet = _publisherRepository.GetEntityByID(ID);
+            var result = _publisherService.GetByID(ID);
 
-            PublisherGetModel PublisherGetM = new PublisherGetModel()
+            if (!result.Success)
             {
-                PubID = PubsGet.PubID,
-                PubName = PubsGet.PubName,
-                State = PubsGet.State,
-                Country = PubsGet.Country,
-                City = PubsGet.City,
-                ChangeDate = PubsGet.CreationDate,
-                ChangeUser = PubsGet.IDCreationUser
-            };
-
-            return Ok(PublisherGetM);
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
-
 
         // POST api/<PublisherController>
         [HttpPost("SavePublisher")]
-        public IActionResult Post([FromBody] PublisherAddModel PubAdd)
+        public IActionResult Post([FromBody] PublisherDtoAdd pubdtoadd)
         {
-            Publisher pub = new Publisher()
-            {
-                PubName = PubAdd.PubName,
-                State = PubAdd.State,
-                Country = PubAdd.Country,
-                City = PubAdd.City,
-                CreationDate = PubAdd.ChangeDate,
-                IDCreationUser = PubAdd.ChangeUser
+            var result = _publisherService.Save(pubdtoadd);
 
-            };
-            _publisherRepository.Save(pub);
-            return Created("Object Created", pub);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
 
-        // PUT api/<PublisherController>/5
+        //UPDATE_ENDPOINT
         [HttpPut("UpdatePublisher")]
-        public IActionResult Put([FromBody] PublisherUpdateModel EmpUpdate)
+        public IActionResult Put(PublisherDtoUpdate pubdtoupdate)
         {
-            Publisher ExistPub = _publisherRepository.GetEntityByID(EmpUpdate.PubID);
-
-            //Validacion de (Pub si existe)
-            if (ExistPub == null)
+            var result = _publisherService.Update(pubdtoupdate);
+            if (!result.Success)
             {
-                return NotFound();
+                return BadRequest(result);
             }
+            return Ok(result);
+        }
 
-            ExistPub.PubID = EmpUpdate.PubID;
-            ExistPub.PubName = EmpUpdate.PubName;
-            ExistPub.State = EmpUpdate.State;
-            ExistPub.Country = EmpUpdate.Country;
-            ExistPub.City = EmpUpdate.City;
-            ExistPub.CreationDate = EmpUpdate.ChangeDate;
-            ExistPub.IDCreationUser = EmpUpdate.ChangeUser;
-
-            _publisherRepository.Update(ExistPub);
-
-            return Ok();
+        //DELETE_ENDPOINT
+        [HttpDelete("DeletePublisher")]
+        public IActionResult RemoveJobs([FromBody] PublisherDtoRemove PubDtoRemove)
+        {
+            var result = _publisherService.Remove(PubDtoRemove);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
         }
     }
 }

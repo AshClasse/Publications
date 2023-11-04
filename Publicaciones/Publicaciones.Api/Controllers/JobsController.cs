@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Jobs_Module;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interface;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.DTO.Jobs;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,86 +10,75 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class JobsController : ControllerBase
     {
-        private readonly IJobsRepository _jobsRepository;
+        private readonly IJobsService _jobsService;
 
-        public JobsController(IJobsRepository _jobsRepository)
+        public JobsController(IJobsService _jobsService)
         {
-            this._jobsRepository = _jobsRepository;
+            this._jobsService = _jobsService;
         }
 
-        // GET: api/<JobsController>
-        [HttpGet("GetJobs")]
-        public IActionResult GetEmployees()
-        {
-            var jobs = _jobsRepository.GetEntities().Select(JobbGet => new Jobs()
-            {
-                JobID = JobbGet.JobID,
-                JobDescription = JobbGet.JobDescription,
-                Minlvl = JobbGet.Minlvl,
-                Maxlvl = JobbGet.Maxlvl,
-                ModifiedDate = JobbGet.CreationDate,
-                IDModifiedUser = JobbGet.IDModifiedUser
-            }).ToList();
-
-            return Ok(jobs);
-        }
-
-        // GET api/<JobsController>/5
+        // GET_JOBSBYID ENDPOINT
         [HttpGet("GetJobsByID")]
         public IActionResult GetJobsByID(int ID)
         {
-            var JobbGet = _jobsRepository.GetEntityByID(ID);
+            var result = _jobsService.GetByID(ID);
 
-            JobGetModel jobgetm = new JobGetModel()
-            {
-                JobID = JobbGet.JobID,
-                JobDescription = JobbGet.JobDescription,
-                Minlvl = JobbGet.Minlvl,
-                Maxlvl = JobbGet.Maxlvl,
-                ChangeDate = JobbGet.CreationDate,
-                ChangeUser = JobbGet.IDCreationUser,
-            };
-
-            return Ok(jobgetm);
+            if (!result.Success)
+                return BadRequest(result);
+            
+            return Ok(result);
         }
 
-        // POST api/<JobsController>
+        //GETJOBS ENDPOINT
+        [HttpGet("GetJobs")]
+        public IActionResult GetJobs()
+        {
+            var result = _jobsService.GetAll();
+            
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        //SAVE_JOBS ENDPOINT
         [HttpPost("SaveJobs")]
-        public IActionResult Post([FromBody] JobAddModel JobADD)
+        public IActionResult SaveJobs([FromBody] JobsDtoAdd jobdtoadd)
         {
-            Jobs jobs = new Jobs()
-            {
-                JobDescription = JobADD.JobDescription,
-                Minlvl = JobADD.Minlvl,
-                Maxlvl = JobADD.Maxlvl,
-                CreationDate = JobADD.ChangeDate,
-                IDModifiedUser = JobADD.ChangeUser
-            };
+            var result = _jobsService.Save(jobdtoadd);
 
-            this._jobsRepository.Save(jobs);
-            return Created("Object Created", jobs);
+            if (!result.Success)
+                return BadRequest(result);
+  
+            return Ok(result);
         }
 
-        // PUT api/<JobsController>/5
+
+        //UPDATE_ENDPOINT
         [HttpPut("UpdateJobs")]
-        public IActionResult Put([FromBody] JobUpdateModel JobsU)
+
+        public IActionResult UpdateJobs([FromBody] JobsDtoUpdate jobdtoupdate)
         {
-            Jobs JobExist = _jobsRepository.GetEntityByID(JobsU.JobID);
+            var result = _jobsService.Update(jobdtoupdate);
+            
+            if (!result.Success)
+                return BadRequest(result);
 
-            if (JobExist == null)
-            {
-                NoContent();
-            }
-            JobExist.JobID = JobsU.JobID;
-            JobExist.JobDescription = JobsU.JobDescription;
-            JobExist.Minlvl = JobsU.Minlvl;
-            JobExist.Maxlvl = JobsU.Maxlvl;
-            JobExist.CreationDate = JobsU.ChangeDate;
-            JobExist.IDModifiedUser = JobsU.ChangeUser;
-
-            this._jobsRepository.Update(JobExist);
-            return Ok();
-
+            return Ok(result);
         }
+
+
+        //DELETE_ENDPOINT
+        [HttpDelete("DeleteJobs")]
+        public IActionResult RemoveJobs([FromBody] JobDtoRemove jobDtoRemove)
+        {
+            var result = _jobsService.Remove(jobDtoRemove);
+            
+            if (!result.Success)
+                return BadRequest(result);
+ 
+            return Ok(result);
+        }
+
     }
 }
