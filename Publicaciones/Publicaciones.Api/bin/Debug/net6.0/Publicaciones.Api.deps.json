@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "Publicaciones.Api/1.0.0": {
         "dependencies": {
-          "Publicaciones.Infrastructure": "1.0.0",
+          "Publicaciones.Application": "1.0.0",
+          "Publicaciones.Ioc": "1.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -126,7 +127,7 @@
       "Microsoft.Extensions.Caching.Memory/3.1.32": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "3.1.32",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.32",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.32",
           "Microsoft.Extensions.Options": "3.1.32"
         }
@@ -148,10 +149,10 @@
       },
       "Microsoft.Extensions.DependencyInjection/3.1.32": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.32"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.32": {},
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {},
       "Microsoft.Extensions.Logging/3.1.32": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Binder": "3.1.32",
@@ -163,7 +164,7 @@
       "Microsoft.Extensions.Logging.Abstractions/3.1.32": {},
       "Microsoft.Extensions.Options/3.1.32": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.32",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Primitives": "3.1.32"
         }
       },
@@ -979,6 +980,14 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "Publicaciones.Application/1.0.0": {
+        "dependencies": {
+          "Publicaciones.Infrastructure": "1.0.0"
+        },
+        "runtime": {
+          "Publicaciones.Application.dll": {}
+        }
+      },
       "Publicaciones.Domain/1.0.0": {
         "runtime": {
           "Publicaciones.Domain.dll": {}
@@ -992,6 +1001,15 @@
         },
         "runtime": {
           "Publicaciones.Infrastructure.dll": {}
+        }
+      },
+      "Publicaciones.Ioc/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Publicaciones.Application": "1.0.0"
+        },
+        "runtime": {
+          "Publicaciones.Ioc.dll": {}
         }
       }
     }
@@ -1114,12 +1132,12 @@
       "path": "microsoft.extensions.dependencyinjection/3.1.32",
       "hashPath": "microsoft.extensions.dependencyinjection.3.1.32.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.32": {
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-dARl3iAcHZshMvnXtKpLGES4QZq8ExxIQnF2s8pXfP3MJOOXRSBsk+UmA3TMVN4hPr4O2QFS8AMJp9GDD/4lDw==",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/3.1.32",
-      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.3.1.32.nupkg.sha512"
+      "sha512": "sha512-xlzi2IYREJH3/m6+lUrQlujzX8wDitm4QGnUu6kUXTQAWPuZY8i+ticFJbzfqaetLA6KR/rO6Ew/HuYD+bxifg==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/3.1.32": {
       "type": "package",
@@ -1730,12 +1748,22 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
+    "Publicaciones.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Publicaciones.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
     "Publicaciones.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Publicaciones.Ioc/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

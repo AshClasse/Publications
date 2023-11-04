@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Module_Discount;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.Discount;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -9,90 +8,65 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class DiscountController : ControllerBase
     {
-        private readonly IDiscountRepository _discountRepository;
-        public DiscountController(IDiscountRepository discountRepository)
+        private readonly IDiscountService discountService;
+        public DiscountController(IDiscountService discountService)
         {
-            this._discountRepository = discountRepository;
+            this.discountService = discountService;
         }
 
         [HttpGet("GetDiscounts")]
         public IActionResult GetDiscounts()
         {
-            var discounts = this._discountRepository.GetEntities().Select(d => new DiscountGetModel()
-            {
-                DiscountID = d.DiscountID,
-                ChangeDate = d.CreationDate,
-                ChangeUser = d.IDCreationUser,
-                DiscountAmount = d.DiscountAmount,
-                DiscountType = d.DiscountType,
-                HighQty = d.HighQty,
-                LowQty = d.LowQty,
-                StoreID = d.StoreID
-            }).ToList();
+            var result = this.discountService.GetAll();
 
-            return Ok(discounts);
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpGet("GetDiscountByID")]
         public IActionResult GetDiscountByID(int discountID)
         {
-            var discount = this._discountRepository.GetEntityByID(discountID);
-            
-            DiscountGetModel discountModel = new DiscountGetModel() 
-            {
-                DiscountID = discount.DiscountID,
-                DiscountType = discount.DiscountType,
-                ChangeDate = discount.CreationDate,
-                ChangeUser = discount.IDCreationUser,
-                StoreID = discount.StoreID,
-                LowQty = discount.HighQty,
-                HighQty = discount.LowQty,
-                DiscountAmount = discount.DiscountAmount
-            };
+            var result = this.discountService.GetByID(discountID);
 
-            return Ok(discount);
-        }
+            if (!result.Success)
+                return BadRequest(result);
 
-        [HttpGet("GetDiscountByStoreID")]
-        public IActionResult GetDiscountByStoreID(int storeID)
-        {
-            var discounts = this._discountRepository.GetDiscountsByStore(storeID);
-            return Ok(discounts);
+            return Ok(result);
         }
 
         [HttpPost("SaveDiscount")]
-        public IActionResult Post([FromBody] DiscountAddModel discountAdd)
+        public IActionResult Post([FromBody] DiscountDtoAdd discountAdd)
         {
-            Discount discount = new Discount()
-            {
-                DiscountType = discountAdd.DiscountType,
-                StoreID = discountAdd.StoreID,
-                LowQty = discountAdd.LowQty,
-                HighQty = discountAdd.HighQty,
-                DiscountAmount = discountAdd.DiscountAmount,
-                CreationDate = discountAdd.ChangeDate,
-                IDCreationUser = discountAdd.ChangeUser
-            };
-            this._discountRepository.Save(discount);
-            return Created("Object Created", discount);
+            var result = this.discountService.Save(discountAdd);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpPut("UpdateDiscount")]
-        public IActionResult Put([FromBody] DiscountUpdateModel discountUpdate)
+        public IActionResult Put([FromBody] DiscountDtoUpdate discountUpdate)
         {
-            Discount discount = new Discount()
-            {
-                DiscountID = discountUpdate.DiscountID,
-                DiscountType = discountUpdate.DiscountType,
-                StoreID = discountUpdate.StoreID,
-                LowQty = discountUpdate.LowQty,
-                HighQty = discountUpdate.HighQty,
-                DiscountAmount = discountUpdate.DiscountAmount,
-                ModifiedDate = discountUpdate.ChangeDate,
-                IDModifiedUser = discountUpdate.ChangeUser
-            };
-            this._discountRepository.Update(discount);
-            return Ok();
+            var result = this.discountService.Update(discountUpdate);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("RemoveDiscount")]
+        public IActionResult Remove([FromBody] DiscountDtoRemove discountRemove)
+        {
+            var result = this.discountService.Remove(discountRemove);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }

@@ -93,3 +93,7 @@ C:\Pubs_Project\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\refint\Publicac
 C:\Pubs_Project\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.pdb
 C:\Pubs_Project\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.genruntimeconfig.cache
 C:\Pubs_Project\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\ref\Publicaciones.Api.dll
+C:\Pubs_Project\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.dll
+C:\Pubs_Project\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.dll
+C:\Pubs_Project\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.pdb
+C:\Pubs_Project\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.pdb

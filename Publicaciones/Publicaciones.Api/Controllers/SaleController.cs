@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Module_Sale;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.Sale;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -9,108 +8,67 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class SaleController : ControllerBase
     {
-        private readonly ISaleRepository _saleRepository;
+        private readonly ISaleService saleService;
 
-        public SaleController(ISaleRepository saleRepository)
+        public SaleController(ISaleService saleService)
         {
-            this._saleRepository = saleRepository;
+            this.saleService = saleService;
         }
 
         [HttpGet("GetSales")]
         public IActionResult GetSales()
         {
-            var sales = this._saleRepository.GetEntities().Select(s => new SaleGetModel()
-            {
-                StoreID = s.StoreID,
-                ChangeDate = s.CreationDate,
-                ChangeUser = s.IDCreationUser,
-                OrdNum = s.OrdNum,
-                OrdDate = s.OrdDate,
-                Qty = s.Qty,
-                Payterms = s.Payterms,
-                TitleID = s.TitleID
-            }
-            ).ToList();
+            var result = this.saleService.GetAll();
 
-            return Ok(sales);
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         // GET api/<SaleController>/5
         [HttpGet("GetSaleByID")]
         public IActionResult GetSaleByID(int storeID, string ordNum, int titleID)
         {
-            var sale = this._saleRepository.GetSaleByID(storeID, ordNum, titleID);
+            var result = this.saleService.GetSaleByID(storeID, ordNum, titleID);
 
-            SaleGetModel saleModel = new SaleGetModel()
-            {
-                StoreID = sale.StoreID,
-                ChangeDate = sale.CreationDate,
-                ChangeUser = sale.IDCreationUser,
-                OrdNum = sale.OrdNum,
-                OrdDate = sale.OrdDate,
-                Qty = sale.Qty,
-                Payterms = sale.Payterms,
-                TitleID = sale.TitleID
-            };
+            if(!result.Success)
+                return BadRequest(result);
 
-            return Ok(sale);
-        }
-
-        [HttpGet("GetSaleByStoreID")]
-        public IActionResult GetSaleByStoreID(int storeID)
-        {
-            var sales = this._saleRepository.GetSaleByStore(storeID);
-            return Ok(sales);
-        }
-
-        [HttpGet("GetSaleByOrdNum")]
-        public IActionResult GetSaleByOrdNum(string ordNum)
-        {
-            var sales = this._saleRepository.GetSaleByOrdNum(ordNum);
-            return Ok(sales);
-        }
-
-        [HttpGet("GetSaleByTitleID")]
-        public IActionResult GetSaleByTitleID(int titleID)
-        {
-            var sales = this._saleRepository.GetSaleByTitle(titleID);
-            return Ok(sales);
+            return Ok(result);
         }
 
         [HttpPost("SaveSale")]
-        public IActionResult Post([FromBody] SaleAddModel saleAdd)
+        public IActionResult Post([FromBody] SaleDtoAdd saleAdd)
         {
-            Sale sale = new Sale()
-            {
-               StoreID = saleAdd.StoreID,
-               OrdNum = saleAdd.OrdNum,
-               TitleID = saleAdd.TitleID,
-               OrdDate = saleAdd.OrdDate,
-               Qty = saleAdd.Qty,
-               Payterms = saleAdd.Payterms,
-               CreationDate = saleAdd.ChangeDate,
-               IDCreationUser = saleAdd.ChangeUser
-            };
-            this._saleRepository.Save(sale);
-            return Created("Object created", sale);
+            var result = this.saleService.Save(saleAdd);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpPut("UpdateSale")]
-        public IActionResult Put([FromBody] SaleUpdateModel saleUpdate)
+        public IActionResult Put([FromBody] SaleDtoUpdate saleUpdate)
         {
-            Sale sale = new Sale()
-            {
-                StoreID = saleUpdate.StoreID,
-                OrdNum = saleUpdate.OrdNum,
-                TitleID = saleUpdate.TitleID,
-                OrdDate = saleUpdate.OrdDate,
-                Qty = saleUpdate.Qty,
-                Payterms = saleUpdate.Payterms,
-                ModifiedDate = saleUpdate.ChangeDate,
-                IDModifiedUser = saleUpdate.ChangeUser
-            };
-            this._saleRepository.Update(sale);
-            return Ok();
+            var result = this.saleService.Update(saleUpdate);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("RemoveSale")]
+        public IActionResult Remove([FromBody] SaleDtoRemove saleRemove) 
+        {
+            var result = this.saleService.Remove(saleRemove);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }

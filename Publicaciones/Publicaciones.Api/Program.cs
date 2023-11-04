@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Interfaces;
 using Publicaciones.Infrastructure.Repository;
+using Publicaciones.Ioc.Dependencies;
 
 namespace Publicaciones.Api
 {
@@ -18,11 +19,11 @@ namespace Publicaciones.Api
 
             // Repositories dependencies
 
-            builder.Services.AddTransient<IDiscountRepository, DiscountRepository>();
-            builder.Services.AddTransient<ISaleRepository, SaleRepository>();   
-            builder.Services.AddTransient<IStoreRepository, StoreRepository>(); 
-
             // App services dependencies
+
+            builder.Services.AddDiscountDependency();
+            builder.Services.AddSaleDependency();
+            builder.Services.AddStoreDependency();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

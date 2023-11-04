@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ioc", "Ioc", "{4744D97E-C64
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{11D5403F-3F70-482A-88DB-6C87E191DC65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Publicaciones.Web", "Publicaciones.Web\Publicaciones.Web.csproj", "{0EA026A4-D8D1-4221-875D-AEBADD87C4E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Publicaciones.Web", "Publicaciones.Web\Publicaciones.Web.csproj", "{0EA026A4-D8D1-4221-875D-AEBADD87C4E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

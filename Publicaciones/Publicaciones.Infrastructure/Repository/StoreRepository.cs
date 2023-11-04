@@ -2,6 +2,9 @@
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Infrastructure.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
@@ -35,6 +38,47 @@ namespace Publicaciones.Infrastructure.Repository
 
             context.Stores.Update(storeToUpdate);
             context.SaveChanges();
+        }
+
+        public override void Remove(Store entity)
+        {
+            var storeToRemove = base.GetEntityByID(entity.StoreID);
+            storeToRemove.StoreID = entity.StoreID;
+            storeToRemove.Deleted = true;
+            storeToRemove.DeletedDate = entity.DeletedDate;
+            storeToRemove.IDDeletedUser = entity.IDDeletedUser;
+
+            this.context.Stores.Update(storeToRemove);
+            this.context.SaveChanges();
+        }
+        public override List<Store> GetEntities()
+        {
+            return this.context.Stores.Where(s => !s.Deleted)
+                                      .OrderByDescending(s => s.CreationDate)
+                                      .ToList();
+        }
+
+        public List<StoreModel> GetStores()
+        {
+            var stores = this.context.Stores
+                             .Where(s => !s.Deleted)
+                             .OrderByDescending(s => s.CreationDate)
+                             .Select(s => new StoreModel
+                                {
+                                    StoreID = s.StoreID,
+                                    StoreName = s.StoreName,
+                                    StoreAddress = s.StoreAddress,
+                                    Zip = s.Zip
+                                })
+                                .ToList();
+
+            return stores;
+        }
+
+        public StoreModel GetStore(int storeID)
+        {
+            var stores = this.GetStores();
+            return stores.Find(s => s.StoreID == storeID);
         }
     }
 }

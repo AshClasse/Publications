@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Module_Store;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.Store;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -9,84 +8,66 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class StoreController : ControllerBase
     {
-        private readonly IStoreRepository _storeRepository;
+        private readonly IStoreService storeService;
 
-        public StoreController(IStoreRepository storeRepository)
+        public StoreController(IStoreService storeService)
         {
-            this._storeRepository = storeRepository;
+            this.storeService = storeService;
         }
 
         [HttpGet("GetStores")]
         public IActionResult GetStores() 
-        { 
-            var stores = this._storeRepository.GetEntities().Select(st => new StoreGetModel()
-            {
-                StoreID = st.StoreID,
-                ChangeDate = st.CreationDate,
-                ChangeUser = st.IDCreationUser,
-                StoreName = st.StoreName,
-                StoreAddress = st.StoreAddress,
-                City = st.City,
-                State = st.State,
-                Zip = st.Zip
-            }
-            ).ToList();
+        {
+            var result = this.storeService.GetAll();
 
-            return Ok(stores);
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpGet("GetStoreByID")]
         public IActionResult GetStoreByID(int storeID)
         {
-            var store = this._storeRepository.GetEntityByID(storeID);
+            var result = this.storeService.GetByID(storeID);
 
-            StoreGetModel storeModel = new StoreGetModel()
-            {
-                StoreID = store.StoreID,
-                ChangeDate = store.CreationDate,
-                ChangeUser = store.IDCreationUser,
-                StoreName = store.StoreName,
-                StoreAddress = store.StoreAddress,
-                City = store.City,
-                State = store.State,
-                Zip = store.Zip
-            };
-            return Ok(store);
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpPost("SaveStore")]
-        public IActionResult Post([FromBody] StoreAddModel storeAdd)
+        public IActionResult Post([FromBody] StoreDtoAdd storeAdd)
         {
-            Store store = new Store()
-            {
-                StoreName = storeAdd.StoreName,
-                StoreAddress = storeAdd.StoreAddress,
-                City = storeAdd.City,
-                State = storeAdd.State,
-                Zip = storeAdd.Zip,
-                CreationDate = storeAdd.ChangeDate,
-                IDCreationUser = storeAdd.ChangeUser
-            };
-            this._storeRepository.Save(store);
-            return Created("Object created", store);
+            var result = this.storeService.Save(storeAdd);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
 
         [HttpPut("UpdateStore")]
-        public IActionResult Put([FromBody] StoreUpdateModel storeUpdate)
+        public IActionResult Put([FromBody] StoreDtoUpdate storeUpdate)
         {
-            Store store = new Store()
-            {
-                StoreID = storeUpdate.StoreID,
-                StoreName = storeUpdate.StoreName,
-                StoreAddress = storeUpdate.StoreAddress,
-                City = storeUpdate.City,
-                State = storeUpdate.State,
-                Zip = storeUpdate.Zip,
-                CreationDate = storeUpdate.ChangeDate,
-                IDCreationUser = storeUpdate.ChangeUser
-            };
-            this._storeRepository.Update(store);
-            return Ok();
+            var result = this.storeService.Update(storeUpdate);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("RemoveStore")]
+        public IActionResult Remove([FromBody] StoreDtoRemove storeRemove)
+        {
+            var result = this.storeService.Remove(storeRemove);
+
+            if(!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }
