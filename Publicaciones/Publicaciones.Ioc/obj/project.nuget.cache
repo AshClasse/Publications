@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vLDKdWpDyS9W/Zq8ejniAhn+MInhIMdniVLjQmX5oD0ZPoarjwJtvSVTurlrDe4UibdpW/4DWHXUtB6NuBUVdA==",
+  "dgSpecHash": "BSM/hr0jrZ1H4vi/fs627SfX9kbTjPoN6mpkmrabsC8C0E2p7sdYIQL1e18jsH+hQJSlueaOofnpjxAPVOv+fg==",
   "success": true,
-  "projectFilePath": "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+  "projectFilePath": "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rachely Perez\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Rachely Perez\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
