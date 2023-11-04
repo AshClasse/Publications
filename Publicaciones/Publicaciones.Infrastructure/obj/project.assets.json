@@ -7126,11 +7126,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Pubs_Project\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
       "projectName": "Publicaciones.Infrastructure",
-      "projectPath": "C:\\Pubs_Project\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+      "projectPath": "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Rachely Perez\\.nuget\\packages\\",
-      "outputPath": "C:\\Pubs_Project\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
+      "outputPath": "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7152,8 +7152,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\Pubs_Project\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
-              "projectPath": "C:\\Pubs_Project\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj"
+            "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
+              "projectPath": "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj"
             }
           }
         }

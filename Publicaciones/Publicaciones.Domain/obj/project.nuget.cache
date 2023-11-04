@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wdWB1OOG+FN8bdlhJ7GfUFA3zh/tlSX95AA0HRzhS1TwvJfGddxmCfxxAvyjlQUvlyr7lR3WBThAJ1EK/rnODQ==",
+  "dgSpecHash": "ZKG6IejEk++EDr31g7NtUdlu0W/uEoWKmjws8qx6lu8N68VsQTHIaa7rt+PVxugv+lhNDvZ9pg7UtUJcn49+WA==",
   "success": true,
-  "projectFilePath": "C:\\Pubs_Project\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+  "projectFilePath": "C:\\Pubs_Project2.0\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
