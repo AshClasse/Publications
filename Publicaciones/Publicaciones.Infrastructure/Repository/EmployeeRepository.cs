@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
@@ -19,13 +18,13 @@ namespace Publicaciones.Infrastructure.Repository
 
         public List<Employee> GetEmployeeByPubID(int PubID)
         {
-            return this.context.employee.Where(cd => cd.PubID == PubID 
+            return context.employee.Where(cd => cd.PubID == PubID 
                                                 && !cd.Deleted).ToList();
         }
 
         public List<Employee> GetEmployeeByJobID(int JobID)
         {
-            return this.context.employee.Where(cd => cd.JobID == JobID 
+            return context.employee.Where(cd => cd.JobID == JobID 
                                                 && !cd.Deleted).ToList();
         }
 
@@ -37,9 +36,34 @@ namespace Publicaciones.Infrastructure.Repository
 
         public override void Update(Employee entity)
         {
-            base.Update(entity);
+            var EmployeetoUpdate = base.GetEntityByID(entity.EmpID);
+
+            EmployeetoUpdate.EmpID = entity.EmpID;
+            EmployeetoUpdate.FirstName = entity.FirstName;
+            EmployeetoUpdate.LastName = entity.LastName;
+            EmployeetoUpdate.Minit = entity.Minit;
+            EmployeetoUpdate.HireDate = entity.HireDate;
+            EmployeetoUpdate.Joblvl = entity.Joblvl;
+            EmployeetoUpdate.PubID = entity.PubID;
+            EmployeetoUpdate.JobID = entity.JobID;
+            EmployeetoUpdate.ModifiedDate = entity.ModifiedDate;
+            EmployeetoUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+            context.employee.Update(EmployeetoUpdate);
             context.SaveChanges();
         }
 
+        public override void Remove(Employee entity)
+        {
+            var EmployeeRemove = base.GetEntityByID(entity.EmpID);
+
+            EmployeeRemove.EmpID = entity.EmpID;
+            EmployeeRemove.Deleted = true;
+            EmployeeRemove.DeletedDate = entity.DeletedDate;
+            EmployeeRemove.DeletedUser = entity.DeletedUser;
+
+            context.employee.Update(EmployeeRemove);
+            context.SaveChanges();
+        }
     }
 }

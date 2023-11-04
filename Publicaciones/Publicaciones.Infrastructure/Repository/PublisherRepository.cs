@@ -22,7 +22,30 @@ namespace Publicaciones.Infrastructure.Repository
 
         public override void Update(Publisher entity)
         {
-            base.Update(entity);
+            var PublisherUpdate = base.GetEntityByID(entity.PubID);
+
+            PublisherUpdate.PubID = entity.PubID;
+            PublisherUpdate.PubName = entity.PubName;
+            PublisherUpdate.City = entity.City;
+            PublisherUpdate.Country = entity.Country; 
+            PublisherUpdate.State = entity.State;
+            PublisherUpdate.ModifiedDate = entity.ModifiedDate;
+            PublisherUpdate.IDModifiedUser = entity.IDModifiedUser;
+
+            context.publishers.Update(PublisherUpdate);
+            context.SaveChanges();
+        }
+
+        public override void Remove(Publisher entity)
+        {
+            var PublisherRemove = base.GetEntityByID(entity.PubID);
+
+            PublisherRemove.PubID = entity.PubID;
+            PublisherRemove.Deleted = true;
+            PublisherRemove.DeletedDate = entity.DeletedDate;
+            PublisherRemove.DeletedUser = entity.DeletedUser;
+
+            context.publishers.Update(PublisherRemove);
             context.SaveChanges();
         }
     }
