@@ -3,8 +3,10 @@ using Microsoft.Extensions.Logging;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Titles;
+using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Publicaciones.Application.Service
@@ -19,13 +21,13 @@ namespace Publicaciones.Application.Service
 			this._titlesRepository = titlesRepository;
 			this._logger = logger;
 		}
-		public ServicesResult GetAll()
+		public ServiceResult GetAll()
 		{
-			ServicesResult result = new ServicesResult();
+			ServiceResult result = new ServiceResult();
 			try
 			{
 				var titles = this._titlesRepository.GetEntities()
-					.Select(tt => new TitlesGetAll()
+					.Select(tt => new TitlesDtoGetAll()
 						{
 							Title_ID = tt.Title_ID,
 							Title = tt.Title,
@@ -40,6 +42,8 @@ namespace Publicaciones.Application.Service
 							ChangeDate = tt.CreationDate,
 							ChangeUser = tt.IDCreationUser
 						});
+
+				result.Data = titles;
 			}
 			catch (Exception ex)
 			{
@@ -50,12 +54,30 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		public ServicesResult GetByID(int id)
+		public ServiceResult GetByID(int id)
 		{
-			ServicesResult result = new ServicesResult();
+			ServiceResult result = new ServiceResult();
 			try
 			{
+				var titles = this._titlesRepository.GetEntityByID(id);
 
+				TitlesDtoGetAll titlesDtoGetAll = new TitlesDtoGetAll()
+				{
+					Title_ID = titles.Title_ID,
+					Title = titles.Title,
+					PubID = titles.PubID,
+					Royalty = titles.Royalty,
+					Advance = titles.Advance,
+					Price = titles.Price,
+					Notes = titles.Notes,
+					PubDate = titles.PubDate,
+					Ytd_Sales = titles.Ytd_Sales,
+					Type = titles.Type,
+					ChangeDate = titles.CreationDate,
+					ChangeUser = titles.IDCreationUser
+				};
+
+				result.Data = titlesDtoGetAll;
 			}
 			catch (Exception ex)
 			{
@@ -66,19 +88,111 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		public ServicesResult Remove(TitlesDtoRemove dtoRemove)
+		public ServiceResult Remove(TitlesDtoRemove dtoRemove)
 		{
-			throw new System.NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Titles titles = new Titles() 
+				{ 
+					Title_ID = dtoRemove.Id, 
+					Deleted = dtoRemove.Deleted,
+					DeletedDate = dtoRemove.ChangeDate,
+					IDDeletedUser = dtoRemove.ChangeUser
+				};
+
+				this._titlesRepository.Remove(titles);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error borrando el título: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+
 		}
 
-		public ServicesResult Save(TitlesDtoAdd dtoAdd)
+		public ServiceResult Save(TitlesDtoAdd dtoAdd)
 		{
-			throw new System.NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Titles titles = new Titles()
+				{
+					Title = dtoAdd.Title,
+					Royalty = dtoAdd.Royalty,
+					Type = dtoAdd.Type,
+					Ytd_Sales = dtoAdd.Ytd_Sales,
+					Price = dtoAdd.Price,
+					Advance = dtoAdd.Advance,
+					PubID = dtoAdd.PubID,
+					Notes = dtoAdd.Notes,
+					PubDate = dtoAdd.PubDate,
+					CreationDate = dtoAdd.ChangeDate,
+					IDCreationUser = dtoAdd.ChangeUser
+				};
+
+				this._titlesRepository.Save(titles);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error guardando el título: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
 
-		public ServicesResult Update(TitlesDtoUpdate dtoUpdate)
+		public ServiceResult Update(TitlesDtoUpdate dtoUpdate)
 		{
-			throw new System.NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Titles titles = new Titles()
+				{
+					Title_ID = dtoUpdate.Title_ID,
+					Title = dtoUpdate.Title,
+					Royalty = dtoUpdate.Royalty,
+					Type = dtoUpdate.Type,
+					Ytd_Sales = dtoUpdate.Ytd_Sales,
+					Price = dtoUpdate.Price,
+					Advance = dtoUpdate.Advance,
+					PubID = dtoUpdate.PubID,
+					Notes = dtoUpdate.Notes,
+					PubDate = dtoUpdate.PubDate,
+					ModifiedDate = dtoUpdate.ChangeDate,
+					IDModifiedUser = dtoUpdate.ChangeUser
+				};
+
+				this._titlesRepository.Update(titles);
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error actualizando el título: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
+
+		//ServiceResult ITitlesService.GetTitlesByPrice(decimal price)
+		//{
+		//	throw new NotImplementedException();
+		//}
+
+		//ServiceResult ITitlesService.GetTitlesByPublisher(int pubId)
+		//{
+		//	throw new NotImplementedException();
+		//}
+
+		//ServiceResult ITitlesService.GetTitlesByType(string type)
+		//{
+		//	throw new NotImplementedException();
+		//}
 	}
 }

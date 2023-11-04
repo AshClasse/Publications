@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Api.Models.Modules.Pub_InfoModels;
 using Publicaciones.Api.Models.Modules.RoySched;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.RoySched;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
@@ -10,89 +12,95 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class RoySchedController : ControllerBase
 {
-        private readonly IRoySchedRepository _roySchedRepository;
+        private readonly IRoySchedService _roySchedService;
 
-        public RoySchedController(IRoySchedRepository roySchedRepository)
+        public RoySchedController(IRoySchedService roySchedService)
         {
-            this._roySchedRepository = roySchedRepository;
+            this._roySchedService = roySchedService;
         }
 
 		[HttpGet("GetRoyScheds")]
 		public IActionResult GetRoyScheds()
 		{
-			var royScheds = this._roySchedRepository.GetEntities().Select(rs => new RoySchedGetModel()
-			{
-				RoySched_ID = rs.RoySched_ID,
-				Title_ID = rs.Title_ID,
-				HiRange = rs.HiRange,
-				LoRange = rs.LoRange,
-				Royalty = rs.Royalty,
-				ChangeDate = rs.CreationDate,
-				ChangeUser = rs.IDCreationUser
+			var result = this._roySchedService.GetAll();
 
-			}).ToList();
-			return Ok(royScheds);
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
 		}
 
 		[HttpGet("GetRoySchedByID")]
-		public IActionResult GetRoySchedByID(int roySchedID)
+		public IActionResult GetRoySchedByID(int ID)
 		{
-			var roySched = this._roySchedRepository.GetEntityByID(roySchedID);
-			return Ok(roySched);
-		}
+			var result = this._roySchedService.GetByID(ID);
 
-		[HttpGet("GetRoySchedsByRoyalty")]
-		public IActionResult GetRoySchedByRoyalty(int royalty)
-		{
-			var royScheds = this._roySchedRepository.GetRoySchedsByRoyalty(royalty);
-			return Ok(royScheds);
-		}
-
-		[HttpGet("GetRoySchedsByTitle")]
-		public IActionResult GetRoySchedByTitle(int titleId)
-		{
-			var royScheds = this._roySchedRepository.GetRoySchedsByTitle(titleId);
-			return Ok(royScheds);
-		}
-
-		[HttpPost("SaveRoySched")]
-		public IActionResult Post([FromBody] RoySchedAddModel roySchedAdd)
-		{
-			if (!_roySchedRepository.ExistsInTitles(roySchedAdd.Title_ID))
+			if (!result.Success)
 			{
-				return BadRequest("Non-Existent Title.");
+				return BadRequest(result);
 			}
 
-			RoySched roySched = new RoySched()
-			{
-				Title_ID = roySchedAdd.Title_ID,
-				LoRange = roySchedAdd.LoRange,
-				HiRange = roySchedAdd.HiRange,
-				Royalty = roySchedAdd.Royalty,				
-				CreationDate = roySchedAdd.ChangeDate,
-				IDCreationUser = roySchedAdd.ChangeUser
-			};
+			return Ok(result);
+		}
 
-			this._roySchedRepository.Save(roySched);
-			return Created("Object Created", roySched);
+		//[HttpGet("GetRoySchedsByRoyalty")]
+		//public IActionResult GetRoySchedByRoyalty(int royalty)
+		//{
+		//	var royScheds = this._roySchedRepository.GetRoySchedsByRoyalty(royalty);
+		//	return Ok(royScheds);
+		//}
+
+		//[HttpGet("GetRoySchedsByTitle")]
+		//public IActionResult GetRoySchedByTitle(int titleId)
+		//{
+		//	var royScheds = this._roySchedRepository.GetRoySchedsByTitle(titleId);
+		//	return Ok(royScheds);
+		//}
+
+		[HttpPost("SaveRoySched")]
+		public IActionResult Post([FromBody] RoySchedDtoAdd roySchedDtoAdd)
+		{
+			//if (!_roySchedService.ExistsInTitles(roySchedAdd.Title_ID))
+			//{
+			//	return BadRequest("Non-Existent Title.");
+			//}
+
+			var result = this._roySchedService.Save(roySchedDtoAdd);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
 		}
 
 		[HttpPut("UpdateRoySched")]
-		public IActionResult Put([FromBody] RoySchedUpdateModel roySchedUpdate)
+		public IActionResult Put([FromBody] RoySchedDtoUpdate roySchedDtoUpdate)
 		{
-			RoySched roySched = new RoySched()
-			{
-				RoySched_ID = roySchedUpdate.RoySched_ID,
-				Title_ID = roySchedUpdate.Title_ID,
-				LoRange = roySchedUpdate.LoRange,
-				HiRange = roySchedUpdate.HiRange,
-				Royalty = roySchedUpdate.Royalty,
-				ModifiedDate = roySchedUpdate.ChangeDate,
-				IDModifiedUser = roySchedUpdate.ChangeUser
-			};
+			var result = this._roySchedService.Update(roySchedDtoUpdate);
 
-			this._roySchedRepository.Update(roySched);
-			return Ok();
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
+
+		[HttpPut("RemoveRoySched")]
+		public IActionResult Remove([FromBody] RoySchedDtoRemove roySchedDtoRemove)
+		{
+			var result = this._roySchedService.Remove(roySchedDtoRemove);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
 		}
 	}
 }

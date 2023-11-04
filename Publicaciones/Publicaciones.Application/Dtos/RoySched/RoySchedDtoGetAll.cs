@@ -3,7 +3,7 @@ using Publicaciones.Application.Dtos.Base;
 
 namespace Publicaciones.Application.Dtos.RoySched
 {
-	public class RoySchedGetAll : DtoBase
+	public class RoySchedDtoGetAll : DtoBase
 	{
 		public int RoySched_ID { get; set; }
 		public int Title_ID { get; set; }

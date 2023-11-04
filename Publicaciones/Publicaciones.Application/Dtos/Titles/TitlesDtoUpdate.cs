@@ -3,8 +3,8 @@ using Publicaciones.Application.Dtos.Base;
 
 namespace Publicaciones.Application.Dtos.Titles
 {
-    public class TitlesDtoUpdate : DtoBase
+    public class TitlesDtoUpdate : TitlesDtoBase
 	{
-		public int Id { get; set; }
+		public int Title_ID { get; set; }
 	}
 }

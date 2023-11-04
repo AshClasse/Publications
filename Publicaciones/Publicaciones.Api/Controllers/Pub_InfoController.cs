@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Modules.Pub_Info;
-using Publicaciones.Api.Models.Modules.Pub_InfoModels;
-using Publicaciones.Api.Models.Modules.RoySched;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.Pub_Info;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -11,64 +8,77 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class Pub_InfoController : ControllerBase
     {
-        private readonly IPub_InfoRepository _pub_info_repository;
+        private readonly IPub_InfoService _pub_infoService;
 
-        public Pub_InfoController(IPub_InfoRepository pub_info_repository)
+        public Pub_InfoController(IPub_InfoService pub_InfoService)
         {
-            this._pub_info_repository = pub_info_repository;
+            this._pub_infoService = pub_InfoService;
         }
 
         [HttpGet("GetPub_Infos")]
         public IActionResult GetPub_Infos()
         {
-            var pubInfos = this._pub_info_repository.GetEntities().Select(pi => new Pub_InfoGetModel()
-			{
-				PubID = pi.PubID,
-				Logo = pi.Logo,
-				Pr_Info = pi.Pr_Info,
-				ChangeDate = pi.CreationDate,
-				ChangeUser = pi.IDCreationUser
+			var result = this._pub_infoService.GetAll();
 
-			}).ToList(); 
-            return Ok(pubInfos);
-        }
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
 
         [HttpGet("GetPub_InfoByID")]
         public IActionResult GetPub_InfoByID(int ID)
         {
-            var pub_infos = this._pub_info_repository.GetEntityByID(ID);
-            return Ok(pub_infos);
-        }
+			var result = this._pub_infoService.GetByID(ID);
 
-        [HttpPost("SavePub_Info")]
-        public IActionResult Post([FromBody] Pub_InfoAddModel pub_InfoAdd)
-        {
-            Pub_Info pub_Info = new Pub_Info() 
-            {
-                CreationDate = pub_InfoAdd.ChangeDate,
-                IDCreationUser = pub_InfoAdd.ChangeUser,
-                Pr_Info = pub_InfoAdd.Pr_Info,
-                Logo = pub_InfoAdd.Logo,
-            };
-
-            this._pub_info_repository.Save(pub_Info);
-            return Created("Object Created", pub_Info);
-        }
-
-		[HttpPut("UpdatePub_Info")]
-		public IActionResult Put([FromBody] Pub_InfoUpdateModel pub_InfoUpdate)
-        {
-			Pub_Info pubInfo = new Pub_Info()
+			if (!result.Success)
 			{
-				PubID = pub_InfoUpdate.PubID,
-				Pr_Info = pub_InfoUpdate.Pr_Info,
-				Logo = pub_InfoUpdate.Logo,				
-                ModifiedDate = pub_InfoUpdate.ChangeDate,
-				IDModifiedUser = pub_InfoUpdate.ChangeUser
-			};
-            this._pub_info_repository.Update(pubInfo);
-			return Ok();
+				return BadRequest(result);
+			}
+
+			return Ok(result);
 		}
 
-    }
+        [HttpPost("SavePub_Info")]
+        public IActionResult Post([FromBody] Pub_InfoDtoAdd pub_InfoDtoAdd)
+        {
+			var result = this._pub_infoService.Save(pub_InfoDtoAdd);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
+
+		[HttpPut("UpdatePub_Info")]
+		public IActionResult Put([FromBody] Pub_InfoDtoUpdate pub_InfoDtoUpdate)
+        {
+			var result = this._pub_infoService.Update(pub_InfoDtoUpdate);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
+
+		[HttpPut("RemovePub_Info")]
+		public IActionResult Remove([FromBody] Pub_InfoDtoRemove pub_InfoDtoRemove)
+		{
+			var result = this._pub_infoService.Remove(pub_InfoDtoRemove);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
+
+	}
 }

@@ -61,3 +61,9 @@ C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.
 C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Infrastructure.dll
 C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Infrastructure.pdb
 C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Domain.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll

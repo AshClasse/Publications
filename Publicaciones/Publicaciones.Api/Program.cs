@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Interfaces;
 using Publicaciones.Infrastructure.Repository;
+using Publicaciones.Ioc.Dependencies;
 
 namespace Publicaciones.Api
 {
@@ -16,11 +17,11 @@ namespace Publicaciones.Api
             /// Add context dependencies
             builder.Services.AddDbContext<PublicacionesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PubsContext")));
 
-            // Repositories dependencies
+            // Dependencias de los servicios
 
-            builder.Services.AddTransient<IPub_InfoRepository, Pub_InfoRepository>();
-            builder.Services.AddTransient<IRoySchedRepository, RoySchedRepository>();
-            builder.Services.AddTransient<ITitlesRepository, TitlesRepository>();
+            builder.Services.AddPubInfoDependency();
+            builder.Services.AddRoySchedDependency();
+            builder.Services.AddTitlesDependency();
 
 
             builder.Services.AddControllers();

@@ -4,7 +4,7 @@ using System;
 
 namespace Publicaciones.Application.Dtos.Titles
 {
-	public class TitlesGetAll : DtoBase
+	public class TitlesDtoGetAll : DtoBase
 	{
 		public int Title_ID { get; set; }
 		public string Title { get; set; }

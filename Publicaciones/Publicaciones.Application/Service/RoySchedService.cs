@@ -2,8 +2,10 @@
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.RoySched;
+using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Publicaciones.Application.Service
@@ -19,13 +21,13 @@ namespace Publicaciones.Application.Service
 			_logger = logger;
 		}
 
-		public ServicesResult GetAll()
+		public ServiceResult GetAll()
 		{
-			ServicesResult result = new ServicesResult();
+			ServiceResult result = new ServiceResult();
 			try
 			{
 				var royScheds = this._roySchedRepository.GetEntities()
-					.Select(rs => new RoySchedGetAll()
+					.Select(rs => new RoySchedDtoGetAll()
 						{
 							RoySched_ID = rs.RoySched_ID,
 							Title_ID = rs.Title_ID,
@@ -35,6 +37,8 @@ namespace Publicaciones.Application.Service
 							ChangeDate = rs.CreationDate,
 							ChangeUser = rs.IDCreationUser
 						});
+
+				result.Data = royScheds;
 
 			}
 			catch (Exception ex)
@@ -46,13 +50,26 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		public ServicesResult GetByID(int id)
+		public ServiceResult GetByID(int id)
 		{
-			ServicesResult result = new ServicesResult();
+			ServiceResult result = new ServiceResult();
+
 			try
 			{
-				
+				var roySched = this._roySchedRepository.GetEntityByID(id);
 
+				RoySchedDtoGetAll roySchedDtoGetAll = new RoySchedDtoGetAll()
+				{
+					RoySched_ID = roySched.RoySched_ID,
+					Title_ID = roySched.Title_ID,
+					HiRange = roySched.HiRange,
+					LoRange = roySched.LoRange,
+					Royalty = roySched.Royalty,
+					ChangeDate = roySched.CreationDate,
+					ChangeUser = roySched.IDCreationUser
+				};
+
+				result.Data = roySchedDtoGetAll;
 			}
 			catch (Exception ex)
 			{
@@ -60,22 +77,123 @@ namespace Publicaciones.Application.Service
 				result.Message = $"Ocurrió el siguiente error obteniendo la regalía: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
+
 			return result;
 		}
 
-		public ServicesResult Remove(RoySchedDtoRemove dtoRemove)
+		public ServiceResult Remove(RoySchedDtoRemove dtoRemove)
 		{
-			throw new NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				RoySched roySched = new RoySched()
+				{
+					RoySched_ID = dtoRemove.Id,
+					Deleted = dtoRemove.Deleted,
+					DeletedDate = dtoRemove.ChangeDate,
+					IDDeletedUser = dtoRemove.ChangeUser
+				};
+
+				this._roySchedRepository.Remove(roySched);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error borrando la regalía: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
 
-		public ServicesResult Save(RoySchedDtoAdd dtoAdd)
+		public ServiceResult Save(RoySchedDtoAdd dtoAdd)
 		{
-			throw new NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				//if (!_roySchedRepository.ExistsInTitles(dtoAdd.Title_ID))
+				//{
+					
+				//}
+
+				RoySched roySched = new RoySched()
+				{
+					Title_ID = dtoAdd.Title_ID,
+					LoRange = dtoAdd.LoRange,
+					HiRange = dtoAdd.HiRange,
+					Royalty = dtoAdd.Royalty,
+					CreationDate = dtoAdd.ChangeDate,
+					IDCreationUser = dtoAdd.ChangeUser
+				};
+
+				this._roySchedRepository.Save(roySched);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error guardando la regalía: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
 
-		public ServicesResult Update(RoySchedDtoUpdate dtoUpdate)
+		public ServiceResult Update(RoySchedDtoUpdate dtoUpdate)
 		{
-			throw new NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+
+				RoySched roySched = new RoySched()
+				{
+					RoySched_ID = dtoUpdate.RoySched_ID,
+					Title_ID = dtoUpdate.Title_ID,
+					LoRange = dtoUpdate.LoRange,
+					HiRange = dtoUpdate.HiRange,
+					Royalty = dtoUpdate.Royalty,
+					ModifiedDate = dtoUpdate.ChangeDate,
+					IDModifiedUser = dtoUpdate.ChangeUser
+				};
+
+				this._roySchedRepository.Update(roySched);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error actualizando la regalía: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
+
+		//public ServiceResult ExistsInTitles(int titleId)
+		//{
+		//	ServiceResult result = new ServiceResult();
+
+		//	try
+		//	{
+
+			
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		result.Success = false;
+		//		result.Message = $"Ocurrió el siguiente error verificando si el título existe: {ex.Message}";
+		//		this._logger.LogError(result.Message, ex.ToString());
+		//	}
+
+		//	return result;
+		//}
+
+		//public ServiceResult GetRoySchedsByRoyalty(int royalty)
+		//{
+		//	throw new NotImplementedException();
+		//}
+
+		//public ServiceResult GetRoySchedsByTitle(int titleId)
+		//{
+		//	throw new NotImplementedException();
+		//}
 	}
 }

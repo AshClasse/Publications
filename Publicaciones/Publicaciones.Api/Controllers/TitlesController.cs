@@ -2,6 +2,9 @@
 using Publicaciones.Api.Models.Modules.Pub_InfoModels;
 using Publicaciones.Api.Models.Modules.RoySched;
 using Publicaciones.Api.Models.Modules.Titles;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.RoySched;
+using Publicaciones.Application.Dtos.Titles;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
@@ -11,103 +14,94 @@ namespace Publicaciones.Api.Controllers
     [ApiController]
     public class TitlesController : ControllerBase
     {
-        private readonly ITitlesRepository _titlesRepository;
-        public TitlesController(ITitlesRepository titlesRepository) 
+        private readonly ITitlesService _titlesService;
+        public TitlesController(ITitlesService titlesService) 
         {
-            this._titlesRepository = titlesRepository;
+            this._titlesService = titlesService;
         }
 
 		[HttpGet("GetTitles")]
 		public IActionResult GetTitles()
 		{
-			var titles = this._titlesRepository.GetEntities().Select(tt => new TitlesGetModel()
+			var result = this._titlesService.GetAll();
+
+			if (!result.Success)
 			{
-				Title_ID = tt.Title_ID,
-				Title = tt.Title,
-				PubID = tt.PubID,
-				Royalty = tt.Royalty,
-				Advance = tt.Advance,
-				Price = tt.Price,
-				Notes = tt.Notes,
-				PubDate = tt.PubDate,
-				Ytd_Sales = tt.Ytd_Sales,
-				Type = tt.Type,
-				ChangeDate = tt.CreationDate,
-				ChangeUser = tt.IDCreationUser
-			});
-			return Ok(titles);
+				return BadRequest(result);
+			}
+			return Ok(result);
 		}
 
 		[HttpGet("GetTitleByID")]
 		public IActionResult GetTitleByID(int ID)
 		{
-			var titles = this._titlesRepository.GetEntityByID(ID);
-			return Ok(titles);
+			var result = this._titlesService.GetByID(ID);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+			return Ok(result);
 		}
 
-		[HttpGet("GetTitleByPublisher")]
-		public IActionResult GetTitleByPublisher(int pubId)
-		{
-			var titles = this._titlesRepository.GetTitlesByPublisher(pubId);
-			return Ok(titles);
-		}
+		//[HttpGet("GetTitleByPublisher")]
+		//public IActionResult GetTitleByPublisher(int pubId)
+		//{
+		//	var titles = this._titlesRepository.GetTitlesByPublisher(pubId);
+		//	return Ok(titles);
+		//}
 
-		[HttpGet("GetTitleByPrice")]
-		public IActionResult GetTitleByPrice(decimal price)
-		{
-			var titles = this._titlesRepository.GetTitlesByPrice(price);
-			return Ok(titles);
-		}
+		//[HttpGet("GetTitleByPrice")]
+		//public IActionResult GetTitleByPrice(decimal price)
+		//{
+		//	var titles = this._titlesRepository.GetTitlesByPrice(price);
+		//	return Ok(titles);
+		//}
 
-		[HttpGet("GetTitleByType")]
-		public IActionResult GetTitleByType(string type)
-		{
-			var titles = this._titlesRepository.GetTitlesByType(type);
-			return Ok(titles);
-		}
+		//[HttpGet("GetTitleByType")]
+		//public IActionResult GetTitleByType(string type)
+		//{
+		//	var titles = this._titlesRepository.GetTitlesByType(type);
+		//	return Ok(titles);
+		//}
 
 		[HttpPost("SaveTitle")]
-		public IActionResult Post([FromBody] TitlesAddModel titlesAdd)
+		public IActionResult Post([FromBody] TitlesDtoAdd titlesDtoAdd)
 		{
-			Titles titles = new Titles()
+			var result = this._titlesService.Save(titlesDtoAdd);
+
+			if (!result.Success)
 			{
-				Title = titlesAdd.Title,
-				Royalty = titlesAdd.Royalty,
-				Type = titlesAdd.Type,
-				Ytd_Sales = titlesAdd.Ytd_Sales,
-				Price = titlesAdd.Price,
-				Advance = titlesAdd.Advance,
-				PubID = titlesAdd.PubID,
-				Notes = titlesAdd.Notes,
-				PubDate = titlesAdd.PubDate,
-				CreationDate = titlesAdd.ChangeDate,
-				IDCreationUser = titlesAdd.ChangeUser
-		};
-			this._titlesRepository.Save(titles);
-			return Created("Object Created", titles);
+				return BadRequest(result);
+			}
+
+			return Ok(result);
 		}
 
 		[HttpPut("UpdateTitle")]
-		public IActionResult Put([FromBody] TitlesUpdateModel titlesUpdate)
+		public IActionResult Put([FromBody] TitlesDtoUpdate titlesDtoUpdate)
 		{
-			Titles titles = new Titles()
-			{
-				Title_ID = titlesUpdate.Title_ID,
-				Title = titlesUpdate.Title,
-				Royalty = titlesUpdate.Royalty,
-				Type = titlesUpdate.Type,
-				Ytd_Sales = titlesUpdate.Ytd_Sales,
-				Price = titlesUpdate.Price,
-				Advance = titlesUpdate.Advance,
-				PubID = titlesUpdate.PubID,
-				Notes = titlesUpdate.Notes,
-				PubDate = titlesUpdate.PubDate,
-				ModifiedDate = titlesUpdate.ChangeDate,
-				IDModifiedUser = titlesUpdate.ChangeUser
-			};
+			var result = this._titlesService.Update(titlesDtoUpdate);
 
-			this._titlesRepository.Update(titles);
-			return Ok();
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
+
+		[HttpPut("RemoveTitle")]
+		public IActionResult Remove([FromBody] TitlesDtoRemove titlesDtoRemove)
+		{
+			var result = this._titlesService.Remove(titlesDtoRemove);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
 		}
 	}
 }

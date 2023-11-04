@@ -6,11 +6,11 @@ namespace Publicaciones.Application.Core
 {
 	public interface IBaseServices<TDtoAdd, TDtoUpdate, TDtoRemove>
 	{
-		ServicesResult GetAll();
-		ServicesResult GetByID(int id);
-		ServicesResult Save(TDtoAdd dtoAdd);
-		ServicesResult Update(TDtoUpdate dtoUpdate);
-		ServicesResult Remove(TDtoRemove dtoRemove);
+		ServiceResult GetAll();
+		ServiceResult GetByID(int id);
+		ServiceResult Save(TDtoAdd dtoAdd);
+		ServiceResult Update(TDtoUpdate dtoUpdate);
+		ServiceResult Remove(TDtoRemove dtoRemove);
 	}
 }
 

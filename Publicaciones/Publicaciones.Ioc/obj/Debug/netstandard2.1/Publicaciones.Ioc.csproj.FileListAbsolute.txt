@@ -1,0 +1,17 @@
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Ioc.deps.json
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Ioc.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Ioc.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Application.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Application.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.csproj.AssemblyReference.cache
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.AssemblyInfoInputs.cache
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.AssemblyInfo.cs
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.csproj.CoreCompileInputs.cache
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.csproj.CopyComplete
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.pdb

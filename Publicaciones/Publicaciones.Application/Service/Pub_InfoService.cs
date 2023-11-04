@@ -2,6 +2,7 @@
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Pub_Info;
+using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
 using System.Linq;
@@ -17,20 +18,21 @@ namespace Publicaciones.Application.Service
 			this._pub_info_repository = pub_InfoRepository;
 			this._logger = logger;
 		}
-		public ServicesResult GetAll()
+		public ServiceResult GetAll()
 		{
-			ServicesResult result = new ServicesResult();
+			ServiceResult result = new ServiceResult();
 			try
 			{
-				var pubInfos = this._pub_info_repository.GetEntities().Select(pi => new Pub_InfoGetAll()
+				var pubInfos = this._pub_info_repository.GetEntities().Select(pi => new Pub_InfoDtoGetAll()
 				{
 					PubID = pi.PubID,
 					Logo = pi.Logo,
 					Pr_Info = pi.Pr_Info,
 					ChangeDate = pi.CreationDate,
 					ChangeUser = pi.IDCreationUser
-
 				});
+
+				result.Data = pubInfos;
 			}
 			catch (Exception ex)
 			{
@@ -41,12 +43,23 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		public ServicesResult GetByID(int id)
+		public ServiceResult GetByID(int id)
 		{
-			ServicesResult result = new ServicesResult();
+			ServiceResult result = new ServiceResult();
 			try
 			{
-			
+				var pub_infos = this._pub_info_repository.GetEntityByID(id);
+
+				Pub_InfoDtoGetAll pub_InfoDtoGetAll = new Pub_InfoDtoGetAll()
+				{
+					PubID = pub_infos.PubID,
+					Logo = pub_infos.Logo,
+					Pr_Info = pub_infos.Pr_Info,
+					ChangeDate = pub_infos.CreationDate,
+					ChangeUser = pub_infos.IDCreationUser
+				};
+
+				result.Data = pub_InfoDtoGetAll;
 			}
 			catch (Exception ex)
 			{
@@ -57,19 +70,80 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		public ServicesResult Remove(Pub_InfoDtoRemove dtoRemove)
+		public ServiceResult Remove(Pub_InfoDtoRemove dtoRemove)
 		{
-			throw new NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Pub_Info pub_Info = new Pub_Info()
+				{
+					PubID = dtoRemove.Id,
+					Deleted = dtoRemove.Deleted,
+					DeletedDate = dtoRemove.ChangeDate,
+					IDDeletedUser = dtoRemove.ChangeUser
+				};
+
+				this._pub_info_repository.Remove(pub_Info);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error borrando la información de publicación: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
 
-		public ServicesResult Save(Pub_InfoDtoAdd dtoAdd)
+		public ServiceResult Save(Pub_InfoDtoAdd dtoAdd)
 		{
-			throw new NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Pub_Info pub_Info = new Pub_Info()
+				{
+					CreationDate = dtoAdd.ChangeDate,
+					IDCreationUser = dtoAdd.ChangeUser,
+					Logo = dtoAdd.Logo,
+					Pr_Info = dtoAdd.Pr_Info
+				};
+
+				this._pub_info_repository.Save(pub_Info);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error guardando la información de publicación: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
 
-		public ServicesResult Update(Pub_InfoDtoUpdate dtoUpdate)
+		public ServiceResult Update(Pub_InfoDtoUpdate dtoUpdate)
 		{
-			throw new NotImplementedException();
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Pub_Info pub_Info = new Pub_Info()
+				{
+					ModifiedDate = dtoUpdate.ChangeDate,
+					IDModifiedUser = dtoUpdate.ChangeUser,
+					PubID = dtoUpdate.PubID,
+					Logo = dtoUpdate.Logo,
+					Pr_Info = dtoUpdate.Pr_Info
+				};
+
+				this._pub_info_repository.Update(pub_Info);
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error actualizando la información de publicación: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bhbfnivU2UFgKWZRl4+rJICXGtyiJEh+3SSfmlQWWcIFDotpXN5WVjv08iC4LmAirKRxEzvaA4Vagi2W9zizPg==",
+  "dgSpecHash": "RUxnWI+uXoWt+fxnsvG+vQO4Q2E5cKfalz64saABuACaP400NwvnMc5YNXMvyKf2dkyeeVRqtFmj5lLqafQWrQ==",
   "success": true,
   "projectFilePath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
   "expectedPackageFiles": [
@@ -21,7 +21,7 @@
     "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.32\\microsoft.extensions.dependencyinjection.3.1.32.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.32\\microsoft.extensions.dependencyinjection.abstractions.3.1.32.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.logging\\3.1.32\\microsoft.extensions.logging.3.1.32.nupkg.sha512",
-    "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.32\\microsoft.extensions.logging.abstractions.3.1.32.nupkg.sha512",
+    "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.options\\3.1.32\\microsoft.extensions.options.3.1.32.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.32\\microsoft.extensions.primitives.3.1.32.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\microsoft.identity.client\\3.0.8\\microsoft.identity.client.3.0.8.nupkg.sha512",
@@ -78,7 +78,7 @@
     "C:\\Users\\class\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
-    "C:\\Users\\class\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
+    "C:\\Users\\class\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.net.http\\4.3.0\\system.net.http.4.3.0.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.net.sockets\\4.3.0\\system.net.sockets.4.3.0.nupkg.sha512",
