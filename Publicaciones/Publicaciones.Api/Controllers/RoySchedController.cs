@@ -26,6 +26,7 @@ namespace Publicaciones.Api.Controllers
 				Title_ID = rs.Title_ID,
 				HiRange = rs.HiRange,
 				LoRange = rs.LoRange,
+				Royalty = rs.Royalty,
 				ChangeDate = rs.CreationDate,
 				ChangeUser = rs.IDCreationUser
 

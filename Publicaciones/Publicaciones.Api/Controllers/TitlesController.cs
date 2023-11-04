@@ -29,12 +29,12 @@ namespace Publicaciones.Api.Controllers
 				Advance = tt.Advance,
 				Price = tt.Price,
 				Notes = tt.Notes,
-				PubDate	= tt.PubDate,
+				PubDate = tt.PubDate,
 				Ytd_Sales = tt.Ytd_Sales,
 				Type = tt.Type,
 				ChangeDate = tt.CreationDate,
 				ChangeUser = tt.IDCreationUser
-			}).ToList(); ;
+			});
 			return Ok(titles);
 		}
 

@@ -29,7 +29,7 @@ namespace Publicaciones.Api.Controllers
 				ChangeDate = pi.CreationDate,
 				ChangeUser = pi.IDCreationUser
 
-			}).ToList(); ;
+			}).ToList(); 
             return Ok(pubInfos);
         }
 

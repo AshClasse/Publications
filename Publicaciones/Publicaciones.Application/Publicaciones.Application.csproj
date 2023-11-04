@@ -6,10 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Contract\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Service\" />
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Publicaciones.Infrastructure\Publicaciones.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
