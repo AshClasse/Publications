@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Publicaciones.Application.Dtos.Sale;
 using Publicaciones.Application.Dtos.Store;
 using Publicaciones.Application.Exceptions;
 using System;
@@ -8,247 +9,180 @@ namespace Publicaciones.Application.Validations
 {
     public static class StoreValidation
     {
-        public static void ValidateStoreID(int ID, IConfiguration configuration)
+        private static void CommonValidation(int changeUser, DateTime changeDate, int storeID, string ordNum, int titleID, DateTime ordDate, short qty, string payterms, IConfiguration configuration)
         {
-            if (ID <= 0)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeIDIsPositiveInt"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-        }
-        public static void ValidateAddStore(StoreDtoAdd storeDtoAdd, IConfiguration configuration)
-        {
-            if (storeDtoAdd.ChangeUser <= 0)
+            if (changeUser <= 0)
             {
                 string errorMessage = $"{configuration["ValidationMessage:changeUserIsPositiveInt"]}";
-                throw new StoreServiceException(errorMessage);
+                throw new SaleServiceException(errorMessage);
             }
 
-            if (!ValidationUtility.IsValidDateFormat(storeDtoAdd.ChangeDate))
+            if (!ValidationUtility.IsValidDateFormat(changeDate))
             {
                 string errorMessage = $"{configuration["ValidationMessage:changeDateFormat"]}";
-                throw new StoreServiceException(errorMessage);
+                throw new SaleServiceException(errorMessage);
             }
 
-            if (string.IsNullOrEmpty(storeDtoAdd.StoreName))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeNameRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoAdd.StoreName.Length > 40)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeNameLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoAdd.StoreName))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeNameContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoAdd.StoreAddress))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeAddressRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoAdd.StoreAddress.Length > 40)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeAddressLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoAdd.StoreAddress))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeAddressContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoAdd.City))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:cityRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoAdd.City.Length > 20)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:cityLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoAdd.City))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:discountTypeContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoAdd.State))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:stateRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoAdd.State.Length > 2)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:stateLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoAdd.State))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:stateContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoAdd.Zip))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:zipRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoAdd.Zip.Length > 5)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:zipLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyNumbers(storeDtoAdd.Zip))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:zipContainsOnlyNumbers"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-        }
-        public static void ValidateUpdateStore(StoreDtoUpdate storeDtoUpdate, IConfiguration configuration)
-        {
-            if (storeDtoUpdate.ChangeUser <= 0)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:changeUserIsPositiveInt"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.IsValidDateFormat(storeDtoUpdate.ChangeDate))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:changeDateFormat"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.IsInt(storeDtoUpdate.StoreID))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:discountIDIsInt"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoUpdate.StoreID <= 0)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:discountIDIsPositiveInt"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoUpdate.StoreName))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeNameRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoUpdate.StoreName.Length > 40)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeNameLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoUpdate.StoreName))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeNameContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoUpdate.StoreAddress))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeAddressRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoUpdate.StoreAddress.Length > 40)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:storeAddressLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoUpdate.City))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:cityRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoUpdate.City.Length > 20)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:cityLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoUpdate.City))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:discountTypeContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoUpdate.State))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:stateRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoUpdate.State.Length > 2)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:stateLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyLetters(storeDtoUpdate.State))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:stateContainsOnlyLetters"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (string.IsNullOrEmpty(storeDtoUpdate.Zip))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:zipRequired"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (storeDtoUpdate.Zip.Length > 5)
-            {
-                string errorMessage = $"{configuration["ValidationMessage:zipLength"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-
-            if (!ValidationUtility.ContainsOnlyNumbers(storeDtoUpdate.Zip))
-            {
-                string errorMessage = $"{configuration["ValidationMessage:zipContainsOnlyNumbers"]}";
-                throw new StoreServiceException(errorMessage);
-            }
-        }
-        public static void ValidateRemoveStore(StoreDtoRemove storeDtoRemove, IConfiguration configuration)
-        {
-            if (!ValidationUtility.IsInt(storeDtoRemove.StoreID))
+            if (!ValidationUtility.IsInt(storeID))
             {
                 string errorMessage = $"{configuration["ValidationMessage:storeIDIsInt"]}";
-                throw new StoreServiceException(errorMessage);
+                throw new SaleServiceException(errorMessage);
             }
 
-            if (storeDtoRemove.StoreID <= 0)
+            if (storeID <= 0)
             {
                 string errorMessage = $"{configuration["ValidationMessage:storeIDIsPositiveInt"]}";
-                throw new StoreServiceException(errorMessage);
+                throw new SaleServiceException(errorMessage);
             }
 
-            if (!storeDtoRemove.Deleted)
+            if (string.IsNullOrEmpty(ordNum))
             {
-                string errorMessage = $"{configuration["StoreErrorMessage:removeErrorMessage"]}";
-                throw new StoreServiceException(errorMessage);
+                string errorMessage = $"{configuration["ValidationMessage:ordNumRequired"]}";
+                throw new SaleServiceException(errorMessage);
             }
+
+            if (ordNum.Length > 20)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:ordNumLength"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!IsValidOrdNumFormat(ordNum))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:ordNumFormat"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!ValidationUtility.IsInt(titleID))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:titleIDIsInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (titleID <= 0)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:titleIDIsPositiveInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!ValidationUtility.IsValidDateFormat(ordDate))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:ordDateFormat"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!ValidationUtility.IsShort(qty))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:qtyIsShort"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (qty <= 0)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:qtyIsPositiveInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (string.IsNullOrEmpty(payterms))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:paytermsRequired"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (payterms.Length > 12)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:paytermsLength"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+        }
+
+        public static void ValidateSaleID(int storeID, string ordNum, int titleID, IConfiguration configuration)
+        {
+            if (storeID <= 0)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:storeIDIsPositiveInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (string.IsNullOrEmpty(ordNum))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:titleIDRequired"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (titleID <= 0)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:titleIDIsPositiveInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+        }
+
+        public static void ValidateAddSale(SaleDtoAdd saleDtoAdd, IConfiguration configuration)
+        {
+            CommonValidation(saleDtoAdd.ChangeUser, saleDtoAdd.ChangeDate, saleDtoAdd.StoreID, saleDtoAdd.OrdNum, saleDtoAdd.TitleID, saleDtoAdd.OrdDate, saleDtoAdd.Qty, saleDtoAdd.Payterms, configuration);
+        }
+
+        public static void ValidateUpdateSale(SaleDtoUpdate saleDtoUpdate, IConfiguration configuration)
+        {
+            CommonValidation(saleDtoUpdate.ChangeUser, saleDtoUpdate.ChangeDate, saleDtoUpdate.StoreID, saleDtoUpdate.OrdNum, saleDtoUpdate.TitleID, saleDtoUpdate.OrdDate, saleDtoUpdate.Qty, saleDtoUpdate.Payterms, configuration);
+        }
+
+        public static void ValidateRemoveSale(SaleDtoRemove saleDtoRemove, IConfiguration configuration)
+        {
+            if (!ValidationUtility.IsInt(saleDtoRemove.StoreID))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:storeIDIsInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (saleDtoRemove.StoreID <= 0)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:storeIDIsPositiveInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!ValidationUtility.IsInt(saleDtoRemove.TitleID))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:titleIDIsInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (saleDtoRemove.TitleID <= 0)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:titleIDIsPositiveInt"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (string.IsNullOrEmpty(saleDtoRemove.OrdNum))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:ordNumRequired"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (saleDtoRemove.OrdNum.Length > 20)
+            {
+                string errorMessage = $"{configuration["ValidationMessage:ordNumLength"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!IsValidOrdNumFormat(saleDtoRemove.OrdNum))
+            {
+                string errorMessage = $"{configuration["ValidationMessage:ordNumFormat"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+
+            if (!saleDtoRemove.Deleted)
+            {
+                string errorMessage = $"{configuration["SaleErrorMessage:removeErrorMessage"]}";
+                throw new SaleServiceException(errorMessage);
+            }
+        }
+
+        private static bool IsValidOrdNumFormat(string ordNum)
+        {
+            string pattern = @"^ORD\d{3}$";
+
+            return Regex.IsMatch(ordNum, pattern);
         }
 
     }
