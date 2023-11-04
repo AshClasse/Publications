@@ -8,12 +8,14 @@ namespace Publicaciones.Infrastructure.Interfaces
     public interface ISaleRepository : IBaseRepository<Sale>
     {
         Sale GetSaleByID(int storeID, string ordNum, int titleID);
-        List<SaleStoreModel> GetSalesByStoreID(int storeID);
-        List<SaleStoreModel> GetSalesStores();
-        SaleStoreModel GetSaleStore(int ID);
-        List<SaleStoreModel> GetSaleByOrdNum(string ordNum);
-        List<SaleTitleModel> GetSalesByTitleID(int titleID);
-        List<SaleTitleModel> GetSalesTitles();
-        SaleTitleModel GetSaleTitle(int ID);
+        public List<SaleStoreTitleModel> GetSalesStoresAndTitles();
+        SaleStoreTitleModel GetSaleStoreTitle(int storeID, string ordNum, int titleID);
+        List<SaleStoreTitleModel> GetSalesByStoreID(int storeID);
+        List<SaleStoreTitleModel> GetSalesStores();
+        SaleStoreTitleModel GetSaleStore(int ID);
+        List<SaleStoreTitleModel> GetSaleByOrdNum(string ordNum);
+        List<SaleStoreTitleModel> GetSalesByTitleID(int titleID);
+        List<SaleStoreTitleModel> GetSalesTitles();
+        SaleStoreTitleModel GetSaleTitle(int ID);
     }
 }

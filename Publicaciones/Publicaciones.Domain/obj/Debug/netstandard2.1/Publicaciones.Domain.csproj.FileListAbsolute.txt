@@ -16,3 +16,12 @@ C:\Pubs_Project2.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\P
 C:\Pubs_Project2.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.csproj.CoreCompileInputs.cache
 C:\Pubs_Project2.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
 C:\Pubs_Project2.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.deps.json
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.AssemblyInfoInputs.cache
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.AssemblyInfo.cs
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.csproj.CoreCompileInputs.cache
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Pubs_Project3.0\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb

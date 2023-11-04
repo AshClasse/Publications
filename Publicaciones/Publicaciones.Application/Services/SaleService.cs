@@ -31,7 +31,7 @@ namespace Publicaciones.Application.Services
             ServiceResult result = new ServiceResult();
             try
             {
-                result.Data = this.saleRepository.GetSalesStores();
+                result.Data = this.saleRepository.GetSalesStoresAndTitles();
             }
             catch (SaleServiceException ex)
             {
@@ -79,7 +79,7 @@ namespace Publicaciones.Application.Services
             {
                 SaleValidation.ValidateSaleID(storeID, ordNum, titleID, configuration);
 
-                var sale = this.saleRepository.GetSaleByID(storeID, ordNum, titleID);
+                var sale = this.saleRepository.GetSaleStoreTitle(storeID, ordNum, titleID);
 
                 SaleDtoGetAll saleModel = new SaleDtoGetAll()
                 {

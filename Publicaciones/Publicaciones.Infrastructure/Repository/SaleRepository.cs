@@ -64,47 +64,80 @@ namespace Publicaciones.Infrastructure.Repository
                                      .ToList();
         }
 
-        public List<SaleStoreModel> GetSalesByStoreID(int storeID)
+        public List<SaleStoreTitleModel> GetSalesByStoreID(int storeID)
         {
             return this.GetSalesStores().Where(s => s.StoreID == storeID).ToList();
         }
 
-        public List<SaleStoreModel> GetSalesStores()
+        public List<SaleStoreTitleModel> GetSalesStores()
         {
             var sales = (from sa in this.GetEntities()
-                             join st in this.context.Stores on sa.StoreID equals st.StoreID
-                             where !sa.Deleted
-                             select new SaleStoreModel()
-                             {
-                                 StoreID = st.StoreID,
-                                 OrdNum = sa.OrdNum,
-                                 TitleID = sa.TitleID,
-                                 StoreName = st.StoreName,
-                                 OrdDate = sa.OrdDate,
-                                 Qty = sa.Qty,
-                                 Payterms = sa.Payterms,
-                                 CreationDate = sa.CreationDate
-                             }).ToList();
+                         join st in this.context.Stores on sa.StoreID equals st.StoreID
+                         where !sa.Deleted
+                         select new SaleStoreTitleModel()
+                         {
+                             StoreID = st.StoreID,
+                             OrdNum = sa.OrdNum,
+                             TitleID = sa.TitleID,
+                             StoreName = st.StoreName,
+                             OrdDate = sa.OrdDate,
+                             Qty = sa.Qty,
+                             Payterms = sa.Payterms,
+                             CreationDate = sa.CreationDate
+                         }).ToList();
 
             return sales;
         }
 
-        public SaleStoreModel GetSaleStore(int ID)
+        public List<SaleStoreTitleModel> GetSalesStoresAndTitles()
+        {
+            var sales = (from sa in this.GetEntities()
+                         join st in this.context.Stores on sa.StoreID equals st.StoreID
+                         join t in this.context.Titles on sa.TitleID equals t.TitleID
+                         where !sa.Deleted
+                         select new SaleStoreTitleModel()
+                         {
+                             StoreID = st.StoreID,
+                             OrdNum = sa.OrdNum,
+                             TitleID = sa.TitleID,
+                             StoreName = st.StoreName,
+                             OrdDate = sa.OrdDate,
+                             Qty = sa.Qty,
+                             Payterms = sa.Payterms,
+                             TitleName = t.TitleName,
+                             Price = t.Price,
+                             Advance = t.Advance,
+                             Royalty = t.Royalty,
+                             YtdSales = t.YtdSales,
+                             CreationDate = sa.CreationDate
+                         }).ToList();
+            return sales;
+        }
+
+        public SaleStoreTitleModel GetSaleStoreTitle(int storeID, string ordNum, int titleID)
+        {
+            return this.GetSalesStoresAndTitles().SingleOrDefault(sa =>
+                                                                        sa.StoreID == storeID &&
+                                                                        sa.OrdNum == ordNum &&
+                                                                        sa.TitleID == titleID);
+        }
+
+        public SaleStoreTitleModel GetSaleStore(int ID)
         {
             return this.GetSalesStores().SingleOrDefault(s => s.StoreID == ID);
         }
 
-        public List<SaleTitleModel> GetSalesByTitleID(int titleID)
+        public List<SaleStoreTitleModel> GetSalesByTitleID(int titleID)
         {
             return this.GetSalesTitles().Where(s => s.TitleID == titleID).ToList();
         }
 
-        public List<SaleTitleModel> GetSalesTitles()
+        public List<SaleStoreTitleModel> GetSalesTitles()
         {
             var sales = (from sa in this.GetEntities()
                          join t in this.context.Titles on sa.TitleID equals t.TitleID
                          where !sa.Deleted
-                         select new SaleTitleModel()
+                         select new SaleStoreTitleModel()
                          {
                              TitleID = t.TitleID,
                              TitleName = t.TitleName,
@@ -114,32 +147,33 @@ namespace Publicaciones.Infrastructure.Repository
                              YtdSales = t.YtdSales,
                              OrdDate = sa.OrdDate,
                              CreationDate = sa.CreationDate
-                             
+
                          }).ToList();
 
             return sales;
         }
 
-        public SaleTitleModel GetSaleTitle(int ID)
+        public SaleStoreTitleModel GetSaleTitle(int ID)
         {
             return this.GetSalesTitles().SingleOrDefault(s => s.TitleID == ID);
         }
 
-        public List<SaleStoreModel> GetSaleByOrdNum(string ordNum)
+        public List<SaleStoreTitleModel> GetSaleByOrdNum(string ordNum)
         {
             var sales = this.context.Sales
                         .Where(s => s.OrdNum == ordNum)
-                        .Select(s => new SaleStoreModel
+                        .Select(s => new SaleStoreTitleModel
                         {
-                              StoreID = s.StoreID,
-                              OrdNum = s.OrdNum,
-                              TitleID = s.TitleID,
-                              Qty = s.Qty
+                            StoreID = s.StoreID,
+                            OrdNum = s.OrdNum,
+                            TitleID = s.TitleID,
+                            Qty = s.Qty
                         })
                         .ToList();
 
             return sales;
         }
+
     }
 }
 
