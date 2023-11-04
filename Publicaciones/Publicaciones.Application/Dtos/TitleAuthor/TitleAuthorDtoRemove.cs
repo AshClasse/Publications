@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Publicaciones.Application.Dtos.TitleAuthor
 {
-	internal class TitleAuthorDtoRemove
+	public class TitleAuthorDtoRemove : DtoBase
 	{
 	}
 }
