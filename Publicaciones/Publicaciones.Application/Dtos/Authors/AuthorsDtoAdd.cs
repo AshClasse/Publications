@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Publicaciones.Application.Dtos.Base;
 
 namespace Publicaciones.Application.Dtos.Authors
 {
-	internal class AuthorsDtoAdd
+	public class AuthorsDtoAdd : AuthorDtoBase
 	{
-	}
+    }
 }

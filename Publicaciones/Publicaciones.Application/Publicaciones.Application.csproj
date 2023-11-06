@@ -9,4 +9,8 @@
     <Folder Include="Exception\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Publicaciones.Infrastructure\Publicaciones.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

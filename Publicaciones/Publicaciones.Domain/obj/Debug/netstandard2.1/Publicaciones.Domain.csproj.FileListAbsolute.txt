@@ -7,3 +7,12 @@ C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Pub
 C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.csproj.CoreCompileInputs.cache
 C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
 C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.deps.json
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.AssemblyInfoInputs.cache
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.AssemblyInfo.cs
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb

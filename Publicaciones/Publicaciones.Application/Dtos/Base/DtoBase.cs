@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Publicaciones.Application.Dtos.Base
 {
-	public class DtoBase
+	public abstract class DtoBase
 	{
 		public int ChangeUser { get; set; }
-        	public DateTime ChangeDate { get; set; }
+        public DateTime ChangeDate { get; set; }
 	}
 }

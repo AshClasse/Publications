@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Publicaciones.Application.Dtos.TitleAuthor
+﻿namespace Publicaciones.Application.Dtos.TitleAuthor
 {
-	public class TitleAuthorDtoRemove : DtoBase
-	{
-	}
+	public class TitleAuthorDtoRemove : TitleAuthorDtoBase
+    {
+        public bool Deleted { get; set; }
+    }
 }

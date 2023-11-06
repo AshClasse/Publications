@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Publicaciones.Application.Dtos.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Publicaciones.Application.Dtos.Authors
 {
-	internal class AuthorsDtoUpdate
-	{
+	public class AuthorsDtoUpdate : AuthorDtoBase
+    {
+		public int Au_ID { get; set; }	
 	}
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Publicaciones.Application.Dtos.TitleAuthor
+﻿namespace Publicaciones.Application.Dtos.TitleAuthor
 {
-	internal class TitleAuthorDtoUpdate
-	{
-	}
+	public class TitleAuthorDtoUpdate : TitleAuthorDtoBase
+    {
+        public int Title_ID { get; set; }
+    }
 }

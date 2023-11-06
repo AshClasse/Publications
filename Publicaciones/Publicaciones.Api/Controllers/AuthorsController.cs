@@ -38,10 +38,13 @@ namespace Publicaciones.Api.Controllers
 			return Ok(authors);
 		}
 
-		[HttpGet("GetAuthorByID")]
+		[HttpGet("GetAuthorByID")] 
 		public IActionResult GetAuthorByID(int ID)
-		{
+        {// ESTO ME TIENE CONFUNDIDO, no sé por qué el getbyId se vé así cuando es más gorda la sentencia
+         // Puede que los métodos no estén implementados, eso es lo que alcanzo a ver.
+		 // Eso explica por qué se ven diferentes
 			var authors = this._authorsRepository.GetEntityByID(ID);
+			 
 			return Ok(authors);
 		}
 

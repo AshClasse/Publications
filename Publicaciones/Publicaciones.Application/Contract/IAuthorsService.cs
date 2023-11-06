@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using Publicaciones.Application.Core;
+using Publicaciones.Application.Dtos.Authors;
 
 namespace Publicaciones.Application.Contract
 {
-	internal interface IAuthorsService
-	{
+	public interface IAuthorsService : IBaseService<AuthorsDtoAdd, AuthorsDtoUpdate, AuthorsDtoRemove>
+    {
+
 	}
 }

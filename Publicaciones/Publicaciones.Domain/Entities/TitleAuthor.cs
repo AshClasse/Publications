@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace Publicaciones.Domain.Entities
-{
+{   
     public class TitleAuthor : BaseEntity
     {
         public int Au_ID { get; set; }

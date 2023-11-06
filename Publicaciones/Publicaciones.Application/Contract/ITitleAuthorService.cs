@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Publicaciones.Application.Contract
+﻿namespace Publicaciones.Application.Contract
 {
-	internal interface ITitleAuthorService
+	public interface ITitleAuthorService
 	{
 	}
 }
