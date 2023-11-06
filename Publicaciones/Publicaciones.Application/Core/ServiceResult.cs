@@ -3,8 +3,12 @@ namespace Publicaciones.Application.Core
 {
 	public class ServiceResult
 	{
-		public bool Success { get; set; } = true;
-		public string Message { get; set; }
+		public ServiceResult() 
+		{
+			Success = true;
+		}
+		public bool Success { get; set; }
+		public string? Message { get; set; }
 		public dynamic? Data { get; set; }
 	}
 }

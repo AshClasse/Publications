@@ -45,27 +45,41 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		//[HttpGet("GetRoySchedsByRoyalty")]
-		//public IActionResult GetRoySchedByRoyalty(int royalty)
-		//{
-		//	var royScheds = this._roySchedRepository.GetRoySchedsByRoyalty(royalty);
-		//	return Ok(royScheds);
-		//}
+		[HttpGet("GetRoySchedsByRoyalty")]
+		public IActionResult GetRoySchedByRoyalty(int royalty)
+		{
+			var result = this._roySchedService.GetRoySchedsByRoyalty(royalty);
 
-		//[HttpGet("GetRoySchedsByTitle")]
-		//public IActionResult GetRoySchedByTitle(int titleId)
-		//{
-		//	var royScheds = this._roySchedRepository.GetRoySchedsByTitle(titleId);
-		//	return Ok(royScheds);
-		//}
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
+
+		[HttpGet("GetRoySchedsByTitle")]
+		public IActionResult GetRoySchedByTitle(int titleId)
+		{
+			var result = this._roySchedService.GetRoySchedsByTitle(titleId);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+
+			return Ok(result);
+		}
 
 		[HttpPost("SaveRoySched")]
 		public IActionResult Post([FromBody] RoySchedDtoAdd roySchedDtoAdd)
 		{
-			//if (!_roySchedService.ExistsInTitles(roySchedAdd.Title_ID))
-			//{
-			//	return BadRequest("Non-Existent Title.");
-			//}
+			var existsInTitlesResult = this._roySchedService.ExistsInTitles(roySchedDtoAdd.Title_ID);
+
+			if (!existsInTitlesResult.Success)
+			{
+				return BadRequest(existsInTitlesResult.Message); 
+			}
 
 			var result = this._roySchedService.Save(roySchedDtoAdd);
 

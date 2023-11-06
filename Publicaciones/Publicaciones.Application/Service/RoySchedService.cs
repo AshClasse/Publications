@@ -2,6 +2,7 @@
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.RoySched;
+using Publicaciones.Application.Response;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
@@ -39,6 +40,7 @@ namespace Publicaciones.Application.Service
 						});
 
 				result.Data = royScheds;
+				result.Message = "Regalías obtenidas exitosamente";
 
 			}
 			catch (Exception ex)
@@ -70,6 +72,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				result.Data = roySchedDtoGetAll;
+				result.Message = "Regalía obtenida exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -96,6 +99,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._roySchedRepository.Remove(roySched);
+				result.Message = "Regalía borrada exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -108,15 +112,10 @@ namespace Publicaciones.Application.Service
 
 		public ServiceResult Save(RoySchedDtoAdd dtoAdd)
 		{
-			ServiceResult result = new ServiceResult();
+			RoySchedResponse result = new RoySchedResponse();
 
 			try
 			{
-				//if (!_roySchedRepository.ExistsInTitles(dtoAdd.Title_ID))
-				//{
-					
-				//}
-
 				RoySched roySched = new RoySched()
 				{
 					Title_ID = dtoAdd.Title_ID,
@@ -128,6 +127,9 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._roySchedRepository.Save(roySched);
+				result.Message = "Regalía guardada exitosamente";
+				result.RoySched_ID = roySched.RoySched_ID;
+
 			}
 			catch (Exception ex)
 			{
@@ -157,6 +159,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._roySchedRepository.Update(roySched);
+				result.Message = "Regalía actualizada exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -167,33 +170,87 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		//public ServiceResult ExistsInTitles(int titleId)
-		//{
-		//	ServiceResult result = new ServiceResult();
+		ServiceResult IRoySchedService.ExistsInTitles(int titleId)
+		{
+			ServiceResult result = new ServiceResult();
 
-		//	try
-		//	{
+			try
+			{
+				var exists = this._roySchedRepository.ExistsInTitles(titleId);
+				result.Data = exists;
 
-			
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		result.Success = false;
-		//		result.Message = $"Ocurrió el siguiente error verificando si el título existe: {ex.Message}";
-		//		this._logger.LogError(result.Message, ex.ToString());
-		//	}
+				if (!exists)
+				{
+					result.Success = false;
+					result.Message = "Título No Existente";
+				}
 
-		//	return result;
-		//}
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error verificando si existe en títulos: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
 
-		//public ServiceResult GetRoySchedsByRoyalty(int royalty)
-		//{
-		//	throw new NotImplementedException();
-		//}
+		ServiceResult IRoySchedService.GetRoySchedsByRoyalty(int royalty)
+		{
+			ServiceResult result = new ServiceResult();
 
-		//public ServiceResult GetRoySchedsByTitle(int titleId)
-		//{
-		//	throw new NotImplementedException();
-		//}
+			try
+			{
+				var roySched = this._roySchedRepository.GetRoySchedsByRoyalty(royalty)
+					.Select(rs => new RoySchedDtoGetAll()
+					{
+						RoySched_ID = rs.RoySched_ID,
+						Title_ID = rs.Title_ID,
+						Royalty = rs.Royalty,
+						HiRange= rs.HiRange,
+						LoRange = rs.Royalty
+					}).ToList();
+
+				result.Data = roySched;
+				result.Message = "Regalías obtenidas exitosamente";
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error obteniendo las regalías: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
+
+		ServiceResult IRoySchedService.GetRoySchedsByTitle(int titleId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var roySched = this._roySchedRepository.GetRoySchedsByTitle(titleId)
+					.Select(rs => new RoySchedDtoGetAll()
+					{
+						RoySched_ID = rs.RoySched_ID,
+						Title_ID = rs.Title_ID,
+						Royalty = rs.Royalty,
+						HiRange = rs.HiRange,
+						LoRange = rs.Royalty
+					}).ToList();
+
+				result.Data = roySched;
+				result.Message = "Regalías obtenidas exitosamente";
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error obteniendo las regalías: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
 	}
 }

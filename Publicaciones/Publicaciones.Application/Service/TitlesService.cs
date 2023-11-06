@@ -3,10 +3,12 @@ using Microsoft.Extensions.Logging;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Titles;
+using Publicaciones.Application.Response;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Publicaciones.Application.Service
@@ -44,6 +46,7 @@ namespace Publicaciones.Application.Service
 						});
 
 				result.Data = titles;
+				result.Message = "Títulos obtenidos exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -78,6 +81,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				result.Data = titlesDtoGetAll;
+				result.Message = "Título obtenido exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -103,6 +107,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._titlesRepository.Remove(titles);
+				result.Message = "Título borrado exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -116,7 +121,7 @@ namespace Publicaciones.Application.Service
 
 		public ServiceResult Save(TitlesDtoAdd dtoAdd)
 		{
-			ServiceResult result = new ServiceResult();
+			TitlesResponse result = new TitlesResponse();
 
 			try
 			{
@@ -136,6 +141,9 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._titlesRepository.Save(titles);
+				result.Message = "Título guardado exitosamente";
+				result.Title_ID = titles.Title_ID;
+
 			}
 			catch (Exception ex)
 			{
@@ -169,7 +177,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._titlesRepository.Update(titles);
-
+				result.Message = "Títulos actualizado exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -180,19 +188,115 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
-		//ServiceResult ITitlesService.GetTitlesByPrice(decimal price)
-		//{
-		//	throw new NotImplementedException();
-		//}
+		ServiceResult ITitlesService.GetTitlesByPrice(decimal price)
+		{
+			ServiceResult result = new ServiceResult();
 
-		//ServiceResult ITitlesService.GetTitlesByPublisher(int pubId)
-		//{
-		//	throw new NotImplementedException();
-		//}
+			try
+			{
+				var titles = this._titlesRepository.GetTitlesByPrice(price)
+					.Select(tt => new TitlesDtoGetAll()
+					{
+						Title_ID = tt.Title_ID,
+						Title = tt.Title,
+						PubID = tt.PubID,
+						Royalty = tt.Royalty,
+						Advance = tt.Advance,
+						Price = tt.Price,
+						Notes = tt.Notes,
+						PubDate = tt.PubDate,
+						Ytd_Sales = tt.Ytd_Sales,
+						Type = tt.Type,
+						ChangeDate = tt.CreationDate,
+						ChangeUser = tt.IDCreationUser
+					})
+					.ToList();
 
-		//ServiceResult ITitlesService.GetTitlesByType(string type)
-		//{
-		//	throw new NotImplementedException();
-		//}
+				result.Data = titles;
+				result.Message = "Títulos obtenidos exitosamente";
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+
+			return result;
+		}
+
+		ServiceResult ITitlesService.GetTitlesByPublisher(int pubId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var titles = this._titlesRepository.GetTitlesByPublisher(pubId)
+					.Select(tt => new TitlesDtoGetAll()
+					{
+						Title_ID = tt.Title_ID,
+						Title = tt.Title,
+						PubID = tt.PubID,
+						Royalty = tt.Royalty,
+						Advance = tt.Advance,
+						Price = tt.Price,
+						Notes = tt.Notes,
+						PubDate = tt.PubDate,
+						Ytd_Sales = tt.Ytd_Sales,
+						Type = tt.Type,
+						ChangeDate = tt.CreationDate,
+						ChangeUser = tt.IDCreationUser
+					})
+					.ToList();
+
+				result.Data = titles;
+				result.Message = "Títulos obtenidos exitosamente";
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+
+			return result;
+		}
+
+		ServiceResult ITitlesService.GetTitlesByType(string type)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var titles = this._titlesRepository.GetTitlesByType(type)
+					.Select(tt => new TitlesDtoGetAll()
+					{
+						Title_ID = tt.Title_ID,
+						Title = tt.Title,
+						PubID = tt.PubID,
+						Royalty = tt.Royalty,
+						Advance = tt.Advance,
+						Price = tt.Price,
+						Notes = tt.Notes,
+						PubDate = tt.PubDate,
+						Ytd_Sales = tt.Ytd_Sales,
+						Type = tt.Type,
+						ChangeDate = tt.CreationDate,
+						ChangeUser = tt.IDCreationUser
+					})
+					.ToList();
+
+				result.Data = titles;
+				result.Message = "Títulos obtenidos exitosamente";
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+
+			return result;
+		}
 	}
 }

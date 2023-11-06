@@ -2,6 +2,7 @@
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Pub_Info;
+using Publicaciones.Application.Response;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
@@ -33,6 +34,7 @@ namespace Publicaciones.Application.Service
 				});
 
 				result.Data = pubInfos;
+				result.Message = "PubInfos obtenidos exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -60,6 +62,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				result.Data = pub_InfoDtoGetAll;
+				result.Message = "PubInfo obtenido exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -85,6 +88,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._pub_info_repository.Remove(pub_Info);
+				result.Message = "PubInfo borrado exitosamente";
 			}
 			catch (Exception ex)
 			{
@@ -97,7 +101,7 @@ namespace Publicaciones.Application.Service
 
 		public ServiceResult Save(Pub_InfoDtoAdd dtoAdd)
 		{
-			ServiceResult result = new ServiceResult();
+			Pub_InfoResponse result = new Pub_InfoResponse();
 
 			try
 			{
@@ -110,6 +114,9 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._pub_info_repository.Save(pub_Info);
+				result.Message = "PubInfo guardado exitosamente";
+				result.PubInfo_Id = pub_Info.PubID;
+
 			}
 			catch (Exception ex)
 			{
@@ -136,6 +143,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._pub_info_repository.Update(pub_Info);
+				result.Message = "PubInfo actualizado exitosamente";
 			}
 			catch (Exception ex)
 			{

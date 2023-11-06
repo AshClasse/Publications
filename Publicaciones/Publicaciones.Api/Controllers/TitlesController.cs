@@ -44,26 +44,41 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		//[HttpGet("GetTitleByPublisher")]
-		//public IActionResult GetTitleByPublisher(int pubId)
-		//{
-		//	var titles = this._titlesRepository.GetTitlesByPublisher(pubId);
-		//	return Ok(titles);
-		//}
+		[HttpGet("GetTitleByPublisher")]
+		public IActionResult GetTitleByPublisher(int pubId)
+		{
+			var result = this._titlesService.GetTitlesByPublisher(pubId);
 
-		//[HttpGet("GetTitleByPrice")]
-		//public IActionResult GetTitleByPrice(decimal price)
-		//{
-		//	var titles = this._titlesRepository.GetTitlesByPrice(price);
-		//	return Ok(titles);
-		//}
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+			return Ok(result);
+		}
 
-		//[HttpGet("GetTitleByType")]
-		//public IActionResult GetTitleByType(string type)
-		//{
-		//	var titles = this._titlesRepository.GetTitlesByType(type);
-		//	return Ok(titles);
-		//}
+		[HttpGet("GetTitleByPrice")]
+		public IActionResult GetTitleByPrice(decimal price)
+		{
+			var result = this._titlesService.GetTitlesByPrice(price);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+			return Ok(result);
+		}
+
+		[HttpGet("GetTitleByType")]
+		public IActionResult GetTitleByType(string type)
+		{
+			var result = this._titlesService.GetTitlesByType(type);
+
+			if (!result.Success)
+			{
+				return BadRequest(result);
+			}
+			return Ok(result);
+		}
 
 		[HttpPost("SaveTitle")]
 		public IActionResult Post([FromBody] TitlesDtoAdd titlesDtoAdd)
