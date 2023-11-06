@@ -12,8 +12,8 @@ namespace Publicaciones.Application.Service
 	public class Pub_InfoService : IPub_InfoService
 	{
 		private readonly IPub_InfoRepository _pub_info_repository;
-		private readonly ILogger _logger;
-		public Pub_InfoService(IPub_InfoRepository pub_InfoRepository, ILogger logger)
+		private readonly ILogger<Pub_InfoService> _logger;
+		public Pub_InfoService(IPub_InfoRepository pub_InfoRepository, ILogger<Pub_InfoService> logger)
 		{
 			this._pub_info_repository = pub_InfoRepository;
 			this._logger = logger;

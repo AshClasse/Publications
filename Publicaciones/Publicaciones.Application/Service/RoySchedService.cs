@@ -13,9 +13,9 @@ namespace Publicaciones.Application.Service
 	public class RoySchedService : IRoySchedService
 	{
 		private readonly IRoySchedRepository _roySchedRepository;
-		private readonly ILogger _logger;
+		private readonly ILogger<RoySchedService> _logger;
 
-		public RoySchedService(IRoySchedRepository roySchedRepository, ILogger logger)
+		public RoySchedService(IRoySchedRepository roySchedRepository, ILogger<RoySchedService> logger)
 		{
 			_roySchedRepository = roySchedRepository;
 			_logger = logger;

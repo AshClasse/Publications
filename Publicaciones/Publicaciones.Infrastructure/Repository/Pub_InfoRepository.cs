@@ -17,7 +17,9 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public override List<Pub_Info> GetEntities()
 		{
-			return base.GetEntities().Where(s => !s.Deleted).ToList();
+			return base.GetEntities().Where(s => !s.Deleted)
+				.OrderByDescending(st => st.CreationDate)
+										.ToList();
 		}
 
 		public override void Save(Pub_Info entity)
@@ -37,6 +39,20 @@ namespace Publicaciones.Infrastructure.Repository
 
 			context.Pub_Info.Update(pubInfoToUpdate);
 			context.SaveChanges();
+		}
+
+		public override void Remove(Pub_Info entity)
+		{
+			var pubInfoToRemove = base.GetEntityByID(entity.PubID);
+
+			pubInfoToRemove.PubID = entity.PubID;
+			pubInfoToRemove.Deleted = entity.Deleted;
+			pubInfoToRemove.DeletedDate = entity.DeletedDate;
+			pubInfoToRemove.IDDeletedUser = entity.IDDeletedUser;
+
+			this.context.Pub_Info.Update(pubInfoToRemove);
+			this.context.SaveChanges();
+
 		}
 	}
 }

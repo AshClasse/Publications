@@ -34,7 +34,9 @@ namespace Publicaciones.Infrastructure.Repository
 		}
 		public override List<Titles> GetEntities()
 		{
-			return base.GetEntities().Where(s => !s.Deleted).ToList();
+			return base.GetEntities().Where(s => !s.Deleted)
+				.OrderByDescending(st => st.CreationDate)
+										.ToList();
 		}
 
 		public override void Save(Titles entity)
@@ -61,6 +63,20 @@ namespace Publicaciones.Infrastructure.Repository
 
 			context.Titles.Update(titlesToUpdate);
 			context.SaveChanges();
+		}
+
+		public override void Remove(Titles entity)
+		{
+			var titleToRemove = base.GetEntityByID(entity.Title_ID);
+
+			titleToRemove.Title_ID = entity.Title_ID;
+			titleToRemove.Deleted = entity.Deleted;
+			titleToRemove.DeletedDate = entity.DeletedDate;
+			titleToRemove.IDDeletedUser = entity.IDDeletedUser;
+
+			this.context.Titles.Update(titleToRemove);
+			this.context.SaveChanges();
+
 		}
 	}
 }

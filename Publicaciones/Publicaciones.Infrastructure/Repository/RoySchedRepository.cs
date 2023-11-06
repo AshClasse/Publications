@@ -32,7 +32,9 @@ namespace Publicaciones.Infrastructure.Repository
 		}
 		public override List<RoySched> GetEntities()
 		{
-			return base.GetEntities().Where(s => !s.Deleted).ToList();
+			return base.GetEntities().Where(s => !s.Deleted)
+				.OrderByDescending(st => st.CreationDate)
+										.ToList();
 		}
 
 		public override void Save(RoySched entity)
@@ -54,6 +56,20 @@ namespace Publicaciones.Infrastructure.Repository
 
 			context.RoySched.Update(roySchedToUpdate);
 			context.SaveChanges();
+		}
+
+		public override void Remove(RoySched entity)
+		{
+			var roySchedToRemove = base.GetEntityByID(entity.RoySched_ID);
+
+			roySchedToRemove.RoySched_ID = entity.RoySched_ID;
+			roySchedToRemove.Deleted = entity.Deleted;
+			roySchedToRemove.DeletedDate = entity.DeletedDate;
+			roySchedToRemove.IDDeletedUser = entity.IDDeletedUser;
+
+			this.context.RoySched.Update(roySchedToRemove);
+			this.context.SaveChanges();
+
 		}
 	}
 }

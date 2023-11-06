@@ -13,7 +13,7 @@ namespace Publicaciones.Application.Service
 {
 	public class TitlesService : ITitlesService
 	{
-		private readonly ILogger _logger;
+		private readonly ILogger<TitlesService> _logger;
 		private readonly ITitlesRepository _titlesRepository;
 		public TitlesService(ITitlesRepository titlesRepository, 
 			ILogger<TitlesService> logger) 
