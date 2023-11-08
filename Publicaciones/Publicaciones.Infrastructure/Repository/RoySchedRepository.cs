@@ -3,6 +3,8 @@ using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Infrastructure.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,6 +18,10 @@ namespace Publicaciones.Infrastructure.Repository
             this.context = context;
         }
 
+		public bool Exists(int roySchedId)
+		{
+			return base.Exists(rs => rs.RoySched_ID == roySchedId);
+		}
 		public bool ExistsInTitles(int titleId)
 		{
 			return this.context.Set<Titles>().Any(t => t.Title_ID == titleId);
@@ -26,10 +32,6 @@ namespace Publicaciones.Infrastructure.Repository
 			return this.context.RoySched.Where(r => r.Royalty == royalty).ToList();
 		}
 
-		public List<RoySched> GetRoySchedsByTitle(int titleId)
-		{
-			return this.context.RoySched.Where(r => r.Title_ID == titleId).ToList();
-		}
 		public override List<RoySched> GetEntities()
 		{
 			return base.GetEntities().Where(s => !s.Deleted)
@@ -70,6 +72,35 @@ namespace Publicaciones.Infrastructure.Repository
 			this.context.RoySched.Update(roySchedToRemove);
 			this.context.SaveChanges();
 
+		}
+
+		public List<RoySchedTitleModel> GetRoySchedsByTitleID(int titleId)
+		{
+			return this.GetRoySchedsTitles().Where(rt => rt.TitleID == titleId).ToList();
+		}
+
+		public List<RoySchedTitleModel> GetRoySchedsTitles()
+		{
+			var roySched = (from rs in this.GetEntities()
+							 join tt in this.context.Titles on rs.Title_ID equals tt.Title_ID
+							 where !rs.Deleted
+							 select new RoySchedTitleModel()
+							 {
+								 RoySchedID = rs.RoySched_ID,
+								 TitleID = rs.Title_ID,
+								 Title = tt.Title,
+								 Royalty = tt.Royalty,
+								 HiRange = rs.HiRange,
+								 LoRange = rs.LoRange,
+								 CreationDate = rs.CreationDate
+							 }).ToList();
+
+			return roySched;
+		}
+
+		public RoySchedTitleModel RoySchedTitle(int royId)
+		{
+			return this.GetRoySchedsTitles().SingleOrDefault(rt  => rt.RoySchedID == royId);
 		}
 	}
 }

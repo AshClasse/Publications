@@ -1,4 +1,4 @@
-﻿
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
@@ -7,8 +7,6 @@ using Publicaciones.Application.Response;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Publicaciones.Application.Service
@@ -16,42 +14,29 @@ namespace Publicaciones.Application.Service
 	public class TitlesService : ITitlesService
 	{
 		private readonly ILogger<TitlesService> _logger;
+		private readonly IConfiguration configuration;
 		private readonly ITitlesRepository _titlesRepository;
 		public TitlesService(ITitlesRepository titlesRepository, 
-			ILogger<TitlesService> logger) 
+								ILogger<TitlesService> logger,
+								IConfiguration configuration) 
 		{
 			this._titlesRepository = titlesRepository;
 			this._logger = logger;
+			this.configuration = configuration;
 		}
 		public ServiceResult GetAll()
 		{
 			ServiceResult result = new ServiceResult();
 			try
 			{
-				var titles = this._titlesRepository.GetEntities()
-					.Select(tt => new TitlesDtoGetAll()
-						{
-							Title_ID = tt.Title_ID,
-							Title = tt.Title,
-							PubID = tt.PubID,
-							Royalty = tt.Royalty,
-							Advance = tt.Advance,
-							Price = tt.Price,
-							Notes = tt.Notes,
-							PubDate = tt.PubDate,
-							Ytd_Sales = tt.Ytd_Sales,
-							Type = tt.Type,
-							ChangeDate = tt.CreationDate,
-							ChangeUser = tt.IDCreationUser
-						});
 
-				result.Data = titles;
-				result.Message = "Títulos obtenidos exitosamente";
+				result.Data = this._titlesRepository.GetTitlesPublishers();
+				result.Message = "Successfully obtained titles";
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				result.Message = $"The following error occurred while getting titles: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -62,31 +47,13 @@ namespace Publicaciones.Application.Service
 			ServiceResult result = new ServiceResult();
 			try
 			{
-				var titles = this._titlesRepository.GetEntityByID(id);
-
-				TitlesDtoGetAll titlesDtoGetAll = new TitlesDtoGetAll()
-				{
-					Title_ID = titles.Title_ID,
-					Title = titles.Title,
-					PubID = titles.PubID,
-					Royalty = titles.Royalty,
-					Advance = titles.Advance,
-					Price = titles.Price,
-					Notes = titles.Notes,
-					PubDate = titles.PubDate,
-					Ytd_Sales = titles.Ytd_Sales,
-					Type = titles.Type,
-					ChangeDate = titles.CreationDate,
-					ChangeUser = titles.IDCreationUser
-				};
-
-				result.Data = titlesDtoGetAll;
+				result.Data = this._titlesRepository.TitlePublisher(id);
 				result.Message = "Título obtenido exitosamente";
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error obteniendo el título: {ex.Message}";
+				result.Message = $"The following error occurred while getting title: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -112,7 +79,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error borrando el título: {ex.Message}";
+				result.Message = $"The following error occurred while removing title: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -148,7 +115,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error guardando el título: {ex.Message}";
+				result.Message = $"The following error occurred while saving title: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -182,7 +149,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error actualizando el título: {ex.Message}";
+				result.Message = $"The following error occurred while updating title: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -218,47 +185,28 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				result.Message = $"The following error occurred while getting titles: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 
 			return result;
 		}
 
-		ServiceResult ITitlesService.GetTitlesByPublisher(int pubId)
+		ServiceResult ITitlesService.GetTitlesByPublisherID(int pubId)
 		{
 			ServiceResult result = new ServiceResult();
-
 			try
 			{
-				var titles = this._titlesRepository.GetTitlesByPublisher(pubId)
-					.Select(tt => new TitlesDtoGetAll()
-					{
-						Title_ID = tt.Title_ID,
-						Title = tt.Title,
-						PubID = tt.PubID,
-						Royalty = tt.Royalty,
-						Advance = tt.Advance,
-						Price = tt.Price,
-						Notes = tt.Notes,
-						PubDate = tt.PubDate,
-						Ytd_Sales = tt.Ytd_Sales,
-						Type = tt.Type,
-						ChangeDate = tt.CreationDate,
-						ChangeUser = tt.IDCreationUser
-					})
-					.ToList();
 
-				result.Data = titles;
-				result.Message = "Títulos obtenidos exitosamente";
+				result.Data = this._titlesRepository.GetTitlesByPublisherID(pubId);
+				result.Message = "Successfully obtained titles";
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				result.Message = $"The following error occurred while getting titles: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
-
 			return result;
 		}
 
@@ -292,10 +240,33 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error obteniendo los títulos: {ex.Message}";
+				result.Message = $"The following error occurred while getting titles: {ex.Message}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 
+			return result;
+		}
+		ServiceResult ITitlesService.ExistsInPublishers(int pubId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var exists = this._titlesRepository.ExistsInPublishers(pubId);
+				result.Data = exists;
+
+				if (!exists)
+				{
+					result.Success = false;
+					result.Message = $"{configuration["ValidationMessage:pubIdExists"]}";
+				}
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
 			return result;
 		}
 	}

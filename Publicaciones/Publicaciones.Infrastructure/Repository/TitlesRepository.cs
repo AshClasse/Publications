@@ -3,6 +3,7 @@ using Publicaciones.Domain.Repository;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interfaces;
+using Publicaciones.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,17 @@ namespace Publicaciones.Infrastructure.Repository
         {
             this.context = context;
         }
-
+		public bool Exists(int titleID)
+		{
+			return base.Exists(tt => tt.Title_ID == titleID);
+		}
+		public bool ExistsInPublishers(int pubId)
+		{
+			return this.context.Set<Publisher>().Any(p => p.PubID == pubId);
+		}
 		public List<Titles> GetTitlesByPrice(decimal price)
 		{
 			return this.context.Titles.Where(t => t.Price == price).ToList();
-		}
-
-		public List<Titles> GetTitlesByPublisher(int pubId)
-		{
-			return this.context.Titles.Where(t => t.PubID == pubId).ToList();
 		}
 
 		public List<Titles> GetTitlesByType(string type)
@@ -77,6 +80,38 @@ namespace Publicaciones.Infrastructure.Repository
 			this.context.Titles.Update(titleToRemove);
 			this.context.SaveChanges();
 
+		}
+
+		public List<TitlePublisherModel> GetTitlesByPublisherID(int pubId)
+		{
+			return this.GetTitlesPublishers().Where(tp => tp.PubID == pubId).ToList();
+		}
+
+		public List<TitlePublisherModel> GetTitlesPublishers()
+		{
+			var title = (from tt in this.GetEntities()
+							join pub in this.context.Publisher on tt.PubID equals pub.PubID
+							where !tt.Deleted
+							select new TitlePublisherModel()
+							{
+								TitleID = tt.Title_ID,
+								Title = tt.Title,
+								PubID = tt.PubID,
+								PubName = pub.PubName,
+								Type = tt.Type,
+								PubDate = tt.PubDate,
+								Notes = tt.Notes,
+								Price = tt.Price,
+								Royalty = tt.Royalty,
+								CreationDate = tt.CreationDate
+							}).ToList();
+
+			return title;
+		}
+
+		public TitlePublisherModel TitlePublisher(int titleId)
+		{
+			return this.GetTitlesPublishers().SingleOrDefault(tp => tp.TitleID == titleId);
 		}
 	}
 }

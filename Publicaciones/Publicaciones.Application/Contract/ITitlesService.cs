@@ -7,8 +7,9 @@ namespace Publicaciones.Application.Contract
 {
 	public interface ITitlesService : IBaseServices<TitlesDtoAdd, TitlesDtoUpdate, TitlesDtoRemove>
 	{
-		ServiceResult GetTitlesByPublisher(int pubId);
+		ServiceResult ExistsInPublishers(int pubId);
 		ServiceResult GetTitlesByPrice(decimal price);
 		ServiceResult GetTitlesByType(string type);
+		ServiceResult GetTitlesByPublisherID(int pubId);
 	}
 }

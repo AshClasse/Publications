@@ -3,6 +3,7 @@ using Publicaciones.Api.Models.Modules.Pub_InfoModels;
 using Publicaciones.Api.Models.Modules.RoySched;
 using Publicaciones.Api.Models.Modules.Titles;
 using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.Pub_Info;
 using Publicaciones.Application.Dtos.RoySched;
 using Publicaciones.Application.Dtos.Titles;
 using Publicaciones.Domain.Entities;
@@ -44,10 +45,11 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet("GetTitleByPublisher")]
-		public IActionResult GetTitleByPublisher(int pubId)
+
+		[HttpGet("GetTitleByPrice")]
+		public IActionResult GetTitleByPrice(decimal price)
 		{
-			var result = this._titlesService.GetTitlesByPublisher(pubId);
+			var result = this._titlesService.GetTitlesByPrice(price);
 
 			if (!result.Success)
 			{
@@ -56,10 +58,10 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet("GetTitleByPrice")]
-		public IActionResult GetTitleByPrice(decimal price)
+		[HttpGet("GetTitleByPublisherID")]
+		public IActionResult GetTitleByPublisherID(int pubId)
 		{
-			var result = this._titlesService.GetTitlesByPrice(price);
+			var result = this._titlesService.GetTitlesByPublisherID(pubId);
 
 			if (!result.Success)
 			{
@@ -83,6 +85,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPost("SaveTitle")]
 		public IActionResult Post([FromBody] TitlesDtoAdd titlesDtoAdd)
 		{
+			var existsInPubsResult = this._titlesService.ExistsInPublishers(titlesDtoAdd.PubID);
+
+			if (!existsInPubsResult.Success)
+			{
+				return BadRequest(existsInPubsResult.Message);
+			}
+
 			var result = this._titlesService.Save(titlesDtoAdd);
 
 			if (!result.Success)
@@ -96,6 +105,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("UpdateTitle")]
 		public IActionResult Put([FromBody] TitlesDtoUpdate titlesDtoUpdate)
 		{
+			var existsInPubsResult = this._titlesService.ExistsInPublishers(titlesDtoUpdate.PubID);
+
+			if (!existsInPubsResult.Success)
+			{
+				return BadRequest(existsInPubsResult.Message);
+			}
+
 			var result = this._titlesService.Update(titlesDtoUpdate);
 
 			if (!result.Success)

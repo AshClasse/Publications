@@ -10,7 +10,7 @@ namespace Publicaciones.Application.Contract
 	public interface IRoySchedService : IBaseServices<RoySchedDtoAdd, RoySchedDtoUpdate, RoySchedDtoRemove>
 	{
 		ServiceResult ExistsInTitles(int titleId);
-		ServiceResult GetRoySchedsByTitle(int titleId);
 		ServiceResult GetRoySchedsByRoyalty(int royalty);
+		ServiceResult GetRoySchedsByTitleID(int titleId);
 	}
 }

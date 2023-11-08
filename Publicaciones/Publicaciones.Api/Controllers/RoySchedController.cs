@@ -45,10 +45,10 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet("GetRoySchedsByRoyalty")]
-		public IActionResult GetRoySchedByRoyalty(int royalty)
+		[HttpGet("GetRoySchedByTitleID")]
+		public IActionResult GetRoySchedByTitleID(int titleId)
 		{
-			var result = this._roySchedService.GetRoySchedsByRoyalty(royalty);
+			var result = this._roySchedService.GetRoySchedsByTitleID(titleId);
 
 			if (!result.Success)
 			{
@@ -58,10 +58,10 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpGet("GetRoySchedsByTitle")]
-		public IActionResult GetRoySchedByTitle(int titleId)
+		[HttpGet("GetRoySchedsByRoyalty")]
+		public IActionResult GetRoySchedByRoyalty(int royalty)
 		{
-			var result = this._roySchedService.GetRoySchedsByTitle(titleId);
+			var result = this._roySchedService.GetRoySchedsByRoyalty(royalty);
 
 			if (!result.Success)
 			{
@@ -94,6 +94,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("UpdateRoySched")]
 		public IActionResult Put([FromBody] RoySchedDtoUpdate roySchedDtoUpdate)
 		{
+			var existsInTitlesResult = this._roySchedService.ExistsInTitles(roySchedDtoUpdate.Title_ID);
+
+			if (!existsInTitlesResult.Success)
+			{
+				return BadRequest(existsInTitlesResult.Message);
+			}
+
 			var result = this._roySchedService.Update(roySchedDtoUpdate);
 
 			if (!result.Success)
