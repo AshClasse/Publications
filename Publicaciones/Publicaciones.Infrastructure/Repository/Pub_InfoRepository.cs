@@ -35,28 +35,23 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public override void Update(Pub_Info entity)
 		{
-			bool pubInfoExists = base.Exists(pi => pi.PubInfoID == entity.PubID);
 
-			if (pubInfoExists)
-			{
-				var pubInfoToUpdate = base.GetEntityByID(entity.PubInfoID);
+			var pubInfoToUpdate = base.GetEntityByID(entity.PubInfoID);
+			pubInfoToUpdate.PubID = entity.PubID;
+			pubInfoToUpdate.Pr_Info = entity.Pr_Info;
+			pubInfoToUpdate.Logo = entity.Logo;
+			pubInfoToUpdate.ModifiedDate = entity.ModifiedDate;
+			pubInfoToUpdate.IDModifiedUser = entity.IDModifiedUser;
 
-				pubInfoToUpdate.PubID = entity.PubID;
-				pubInfoToUpdate.Pr_Info = entity.Pr_Info;
-				pubInfoToUpdate.Logo = entity.Logo;
-				pubInfoToUpdate.ModifiedDate = entity.ModifiedDate;
-				pubInfoToUpdate.IDModifiedUser = entity.IDModifiedUser;
-
-				context.Pub_Info.Update(pubInfoToUpdate);
-				context.SaveChanges();
-			}
-			
+			context.Pub_Info.Update(pubInfoToUpdate);
+			context.SaveChanges();
+		
 		}
 
 		public override void Remove(Pub_Info entity)
 		{
-			var pubInfoToRemove = base.GetEntityByID(entity.PubInfoID);
 
+			var pubInfoToRemove = base.GetEntityByID(entity.PubInfoID);
 			pubInfoToRemove.PubInfoID = entity.PubInfoID;
 			pubInfoToRemove.Deleted = entity.Deleted;
 			pubInfoToRemove.DeletedDate = entity.DeletedDate;

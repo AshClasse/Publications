@@ -1,7 +1,5 @@
 ﻿using Publicaciones.Application.Core;
-using Publicaciones.Application.Dtos.Titles;
-using Publicaciones.Domain.Entities;
-using System.Collections.Generic;
+using Publicaciones.Application.Dtos.Titles;	
 
 namespace Publicaciones.Application.Contract
 {

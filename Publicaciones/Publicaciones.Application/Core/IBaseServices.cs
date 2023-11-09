@@ -11,6 +11,7 @@ namespace Publicaciones.Application.Core
 		ServiceResult Save(TDtoAdd dtoAdd);
 		ServiceResult Update(TDtoUpdate dtoUpdate);
 		ServiceResult Remove(TDtoRemove dtoRemove);
+		ServiceResult Exists(int id);
 	}
 }
 

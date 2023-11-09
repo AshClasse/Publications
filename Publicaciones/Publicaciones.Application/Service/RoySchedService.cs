@@ -151,6 +151,30 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
+		public ServiceResult Exists(int roySchedId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var exists = this._roySchedRepository.Exists(rs => rs.RoySched_ID == roySchedId);
+				result.Data = exists;
+
+				if (!exists)
+				{
+					result.Success = false;
+					result.Message = $"{configuration["ValidationMessage:roySchedIdExists"]}";
+				}
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
+
 		ServiceResult IRoySchedService.ExistsInTitles(int titleId)
 		{
 			ServiceResult result = new ServiceResult();

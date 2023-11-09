@@ -77,6 +77,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("UpdatePub_Info")]
 		public IActionResult Put([FromBody] Pub_InfoDtoUpdate pub_InfoDtoUpdate)
         {
+			var existsResult = this._pub_infoService.Exists(pub_InfoDtoUpdate.PubInfoID);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var existsInPubsResult = this._pub_infoService.ExistsInPublishers(pub_InfoDtoUpdate.PubId);
 
 			if (!existsInPubsResult.Success)
@@ -97,6 +104,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("RemovePub_Info")]
 		public IActionResult Remove([FromBody] Pub_InfoDtoRemove pub_InfoDtoRemove)
 		{
+			var existsResult = this._pub_infoService.Exists(pub_InfoDtoRemove.Id);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var result = this._pub_infoService.Remove(pub_InfoDtoRemove);
 
 			if (!result.Success)

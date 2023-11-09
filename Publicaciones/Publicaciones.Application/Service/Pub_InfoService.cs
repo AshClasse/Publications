@@ -67,7 +67,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"{configuration["Pub_InfoErrorMessage:getByIdErrorMessage"]}";
+				result.Message = $"{configuration["PubInfoErrorMessage:getByIdErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -79,7 +79,9 @@ namespace Publicaciones.Application.Service
 
 			try
 			{
-				
+				Pub_InfoValidation.ValidateAddPub_Info(dtoAdd);
+
+
 				Pub_Info pub_Info = new Pub_Info()
 				{
 					CreationDate = dtoAdd.ChangeDate,
@@ -90,7 +92,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._pub_info_repository.Save(pub_Info);
-				result.Message = "PubInfo guardado exitosamente";
+				result.Message = $"{configuration["PubInfoSuccessMessage:addSuccessMessage"]}";
 				result.PubInfo_Id = pub_Info.PubInfoID;
 
 			}
@@ -103,7 +105,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error guardando la información de publicación: {ex.Message}";
+				result.Message = $"{configuration["PubInfoErrorMessage:addErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -115,7 +117,6 @@ namespace Publicaciones.Application.Service
 
 			try
 			{
-
 				Pub_Info pub_Info = new Pub_Info()
 				{
 					ModifiedDate = dtoUpdate.ChangeDate,
@@ -127,7 +128,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._pub_info_repository.Update(pub_Info);
-				result.Message = "PubInfo actualizado exitosamente";
+				result.Message = $"{configuration["PubInfoSuccessMessage:updateSuccessMessage"]}";
 			}
 			catch (Pub_InfoServiceException ex)
 			{
@@ -138,7 +139,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error actualizando la información de publicación: {ex.Message}";
+				result.Message = $"{configuration["PubInfoErrorMessage:updateErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -159,7 +160,7 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._pub_info_repository.Remove(pub_Info);
-				result.Message = "PubInfo borrado exitosamente";
+				result.Message = $"{configuration["PubInfoSuccessMessage:removeSuccessMessage"]}";
 			}
 			catch (Pub_InfoServiceException ex)
 			{
@@ -170,7 +171,31 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"Ocurrió el siguiente error borrando la información de publicación: {ex.Message}";
+				result.Message = $"{configuration["PubInfoErrorMessage:removeErrorMessage"]}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
+
+		public ServiceResult Exists(int pubInfoId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var exists = this._pub_info_repository.Exists(pi => pi.PubInfoID == pubInfoId);
+				result.Data = exists;
+
+				if (!exists)
+				{
+					result.Success = false;
+					result.Message = $"{configuration["ValidationMessage:pubInfoIdExists"]}";
+				}
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -206,7 +231,7 @@ namespace Publicaciones.Application.Service
 			try
 			{
 				result.Data = this._pub_info_repository.GetPub_InfosByPublisherID(pubId);
-				result.Message = "PubInfos obtenidos exitosamente";
+				result.Message = $"{configuration["PubInfoSuccessMessage:getAllSuccessMessage"]}";
 			}
 			catch (Pub_InfoServiceException ex)
 			{
@@ -217,7 +242,7 @@ namespace Publicaciones.Application.Service
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting publish information: {ex.Message}";
+				result.Message = $"{configuration["PubInfoErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;

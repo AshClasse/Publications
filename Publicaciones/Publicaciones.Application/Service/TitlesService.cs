@@ -155,6 +155,54 @@ namespace Publicaciones.Application.Service
 			return result;
 		}
 
+		public ServiceResult Exists(int titleId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var exists = this._titlesRepository.Exists(tt => tt.Title_ID == titleId);
+				result.Data = exists;
+
+				if (!exists)
+				{
+					result.Success = false;
+					result.Message = $"{configuration["ValidationMessage:titleIdExists"]}";
+				}
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
+
+		ServiceResult ITitlesService.ExistsInPublishers(int pubId)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				var exists = this._titlesRepository.ExistsInPublishers(pubId);
+				result.Data = exists;
+
+				if (!exists)
+				{
+					result.Success = false;
+					result.Message = $"{configuration["ValidationMessage:pubIdExists"]}";
+				}
+
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
+
 		ServiceResult ITitlesService.GetTitlesByPrice(decimal price)
 		{
 			ServiceResult result = new ServiceResult();
@@ -246,28 +294,7 @@ namespace Publicaciones.Application.Service
 
 			return result;
 		}
-		ServiceResult ITitlesService.ExistsInPublishers(int pubId)
-		{
-			ServiceResult result = new ServiceResult();
 
-			try
-			{
-				var exists = this._titlesRepository.ExistsInPublishers(pubId);
-				result.Data = exists;
-
-				if (!exists)
-				{
-					result.Success = false;
-					result.Message = $"{configuration["ValidationMessage:pubIdExists"]}";
-				}
-
-			}
-			catch (Exception ex)
-			{
-				result.Success = false;
-				this._logger.LogError(result.Message, ex.ToString());
-			}
-			return result;
-		}
+		
 	}
 }

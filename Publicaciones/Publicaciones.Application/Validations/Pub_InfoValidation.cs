@@ -53,6 +53,7 @@ namespace Publicaciones.Application.Validations
 		{
 			CommonValidation(pub_InfoDtoAdd.ChangeUser, pub_InfoDtoAdd.PubId, pub_InfoDtoAdd.Logo, pub_InfoDtoAdd.Pr_Info);
 		}
+
 		public void ValidateUpdatePub_Info(Pub_InfoDtoUpdate pub_InfoDtoUpdate)
 		{
 			CommonValidation(pub_InfoDtoUpdate.ChangeUser, pub_InfoDtoUpdate.PubId, pub_InfoDtoUpdate.Logo, pub_InfoDtoUpdate.Pr_Info);
