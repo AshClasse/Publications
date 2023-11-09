@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Service;
+using Publicaciones.Application.Validations.ContractValidations;
+using Publicaciones.Application.Validations.ServicesValidations;
 using Publicaciones.Infrastructure.Interface;
 using Publicaciones.Infrastructure.Repository;
 
-namespace Publicaciones.Ioc.PublisherDependency
+namespace Publicaciones.Ioc.Dependencies
 {
     public static class PublisherDependency
     {
@@ -12,6 +14,7 @@ namespace Publicaciones.Ioc.PublisherDependency
         {
             services.AddScoped<IPublisherRepository, PublisherRepository>();
             services.AddTransient<IPublisherService, PublisherService>();
+            services.AddTransient<IPublisherValidations, PublisherValidations>();
         }
     }
 }

@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Ioc.EmployeeDependency;
-using Publicaciones.Ioc.JobDependency;
-using Publicaciones.Ioc.PublisherDependency;
+using Publicaciones.Ioc.Dependencies;
 
 namespace Publicaciones.Api
 {
@@ -21,7 +19,7 @@ namespace Publicaciones.Api
             builder.Services.AddDbContext<PublicacionesContext>(options => options.UseSqlServer(connectionString));
 
             //Dependencias de los respositorios//
-
+            
             builder.Services.AddJobDependency();
             builder.Services.AddEmployeeDependency();
             builder.Services.AddPublisherDependency();

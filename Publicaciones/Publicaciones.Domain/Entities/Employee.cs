@@ -15,6 +15,5 @@ namespace Publicaciones.Domain.Entities
         public int? Joblvl { get; set; }
         public int PubID { get; set; }
         public DateTime HireDate { get; set; }
-
     }
 }

@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Publicaciones.Domain.Entities;
+﻿using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interface;
+using Publicaciones.Infrastructure.Model;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
         private readonly PublicacionesContext context;
+
+        public PublicacionesContext Context => context;
 
         public EmployeeRepository(PublicacionesContext context) : base(context)
         {
@@ -18,20 +21,20 @@ namespace Publicaciones.Infrastructure.Repository
 
         public List<Employee> GetEmployeeByPubID(int PubID)
         {
-            return context.employee.Where(cd => cd.PubID == PubID 
+            return Context.employee.Where(cd => cd.PubID == PubID 
                                                 && !cd.Deleted).ToList();
         }
 
         public List<Employee> GetEmployeeByJobID(int JobID)
         {
-            return context.employee.Where(cd => cd.JobID == JobID 
+            return Context.employee.Where(cd => cd.JobID == JobID 
                                                 && !cd.Deleted).ToList();
         }
 
         public override void Save(Employee entity)
         {
             base.Save(entity);
-            context.SaveChanges();
+            Context.SaveChanges();
         }
 
         public override void Update(Employee entity)
@@ -49,8 +52,8 @@ namespace Publicaciones.Infrastructure.Repository
             EmployeetoUpdate.ModifiedDate = entity.ModifiedDate;
             EmployeetoUpdate.IDModifiedUser = entity.IDModifiedUser;
 
-            context.employee.Update(EmployeetoUpdate);
-            context.SaveChanges();
+            Context.employee.Update(EmployeetoUpdate);
+            Context.SaveChanges();
         }
 
         public override void Remove(Employee entity)
@@ -62,8 +65,39 @@ namespace Publicaciones.Infrastructure.Repository
             EmployeeRemove.DeletedDate = entity.DeletedDate;
             EmployeeRemove.DeletedUser = entity.DeletedUser;
 
-            context.employee.Update(EmployeeRemove);
-            context.SaveChanges();
+            Context.employee.Update(EmployeeRemove);
+            Context.SaveChanges();
+        }
+
+        EmployeeRelationModel IEmployeeRepository.GetEmployeeByJob(int JobID)
+        {
+            return GetEmployeeJob().SingleOrDefault(job => job.JobID == JobID);
+        }
+
+        public List<EmployeeRelationModel> GetEmployeeJob()
+        {
+            var employees = (from E in GetEntities()
+                             join J in context.jobs on E.JobID equals J.JobID
+                             join P in context.publishers on E.PubID equals P.PubID
+                             where !E.Deleted
+                             select new EmployeeRelationModel()
+                             {
+                                 EmpID = E.EmpID,
+                                 JobID = E.PubID,
+                                 FirstName = E.FirstName,
+                                 LastName = E.LastName,
+                                 HireDate = E.HireDate,
+                                 Minit = E.Minit,
+                                 Joblvl = E.Joblvl,
+                                 PubName = P.PubName,
+                                 Country = P.Country,
+                                 City = P.City,
+                                 State = P.State,
+                                 JobDescription = J.JobDescription,
+                                 CreationDate = J.CreationDate,
+
+                             }).ToList();
+          return employees;
         }
     }
 }

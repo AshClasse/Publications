@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Exeptions\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Publicaciones.Infrastructure\Publicaciones.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -41,7 +41,7 @@ namespace Publicaciones.Infrastructure.Repository
             var PublisherRemove = base.GetEntityByID(entity.PubID);
 
             PublisherRemove.PubID = entity.PubID;
-            PublisherRemove.Deleted = true;
+            PublisherRemove.Deleted = entity.Deleted;
             PublisherRemove.DeletedDate = entity.DeletedDate;
             PublisherRemove.DeletedUser = entity.DeletedUser;
 
