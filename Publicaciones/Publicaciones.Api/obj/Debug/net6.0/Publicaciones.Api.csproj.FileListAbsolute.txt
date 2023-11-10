@@ -96,3 +96,4 @@ C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Public
 C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.dll
 C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.pdb
 C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.pdb
+C:\Proyecto_final_progII\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.MvcApplicationPartsAssemblyInfo.cs

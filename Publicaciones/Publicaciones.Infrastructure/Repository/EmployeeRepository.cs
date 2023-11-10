@@ -80,6 +80,7 @@ namespace Publicaciones.Infrastructure.Repository
                              join J in context.jobs on E.JobID equals J.JobID
                              join P in context.publishers on E.PubID equals P.PubID
                              where !E.Deleted
+                             orderby E.CreationDate ascending
                              select new EmployeeRelationModel()
                              {
                                  EmpID = E.EmpID,
