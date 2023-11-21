@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = Publicaciones.Ioc
 build_property.ProjectDir = C:\Proyecto_final_progII\Publicaciones\Publicaciones.Ioc\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

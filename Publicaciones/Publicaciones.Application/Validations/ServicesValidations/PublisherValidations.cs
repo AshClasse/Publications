@@ -92,7 +92,7 @@ namespace Publicaciones.Application.Validations.ServicesValidations
                 throw new PublisherServiceException(errorMessage);
             }
 
-            if (dtoremove.Deleted != true)
+            if (dtoremove.Deleted == true)
             {
                 string errorMessage = _configurations["ValidationMessage:ObjectRemove"];
                 throw new PublisherServiceException(errorMessage);

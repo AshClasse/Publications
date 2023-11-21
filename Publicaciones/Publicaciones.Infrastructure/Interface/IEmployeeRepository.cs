@@ -7,9 +7,9 @@ namespace Publicaciones.Infrastructure.Interface
 {
     public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-        EmployeeRelationModel GetEmployeeByJob (int JobID);
-        List <EmployeeRelationModel> GetEmployeeJob();
-        List<Employee> GetEmployeeByJobID(int JobID);
+        EmployeeRelationModel GetEmployeeinfobyID (int ID);
+        List <EmployeeRelationModel> GetEmployeeinfo();
         List<Employee> GetEmployeeByPubID(int PubID);
+        List<Employee> GetEmployeeByJobID(int JobID);
     }
 }

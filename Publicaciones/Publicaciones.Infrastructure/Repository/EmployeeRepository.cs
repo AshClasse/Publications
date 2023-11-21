@@ -44,7 +44,6 @@ namespace Publicaciones.Infrastructure.Repository
             EmployeetoUpdate.EmpID = entity.EmpID;
             EmployeetoUpdate.FirstName = entity.FirstName;
             EmployeetoUpdate.LastName = entity.LastName;
-            EmployeetoUpdate.Minit = entity.Minit;
             EmployeetoUpdate.HireDate = entity.HireDate;
             EmployeetoUpdate.Joblvl = entity.Joblvl;
             EmployeetoUpdate.PubID = entity.PubID;
@@ -69,12 +68,18 @@ namespace Publicaciones.Infrastructure.Repository
             Context.SaveChanges();
         }
 
-        EmployeeRelationModel IEmployeeRepository.GetEmployeeByJob(int JobID)
+        public override List<Employee> GetEntities()
         {
-            return GetEmployeeJob().SingleOrDefault(job => job.JobID == JobID);
+            return base.GetEntities().Where(emp => !emp.Deleted)
+                                     .OrderByDescending(emp => emp.CreationDate).ToList();
         }
 
-        public List<EmployeeRelationModel> GetEmployeeJob()
+        EmployeeRelationModel IEmployeeRepository.GetEmployeeinfobyID(int ID)
+        {
+            return GetEmployeeinfo().SingleOrDefault(emp => emp.EmpID == ID);
+        }
+
+        public List<EmployeeRelationModel> GetEmployeeinfo()
         {
             var employees = (from E in GetEntities()
                              join J in context.jobs on E.JobID equals J.JobID
@@ -85,10 +90,10 @@ namespace Publicaciones.Infrastructure.Repository
                              {
                                  EmpID = E.EmpID,
                                  JobID = E.PubID,
+                                 PubID = E.PubID,
                                  FirstName = E.FirstName,
                                  LastName = E.LastName,
                                  HireDate = E.HireDate,
-                                 Minit = E.Minit,
                                  Joblvl = E.Joblvl,
                                  PubName = P.PubName,
                                  Country = P.Country,
@@ -98,7 +103,8 @@ namespace Publicaciones.Infrastructure.Repository
                                  CreationDate = J.CreationDate,
 
                              }).ToList();
-          return employees;
+            return employees;
         }
+      
     }
 }

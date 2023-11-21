@@ -56,14 +56,6 @@ namespace Publicaciones.Application.Validations.ServicesValidations
                 string errorMessage = _configurations["ValidationMessage:HireDateFormat"];
                 throw new EmployeeServiceExeption(errorMessage);
             }
-
-            // Validation de Minit
-            if (dtobase.Minit.GetType() != typeof(char))
-            {
-                string errorMessage = _configurations["ValidationMessage:MinitTypeChar"];
-                throw new EmployeeServiceExeption(errorMessage);
-            }
-
             return result;
         }
 
@@ -83,7 +75,7 @@ namespace Publicaciones.Application.Validations.ServicesValidations
                 throw new EmployeeServiceExeption(errorMessage);
             }
 
-            if (dtoremove.Deleted != true)
+            if (dtoremove.Deleted == true)
             {
                 string errorMessage = _configurations["ValidationMessage:ObjectRemove"];
                 throw new EmployeeServiceExeption(errorMessage);
@@ -100,7 +92,6 @@ namespace Publicaciones.Application.Validations.ServicesValidations
                 string errorMessage = _configurations["ValidationMessage:ValidateID"];
                 throw new EmployeeServiceExeption(errorMessage);
             }
-
             return result;
         }
 

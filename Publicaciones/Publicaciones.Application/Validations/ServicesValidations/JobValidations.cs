@@ -91,7 +91,7 @@ namespace Publicaciones.Application.Validations.ServicesValidations
             }
 
             //Validation Deleted!
-            if (dtoromove.Deleted != true)
+            if (dtoromove.Deleted == true)
             {
                 string errorMessage = _configurations["ValidationMessage:ObjectRemove"];
                 throw new JobServiceExeptions(errorMessage);
