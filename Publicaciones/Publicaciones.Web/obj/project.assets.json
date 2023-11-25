@@ -11746,11 +11746,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+      "projectUniqueName": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
       "projectName": "Publicaciones.Web",
-      "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+      "projectPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
       "packagesPath": "C:\\Users\\misam\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Web\\obj\\",
+      "outputPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\misam\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -11767,8 +11767,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
-              "projectPath": "C:\\Proyecto_final_progII\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+            "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+              "projectPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
             }
           }
         }
