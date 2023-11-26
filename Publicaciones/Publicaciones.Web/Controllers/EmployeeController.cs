@@ -68,7 +68,7 @@ namespace Publicaciones.Web.Controllers
         }
 
         // GET: EmployeeController/Edit/5
-        public ActionResult Edit()
+        public ActionResult EditEmp()
         {
             EmployeeDtoUpdate dtoupdate = new EmployeeDtoUpdate();
 
@@ -84,8 +84,9 @@ namespace Publicaciones.Web.Controllers
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Editemp(int id, EmployeeDtoUpdate dtoupdate)
         {
+            ServiceResult result = new ServiceResult();
             try
             {
                 return RedirectToAction(nameof(Index));

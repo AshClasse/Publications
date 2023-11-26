@@ -1,0 +1,56 @@
+﻿@model Publicaciones.Application.DTO.Jobs.JobsDtoAdd
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="card bg-light col-8 offset-4" style="width:400px; font-family:'Times New Roman', Times, serif">
+    <div class="card-header">
+        <h4 class="text-center">Register a Job</h4>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                @if (!string.IsNullOrEmpty(ViewBag.Message))
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewBag.Message
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label class="control-label">Job Description:</label>
+                    <input asp-for="JobDescription" class="form-control form-control-lg w-100" />
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Maxlvl:</label>
+                    <input asp-for="Maxlvl" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="Maxlvl" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Milvl:</label>
+                    <input asp-for="Minlvl" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="Minlvl" class="text-danger"></span>
+                </div>
+                <div class="form-group card-footer">
+                    <hr />
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

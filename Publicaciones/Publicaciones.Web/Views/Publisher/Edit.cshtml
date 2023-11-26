@@ -5,49 +5,53 @@
     // Layout = "~/Views/_ViewImports.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>PublisherDtoUpdate</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>\
-            <div class="form-group">
-                <input asp-for="PubID" class="form-control" type="hidden" />
-                <span asp-validation-for="PubName" class="text-danger"></span>
+<div class="card bg-light col-8 offset-4" style="width:400px; font-family:'Times New Roman', Times, serif">
+    <div class="card-header">
+        <h4 class="text-center">Modify Publisher</h4>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input asp-for="PubID" class="form-control" type="hidden" />
+                        <span asp-validation-for="PubName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Publisher Name:</label>
+                        <input asp-for="PubName" class="form-control w-100" />
+                        <span asp-validation-for="PubName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label"></label>
+                        <input asp-for="City" class="form-control w-100" />
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="State" class="control-label"></label>
+                        <input asp-for="State" class="form-control w-100" />
+                        <span asp-validation-for="State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label"></label>
+                        <input asp-for="Country" class="form-control w-100" />
+                        <span asp-validation-for="Country" class="text-danger"></span>
+                    </div>
+                    <hr />
+                    <div class="card-footer">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="PubName" class="control-label"></label>
-                <input asp-for="PubName" class="form-control" />
-                <span asp-validation-for="PubName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
-                <span asp-validation-for="State" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

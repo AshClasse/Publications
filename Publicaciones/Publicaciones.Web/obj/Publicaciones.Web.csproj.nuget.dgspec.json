@@ -193,6 +193,65 @@
         }
       }
     },
+    "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "projectName": "Publicaciones.Ioc",
+        "projectPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "packagesPath": "C:\\Users\\misam\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Ioc\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\misam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+                "projectPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -219,6 +278,9 @@
             "projectReferences": {
               "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
                 "projectPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+              },
+              "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+                "projectPath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj"
               }
             }
           }

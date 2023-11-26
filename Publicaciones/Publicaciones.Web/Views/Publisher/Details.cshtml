@@ -6,8 +6,8 @@
 }
 
 <div class="col-6 offset-3 mt-3" style="font-family:'Times New Roman', Times, serif">
-    <div class="card" style="width:600px">
-        <div class="card-header">
+    <div class="card">
+        <div class="card-header" style="width:600px">
             <h4>Publisher Details</h4>
             <hr/>
         </div>
@@ -29,7 +29,7 @@
             </dl>
         </div>
         <div class="card-footer">
-            @Html.ActionLink("Edit", "Edit", new { id = Model.PubID }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Details", "Details", new { id = Model.PubID }, new { @class = "btn btn-primary" }) |
             <a asp-action="Index" class="btn btn-secondary">Back to List</a>
         </div>
     </div>

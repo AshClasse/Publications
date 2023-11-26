@@ -2,6 +2,9 @@
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
@@ -41,12 +44,18 @@ namespace Publicaciones.Infrastructure.Repository
             var PublisherRemove = base.GetEntityByID(entity.PubID);
 
             PublisherRemove.PubID = entity.PubID;
-            PublisherRemove.Deleted = entity.Deleted;
+            PublisherRemove.Deleted = true;
             PublisherRemove.DeletedDate = entity.DeletedDate;
             PublisherRemove.DeletedUser = entity.DeletedUser;
 
             context.publishers.Update(PublisherRemove);
             context.SaveChanges();
+        }
+
+        public override List<Publisher> GetEntities()
+        {
+            return base.GetEntities().Where(pub => !pub.Deleted).
+                                            OrderByDescending(pub => pub.PubID).ToList();
         }
     }
 }

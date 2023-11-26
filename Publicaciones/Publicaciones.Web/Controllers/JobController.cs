@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Application.Contract;
+using Publicaciones.Application.Core;
+using Publicaciones.Application.DTO.Jobs;
 
 namespace Publicaciones.Web.Controllers
 {
@@ -44,14 +46,23 @@ namespace Publicaciones.Web.Controllers
         // POST: JobController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(JobsDtoAdd dtoadd)
         {
+            ServiceResult result = new ServiceResult();
+
             try
             {
+                result = _jobsService.Save(dtoadd);
+                if(!result.Success)
+                {
+                    ViewBag.Message = result.Message;
+                    return View();
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = result.Message;
                 return View();
             }
         }

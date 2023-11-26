@@ -1,8 +1,10 @@
-﻿using Publicaciones.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore.Query;
+using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interface;
 using Publicaciones.Infrastructure.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -89,7 +91,7 @@ namespace Publicaciones.Infrastructure.Repository
                              select new EmployeeRelationModel()
                              {
                                  EmpID = E.EmpID,
-                                 JobID = E.PubID,
+                                 JobID = E.JobID,
                                  PubID = E.PubID,
                                  FirstName = E.FirstName,
                                  LastName = E.LastName,

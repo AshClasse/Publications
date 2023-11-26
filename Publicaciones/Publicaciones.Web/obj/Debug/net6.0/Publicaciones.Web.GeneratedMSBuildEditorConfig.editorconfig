@@ -22,8 +22,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Employee/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Employee/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Employee/EditEmp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRWRpdEVtcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Employee/Index.cshtml]
@@ -34,8 +42,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Job/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Job/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Job/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Job/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9iXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/misam/OneDrive/Escritorio/My_files/TAREAS DE LA UNI/CUATRI-6/Prog 2/Proyecto de P2/Publicaciones/Publicaciones.Web/Views/Job/Index.cshtml]

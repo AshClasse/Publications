@@ -2,5 +2,6 @@
 {
     public class PublisherDtoAdd : PublisherDtoBase
     {
+        public int PubID { get; set; }
     }
 }

@@ -39,6 +39,7 @@ namespace Publicaciones.Application.Service
 
                 var publishers = _publisherRepository.GetEntities().Select(PubsGet => new PublisherDtoGetAll()
                 {
+                    PubID = PubsGet.PubID,
                     PubName = PubsGet.PubName,
                     State = PubsGet.State,
                     Country = PubsGet.Country,
@@ -75,6 +76,7 @@ namespace Publicaciones.Application.Service
 
                 PublisherDtoGetAll pub = new PublisherDtoGetAll()
                 {
+                    PubID = PublisherGet.PubID,
                     PubName = PublisherGet.PubName,
                     State = PublisherGet.State,
                     Country = PublisherGet.Country,

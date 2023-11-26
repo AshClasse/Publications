@@ -8,7 +8,6 @@ using Publicaciones.Application.Validations.ContractValidations;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interface;
 using System;
-using System.Linq;
 
 namespace Publicaciones.Application.Service
 {
@@ -36,7 +35,7 @@ namespace Publicaciones.Application.Service
             ServiceResult result = new ServiceResult();
             try
             {
-                result.Data = _employeeRepository.GetEmployeeJob();
+                result.Data = _employeeRepository.GetEmployeeinfo();
                 result.Message = _configuration["EmployeeSuccessMessages:getAllEmployeesSuccessMessage"];
 
             }
@@ -53,31 +52,16 @@ namespace Publicaciones.Application.Service
                 logger.LogError(result.Message, ex.ToString());
             }
             return result;
-        } 
+        }
 
         //GETBY-ID
         public ServiceResult GetByID(int ID)
         {
-            ServiceResult result= new ServiceResult();
+            ServiceResult result = new ServiceResult();
             {
                 try
                 {
-                    var EmpGet = _employeeRepository.GetEntityByID(ID);
-
-                    EmployeeDtoGetAll employee = new EmployeeDtoGetAll()
-                    {
-                        EmpID = EmpGet.EmpID,
-                        FirstName = EmpGet.FirstName,
-                        LastName = EmpGet.LastName,
-                        Minit = EmpGet.Minit,
-                        Joblvl = EmpGet.Joblvl,
-                        HireDate = EmpGet.HireDate,
-                        PubID = EmpGet.PubID,
-                        JobID= EmpGet.JobID,
-                        ChangeDate = EmpGet.CreationDate,
-                        ChangeUser = EmpGet.IDCreationUser
-                    };
-                    result.Data = employee;
+                    result.Data = _employeeRepository.GetEmployeeinfobyID(ID);
                     result.Message = _configuration["EmployeeSuccessMessages:getEmployeeSuccessMessage"];
 
                 }
@@ -95,7 +79,7 @@ namespace Publicaciones.Application.Service
                 }
                 return result;
             }
-        } 
+        }
         //REMOVE
         public ServiceResult Remove(EmployeeDtoRemove DtoRemove)
         {
@@ -156,7 +140,6 @@ namespace Publicaciones.Application.Service
                         LastName = dtoadd.LastName,
                         HireDate = dtoadd.HireDate,
                         Joblvl = dtoadd.Joblvl,
-                        Minit = dtoadd.Minit,
                         JobID = dtoadd.JobID,
                         PubID = dtoadd.PubID
                     };
@@ -201,7 +184,6 @@ namespace Publicaciones.Application.Service
                         LastName = dtoupdate.LastName,
                         HireDate = dtoupdate.HireDate,
                         Joblvl = dtoupdate.Joblvl,
-                        Minit = dtoupdate.Minit,
                         JobID = dtoupdate.JobID,
                         PubID = dtoupdate.PubID
                     };

@@ -5,25 +5,27 @@
     // Layout = "~/Views/_ViewImports.cshtml";
 }
 
-<div class="col-6 offset-3 mt-3 text-center" style=" font-family:'Times New Roman', Times, serif">
-    <div class="card bg-light">
+<div class="col-6 offset-3 mt-3" style=" font-family:'Times New Roman', Times, serif;">
+    <div class="card bg-light" style="width:600px">
         <div class="card-header">
             <h4>Job Details</h4>
-            <hr/>
-        </div>        
-        <dl class="row">
-            <dt class="col-sm-3">Publisher Name:</dt>
-            <dd class="col-sm-9"> @Html.DisplayFor(model => model.JobID)</dd>
-            
-            <dt class="col-sm-3">Job Description:</dt>
-            <dd class="col-sm-9"> @Html.DisplayFor(model => model.JobDescription) </dd>
-            
-            <dt class="col-sm-3">MinLvl:</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Minlvl)</dd>
-            
-            <dt class="col-sm-3">Maxlvl:</dt>
-            <dd class="col-sm-9">@Html.DisplayFor(model => model.Maxlvl)</dd>
-        </dl>
+            <hr />
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 ml">Publisher Name:</dt>
+                <dd class="col-sm-9"> @Html.DisplayFor(model => model.JobID)</dd>
+
+                <dt class="col-sm-3">Job Description:</dt>
+                <dd class="col-sm-9"> @Html.DisplayFor(model => model.JobDescription) </dd>
+
+                <dt class="col-sm-3">MinLvl:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Minlvl)</dd>
+
+                <dt class="col-sm-3">Maxlvl:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Maxlvl)</dd>
+            </dl>
+        </div>
         <div class="card-footer">
             @Html.ActionLink("Edit", "Edit", new { ID = Model.JobID }, new { @class = "btn btn-primary" }) |
             <a asp-action="Index" class="btn btn-secondary">Back to List</a>

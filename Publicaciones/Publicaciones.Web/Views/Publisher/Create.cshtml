@@ -5,59 +5,55 @@
     // Layout = "~/Views/_ViewImports.cshtml";
 }
 
-
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h1 class="text-center">Create Publisher</h1>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Create" class="needs-validation" novalidate>
-                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
-                        <div class="form-group">
-                            <label for="PubName">Publisher Name</label>
-                            <input asp-for="PubName" class="form-control" required />
-                            <div class="invalid-feedback">
-                                Please enter a valid Publisher Name.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="City">City</label>
-                            <input asp-for="City" class="form-control" required />
-                            <div class="invalid-feedback">
-                                Please enter a valid City.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="State">State</label>
-                            <input asp-for="State" class="form-control" required />
-                            <div class="invalid-feedback">
-                                Please enter a valid State.
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Country">Country</label>
-                            <input asp-for="Country" class="form-control" required />
-                            <div class="invalid-feedback">
-                                Please enter a valid Country.
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">Create</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="card bg-light col-8 offset-4" style="width:400px; font-family:'Times New Roman', Times, serif">
+    <div class="card-header">
+        <h4 class="text-center">Create Publisher</h4>
+        <hr />
     </div>
-
-    <div class="text-center mt-3">
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <div class="row">
+        <div class="card-body">
+            <form asp-action="Create" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                <div class="form-group">
+                    <label for="PubName">Publisher Name</label>
+                    <input asp-for="PubName" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please enter a valid Publisher Name.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="City">City</label>
+                    <input asp-for="City" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please enter a valid City.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="State">State</label>
+                    <input asp-for="State" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please enter a valid State.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Country">Country</label>
+                    <input asp-for="Country" class="form-control" required />
+                    <div class="invalid-feedback">
+                        Please enter a valid Country.
+                    </div>
+                </div>
+                <hr/>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

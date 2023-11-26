@@ -58,10 +58,22 @@ namespace Publicaciones.Application.Validations.ServicesValidations
                 throw new JobServiceExeptions(errorMessage);
             }
 
+            if (dtobase.Minlvl <= 0)
+            {
+                string errorMessage = _configurations["ValidationMessage:MinlvlMinLenght"];
+                throw new JobServiceExeptions(errorMessage);
+            }
+
             // Validación de Maxlvl
             if (dtobase.Maxlvl >= 255)
             {
-                string errorMessage = _configurations["ValidationMessage:MinlvlRequired"];
+                string errorMessage = _configurations["ValidationMessage:MaxlvlRequired"];
+                throw new JobServiceExeptions(errorMessage);
+            }
+
+            if(dtobase.Maxlvl <= 0)
+            {
+                string errorMessage = _configurations["ValidationMessage:MaxlvlMinLenght"];
                 throw new JobServiceExeptions(errorMessage);
             }
 

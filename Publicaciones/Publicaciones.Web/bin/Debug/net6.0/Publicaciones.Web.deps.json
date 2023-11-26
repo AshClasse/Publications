@@ -9,7 +9,8 @@
       "Publicaciones.Web/1.0.0": {
         "dependencies": {
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.16",
-          "Publicaciones.Application": "1.0.0"
+          "Publicaciones.Application": "1.0.0",
+          "Publicaciones.Ioc": "1.0.0"
         },
         "runtime": {
           "Publicaciones.Web.dll": {}
@@ -2664,6 +2665,14 @@
         "runtime": {
           "Publicaciones.Infrastructure.dll": {}
         }
+      },
+      "Publicaciones.Ioc/1.0.0": {
+        "dependencies": {
+          "Publicaciones.Application": "1.0.0"
+        },
+        "runtime": {
+          "Publicaciones.Ioc.dll": {}
+        }
       }
     }
   },
@@ -4315,6 +4324,11 @@
       "sha512": ""
     },
     "Publicaciones.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Publicaciones.Ioc/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
