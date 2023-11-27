@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Modules.Pub_InfoModels;
-using Publicaciones.Api.Models.Modules.RoySched;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Dtos.RoySched;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interfaces;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -35,6 +31,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpGet("GetRoySchedByID")]
 		public IActionResult GetRoySchedByID(int ID)
 		{
+			var existsResult = this._roySchedService.Exists(ID);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var result = this._roySchedService.GetByID(ID);
 
 			if (!result.Success)
@@ -48,6 +51,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpGet("GetRoySchedByTitleID")]
 		public IActionResult GetRoySchedByTitleID(int titleId)
 		{
+			var existsInTitlesResult = this._roySchedService.ExistsInTitles(titleId);
+
+			if (!existsInTitlesResult.Success)
+			{
+				return BadRequest(existsInTitlesResult.Message);
+			}
+
 			var result = this._roySchedService.GetRoySchedsByTitleID(titleId);
 
 			if (!result.Success)
@@ -74,6 +84,7 @@ namespace Publicaciones.Api.Controllers
 		[HttpPost("SaveRoySched")]
 		public IActionResult Post([FromBody] RoySchedDtoAdd roySchedDtoAdd)
 		{
+
 			var existsInTitlesResult = this._roySchedService.ExistsInTitles(roySchedDtoAdd.Title_ID);
 
 			if (!existsInTitlesResult.Success)
@@ -94,6 +105,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("UpdateRoySched")]
 		public IActionResult Put([FromBody] RoySchedDtoUpdate roySchedDtoUpdate)
 		{
+			var existsResult = this._roySchedService.Exists(roySchedDtoUpdate.RoySched_ID);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var existsInTitlesResult = this._roySchedService.ExistsInTitles(roySchedDtoUpdate.Title_ID);
 
 			if (!existsInTitlesResult.Success)
@@ -114,6 +132,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("RemoveRoySched")]
 		public IActionResult Remove([FromBody] RoySchedDtoRemove roySchedDtoRemove)
 		{
+			var existsResult = this._roySchedService.Exists(roySchedDtoRemove.Id);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var result = this._roySchedService.Remove(roySchedDtoRemove);
 
 			if (!result.Success)

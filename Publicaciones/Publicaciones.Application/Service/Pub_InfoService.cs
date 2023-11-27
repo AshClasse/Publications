@@ -79,8 +79,7 @@ namespace Publicaciones.Application.Service
 
 			try
 			{
-				Pub_InfoValidation.ValidateAddPub_Info(dtoAdd);
-
+				Pub_InfoValidation.Validation(dtoAdd, configuration);
 
 				Pub_Info pub_Info = new Pub_Info()
 				{
@@ -117,6 +116,8 @@ namespace Publicaciones.Application.Service
 
 			try
 			{
+				Pub_InfoValidation.Validation(dtoUpdate, configuration);
+
 				Pub_Info pub_Info = new Pub_Info()
 				{
 					ModifiedDate = dtoUpdate.ChangeDate,
@@ -184,14 +185,26 @@ namespace Publicaciones.Application.Service
 			try
 			{
 				var exists = this._pub_info_repository.Exists(pi => pi.PubInfoID == pubInfoId);
-				result.Data = exists;
 
 				if (!exists)
 				{
 					result.Success = false;
-					result.Message = $"{configuration["ValidationMessage:pubInfoIdExists"]}";
+
+					if (pubInfoId == 0)
+					{
+						result.Message = $"{configuration["ValidationMessage:pubInfoIDRequired"]}";
+					}
+					else if (pubInfoId < 0)
+					{
+						result.Message = $"{configuration["ValidationMessage:pubInfoIDIsPositiveInt"]}";
+					}
+					else
+					{
+						result.Message = $"{configuration["ValidationMessage:pubInfoIdExists"]}";
+					}
 				}
 
+				result.Data = exists;
 			}
 			catch (Exception ex)
 			{

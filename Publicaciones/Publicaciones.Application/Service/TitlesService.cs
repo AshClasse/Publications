@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Titles;
+using Publicaciones.Application.Exceptions;
 using Publicaciones.Application.Response;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
@@ -24,6 +25,7 @@ namespace Publicaciones.Application.Service
 			this._logger = logger;
 			this.configuration = configuration;
 		}
+
 		public ServiceResult GetAll()
 		{
 			ServiceResult result = new ServiceResult();
@@ -31,16 +33,22 @@ namespace Publicaciones.Application.Service
 			{
 
 				result.Data = this._titlesRepository.GetTitlesPublishers();
-				result.Message = "Successfully obtained titles";
+				result.Message = $"{configuration["TitlesSuccessMessage:getAllSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting titles: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
-		}
+		} 
 
 		public ServiceResult GetByID(int id)
 		{
@@ -48,43 +56,22 @@ namespace Publicaciones.Application.Service
 			try
 			{
 				result.Data = this._titlesRepository.TitlePublisher(id);
-				result.Message = "Título obtenido exitosamente";
+				result.Message = $"{configuration["TitlesSuccessMessage:getByIdSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting title: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:getByIdErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
-		}
-
-		public ServiceResult Remove(TitlesDtoRemove dtoRemove)
-		{
-			ServiceResult result = new ServiceResult();
-
-			try
-			{
-				Titles titles = new Titles() 
-				{ 
-					Title_ID = dtoRemove.Id, 
-					Deleted = dtoRemove.Deleted,
-					DeletedDate = dtoRemove.ChangeDate,
-					IDDeletedUser = dtoRemove.ChangeUser
-				};
-
-				this._titlesRepository.Remove(titles);
-				result.Message = "Título borrado exitosamente";
-			}
-			catch (Exception ex)
-			{
-				result.Success = false;
-				result.Message = $"The following error occurred while removing title: {ex.Message}";
-				this._logger.LogError(result.Message, ex.ToString());
-			}
-			return result;
-
-		}
+		} 
 
 		public ServiceResult Save(TitlesDtoAdd dtoAdd)
 		{
@@ -108,18 +95,23 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._titlesRepository.Save(titles);
-				result.Message = "Título guardado exitosamente";
 				result.Title_ID = titles.Title_ID;
-
+				result.Message = $"{configuration["TitlesSuccessMessage:addSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while saving title: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:addErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
-		}
+		} 
 
 		public ServiceResult Update(TitlesDtoUpdate dtoUpdate)
 		{
@@ -144,17 +136,56 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._titlesRepository.Update(titles);
-				result.Message = "Títulos actualizado exitosamente";
+				result.Message = $"{configuration["TitlesSuccessMessage:updateSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while updating title: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:updateErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
-		}
+		} 
 
+		public ServiceResult Remove(TitlesDtoRemove dtoRemove)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				Titles titles = new Titles()
+				{
+					Title_ID = dtoRemove.Id,
+					Deleted = dtoRemove.Deleted,
+					DeletedDate = dtoRemove.ChangeDate,
+					IDDeletedUser = dtoRemove.ChangeUser
+				};
+
+				this._titlesRepository.Remove(titles);
+				result.Message = $"{configuration["TitlesSuccessMessage:removeSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"{configuration["TitlesErrorMessage:removeErrorMessage"]}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+
+		} 
+		
 		public ServiceResult Exists(int titleId)
 		{
 			ServiceResult result = new ServiceResult();
@@ -162,14 +193,26 @@ namespace Publicaciones.Application.Service
 			try
 			{
 				var exists = this._titlesRepository.Exists(tt => tt.Title_ID == titleId);
-				result.Data = exists;
 
 				if (!exists)
 				{
 					result.Success = false;
-					result.Message = $"{configuration["ValidationMessage:titleIdExists"]}";
+
+					if (titleId == 0)
+					{
+						result.Message = $"{configuration["ValidationMessage:titleIDRequired"]}";
+					}
+					else if (titleId < 0)
+					{
+						result.Message = $"{configuration["ValidationMessage:titleIDIsPositiveInt"]}";
+					}
+					else
+					{
+						result.Message = $"{configuration["ValidationMessage:titleIdExists"]}";
+					}
 				}
 
+				result.Data = exists;
 			}
 			catch (Exception ex)
 			{
@@ -177,7 +220,7 @@ namespace Publicaciones.Application.Service
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
-		}
+		} 
 
 		ServiceResult ITitlesService.ExistsInPublishers(int pubId)
 		{
@@ -228,17 +271,23 @@ namespace Publicaciones.Application.Service
 					.ToList();
 
 				result.Data = titles;
-				result.Message = "Títulos obtenidos exitosamente";
+				result.Message = $"{configuration["TitlesSuccessMessage:getAllSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting titles: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 
 			return result;
-		}
+		} 
 
 		ServiceResult ITitlesService.GetTitlesByPublisherID(int pubId)
 		{
@@ -247,16 +296,22 @@ namespace Publicaciones.Application.Service
 			{
 
 				result.Data = this._titlesRepository.GetTitlesByPublisherID(pubId);
-				result.Message = "Successfully obtained titles";
+				result.Message = $"{configuration["TitlesSuccessMessage:getAllSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting titles: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
-		}
+		} 
 
 		ServiceResult ITitlesService.GetTitlesByType(string type)
 		{
@@ -283,18 +338,23 @@ namespace Publicaciones.Application.Service
 					.ToList();
 
 				result.Data = titles;
-				result.Message = "Títulos obtenidos exitosamente";
+				result.Message = $"{configuration["TitlesSuccessMessage:getAllSuccessMessage"]}";
+			}
+			catch (TitlesServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting titles: {ex.Message}";
+				result.Message = $"{configuration["TitlesErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 
 			return result;
-		}
+		} 
 
-		
 	}
 }

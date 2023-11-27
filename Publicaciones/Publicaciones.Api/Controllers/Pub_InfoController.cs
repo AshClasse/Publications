@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Dtos.Pub_Info;
-using Publicaciones.Application.Dtos.RoySched;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -32,6 +31,13 @@ namespace Publicaciones.Api.Controllers
         [HttpGet("GetPub_InfoByID")]
         public IActionResult GetPub_InfoByID(int ID)
         {
+			var existsResult = this._pub_infoService.Exists(ID);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var result = this._pub_infoService.GetByID(ID);
 
 			if (!result.Success)
@@ -45,6 +51,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpGet("GetPub_InfoByPublisherID")]
 		public IActionResult GetInfoByPublisherID(int pubId)
 		{
+			var existsInPubsResult = this._pub_infoService.ExistsInPublishers(pubId);
+
+			if (!existsInPubsResult.Success)
+			{
+				return BadRequest(existsInPubsResult.Message);
+			}
+
 			var result = this._pub_infoService.GetPub_InfosByPublisherID(pubId);
 
 			if (!result.Success)

@@ -3,7 +3,9 @@ using Microsoft.Extensions.Logging;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.RoySched;
+using Publicaciones.Application.Exceptions;
 using Publicaciones.Application.Response;
+using Publicaciones.Application.Validations;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
@@ -33,13 +35,19 @@ namespace Publicaciones.Application.Service
 			{
 
 				result.Data = this._roySchedRepository.GetRoySchedsTitles();
-				result.Message = "Regalías obtenidas exitosamente";
+				result.Message = $"{configuration["RoySchedSuccessMessage:getAllSuccessMessage"]}";
 
+			}
+			catch (RoySchedServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting royalty scheds: {ex.Message}";
+				result.Message = $"{configuration["RoySchedErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -53,15 +61,96 @@ namespace Publicaciones.Application.Service
 			{
 
 				result.Data = this._roySchedRepository.RoySchedTitle(id);
-				result.Message = "Regalía obtenida exitosamente";
+				result.Message = $"{configuration["RoySchedSuccessMessage:getByIdSuccessMessage"]}";
+			}
+			catch (RoySchedServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting royalty sched: {ex.Message}";
+				result.Message = $"{configuration["RoySchedErrorMessage:getByIdErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 
+			return result;
+		}
+
+		public ServiceResult Save(RoySchedDtoAdd dtoAdd)
+		{
+			RoySchedResponse result = new RoySchedResponse();
+
+			try
+			{
+				RoySchedValidation.Validation(dtoAdd, configuration);
+
+				RoySched roySched = new RoySched()
+				{
+					Title_ID = dtoAdd.Title_ID,
+					LoRange = dtoAdd.LoRange,
+					HiRange = dtoAdd.HiRange,
+					Royalty = dtoAdd.Royalty,
+					CreationDate = dtoAdd.ChangeDate,
+					IDCreationUser = dtoAdd.ChangeUser
+				};
+
+				this._roySchedRepository.Save(roySched);
+				result.Message = $"{configuration["RoySchedSuccessMessage:addSuccessMessage"]}";
+				result.RoySched_ID = roySched.RoySched_ID;
+
+			}
+			catch (RoySchedServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"{configuration["RoySchedErrorMessage:addErrorMessage"]}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			return result;
+		}
+
+		public ServiceResult Update(RoySchedDtoUpdate dtoUpdate)
+		{
+			ServiceResult result = new ServiceResult();
+
+			try
+			{
+				RoySchedValidation.Validation(dtoUpdate, configuration);
+
+				RoySched roySched = new RoySched()
+				{
+					RoySched_ID = dtoUpdate.RoySched_ID,
+					Title_ID = dtoUpdate.Title_ID,
+					LoRange = dtoUpdate.LoRange,
+					HiRange = dtoUpdate.HiRange,
+					Royalty = dtoUpdate.Royalty,
+					ModifiedDate = dtoUpdate.ChangeDate,
+					IDModifiedUser = dtoUpdate.ChangeUser
+				};
+
+				this._roySchedRepository.Update(roySched);
+				result.Message = $"{configuration["RoySchedSuccessMessage:updateSuccessMessage"]}";
+			}
+			catch (RoySchedServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
+			}
+			catch (Exception ex)
+			{
+				result.Success = false;
+				result.Message = $"{configuration["RoySchedErrorMessage:updateErrorMessage"]}";
+				this._logger.LogError(result.Message, ex.ToString());
+			}
 			return result;
 		}
 
@@ -80,72 +169,18 @@ namespace Publicaciones.Application.Service
 				};
 
 				this._roySchedRepository.Remove(roySched);
-				result.Message = "Regalía borrada exitosamente";
+				result.Message = $"{configuration["RoySchedSuccessMessage:removeSuccessMessage"]}";
 			}
-			catch (Exception ex)
+			catch (RoySchedServiceException ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while removing royalty sched: {ex.Message}";
+				result.Message = ex.Message;
 				this._logger.LogError(result.Message, ex.ToString());
 			}
-			return result;
-		}
-
-		public ServiceResult Save(RoySchedDtoAdd dtoAdd)
-		{
-			RoySchedResponse result = new RoySchedResponse();
-
-			try
-			{
-				RoySched roySched = new RoySched()
-				{
-					Title_ID = dtoAdd.Title_ID,
-					LoRange = dtoAdd.LoRange,
-					HiRange = dtoAdd.HiRange,
-					Royalty = dtoAdd.Royalty,
-					CreationDate = dtoAdd.ChangeDate,
-					IDCreationUser = dtoAdd.ChangeUser
-				};
-
-				this._roySchedRepository.Save(roySched);
-				result.Message = "Regalía guardada exitosamente";
-				result.RoySched_ID = roySched.RoySched_ID;
-
-			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while saving royalty sched: {ex.Message}";
-				this._logger.LogError(result.Message, ex.ToString());
-			}
-			return result;
-		}
-
-		public ServiceResult Update(RoySchedDtoUpdate dtoUpdate)
-		{
-			ServiceResult result = new ServiceResult();
-
-			try
-			{
-
-				RoySched roySched = new RoySched()
-				{
-					RoySched_ID = dtoUpdate.RoySched_ID,
-					Title_ID = dtoUpdate.Title_ID,
-					LoRange = dtoUpdate.LoRange,
-					HiRange = dtoUpdate.HiRange,
-					Royalty = dtoUpdate.Royalty,
-					ModifiedDate = dtoUpdate.ChangeDate,
-					IDModifiedUser = dtoUpdate.ChangeUser
-				};
-
-				this._roySchedRepository.Update(roySched);
-				result.Message = "Regalía actualizada exitosamente";
-			}
-			catch (Exception ex)
-			{
-				result.Success = false;
-				result.Message = $"The following error occurred while updating royalty sched: {ex.Message}";
+				result.Message = $"{configuration["RoySchedErrorMessage:removeErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -158,14 +193,26 @@ namespace Publicaciones.Application.Service
 			try
 			{
 				var exists = this._roySchedRepository.Exists(rs => rs.RoySched_ID == roySchedId);
-				result.Data = exists;
-
+				
 				if (!exists)
 				{
 					result.Success = false;
-					result.Message = $"{configuration["ValidationMessage:roySchedIdExists"]}";
+
+					if (roySchedId == 0)
+					{
+						result.Message = $"{configuration["ValidationMessage:roySchedIDRequired"]}";
+					}
+					else if (roySchedId < 0)
+					{
+						result.Message = $"{configuration["ValidationMessage:roySchedIdIsPositiveInt"]}";
+					}
+					else
+					{
+						result.Message = $"{configuration["ValidationMessage:roySchedIdExists"]}";
+					}
 				}
 
+				result.Data = exists;  
 			}
 			catch (Exception ex)
 			{
@@ -216,13 +263,19 @@ namespace Publicaciones.Application.Service
 					}).ToList();
 
 				result.Data = roySched;
-				result.Message = "Regalías obtenidas exitosamente";
+				result.Message = $"{configuration["RoySchedSuccessMessage:getAllSuccessMessage"]}";
 
+			}
+			catch (RoySchedServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting royalty scheds: {ex.Message}";
+				result.Message = $"{configuration["RoySchedErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;
@@ -235,13 +288,19 @@ namespace Publicaciones.Application.Service
 			{
 
 				result.Data = this._roySchedRepository.GetRoySchedsByTitleID(titleId);
-				result.Message = "Regalías obtenidas exitosamente";
+				result.Message = $"{configuration["RoySchedSuccessMessage:getAllSuccessMessage"]}";
 
+			}
+			catch (RoySchedServiceException ex)
+			{
+				result.Success = false;
+				result.Message = ex.Message;
+				this._logger.LogError(result.Message, ex.ToString());
 			}
 			catch (Exception ex)
 			{
 				result.Success = false;
-				result.Message = $"The following error occurred while getting royalty scheds: {ex.Message}";
+				result.Message = $"{configuration["RoySchedErrorMessage:getAllErrorMessage"]}";
 				this._logger.LogError(result.Message, ex.ToString());
 			}
 			return result;

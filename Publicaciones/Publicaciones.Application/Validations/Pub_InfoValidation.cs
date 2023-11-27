@@ -7,16 +7,9 @@ using System.Text;
 
 namespace Publicaciones.Application.Validations
 {
-	public class Pub_InfoValidation
-	{
-		private readonly IConfiguration configuration;
-
-		public Pub_InfoValidation (IConfiguration configuration)
-		{
-			this.configuration = configuration;
-		}
-
-		private void CommonValidation(int changeUser, int pubId, byte[] logo, string pr_Info)
+	public static class Pub_InfoValidation
+	{ 
+		private static void CommonValidation(int changeUser, int pubId, byte[]? logo, string? pr_Info, IConfiguration configuration)
 		{
 			if (changeUser <= 0)
 			{
@@ -49,48 +42,14 @@ namespace Publicaciones.Application.Validations
 			}
 		}
 
-		public void ValidateAddPub_Info(Pub_InfoDtoAdd pub_InfoDtoAdd)
+		public static void Validation(Pub_InfoDtoAdd pub_InfoDtoAdd, IConfiguration configuration)
 		{
-			CommonValidation(pub_InfoDtoAdd.ChangeUser, pub_InfoDtoAdd.PubId, pub_InfoDtoAdd.Logo, pub_InfoDtoAdd.Pr_Info);
+			CommonValidation(pub_InfoDtoAdd.ChangeUser, pub_InfoDtoAdd.PubId, pub_InfoDtoAdd.Logo, pub_InfoDtoAdd.Pr_Info, configuration);
 		}
 
-		public void ValidateUpdatePub_Info(Pub_InfoDtoUpdate pub_InfoDtoUpdate)
+		public static void Validation(Pub_InfoDtoUpdate pub_InfoDtoUpdate, IConfiguration configuration)
 		{
-			CommonValidation(pub_InfoDtoUpdate.ChangeUser, pub_InfoDtoUpdate.PubId, pub_InfoDtoUpdate.Logo, pub_InfoDtoUpdate.Pr_Info);
-			
-			if (pub_InfoDtoUpdate.PubInfoID <= 0)
-			{
-				string errorMessage = $"{configuration["ValidationMessage:pubInfoIDIsPositiveInt"]}";
-				throw new Pub_InfoServiceException(errorMessage);
-			}
-
-			if (pub_InfoDtoUpdate.PubInfoID.GetType() != typeof(int))
-			{
-				string errorMessage = $"{configuration["ValidationMessage:pubInfoIDIsInt"]}";
-				throw new Pub_InfoServiceException(errorMessage);
-			}
+			CommonValidation(pub_InfoDtoUpdate.ChangeUser, pub_InfoDtoUpdate.PubId, pub_InfoDtoUpdate.Logo, pub_InfoDtoUpdate.Pr_Info, configuration);
 		}
-
-		public void ValidateRemovePub_Info(Pub_InfoDtoRemove pub_InfoDtoRemove)
-		{
-			if (pub_InfoDtoRemove.Id <= 0)
-			{
-				string errorMessage = $"{configuration["ValidationMessage:pubInfoIDIsPositiveInt"]}";
-				throw new Pub_InfoServiceException(errorMessage);
-			}
-
-			if (pub_InfoDtoRemove.Id.GetType() != typeof(int))
-			{
-				string errorMessage = $"{configuration["ValidationMessage:pubInfoIDIsInt"]}";
-				throw new Pub_InfoServiceException(errorMessage);
-			}
-
-			if (!pub_InfoDtoRemove.Deleted)
-			{
-				string errorMessage = $"{configuration["PubInfoErrorMessage:removeErrorMessage"]}";
-				throw new Pub_InfoServiceException(errorMessage);
-			}
-		}
-
 	}
 }

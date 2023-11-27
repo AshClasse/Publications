@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Api.Models.Modules.Pub_InfoModels;
-using Publicaciones.Api.Models.Modules.RoySched;
-using Publicaciones.Api.Models.Modules.Titles;
 using Publicaciones.Application.Contract;
-using Publicaciones.Application.Dtos.Pub_Info;
-using Publicaciones.Application.Dtos.RoySched;
 using Publicaciones.Application.Dtos.Titles;
-using Publicaciones.Domain.Entities;
-using Publicaciones.Infrastructure.Interfaces;
+using System;
 
 namespace Publicaciones.Api.Controllers
 {
@@ -36,6 +30,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpGet("GetTitleByID")]
 		public IActionResult GetTitleByID(int ID)
 		{
+			var existsResult = this._titlesService.Exists(ID);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var result = this._titlesService.GetByID(ID);
 
 			if (!result.Success)
@@ -61,6 +62,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpGet("GetTitleByPublisherID")]
 		public IActionResult GetTitleByPublisherID(int pubId)
 		{
+			var existsInPubsResult = this._titlesService.ExistsInPublishers(pubId);
+
+			if (!existsInPubsResult.Success)
+			{
+				return BadRequest(existsInPubsResult.Message);
+			}
+
 			var result = this._titlesService.GetTitlesByPublisherID(pubId);
 
 			if (!result.Success)
@@ -105,6 +113,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("UpdateTitle")]
 		public IActionResult Put([FromBody] TitlesDtoUpdate titlesDtoUpdate)
 		{
+			var existsResult = this._titlesService.Exists(titlesDtoUpdate.Title_ID);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var existsInPubsResult = this._titlesService.ExistsInPublishers(titlesDtoUpdate.PubID);
 
 			if (!existsInPubsResult.Success)
@@ -125,6 +140,13 @@ namespace Publicaciones.Api.Controllers
 		[HttpPut("RemoveTitle")]
 		public IActionResult Remove([FromBody] TitlesDtoRemove titlesDtoRemove)
 		{
+			var existsResult = this._titlesService.Exists(titlesDtoRemove.Id);
+
+			if (!existsResult.Success)
+			{
+				return BadRequest(existsResult.Message);
+			}
+
 			var result = this._titlesService.Remove(titlesDtoRemove);
 
 			if (!result.Success)
