@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Publicaciones.Web.Models.TitlesViewResult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Titles</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pubName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pubDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.royalty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pubName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.pubDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.royalty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.titleID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.titleID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

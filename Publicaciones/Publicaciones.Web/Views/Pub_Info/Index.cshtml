@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Publicaciones.Web.Models.Pub_InfoViewResult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.pubName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.state)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.pubName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id= item.pub_InfoID }) |
+                @Html.ActionLink("Details", "Details", new { id= item.pub_InfoID })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

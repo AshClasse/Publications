@@ -24,12 +24,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Pub_Info/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHViX0luZm9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/_ViewImports.cshtml]

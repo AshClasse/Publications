@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Web.Models;
 using System.Diagnostics;
+using Publicaciones.Web.Models;
 
 namespace Publicaciones.Web.Controllers
 {
