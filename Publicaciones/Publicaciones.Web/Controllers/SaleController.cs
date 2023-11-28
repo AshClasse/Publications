@@ -186,7 +186,6 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-
                 using (var client = new HttpClient(this.clientHandler))
                 {
 
@@ -204,7 +203,7 @@ namespace Publicaciones.Web.Controllers
                             string apiResponse = response.Content.ReadAsStringAsync().Result;
 
                             baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
+                            Console.WriteLine(baseResponse.ToString());
                             if (!baseResponse.success)
                             {
                                 ViewBag.Message = baseResponse.message;

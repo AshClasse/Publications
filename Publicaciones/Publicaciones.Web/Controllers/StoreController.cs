@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Publicaciones.Application.Contract;
-using Publicaciones.Application.Dtos.Discount;
 using Publicaciones.Application.Dtos.Store;
-using Publicaciones.Infrastructure.Models;
 using Publicaciones.Web.Models.Responses;
-using Publicaciones.Web.Models.Responses.Discount;
-using Publicaciones.Web.Models.Responses.Sale;
 using Publicaciones.Web.Models.Responses.Store;
 
 namespace Publicaciones.Web.Controllers
@@ -193,7 +188,6 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-
                 using (var client = new HttpClient(this.clientHandler))
                 {
 
@@ -206,12 +200,10 @@ namespace Publicaciones.Web.Controllers
 
                     using (var response = client.PostAsync(url, content).Result)
                     {
-                        Console.WriteLine(response.StatusCode);
-                        Console.WriteLine(response.Content);
                         if (response.IsSuccessStatusCode)
                         {
                             string apiResponse = response.Content.ReadAsStringAsync().Result;
-                            Console.WriteLine(apiResponse);
+
                             baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
 
                             if (!baseResponse.success)
