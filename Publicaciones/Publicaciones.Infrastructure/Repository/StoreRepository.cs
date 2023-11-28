@@ -68,6 +68,8 @@ namespace Publicaciones.Infrastructure.Repository
                                     StoreID = s.StoreID,
                                     StoreName = s.StoreName,
                                     StoreAddress = s.StoreAddress,
+                                    City = s.City,
+                                    State = s.State,
                                     Zip = s.Zip
                                 })
                                 .ToList();

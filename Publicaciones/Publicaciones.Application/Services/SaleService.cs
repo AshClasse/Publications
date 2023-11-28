@@ -8,7 +8,7 @@ using Publicaciones.Application.Validations;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
-using System.Linq;
+using System.Diagnostics;
 
 namespace Publicaciones.Application.Services
 {

@@ -49,7 +49,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("UpdateSale")]
+        [HttpPost("UpdateSale")]
         public IActionResult Put([FromBody] SaleDtoUpdate saleUpdate)
         {
             var result = this.saleService.Update(saleUpdate);

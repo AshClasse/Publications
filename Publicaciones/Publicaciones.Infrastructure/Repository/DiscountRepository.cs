@@ -80,6 +80,8 @@ namespace Publicaciones.Infrastructure.Repository
                                DiscountID = di.DiscountID,
                                DiscountType = di.DiscountType,
                                DiscountAmount = di.DiscountAmount,
+                               LowQty = di.LowQty,
+                               HighQty = di.HighQty,
                                StoreID = st.StoreID,
                                StoreName = st.StoreName,
                                CreationDate = di.CreationDate

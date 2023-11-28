@@ -47,7 +47,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("UpdateDiscount")]
+        [HttpPost("UpdateDiscount")]
         public IActionResult Put([FromBody] DiscountDtoUpdate discountUpdate)
         {
             var result = this.discountService.Update(discountUpdate);

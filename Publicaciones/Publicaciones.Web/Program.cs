@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Publicaciones.Infrastructure.Context;
+using Publicaciones.Ioc.Dependencies;
+
 namespace Publicaciones.Web
 {
     public class Program
@@ -5,6 +9,12 @@ namespace Publicaciones.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<PublicacionesContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("PubsContext")));
+
+            builder.Services.AddDiscountDependency();
+            builder.Services.AddSaleDependency();
+            builder.Services.AddStoreDependency();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

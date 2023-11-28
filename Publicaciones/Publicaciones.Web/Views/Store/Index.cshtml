@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Publicaciones.Web.Models.Responses.Store.StoreViewResult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Stores</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.storeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.storeAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.state)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.zip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.storeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storeAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.zip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creationDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.storeID  }) |
+                @Html.ActionLink("Details", "Details", new { id=item.storeID }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Publicaciones.Web.Models.Responses.Discount.DiscountViewResult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Discounts</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.discountType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.storeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lowQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.highQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.discountAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.discountType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.storeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lowQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.highQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discountAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.creationDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.discountID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.discountID }) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

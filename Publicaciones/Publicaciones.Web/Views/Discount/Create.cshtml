@@ -1,0 +1,52 @@
+﻿@model Publicaciones.Application.Dtos.Discount.DiscountDtoAdd
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Discount</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Store ID</label>
+                <input asp-for="StoreID" class="form-control" />
+                <span asp-validation-for="StoreID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Discount Type</label>
+                <input asp-for="DiscountType" class="form-control" />
+                <span asp-validation-for="DiscountType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Low Quantity</label>
+                <input asp-for="LowQty" class="form-control" />
+                <span asp-validation-for="LowQty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">High Quantity</label>
+                <input asp-for="HighQty" class="form-control" />
+                <span asp-validation-for="HighQty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Amount</label>
+                <input asp-for="DiscountAmount" class="form-control" />
+                <span asp-validation-for="DiscountAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

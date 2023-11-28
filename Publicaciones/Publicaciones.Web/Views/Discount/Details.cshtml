@@ -1,0 +1,53 @@
+﻿@model Publicaciones.Web.Models.Responses.Discount.DiscountViewResult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.discountType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.discountType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.storeID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.storeID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.lowQty)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.lowQty)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.highQty)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.highQty)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.discountAmount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.discountAmount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.discountID  }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,59 @@
+﻿@model Publicaciones.Web.Models.Responses.Sale.SaleViewResult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.storeID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.storeID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ordNum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ordNum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ordDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ordDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.qty)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.qty)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.payterms)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.payterms)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.titleID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.titleID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { storeID = Model.storeID, ordNum = Model.ordNum, titleID = Model.titleID }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -26,6 +26,7 @@ namespace Publicaciones.Application.Services
             this.logger = logger;
             this.configuration = configuration;
         }
+
         public ServiceResult GetAll()
         {
             ServiceResult result = new ServiceResult();
@@ -80,7 +81,6 @@ namespace Publicaciones.Application.Services
             try
             {
                 DiscountValidation.ValidateAddDiscount(dtoAdd, configuration);
-
                 Discount discount = new Discount()
                 {
                     CreationDate = dtoAdd.ChangeDate,
@@ -117,7 +117,6 @@ namespace Publicaciones.Application.Services
             try
             {
                 DiscountValidation.ValidateUpdateDiscount(dtoUpdate, configuration);
-
                 Discount discount = new Discount()
                 {
                     DiscountID = dtoUpdate.DiscountID,
@@ -155,7 +154,6 @@ namespace Publicaciones.Application.Services
             try
             {
                 DiscountValidation.ValidateRemoveDiscount(dtoRemove, configuration);
-
                 Discount discount = new Discount()
                 {
                     DiscountID = dtoRemove.DiscountID,

@@ -14,7 +14,7 @@ namespace Publicaciones.Application.Validations
         }
         public static bool ContainsOnlyLetters(string text)
         {
-            return Regex.IsMatch(text, "^[a-zA-Z]+$");
+            return Regex.IsMatch(text, "^[a-zA-Z ]+$");
         }
         public static bool ContainsOnlyNumbers(string text)
         {

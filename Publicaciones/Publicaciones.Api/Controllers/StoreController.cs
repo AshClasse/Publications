@@ -48,7 +48,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPut("UpdateStore")]
+        [HttpPost("UpdateStore")]
         public IActionResult Put([FromBody] StoreDtoUpdate storeUpdate)
         {
             var result = this.storeService.Update(storeUpdate);

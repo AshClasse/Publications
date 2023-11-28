@@ -1,7 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Publicaciones.Infrastructure.Context;
-using Publicaciones.Infrastructure.Interfaces;
-using Publicaciones.Infrastructure.Repository;
 using Publicaciones.Ioc.Dependencies;
 
 namespace Publicaciones.Api
