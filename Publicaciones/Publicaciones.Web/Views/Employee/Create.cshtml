@@ -1,0 +1,66 @@
+﻿@model Publicaciones.Application.DTO.Employee.EmployeeDtoAdd
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="card bg-light col-8 offset-4" style="width:400px; font-family:'Times New Roman', Times, serif">
+    <div class="card-header">
+        <h4 class="text-center">
+            Register an employee
+        </h4>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="control-label">First Name:</label>
+                    <input asp-for="FirstName" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Last Name:</label>
+                    <input asp-for="LastName" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Joblvl:</label>
+                    <input asp-for="Joblvl" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="Joblvl" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label">HireDate:</label>
+                    <input asp-for="HireDate" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label">HireDate:</label>
+                    <input asp-for="HireDate" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="control-label">HireDate:</label>
+                    <input asp-for="HireDate" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+                <hr />
+                <div class="card-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" /> |
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

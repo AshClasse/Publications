@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Publicaciones.Ioc.Dependencies;
+using Publicaciones.Infrastructure.Context;
+
 namespace Publicaciones.Web
 {
     public class Program
@@ -6,8 +10,20 @@ namespace Publicaciones.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Context SQL // 
+
+            var connectionString = builder.Configuration.GetConnectionString("DBpublicaciones");
+
+            builder.Services.AddDbContext<PublicacionesContext>(options => options.UseSqlServer(connectionString));
+
+
             // Add services to the container.
+
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddEmployeeDependency();
+            builder.Services.AddPublisherDependency();
+            builder.Services.AddJobDependency();
 
             var app = builder.Build();
 
@@ -24,8 +40,8 @@ namespace Publicaciones.Web
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
+                pattern: "{controller=Home}/{action=Index}/{ID?}");
+ 
             app.Run();
         }
     }
