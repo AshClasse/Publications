@@ -1,5 +1,3 @@
 is_global = true
 build_property.RootNamespace = Publicaciones.Application
-build_property.ProjectDir = C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Application\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = C:\Proyecto_fina_progII\Publicaciones\Publicaciones.Application\

@@ -5,8 +5,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Publicaciones.Application\Publicaciones.Application.csproj" />
-  </ItemGroup>
-
 </Project>

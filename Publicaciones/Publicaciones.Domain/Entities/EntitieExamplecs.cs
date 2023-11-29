@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Publicaciones.Infrastructure.Context
+namespace Publicaciones.Domain.Entities
 {
-    public class PublicacionesContext
+    internal class EntitieExamplecs
     {
     }
 }

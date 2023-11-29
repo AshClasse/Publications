@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Publicaciones.Infrastructure.Context
+namespace Publicaciones.Infrastructure.Repository
 {
-    public class PublicacionesContext
+    public class RepositoryExample
     {
     }
 }
