@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Publicaciones.Web.Models.Pub_InfoViewResult>
+﻿@model IEnumerable<Publicaciones.Web.Models.Responses.Pub_Info.Pub_InfoViewResult>
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +12,7 @@
 <table class="table">
     <thead>
         <tr>
+
             <th>
                 @Html.DisplayNameFor(model => model.pubName)
             </th>
@@ -43,8 +44,9 @@
                 @Html.DisplayFor(modelItem => item.state)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id= item.pub_InfoID }) |
-                @Html.ActionLink("Details", "Details", new { id= item.pub_InfoID })
+                @Html.ActionLink("Edit", "Edit", new { id=item.pub_InfoID }) |
+                @Html.ActionLink("Details", "Details", new {id=item.pub_InfoID  }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.pub_InfoID })
             </td>
         </tr>
 }

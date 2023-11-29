@@ -1,54 +1,42 @@
-﻿@model Publicaciones.Application.Dtos.Pub_Info.Pub_InfoDtoGetAll
+﻿@model Publicaciones.Web.Models.Responses.Pub_Info.Pub_InfoViewResult
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Pub_Info</h1>
 
 <div>
     <h4>Pub_InfoDtoGetAll</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PubInfoID)
+            @Html.DisplayNameFor(model => model.pubName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PubInfoID)
+            @Html.DisplayFor(model => model.pubName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.prInfo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.prInfo)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PubId)
+            @Html.DisplayNameFor(model => model.city)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PubId)
+            @Html.DisplayFor(model => model.city)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Logo)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.state)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Pr_Info)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Pr_Info)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ChangeUser)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ChangeUser)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ChangeDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ChangeDate)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.state)
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PubInfoID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pub_InfoID }) |
     <a asp-action="Index">Back to List</a>
 </div>

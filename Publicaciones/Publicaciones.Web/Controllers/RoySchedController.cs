@@ -5,11 +5,13 @@ using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.RoySched;
 using Publicaciones.Application.Service;
-using Publicaciones.Web.Models;
+using Publicaciones.Web.Models.Responses;
+using Publicaciones.Web.Models.Responses.Pub_Info;
+using Publicaciones.Web.Models.Responses.RoySched;
 
 namespace Publicaciones.Web.Controllers
 {
-	public class RoySchedController : Controller
+    public class RoySchedController : Controller
 	{
 		private readonly IRoySchedService _roySchedService;
 
@@ -42,7 +44,7 @@ namespace Publicaciones.Web.Controllers
                     }
                     else
                     {
-                        roySchedList.message = "Error conectandose al api.";
+                        roySchedList.message = "Error connecting to API.";
                         roySchedList.success = false;
                         ViewBag.Message = roySchedList.message;
                         return View();
@@ -57,13 +59,36 @@ namespace Publicaciones.Web.Controllers
 		public ActionResult Details(int id)
 		{
 
-            var result = _roySchedService.GetByID(id);
-            if (!result.Success)
+            RoySchedDetailsResponse roySchedDetailsResponse = new RoySchedDetailsResponse();
+
+            using (var client = new HttpClient(this.clientHandler))
             {
-                ViewBag.Messag = result.Message;
-                return View();
+                var url = $"http://localhost:5196/api/RoySched/GetRoySchedByID?ID={id}";
+
+                using (var response = client.GetAsync(url).Result)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = response.Content.ReadAsStringAsync().Result;
+                        roySchedDetailsResponse = JsonConvert.DeserializeObject<RoySchedDetailsResponse>(apiResponse);
+
+                        if (!roySchedDetailsResponse.success)
+                        {
+                            ViewBag.Message = roySchedDetailsResponse.message;
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        roySchedDetailsResponse.message = "Error connecting to API.";
+                        roySchedDetailsResponse.success = false;
+                        ViewBag.Message = roySchedDetailsResponse.message;
+                        return View();
+                    }
+                }
             }
-            return View(result.Data);
+
+            return View(roySchedDetailsResponse.data);
         }
 
 		// GET: RoySchedController/Create
@@ -72,26 +97,54 @@ namespace Publicaciones.Web.Controllers
 			return View();
 		}
 
-		// POST: RoySchedController/Create
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(RoySchedDtoAdd dtoAdd)
-		{
-            ServiceResult result = new ServiceResult();
+        // POST: RoySchedController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(RoySchedDtoAdd dtoAdd)
+        {
+            BaseResponse baseResponse = new BaseResponse();
 
             try
             {
-                if (!result.Success)
+                using (var client = new HttpClient(this.clientHandler))
                 {
-                    ViewBag.Message = result.Message;
-                    return View();
+
+                    var url = $"http://localhost:5196/api/RoySched/SaveRoySched";
+
+                    dtoAdd.ChangeDate = DateTime.Now;
+                    dtoAdd.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoAdd), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+                        }
+                        else
+                        {
+                            baseResponse.message = "Error connecting to API.";
+                            baseResponse.success = false;
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
                 }
-                result = _roySchedService.Save(dtoAdd);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                ViewBag.Message = result.Message;
+                ViewBag.Message = baseResponse.message;
                 return View();
             }
         }
@@ -99,23 +152,86 @@ namespace Publicaciones.Web.Controllers
 		// GET: RoySchedController/Edit/5
 		public ActionResult Edit(int id)
 		{
-			return View();
-		}
+            RoySchedDetailsResponse roySchedDetailsResponse = new RoySchedDetailsResponse();
+
+            using (var client = new HttpClient(this.clientHandler))
+            {
+                var url = $"http://localhost:5196/api/RoySched/GetRoySchedByID?ID={id}";
+
+                using (var response = client.GetAsync(url).Result)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = response.Content.ReadAsStringAsync().Result;
+                        roySchedDetailsResponse = JsonConvert.DeserializeObject<RoySchedDetailsResponse>(apiResponse);
+
+                        if (!roySchedDetailsResponse.success)
+                        {
+                            ViewBag.Message = roySchedDetailsResponse.message;
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        roySchedDetailsResponse.message = "Error connecting to API.";
+                        roySchedDetailsResponse.success = false;
+                        ViewBag.Message = roySchedDetailsResponse.message;
+                        return View();
+                    }
+                }
+            }
+            return View(roySchedDetailsResponse.data);
+        }
 
 		// POST: RoySchedController/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(RoySchedDtoUpdate dtoUpdate)
 		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
+            BaseResponse baseResponse = new BaseResponse();
 
-	}
+            try
+            {
+                using (var client = new HttpClient(this.clientHandler))
+                {
+
+                    var url = $"http://localhost:5196/api/RoySched/UpdateRoySched";
+
+                    dtoUpdate.ChangeDate = DateTime.Now;
+                    dtoUpdate.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoUpdate), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+                        }
+                        else
+                        {
+                            baseResponse.message = "Error connecting to API.";
+                            baseResponse.success = false;
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                ViewBag.Message = baseResponse.message;
+                return View();
+            }
+        }
+    }
 }

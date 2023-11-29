@@ -1,0 +1,42 @@
+﻿@model Publicaciones.Web.Models.Responses.RoySched.RoySchedViewResult
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>RoySchedDtoGetAll</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.royalty)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.royalty)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.loRange)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.loRange)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.hiRange)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.hiRange)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.roySchedID }) |
+    <a asp-action="Index">Back to List</a>
+</div>

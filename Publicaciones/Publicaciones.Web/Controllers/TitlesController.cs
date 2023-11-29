@@ -6,7 +6,9 @@ using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Titles;
 using Publicaciones.Application.Service;
 using Publicaciones.Domain.Repository;
-using Publicaciones.Web.Models;
+using Publicaciones.Web.Models.Responses;
+using Publicaciones.Web.Models.Responses.RoySched;
+using Publicaciones.Web.Models.Responses.Titles;
 
 namespace Publicaciones.Web.Controllers
 {
@@ -43,7 +45,7 @@ namespace Publicaciones.Web.Controllers
                     }
                     else
                     {
-                        titlesList.message = "Error conectandose al api.";
+                        titlesList.message = "Error connecting to API.";
                         titlesList.success = false;
                         ViewBag.Message = titlesList.message;
                         return View();
@@ -57,21 +59,36 @@ namespace Publicaciones.Web.Controllers
         // GET: TitlesController/Details/5
         public ActionResult Details(int id)
         {
-            var existsResult = this._titlesService.Exists(id);
+            TitlesDetailsResponse titlesDetailsResponse = new TitlesDetailsResponse();
 
-            if (!existsResult.Success)
+            using (var client = new HttpClient(this.clientHandler))
             {
-                ViewBag.Messag = existsResult.Message;
-                return View();
+                var url = $"http://localhost:5196/api/Titles/GetTitleByID?ID={id}";
+
+                using (var response = client.GetAsync(url).Result)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = response.Content.ReadAsStringAsync().Result;
+                        titlesDetailsResponse = JsonConvert.DeserializeObject<TitlesDetailsResponse>(apiResponse);
+
+                        if (!titlesDetailsResponse.success)
+                        {
+                            ViewBag.Message = titlesDetailsResponse.message;
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        titlesDetailsResponse.message = "Error connecting to API.";
+                        titlesDetailsResponse.success = false;
+                        ViewBag.Message = titlesDetailsResponse.message;
+                        return View();
+                    }
+                }
             }
 
-            var result = _titlesService.GetByID(id);
-            if (!result.Success)
-            {
-                ViewBag.Messag = result.Message;
-                return View();
-            }
-            return View(result.Data);
+            return View(titlesDetailsResponse.data);
         }
 
         // GET: TitlesController/Create
@@ -85,21 +102,49 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TitlesDtoAdd dtoAdd)
         {
-            ServiceResult result = new ServiceResult();
+            BaseResponse baseResponse = new BaseResponse();
 
             try
             {
-                if (!result.Success)
+                using (var client = new HttpClient(this.clientHandler))
                 {
-                    ViewBag.Message = result.Message;
-                    return View();
+
+                    var url = $"http://localhost:5196/api/Titles/SaveTitle";
+
+                    dtoAdd.ChangeDate = DateTime.Now;
+                    dtoAdd.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoAdd), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+                        }
+                        else
+                        {
+                            baseResponse.message = "Error connecting to API.";
+                            baseResponse.success = false;
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
                 }
-                result = _titlesService.Save(dtoAdd);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                ViewBag.Message = result.Message;
+                ViewBag.Message = baseResponse.message;
                 return View();
             }
         }
@@ -107,23 +152,87 @@ namespace Publicaciones.Web.Controllers
         // GET: TitlesController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            TitlesDetailsResponse titlesDetailsResponse = new TitlesDetailsResponse();
+
+            using (var client = new HttpClient(this.clientHandler))
+            {
+                var url = $"http://localhost:5196/api/Titles/GetTitleByID?ID={id}";
+
+                using (var response = client.GetAsync(url).Result)
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = response.Content.ReadAsStringAsync().Result;
+                        titlesDetailsResponse = JsonConvert.DeserializeObject<TitlesDetailsResponse>(apiResponse);
+
+                        if (!titlesDetailsResponse.success)
+                        {
+                            ViewBag.Message = titlesDetailsResponse.message;
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        titlesDetailsResponse.message = "Error connecting to API.";
+                        titlesDetailsResponse.success = false;
+                        ViewBag.Message = titlesDetailsResponse.message;
+                        return View();
+                    }
+                }
+            }
+
+            return View(titlesDetailsResponse.data);
         }
 
         // POST: TitlesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(TitlesDtoUpdate dtoUpdate)
         {
+            BaseResponse baseResponse = new BaseResponse();
+
             try
             {
+                using (var client = new HttpClient(this.clientHandler))
+                {
+
+                    var url = $"http://localhost:5196/api/Titles/UpdateTitle";
+
+                    dtoUpdate.ChangeDate = DateTime.Now;
+                    dtoUpdate.ChangeUser = 1;
+
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoUpdate), System.Text.Encoding.UTF8, "application/json");
+
+                    using (var response = client.PostAsync(url, content).Result)
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string apiResponse = response.Content.ReadAsStringAsync().Result;
+
+                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
+
+                            if (!baseResponse.success)
+                            {
+                                ViewBag.Message = baseResponse.message;
+                                return View();
+                            }
+                        }
+                        else
+                        {
+                            baseResponse.message = "Error connecting to API.";
+                            baseResponse.success = false;
+                            ViewBag.Message = baseResponse.message;
+                            return View();
+                        }
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
+                ViewBag.Message = baseResponse.message;
                 return View();
             }
         }
-
     }
 }

@@ -114,7 +114,7 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("RemovePub_Info")]
+		[HttpPost("RemovePub_Info")]
 		public IActionResult Remove([FromBody] Pub_InfoDtoRemove pub_InfoDtoRemove)
 		{
 			var existsResult = this._pub_infoService.Exists(pub_InfoDtoRemove.Id);

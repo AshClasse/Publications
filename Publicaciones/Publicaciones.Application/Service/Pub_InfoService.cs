@@ -55,7 +55,7 @@ namespace Publicaciones.Application.Service
 			ServiceResult result = new ServiceResult();
 			try
 			{
-				result.Data = this._pub_info_repository.GetPub_InfosByPublisherID(id);
+				result.Data = this._pub_info_repository.GetInfoPublisherByID(id);
 				result.Message = $"{configuration["PubInfoSuccessMessage:getByIdSuccessMessage"]}";
 			}
 			catch (Pub_InfoServiceException ex)

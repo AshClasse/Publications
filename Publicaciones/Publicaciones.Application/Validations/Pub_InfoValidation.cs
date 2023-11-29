@@ -29,12 +29,6 @@ namespace Publicaciones.Application.Validations
 				throw new Pub_InfoServiceException(errorMessage);
 			}
 
-			if(logo.GetType() != typeof(byte))
-			{
-				string errorMessage = $"{configuration["ValidationMessage:pubInfoLogoIsByte"]}";
-				throw new Pub_InfoServiceException(errorMessage);
-			}
-
 			if(pr_Info.GetType() != typeof(string))
 			{
 				string errorMessage = $"{configuration["ValidationMessage:pubInfoContainsOnlyLetters"]}";

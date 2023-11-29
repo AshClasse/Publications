@@ -56,10 +56,8 @@ namespace Publicaciones.Application.Service
 		public ServiceResult GetByID(int id)
 		{
 			ServiceResult result = new ServiceResult();
-
 			try
 			{
-
 				result.Data = this._roySchedRepository.RoySchedTitle(id);
 				result.Message = $"{configuration["RoySchedSuccessMessage:getByIdSuccessMessage"]}";
 			}
