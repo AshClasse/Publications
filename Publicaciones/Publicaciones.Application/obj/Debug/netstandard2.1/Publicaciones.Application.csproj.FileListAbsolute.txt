@@ -30,3 +30,19 @@ C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Pro
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.pdb
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.csproj.CopyComplete
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Application.deps.json
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Application.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Application.pdb
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.pdb
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.csproj.AssemblyReference.cache
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.AssemblyInfoInputs.cache
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.AssemblyInfo.cs
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.csproj.CoreCompileInputs.cache
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.sourcelink.json
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.csproj.CopyComplete
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.pdb

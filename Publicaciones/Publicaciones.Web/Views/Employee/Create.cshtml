@@ -1,5 +1,4 @@
-﻿@model Publicaciones.Application.DTO.Employee.EmployeeDtoAdd
-
+﻿@model Publicaciones.Web.ViewModels.Models.AddEmpViewModel
 @{
     ViewData["Title"] = "Create";
 }
@@ -37,14 +36,14 @@
                     <span asp-validation-for="HireDate" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="control-label">HireDate:</label>
-                    <input asp-for="HireDate" class="form-control form-control-lg w-100" />
-                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                    <label class="control-label">Job ID:</label>
+                    <input asp-for="JobID" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="JobID" class="text-danger"></span>
                 </div>
                 <div class="form-group mb-3">
-                    <label class="control-label">HireDate:</label>
-                    <input asp-for="HireDate" class="form-control form-control-lg w-100" />
-                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                    <label class="control-label">Publisher ID:</label>
+                    <input asp-for="PubID" class="form-control form-control-lg w-100" />
+                    <span asp-validation-for="PubID" class="text-danger"></span>
                 </div>
                 <hr />
                 <div class="card-footer">

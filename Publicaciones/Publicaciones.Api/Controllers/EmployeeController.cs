@@ -35,7 +35,7 @@ namespace Publicaciones.Api.Controllers
         public IActionResult GetAll()
         {
             var result = _employeeService.GetAll();
-            
+
             if (!result.Success)
                 return BadRequest(result);
 
@@ -48,10 +48,10 @@ namespace Publicaciones.Api.Controllers
         public IActionResult SaveEmployees([FromBody] EmployeeDtoAdd empdtoadd)
         {
             var result = _employeeService.Save(empdtoadd);
-            
+
             if (!result.Success)
                 return BadRequest(result);
-           
+
             return Ok(result);
         }
 
@@ -61,7 +61,7 @@ namespace Publicaciones.Api.Controllers
         public IActionResult UpdateEmployees([FromBody] EmployeeDtoUpdate empdtoupdate)
         {
             var result = _employeeService.Update(empdtoupdate);
-            
+
             if (!result.Success)
                 return BadRequest(result);
 
@@ -69,12 +69,12 @@ namespace Publicaciones.Api.Controllers
         }
 
         //DELETE_ENDPOINT
-        [HttpDelete("DeleteEmployees")]
+        [HttpPost("DeleteEmployees")]
 
         public IActionResult RemoveEmployees([FromBody] EmployeeDtoRemove empdtoremove)
         {
             var result = _employeeService.Remove(empdtoremove);
-            
+
             if (!result.Success)
                 return BadRequest();
 

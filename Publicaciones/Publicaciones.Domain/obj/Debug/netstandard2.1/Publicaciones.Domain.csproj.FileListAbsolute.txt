@@ -18,3 +18,13 @@ C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Pro
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.sourcelink.json
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\Proyecto de P2\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.deps.json
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.AssemblyInfoInputs.cache
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.AssemblyInfo.cs
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.csproj.CoreCompileInputs.cache
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.sourcelink.json
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb
