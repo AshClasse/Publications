@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AldMYlhrs6YAOimB8bnrhlruiX0VlDor30aWvqDWBad8JjHDmtvYZOo36Cl8N57DasWOU9Oi1+ctyHaFQvqjGg==",
+  "dgSpecHash": "QXOScElyhzBL2RO9V+1JV8Tf172djyiMNxOijCHEMc9u6zF2xnxx8UpoLaAi3PpDaNmpWpB7ccxCBtTpqBotUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+  "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\P2FINAL\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\misam\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

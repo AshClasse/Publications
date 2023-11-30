@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ymmX4GDJT1c8N8oPXbFT57OHWYYt796e+EQUb7XTRP9+5EZvczlbYREyZ1f2Qhgy2if5UJZnqCKeLKHT1D7BCw==",
+  "dgSpecHash": "8FhTtbDi4A7xVNpWTYWwGijam2cFKstHZyGWOtJPHBqUvgdBK+Zk+VqOKN2x1jbWCmWRKwYU+DG0oZE1YX1x6w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\Proyecto de P2\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+  "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\P2FINAL\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
