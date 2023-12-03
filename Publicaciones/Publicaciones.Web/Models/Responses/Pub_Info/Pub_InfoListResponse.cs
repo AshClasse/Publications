@@ -1,6 +1,6 @@
 ﻿namespace Publicaciones.Web.Models.Responses.Pub_Info
 {
-    public class Pub_InfoListResponse
+    public class Pub_InfoListResponse : BaseResponse
     {
         public bool success { get; set; }
         public object message { get; set; }
