@@ -59,7 +59,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("RemoveStore")]
+        [HttpPost("RemoveStore")]
         public IActionResult Remove([FromBody] StoreDtoRemove storeRemove)
         {
             var result = this.storeService.Remove(storeRemove);

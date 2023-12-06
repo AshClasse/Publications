@@ -8,7 +8,6 @@ using Publicaciones.Application.Validations;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 using System;
-using System.Linq;
 
 namespace Publicaciones.Application.Services
 {
@@ -173,6 +172,42 @@ namespace Publicaciones.Application.Services
             {
                 result.Success = false;
                 result.Message = $"{configuration["DiscountErrorMessage:removeErrorMessage"]}";
+                this.logger.LogError(result.Message, ex.ToString());
+            }
+            return result;
+        }
+
+        public ServiceResult Exists(int discountID)
+        {
+            ServiceResult result = new ServiceResult();
+
+            try
+            {
+                var exists = this.discountRepository.Exists(pi => pi.DiscountID == discountID);
+
+                if (!exists)
+                {
+                    result.Success = false;
+
+                    if (discountID == 0)
+                    {
+                        result.Message = $"{configuration["ValidationMessage:discountIDRequired"]}";
+                    }
+                    else if (discountID < 0)
+                    {
+                        result.Message = $"{configuration["ValidationMessage:discountIDIsPositiveInt"]}";
+                    }
+                    else
+                    {
+                        result.Message = $"{configuration["ValidationMessage:discountIdExists"]}";
+                    }
+                }
+
+                result.Data = exists;
+            }
+            catch (Exception ex)
+            {
+                result.Success = false;
                 this.logger.LogError(result.Message, ex.ToString());
             }
             return result;

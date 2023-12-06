@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Ioc.Dependencies;
+using Publicaciones.Web.Service;
 
 namespace Publicaciones.Web
 {
@@ -15,6 +16,8 @@ namespace Publicaciones.Web
             builder.Services.AddDiscountDependency();
             builder.Services.AddSaleDependency();
             builder.Services.AddStoreDependency();
+            builder.Services.AddScoped<IApiService, ApiService>();
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

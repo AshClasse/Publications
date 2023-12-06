@@ -1,0 +1,36 @@
+﻿@model Publicaciones.Application.Dtos.Store.StoreDtoRemove
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Store</h1>
+
+<div class="card bg-light col-6 offset-3" style="width:600px; font-family:'Times New Roman', Times, serif">
+    <div class="card-header">
+        <h3>Are you sure you want to delete this?</h3>
+        <hr />
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Store ID:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.StoreID)</dd>
+
+            <dt class="col-sm-3">Deleted User:</dt>
+            <dd class="col-sm-9"> @Html.DisplayFor(model => model.ChangeUser)</dd>
+
+            <dt class="col-sm-3">Deleted Date:</dt>
+            <dd class="col-sm-9"> @Html.DisplayFor(model => DateTime.Now) </dd>
+        </dl>
+        <div class="card-footer">
+            <form asp-controller="store" asp-action="Delete" method="post">
+                <input asp-for="StoreID" type="hidden" />
+                <input asp-for="Deleted" type="hidden" />
+                <input asp-for="ChangeUser" type="hidden" />
+                <input asp-for="ChangeDate" type="hidden" />
+                <button type="submit" class="btn btn-danger">Delete</button> |
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>

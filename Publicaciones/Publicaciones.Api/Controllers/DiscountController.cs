@@ -58,7 +58,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("RemoveDiscount")]
+        [HttpPost("RemoveDiscount")]
         public IActionResult Remove([FromBody] DiscountDtoRemove discountRemove)
         {
             var result = this.discountService.Remove(discountRemove);

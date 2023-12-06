@@ -106,21 +106,15 @@ namespace Publicaciones.Application.Validations
         }
         public static void ValidateRemoveDiscount(DiscountDtoRemove discountDtoRemove, IConfiguration configuration)
         {
-            if (!ValidationUtility.IsInt(discountDtoRemove.DiscountID))
+            if (discountDtoRemove.DiscountID.GetType() != typeof(int))
             {
-                string errorMessage = $"{configuration["ValidationMessage:discountIDIsInt"]}";
+                string errorMessage = configuration["ValidationMessage:discountIDIsInt"];
                 throw new DiscountServiceException(errorMessage);
             }
 
-            if (discountDtoRemove.DiscountID <= 0)
+            if (discountDtoRemove.Deleted == true)
             {
-                string errorMessage = $"{configuration["ValidationMessage:discountIDIsPositiveInt"]}";
-                throw new DiscountServiceException(errorMessage);
-            }
-
-            if (!discountDtoRemove.Deleted)
-            {
-                string errorMessage = $"{configuration["DiscountErrorMessage:removeErrorMessage"]}";
+                string errorMessage = configuration["DiscountErrorMessage:removeErrorMessage"];
                 throw new DiscountServiceException(errorMessage);
             }
         }

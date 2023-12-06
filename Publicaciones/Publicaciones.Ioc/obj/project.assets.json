@@ -7174,11 +7174,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+      "projectUniqueName": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
       "projectName": "Publicaciones.Ioc",
-      "projectPath": "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+      "projectPath": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
       "packagesPath": "C:\\Users\\Rachely Perez\\.nuget\\packages\\",
-      "outputPath": "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Ioc\\obj\\",
+      "outputPath": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Ioc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7200,8 +7200,8 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
-              "projectPath": "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+            "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+              "projectPath": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
             }
           }
         }

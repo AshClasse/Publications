@@ -1,86 +1,51 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Dtos.Store;
 using Publicaciones.Web.Models.Responses;
 using Publicaciones.Web.Models.Responses.Store;
+using Publicaciones.Web.Service;
 
 namespace Publicaciones.Web.Controllers
 {
     public class StoreController : Controller
     {
         private readonly IStoreService storeService;
-        HttpClientHandler clientHandler = new HttpClientHandler();
+        private readonly string storeApiURLBase;
+        private readonly IApiService apiService;
 
-        public StoreController(IStoreService storeService)
+        public StoreController(IStoreService storeService, IApiService apiService, IConfiguration configuration)
         {
             this.storeService = storeService;
+            this.apiService = apiService;
+            this.storeApiURLBase = configuration["ApiSettings:StoreApiBaseUrl"];
         }
         public ActionResult Index()
         {
-            StoreListResponse storeList = new StoreListResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                using (var response = client.GetAsync("http://localhost:5196/api/Store/GetStores").Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        storeList = JsonConvert.DeserializeObject<StoreListResponse>(apiResponse);
-
-                        if(!storeList.success)
-                        {
-                            ViewBag.Message = storeList.message;
-                            return View();
-                        }   
-                    }
-                    else
-                    {
-                        storeList.message = "Error connecting to API.";
-                        storeList.success = false;
-                        ViewBag.Message = storeList.message;
-                        return View();
-                    }
-                }
+                BaseResponse<List<StoreViewResult>> responseData = apiService.GetDataFromApi<List<StoreViewResult>>($"{storeApiURLBase}GetStores");
+                return View(responseData.data);
             }
-
-            return View(storeList.data);
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // GET: StoreController/Details/5
         public ActionResult Details(int id)
         {
-            StoreDetailsResponse storeDetailsResponse = new StoreDetailsResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                var url = $"http://localhost:5196/api/Store/GetStoreByID?storeID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        storeDetailsResponse = JsonConvert.DeserializeObject<StoreDetailsResponse>(apiResponse);
-
-                        if(!storeDetailsResponse.success)
-                        {
-                            ViewBag.Message = storeDetailsResponse.message;
-                            return View();
-                        }  
-                    }
-                    else
-                    {
-                        storeDetailsResponse.message = "Error connecting to API.";
-                        storeDetailsResponse.success = false;
-                        ViewBag.Message = storeDetailsResponse.message;
-                        return View();
-                    }
-                }
+                BaseResponse<StoreViewResult> responseData = apiService.GetDataFromApi<StoreViewResult>($"{storeApiURLBase}GetStoreByID?storeID={id}");
+                return View(responseData.data);
             }
-
-            return View(storeDetailsResponse.data);
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // GET: StoreController/Create
@@ -94,52 +59,20 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreDtoAdd storeDtoAdd)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{storeApiURLBase}SaveStore";
+
+            storeDtoAdd.ChangeDate = DateTime.Now;
+            storeDtoAdd.ChangeUser = 1;
 
             try
             {
-
-                using (var client = new HttpClient(this.clientHandler))
-                {
-
-                    var url = $"http://localhost:5196/api/Store/SaveStore";
-
-                    storeDtoAdd.ChangeDate = DateTime.Now;
-                    storeDtoAdd.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(storeDtoAdd), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        Console.WriteLine(response.StatusCode);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
+                apiService.PostDataToApi<BaseResponse<StoreDtoAdd>>(apiUrl, storeDtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -147,36 +80,16 @@ namespace Publicaciones.Web.Controllers
         // GET: StoreController/Edit/5
         public ActionResult Edit(int id)
         {
-            StoreDetailsResponse storeDetailsResponse = new StoreDetailsResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                var url = $"http://localhost:5196/api/Store/GetStoreByID?storeID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        storeDetailsResponse = JsonConvert.DeserializeObject<StoreDetailsResponse>(apiResponse);
-
-                        if (!storeDetailsResponse.success)
-                        {
-                            ViewBag.Message = storeDetailsResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        storeDetailsResponse.message = "Error connecting to API.";
-                        storeDetailsResponse.success = false;
-                        ViewBag.Message = storeDetailsResponse.message;
-                        return View();
-                    }
-                }
+                BaseResponse<StoreViewResult> responseData = apiService.GetDataFromApi<StoreViewResult>($"{storeApiURLBase}GetStoreByID?storeID={id}");
+                return View(responseData.data);
             }
-
-            return View(storeDetailsResponse.data);
+            catch( Exception ex )
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // POST: StoreController/Edit/5
@@ -184,49 +97,56 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(StoreDtoUpdate storeDtoUpdate)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{storeApiURLBase}UpdateStore";
+
+            storeDtoUpdate.ChangeDate = DateTime.Now;
+            storeDtoUpdate.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
+                apiService.PostDataToApi<BaseResponse<StoreDtoUpdate>>(apiUrl, storeDtoUpdate);
 
-                    var url = $"http://localhost:5196/api/Store/UpdateStore";
-
-                    storeDtoUpdate.ChangeDate = DateTime.Now;
-                    storeDtoUpdate.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(storeDtoUpdate), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                BaseResponse<StoreDtoRemove> responseData = apiService.GetDataFromApi<StoreDtoRemove>($"{storeApiURLBase}GetStoreByID?storeID={id}");
+                return View(responseData.data);
+            }
+            catch ( Exception ex )
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(StoreDtoRemove storeDtoRemove)
+        {
+            var apiUrl = $"{storeApiURLBase}RemoveStore";
+
+            storeDtoRemove.ChangeDate = DateTime.Now;
+            storeDtoRemove.ChangeUser = 1;
+
+            try
+            {
+                var response = apiService.PostDataToApi<BaseResponse<StoreDtoRemove>>(apiUrl, storeDtoRemove);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }

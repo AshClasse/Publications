@@ -60,7 +60,7 @@ namespace Publicaciones.Api.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("RemoveSale")]
+        [HttpPost("RemoveSale")]
         public IActionResult Remove([FromBody] SaleDtoRemove saleRemove) 
         {
             var result = this.saleService.Remove(saleRemove);

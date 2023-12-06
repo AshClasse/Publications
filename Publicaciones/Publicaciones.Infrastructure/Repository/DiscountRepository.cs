@@ -16,7 +16,6 @@ namespace Publicaciones.Infrastructure.Repository
         {
             this.context = context;
         }
-
         public override void Save(Discount entity)
         {
             context.Discounts.Add(entity);

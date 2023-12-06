@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "w4/VybxmV4MniXVqrg1noailXZ839Ok6w+uDhmri4iys+C2uEDdWCIiVq13qLCqKr9gUiNwuj03gusqmoLzipA==",
+  "dgSpecHash": "cMvz0OWKZrSPAowot8rfUDYNOAHw4VbPwRUFwHOLIrXKExLgFv06rADtsfFZaDsRVhtpBMZv+2evW44tDbfsOg==",
   "success": true,
-  "projectFilePath": "C:\\Pubs_Project3.0\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+  "projectFilePath": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rachely Perez\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Rachely Perez\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -1,84 +1,51 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Dtos.Sale;
 using Publicaciones.Web.Models.Responses;
+using Publicaciones.Web.Models.Responses.Discount;
 using Publicaciones.Web.Models.Responses.Sale;
+using Publicaciones.Web.Service;
 
 namespace Publicaciones.Web.Controllers
 {
     public class SaleController : Controller
     {
         private readonly ISaleService saleService;
-        HttpClientHandler clientHandler = new HttpClientHandler();
+        private readonly string saleApiURLBase;
+        private readonly IApiService apiService;
 
-        public SaleController(ISaleService saleService)
+        public SaleController(ISaleService saleService, IApiService apiService, IConfiguration configuration)
         {
             this.saleService = saleService;
+            this.apiService = apiService;
+            this.saleApiURLBase = configuration["ApiSettings:SaleApiBaseUrl"];
         }
         public ActionResult Index()
         {
-            SaleListResponse saleList = new SaleListResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                using (var response = client.GetAsync("http://localhost:5196/api/Sale/GetSales").Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        saleList = JsonConvert.DeserializeObject<SaleListResponse>(apiResponse);
-
-                        if(!saleList.success)
-                        {
-                            ViewBag.Message = saleList.message;
-                            return View();
-                        }     
-                    }
-                    else
-                    {
-                        saleList.message = "Error connecting to API.";
-                        saleList.success = false;
-                        ViewBag.Message = saleList.message;
-                        return View();
-                    }
-                }
+                BaseResponse<List<SaleViewResult>> responseData = apiService.GetDataFromApi<List<SaleViewResult>>($"{saleApiURLBase}GetSales");
+                return View(responseData.data);
             }
-            return View(saleList.data);
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         public ActionResult Details(int storeID, string ordNum, int titleID)
         {
-            SaleDetailsResponse saleDetailsResponse = new SaleDetailsResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                var url = $"http://localhost:5196/api/Sale/GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        saleDetailsResponse = JsonConvert.DeserializeObject<SaleDetailsResponse>(apiResponse);
-
-                        if(!saleDetailsResponse.success)
-                        {
-                            ViewBag.Message = saleDetailsResponse.message;
-                            return View();
-                        }  
-                    }
-                    else
-                    {
-                        saleDetailsResponse.message = "Error connecting to API.";
-                        saleDetailsResponse.success = false;
-                        ViewBag.Message = saleDetailsResponse.message;
-                        return View();
-                    }
-                }
+                BaseResponse<SaleViewResult> responseData = apiService.GetDataFromApi<SaleViewResult>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
+                return View(responseData.data);
             }
-
-            return View(saleDetailsResponse.data);
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // GET: SaleController/Create
@@ -92,52 +59,20 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SaleDtoAdd saleDtoAdd)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{saleApiURLBase}SaveSale";
+
+            saleDtoAdd.ChangeDate = DateTime.Now;
+            saleDtoAdd.ChangeUser = 1;
 
             try
             {
-
-                using (var client = new HttpClient(this.clientHandler))
-                {
-
-                    var url = $"http://localhost:5196/api/Sale/SaveSale";
-
-                    saleDtoAdd.ChangeDate = DateTime.Now;
-                    saleDtoAdd.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(saleDtoAdd), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        Console.WriteLine(response.StatusCode);
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
+                apiService.PostDataToApi<BaseResponse<SaleDtoAdd>>(apiUrl, saleDtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -145,36 +80,16 @@ namespace Publicaciones.Web.Controllers
         // GET: SaleController/Edit/5
         public ActionResult Edit(int storeID, string ordNum, int titleID)
         {
-            SaleDetailsResponse saleDetailsResponse = new SaleDetailsResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                var url = $"http://localhost:5196/api/Sale/GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        saleDetailsResponse = JsonConvert.DeserializeObject<SaleDetailsResponse>(apiResponse);
-
-                        if (!saleDetailsResponse.success)
-                        {
-                            ViewBag.Message = saleDetailsResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        saleDetailsResponse.message = "Error connecting to API.";
-                        saleDetailsResponse.success = false;
-                        ViewBag.Message = saleDetailsResponse.message;
-                        return View();
-                    }
-                }
+                BaseResponse<SaleViewResult> responseData = apiService.GetDataFromApi<SaleViewResult>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
+                return View(responseData.data);
             }
-
-            return View(saleDetailsResponse.data);
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // POST: SaleController/Edit/5
@@ -182,49 +97,58 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(SaleDtoUpdate saleDtoUpdate)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{saleApiURLBase}UpdateSale";
+
+            saleDtoUpdate.ChangeDate = DateTime.Now;
+            saleDtoUpdate.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
+                apiService.PostDataToApi<BaseResponse<SaleDtoUpdate>>(apiUrl, saleDtoUpdate);
 
-                    var url = $"http://localhost:5196/api/Sale/UpdateSale";
-
-                    saleDtoUpdate.ChangeDate = DateTime.Now;
-                    saleDtoUpdate.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(saleDtoUpdate), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-                            Console.WriteLine(baseResponse.ToString());
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+        // GET: Pub_InfoController/Delete/5
+        public ActionResult Delete(int storeID, string ordNum, int titleID)
+        {
+            try
+            {
+                BaseResponse<SaleDtoRemove> responseData = apiService.GetDataFromApi<SaleDtoRemove>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
+                return View(responseData.data);
+            }
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(SaleDtoRemove dtoRemove)
+        {
+            var apiUrl = $"{saleApiURLBase}RemoveSale";
+
+            dtoRemove.ChangeDate = DateTime.Now;
+            dtoRemove.ChangeUser = 1;
+
+            try
+            {
+                apiService.PostDataToApi<BaseResponse<SaleDtoRemove>>(apiUrl, dtoRemove);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch(ApplicationException ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }

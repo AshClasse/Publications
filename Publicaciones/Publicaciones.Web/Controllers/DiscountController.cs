@@ -1,88 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Dtos.Discount;
 using Publicaciones.Web.Models.Responses;
 using Publicaciones.Web.Models.Responses.Discount;
+using Publicaciones.Web.Service;
 
 namespace Publicaciones.Web.Controllers
 {
     public class DiscountController : Controller
     {
         private readonly IDiscountService discountService;
-        HttpClientHandler clientHandler = new HttpClientHandler();
+        private readonly string discountApiURLBase;
+        private readonly IApiService apiService;
 
-        public DiscountController(IDiscountService discountService)
+        public DiscountController(IDiscountService discountService, IApiService apiService, IConfiguration configuration)
         {
             this.discountService = discountService;
+            this.apiService = apiService;
+            this.discountApiURLBase = configuration["ApiSettings:DiscountApiBaseUrl"];
         }
 
         // GET: DiscountController
         public ActionResult Index()
         {
-            DiscountListResponse discountList = new DiscountListResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                using (var response = client.GetAsync("http://localhost:5196/api/Discount/GetDiscounts").Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        discountList = JsonConvert.DeserializeObject<DiscountListResponse>(apiResponse);
-
-                        if(!discountList.success)
-                        {
-                            ViewBag.Message = discountList.message;
-                            return View();
-                        } 
-                    }
-                    else
-                    {
-                        discountList.message = "Error connecting to API.";
-                        discountList.success = false;
-                        ViewBag.Message = discountList.message;
-                        return View();
-                    }
-                }
+                BaseResponse<List<DiscountViewResult>> responseData = apiService.GetDataFromApi<List<DiscountViewResult>>($"{discountApiURLBase}GetDiscounts");
+                return View(responseData.data);
             }
-
-            return View(discountList.data);
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // GET: DiscountController/Details/5
         public ActionResult Details(int id)
         {
-            DiscountDetailsResponse discountDetailsResponse = new DiscountDetailsResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                var url = $"http://localhost:5196/api/Discount/GetDiscountByID?discountID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        discountDetailsResponse = JsonConvert.DeserializeObject<DiscountDetailsResponse>(apiResponse);
-
-                        if (!discountDetailsResponse.success)
-                        {
-                            ViewBag.Message = discountDetailsResponse.message;
-                            return View();
-                        }    
-                    }
-                    else
-                    {
-                        discountDetailsResponse.message = "Error connecting to API.";
-                        discountDetailsResponse.success = false;
-                        ViewBag.Message = discountDetailsResponse.message;
-                        return View();
-                    }
-                }
+                BaseResponse<DiscountViewResult> responseData = apiService.GetDataFromApi<DiscountViewResult>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
+                return View(responseData.data);
             }
-
-            return View(discountDetailsResponse.data);
+            catch(Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // GET: DiscountController/Create
@@ -96,51 +61,20 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(DiscountDtoAdd discountDtoAdd)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{discountApiURLBase}SaveDiscount";
+
+            discountDtoAdd.ChangeDate = DateTime.Now;
+            discountDtoAdd.ChangeUser = 1;
 
             try
             {
-
-                using (var client = new HttpClient(this.clientHandler))
-                {
-
-                    var url = $"http://localhost:5196/api/Discount/SaveDiscount";
-
-                    discountDtoAdd.ChangeDate = DateTime.Now;
-                    discountDtoAdd.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(discountDtoAdd), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
+                apiService.PostDataToApi<BaseResponse<DiscountDtoAdd>>(apiUrl, discountDtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -148,35 +82,16 @@ namespace Publicaciones.Web.Controllers
         // GET: DiscountController/Edit/5
         public ActionResult Edit(int id)
         {
-            DiscountDetailsResponse discountDetailsResponse = new DiscountDetailsResponse();
-
-            using (var client = new HttpClient(this.clientHandler))
+            try
             {
-                var url = $"http://localhost:5196/api/Discount/GetDiscountByID?discountID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        discountDetailsResponse = JsonConvert.DeserializeObject<DiscountDetailsResponse>(apiResponse);
-
-                        if (!discountDetailsResponse.success)
-                        {
-                            ViewBag.Message = discountDetailsResponse.message;
-                            return View();
-                        }    
-                    }
-                    else
-                    {
-                        discountDetailsResponse.message = "Error connecting to API.";
-                        discountDetailsResponse.success = false;
-                        ViewBag.Message = discountDetailsResponse.message;
-                        return View();
-                    }
-                }
+                BaseResponse<DiscountViewResult> responseData = apiService.GetDataFromApi<DiscountViewResult>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
+                return View(responseData.data);
             }
-            return View(discountDetailsResponse.data);
+            catch(Exception ex) 
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // POST: DiscountController/Edit/5
@@ -184,49 +99,56 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(DiscountDtoUpdate discountDtoUpdate)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{discountApiURLBase}UpdateDiscount";
+
+            discountDtoUpdate.ChangeDate = DateTime.Now;
+            discountDtoUpdate.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
+                apiService.PostDataToApi<BaseResponse<DiscountDtoUpdate>>(apiUrl, discountDtoUpdate);
 
-                    var url = $"http://localhost:5196/api/Discount/UpdateDiscount";
-
-                    discountDtoUpdate.ChangeDate = DateTime.Now;
-                    discountDtoUpdate.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(discountDtoUpdate), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                BaseResponse<DiscountDtoRemove> responseData = apiService.GetDataFromApi<DiscountDtoRemove>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
+                return View(responseData.data);
+            }
+            catch( Exception ex )
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(DiscountDtoRemove discountDtoRemove)
+        {
+            var apiUrl = $"{discountApiURLBase}RemoveDiscount";
+
+            discountDtoRemove.ChangeDate = DateTime.Now;
+            discountDtoRemove.ChangeUser = 1;
+
+            try
+            {
+                apiService.PostDataToApi<BaseResponse<DiscountDtoRemove>>(apiUrl, discountDtoRemove);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Publicaciones.Application.Dtos.Discount;
 using Publicaciones.Application.Dtos.Sale;
 using Publicaciones.Application.Exceptions;
 using System;
@@ -170,10 +171,10 @@ namespace Publicaciones.Application.Validations
                 throw new SaleServiceException(errorMessage);
             }
 
-            if (!saleDtoRemove.Deleted)
+            if (saleDtoRemove.Deleted == true)
             {
-                string errorMessage = $"{configuration["SaleErrorMessage:removeErrorMessage"]}";
-                throw new SaleServiceException(errorMessage);
+                string errorMessage = configuration["SaleErrorMessage:removeErrorMessage"];
+                throw new DiscountServiceException(errorMessage);
             }
         }
 
