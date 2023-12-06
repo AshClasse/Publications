@@ -1,0 +1,17 @@
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Ioc.deps.json
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Ioc.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Ioc.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Application.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Domain.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Application.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\bin\Debug\netstandard2.1\Publicaciones.Infrastructure.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.csproj.AssemblyReference.cache
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.AssemblyInfoInputs.cache
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.AssemblyInfo.cs
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.csproj.CoreCompileInputs.cache
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.csproj.CopyComplete
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Ioc\obj\Debug\netstandard2.1\Publicaciones.Ioc.pdb

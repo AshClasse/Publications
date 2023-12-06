@@ -1,7 +1,7 @@
 ﻿using Publicaciones.Application.Dtos.Base;
 namespace Publicaciones.Application.Dtos.Authors
 {
-	public class AuthorsDtoGetAll : DtoBase
+	public class AuthorsDtoGetAll : AuthorDtoBase
     {
         public int Au_ID { get; set; }
         public string Au_FName { get; set; }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Publicaciones.Api.Models.Modules.TitleAuthor;
+using Publicaciones.Application.Contract;
+using Publicaciones.Application.Dtos.TitleAuthor;
 using Publicaciones.Domain.Entities;
 using Publicaciones.Infrastructure.Interfaces;
 
@@ -9,100 +11,153 @@ namespace Publicaciones.Api.Controllers
 	[ApiController]
 	public class TitleAuthorController : ControllerBase
 	{
-		private readonly ITitleAuthorRepository _titleAuthorRepository;
-		public TitleAuthorController(ITitleAuthorRepository titleAuthorRepository)
+		private readonly ITitleAuthorService titleAuthorService;
+		public TitleAuthorController(ITitleAuthorService titleAuthorService)
 		{
-			this._titleAuthorRepository = titleAuthorRepository;
+			this.titleAuthorService = titleAuthorService;
 		}
 
 		[HttpGet("GetTitlesAuthors")]
 		public IActionResult GetTitleAuthors()
 		{
-			var titleAuthors = this._titleAuthorRepository.GetEntities().Select(ta => new TitleAuthorGetModel()
+			var result = this.titleAuthorService.GetAll();
+			if (!result.Success)
 			{
-				Au_ID = ta.Au_ID,
-				Title_ID = ta.Title_ID,
-				Au_Ord = ta.Au_Ord,
-				RoyaltyPer = ta.RoyaltyPer,
-				ChangeDate = ta.CreationDate,
-				ChangeUser = ta.IDCreationUser
-			}).ToList();
-
-			return Ok(titleAuthors);
-		}
+				return BadRequest(result);
+			}
+            return Ok(result);
+        }
 
 		[HttpGet("GetTitlesAuthorByID")]
 		public IActionResult GetTitlesAuthorByID(int title_ID, int author_ID)
 		{
-			var titleAuthors = this._titleAuthorRepository.GetEntityByID(title_ID, author_ID);
-			return Ok(titleAuthors);
+            var existsInTitlesResult = this.titleAuthorService.ExistInTitles(title_ID);
+            var existsInAuthorResult = this.titleAuthorService.ExistInAuthor(author_ID);
+
+            if (!existsInTitlesResult.Success)
+            {
+                return BadRequest(existsInTitlesResult.Message);
+            }
+            if (!existsInAuthorResult.Success)
+            {
+                return BadRequest(existsInAuthorResult.Message);
+            }
+            var result = this.titleAuthorService.GetTitleAuthorById(title_ID, author_ID);
+			if (!result.Success)
+			{
+				BadRequest(result);
+			}
+			return Ok(result);
 		}
 
 		[HttpGet("GetTitlesAuthorByAuthor")]
 		public IActionResult GetTitlesAuthorByAuthor(int authorID)
 		{
-			var titleAuthors = this._titleAuthorRepository.GetTitleAuthorByAuthor(authorID);
-			return Ok(titleAuthors);
+            var existsInAuthorResult = this.titleAuthorService.ExistInAuthor(authorID);
+            if (!existsInAuthorResult.Success)
+            {
+                return BadRequest(existsInAuthorResult.Message);
+            }
+            var result = this.titleAuthorService.GetTitleByAu_ID(authorID);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
 		}
 
 		[HttpGet("GetTitlesAuthorByAuthorOrder")]
 		public IActionResult GetTitlesAuthorByAuthorOrder(int authorOrd)
 		{
-			var titleAuthors = this._titleAuthorRepository.GetTitleAuthorByAuthorOrder(authorOrd);
-			return Ok(titleAuthors);
-		}
+			var result = this.titleAuthorService.GetTitleAuthorByAuthorOrder(authorOrd);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
 
 		[HttpGet("GetTitlesAuthorByRoyalty")]
 		public IActionResult GetTitlesAuthorByRoyalty(int royalty)
 		{
-			var titleAuthors = this._titleAuthorRepository.GetTitleAuthorByRoyalty(royalty);
-			return Ok(titleAuthors);
-		}
+			var result = this.titleAuthorService.GetTitleAuthorByRoyalty(royalty);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
 
-		[HttpGet("GetTitlesAuthorByTitle")]
+		[HttpGet("GetTitlesAuthorByTitleID")]
 		public IActionResult GetTitlesAuthorByTitle(int title)
 		{
-			var titleAuthors = this._titleAuthorRepository.GetTitleAuthorByTitle(title);
-			return Ok(titleAuthors);
-		}
+            var existsInTitlesResult = this.titleAuthorService.ExistInTitles(title);
+            if (!existsInTitlesResult.Success)
+            {
+                return BadRequest(existsInTitlesResult.Message);
+            }
+            var result = this.titleAuthorService.GetTitleAuthorByTitle(title);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
 
 		[HttpPost("SaveTitleAuthor")]
-		public IActionResult Post([FromBody] TitleAuthorAddModel titleAuthorAdd)
+		public IActionResult Post([FromBody] TitleAuthorDtoAdd titleAuthorDtoAdd)
 		{
-			if (!_titleAuthorRepository.ExistsInAuthors(titleAuthorAdd.Au_ID))
-			{
-				return BadRequest("Non-Existent Author.");
-			}
+            var existsInTitlesResult = this.titleAuthorService.ExistInTitles(titleAuthorDtoAdd.Title_ID);
+            var existsInAuthorResult = this.titleAuthorService.ExistInAuthor(titleAuthorDtoAdd.Au_ID);
 
-			TitleAuthor titleAuthor = new TitleAuthor()
-			{
-				Title_ID = titleAuthorAdd.Title_ID,
-				Au_ID = titleAuthorAdd.Au_ID,
-				Au_Ord = titleAuthorAdd.Au_Ord,
-				RoyaltyPer= titleAuthorAdd.RoyaltyPer,			
-				CreationDate = titleAuthorAdd.ChangeDate,
-				IDCreationUser = titleAuthorAdd.ChangeUser,
-			};
+            if (!existsInTitlesResult.Success)
+            {
+                return BadRequest(existsInTitlesResult.Message);
+            }
+            if (!existsInAuthorResult.Success)
+            {
+                return BadRequest(existsInAuthorResult.Message);
+            }
 
-			this._titleAuthorRepository.Save(titleAuthor);
-			return Created("Object Created", titleAuthor);
+            var result = this.titleAuthorService.Save(titleAuthorDtoAdd);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Created("Object Created", result);
 		}
 
-		[HttpPut("UpdateTitleAuthor")]
-		public IActionResult Put([FromBody] TitleAuthorUpdateModel titleAuthorUpdate)
+		[HttpPost("UpdateTitleAuthor")]
+		public IActionResult Put([FromBody] TitleAuthorDtoUpdate titleAuthorDtoUpdate)
 		{
-			TitleAuthor titleAuthor = new TitleAuthor()
-			{
-				Title_ID = titleAuthorUpdate.Title_ID,
-				Au_ID = titleAuthorUpdate.Au_ID,
-				Au_Ord = titleAuthorUpdate.Au_Ord,
-				RoyaltyPer = titleAuthorUpdate.RoyaltyPer,
-				ModifiedDate = titleAuthorUpdate.ChangeDate,
-				IDModifiedUser = titleAuthorUpdate.ChangeUser
-			};
-			this._titleAuthorRepository.Update(titleAuthor);
-			return Ok();
+            var existsInTitlesResult = this.titleAuthorService.ExistInTitles(titleAuthorDtoUpdate.Title_ID);
+            var existsInAuthorResult = this.titleAuthorService.ExistInAuthor(titleAuthorDtoUpdate.Au_ID);
+
+            if (!existsInTitlesResult.Success)
+            {
+                return BadRequest(existsInTitlesResult.Message);
+            }
+            if (!existsInAuthorResult.Success)
+            {
+                return BadRequest(existsInAuthorResult.Message);
+            }
+            var result = this.titleAuthorService.Update(titleAuthorDtoUpdate);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
 		}
 
-	}
+        [HttpPost("RemoveTitleAuthor")]
+        public IActionResult Remove([FromBody] TitleAuthorDtoRemove titleAuthorDtoRemove)
+        {
+            var result = this.titleAuthorService.Remove(titleAuthorDtoRemove);
+            if (!result.Success)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+    }
 }

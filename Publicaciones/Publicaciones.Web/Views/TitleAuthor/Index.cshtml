@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Publicaciones.Web.Models.Response.TitleAuthorResponse.TitleAuthorViewResult>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.au_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.au_Ord)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.royaltyPer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.changeUser)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.changeDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.au_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.au_Ord)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.royaltyPer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.changeUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.changeDate)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new {au_id=item.au_ID, title_id = item.title_ID}) |
+                    @Html.ActionLink("Details", "Details", new {au_id=item.au_ID, title_id = item.title_ID}) |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

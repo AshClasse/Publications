@@ -1,0 +1,57 @@
+﻿@model Publicaciones.Application.Dtos.TitleAuthor.TitleAuthorDtoAdd
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Au_ID" class="control-label"></label>
+                <input asp-for="Au_ID" class="form-control" />
+                <span asp-validation-for="Au_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"> ID del Título</label>
+                <input asp-for="Title_ID" class="form-control" />
+                <span asp-validation-for="Title_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Author Ord</label>
+                <input asp-for="Au_Ord" class="form-control" />
+                <span asp-validation-for="Au_Ord" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Royalty Per</label>
+                <input asp-for="RoyaltyPer" class="form-control" />
+                <span asp-validation-for="RoyaltyPer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Change User</label>
+                <input asp-for="ChangeUser" class="form-control" />
+                <span asp-validation-for="ChangeUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Change Date</label>
+                <input asp-for="ChangeDate" class="form-control" />
+                <span asp-validation-for="ChangeDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

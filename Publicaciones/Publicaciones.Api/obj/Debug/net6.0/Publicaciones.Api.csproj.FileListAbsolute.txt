@@ -124,3 +124,8 @@ C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\r
 C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.pdb
 C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.genruntimeconfig.cache
 C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\ref\Publicaciones.Api.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.dll
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.pdb
+C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll

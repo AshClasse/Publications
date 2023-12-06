@@ -59,5 +59,17 @@ namespace Publicaciones.Infrastructure.Repository
 			context.Authors.Update(authorsToUpdate);
 			context.SaveChanges();
 		}
-	}
+
+        public override void Remove(Authors entity)
+        {
+            var authorsToRemove = base.GetEntityByID(entity.Au_ID);
+			authorsToRemove.Au_ID = entity.Au_ID;
+            authorsToRemove.Deleted = entity.Deleted;
+            authorsToRemove.DeletedDate = entity.DeletedDate;
+			authorsToRemove.IDDeletedUser = entity.IDDeletedUser;
+
+            context.Authors.Update(authorsToRemove);
+            context.SaveChanges();
+        }
+    }
 }

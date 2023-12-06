@@ -2,6 +2,5 @@
 {
 	public class TitleAuthorDtoUpdate : TitleAuthorDtoBase
     {
-        public int Title_ID { get; set; }
     }
 }

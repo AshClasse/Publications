@@ -14,11 +14,13 @@ namespace Publicaciones.Infrastructure.Context
 
         public DbSet<Authors> Authors { get; set; }
         public DbSet<TitleAuthor> TitleAuthor { get; set; }
+        public DbSet<Titles> Titles { get; set; } 
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
             modelBuilder.Entity<Authors>().HasKey(au => au.Au_ID);
 			modelBuilder.Entity<TitleAuthor>().HasKey(ta => new { ta.Title_ID, ta.Au_ID });
+            modelBuilder.Entity<Titles>().HasKey(t => t.Title_ID);
 			base.OnModelCreating(modelBuilder);
 		}
 	}

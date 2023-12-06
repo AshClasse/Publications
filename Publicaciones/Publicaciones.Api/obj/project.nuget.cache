@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "r5kB2qz2pNhT5VmtDQ/IQ0BruGzlA13MXpjVn219tm3qK50VsoSV+2Zq4efhSUDGYV5FFk8gNJk7hBXxDMsVww==",
+  "dgSpecHash": "Li1YkM2zUSRaa02yFhqbn9Uvgr/IA//reZFFaxmWQOackxy0mXDTa+ZdSEuacykLZvpx9aL7+3w5/E/KU/34LA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
   "expectedPackageFiles": [
@@ -22,7 +22,7 @@
     "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.32\\microsoft.extensions.dependencyinjection.3.1.32.nupkg.sha512",
     "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.32\\microsoft.extensions.dependencyinjection.abstractions.3.1.32.nupkg.sha512",
     "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.logging\\3.1.32\\microsoft.extensions.logging.3.1.32.nupkg.sha512",
-    "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.32\\microsoft.extensions.logging.abstractions.3.1.32.nupkg.sha512",
+    "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
     "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.options\\3.1.32\\microsoft.extensions.options.3.1.32.nupkg.sha512",
     "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.32\\microsoft.extensions.primitives.3.1.32.nupkg.sha512",
     "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.identity.client\\3.0.8\\microsoft.identity.client.3.0.8.nupkg.sha512",

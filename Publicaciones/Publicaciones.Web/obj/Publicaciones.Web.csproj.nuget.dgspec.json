@@ -4,6 +4,260 @@
     "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+        "projectName": "Publicaciones.Application",
+        "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+        "projectName": "Publicaciones.Domain",
+        "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+        "projectName": "Publicaciones.Infrastructure",
+        "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.32, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.32, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "projectName": "Publicaciones.Ioc",
+        "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.32, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +281,14 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+              },
+              "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -39,6 +300,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.16, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

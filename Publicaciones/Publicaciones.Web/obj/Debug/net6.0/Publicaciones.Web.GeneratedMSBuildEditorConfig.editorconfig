@@ -16,6 +16,22 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Geremy\Publicaciones\Publicaciones\Publicaciones.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/Author/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/Author/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/Author/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/Author/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,6 +46,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/TitleAuthor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVBdXRob3JcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/TitleAuthor/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVBdXRob3JcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/TitleAuthor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVBdXRob3JcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/TitleAuthor/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVBdXRob3JcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Geremy/Publicaciones/Publicaciones/Publicaciones.Web/Views/_ViewImports.cshtml]
