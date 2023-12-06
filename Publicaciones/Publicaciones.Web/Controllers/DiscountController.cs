@@ -11,12 +11,12 @@ namespace Publicaciones.Web.Controllers
     {
         private readonly IDiscountService discountService;
         private readonly string discountApiURLBase;
-        private readonly IApiService apiService;
+        private readonly IWebService webService;
 
-        public DiscountController(IDiscountService discountService, IApiService apiService, IConfiguration configuration)
+        public DiscountController(IDiscountService discountService, IWebService webService, IConfiguration configuration)
         {
             this.discountService = discountService;
-            this.apiService = apiService;
+            this.webService = webService;
             this.discountApiURLBase = configuration["ApiSettings:DiscountApiBaseUrl"];
         }
 
@@ -25,7 +25,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<List<DiscountViewResult>> responseData = apiService.GetDataFromApi<List<DiscountViewResult>>($"{discountApiURLBase}GetDiscounts");
+                BaseResponse<List<DiscountViewResult>> responseData = webService.GetDataFromApi<List<DiscountViewResult>>($"{discountApiURLBase}GetDiscounts");
                 return View(responseData.data);
             }
             catch(Exception ex)
@@ -40,7 +40,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<DiscountViewResult> responseData = apiService.GetDataFromApi<DiscountViewResult>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
+                BaseResponse<DiscountViewResult> responseData = webService.GetDataFromApi<DiscountViewResult>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
                 return View(responseData.data);
             }
             catch(Exception ex)
@@ -68,7 +68,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<DiscountDtoAdd>>(apiUrl, discountDtoAdd);
+                webService.PostDataToApi<BaseResponse<DiscountDtoAdd>>(apiUrl, discountDtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -84,7 +84,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<DiscountViewResult> responseData = apiService.GetDataFromApi<DiscountViewResult>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
+                BaseResponse<DiscountViewResult> responseData = webService.GetDataFromApi<DiscountViewResult>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
                 return View(responseData.data);
             }
             catch(Exception ex) 
@@ -106,7 +106,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<DiscountDtoUpdate>>(apiUrl, discountDtoUpdate);
+                webService.PostDataToApi<BaseResponse<DiscountDtoUpdate>>(apiUrl, discountDtoUpdate);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -121,7 +121,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<DiscountDtoRemove> responseData = apiService.GetDataFromApi<DiscountDtoRemove>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
+                BaseResponse<DiscountDtoRemove> responseData = webService.GetDataFromApi<DiscountDtoRemove>($"{discountApiURLBase}GetDiscountByID?discountID={id}");
                 return View(responseData.data);
             }
             catch( Exception ex )
@@ -142,7 +142,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<DiscountDtoRemove>>(apiUrl, discountDtoRemove);
+                webService.PostDataToApi<BaseResponse<DiscountDtoRemove>>(apiUrl, discountDtoRemove);
 
                 return RedirectToAction(nameof(Index));
             }

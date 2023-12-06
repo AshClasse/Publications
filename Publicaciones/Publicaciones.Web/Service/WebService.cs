@@ -4,11 +4,11 @@ using Publicaciones.Web.Models.Responses;
 
 namespace Publicaciones.Web.Service
 {
-    public class ApiService : IApiService
+    public class WebService : IWebService
     {
         private readonly HttpClient httpClient;
 
-        public ApiService()
+        public WebService()
         {
             httpClient = new HttpClient(new HttpClientHandler());
         }
@@ -37,7 +37,7 @@ namespace Publicaciones.Web.Service
             return responseData;
         }
 
-        T IApiService.PostDataToApi<T>(string apiUrl, DtoBase data)
+        T IWebService.PostDataToApi<T>(string apiUrl, DtoBase data)
         {
             try
             {

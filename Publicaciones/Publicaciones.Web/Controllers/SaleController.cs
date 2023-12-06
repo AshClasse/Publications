@@ -12,19 +12,19 @@ namespace Publicaciones.Web.Controllers
     {
         private readonly ISaleService saleService;
         private readonly string saleApiURLBase;
-        private readonly IApiService apiService;
+        private readonly IWebService webService;
 
-        public SaleController(ISaleService saleService, IApiService apiService, IConfiguration configuration)
+        public SaleController(ISaleService saleService, IWebService webService, IConfiguration configuration)
         {
             this.saleService = saleService;
-            this.apiService = apiService;
+            this.webService = webService;
             this.saleApiURLBase = configuration["ApiSettings:SaleApiBaseUrl"];
         }
         public ActionResult Index()
         {
             try
             {
-                BaseResponse<List<SaleViewResult>> responseData = apiService.GetDataFromApi<List<SaleViewResult>>($"{saleApiURLBase}GetSales");
+                BaseResponse<List<SaleViewResult>> responseData = webService.GetDataFromApi<List<SaleViewResult>>($"{saleApiURLBase}GetSales");
                 return View(responseData.data);
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<SaleViewResult> responseData = apiService.GetDataFromApi<SaleViewResult>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
+                BaseResponse<SaleViewResult> responseData = webService.GetDataFromApi<SaleViewResult>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
                 return View(responseData.data);
             }
             catch(Exception ex)
@@ -66,7 +66,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<SaleDtoAdd>>(apiUrl, saleDtoAdd);
+                webService.PostDataToApi<BaseResponse<SaleDtoAdd>>(apiUrl, saleDtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -82,7 +82,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<SaleViewResult> responseData = apiService.GetDataFromApi<SaleViewResult>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
+                BaseResponse<SaleViewResult> responseData = webService.GetDataFromApi<SaleViewResult>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
                 return View(responseData.data);
             }
             catch(Exception ex)
@@ -104,7 +104,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<SaleDtoUpdate>>(apiUrl, saleDtoUpdate);
+                webService.PostDataToApi<BaseResponse<SaleDtoUpdate>>(apiUrl, saleDtoUpdate);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -120,7 +120,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<SaleDtoRemove> responseData = apiService.GetDataFromApi<SaleDtoRemove>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
+                BaseResponse<SaleDtoRemove> responseData = webService.GetDataFromApi<SaleDtoRemove>($"{saleApiURLBase}GetSaleByID?storeID={storeID}&ordNum={ordNum}&titleID={titleID}");
                 return View(responseData.data);
             }
             catch(Exception ex)
@@ -142,7 +142,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<SaleDtoRemove>>(apiUrl, dtoRemove);
+                webService.PostDataToApi<BaseResponse<SaleDtoRemove>>(apiUrl, dtoRemove);
 
                 return RedirectToAction(nameof(Index));
             }

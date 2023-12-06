@@ -11,19 +11,19 @@ namespace Publicaciones.Web.Controllers
     {
         private readonly IStoreService storeService;
         private readonly string storeApiURLBase;
-        private readonly IApiService apiService;
+        private readonly IWebService webService;
 
-        public StoreController(IStoreService storeService, IApiService apiService, IConfiguration configuration)
+        public StoreController(IStoreService storeService, IWebService webService, IConfiguration configuration)
         {
             this.storeService = storeService;
-            this.apiService = apiService;
+            this.webService = webService;
             this.storeApiURLBase = configuration["ApiSettings:StoreApiBaseUrl"];
         }
         public ActionResult Index()
         {
             try
             {
-                BaseResponse<List<StoreViewResult>> responseData = apiService.GetDataFromApi<List<StoreViewResult>>($"{storeApiURLBase}GetStores");
+                BaseResponse<List<StoreViewResult>> responseData = webService.GetDataFromApi<List<StoreViewResult>>($"{storeApiURLBase}GetStores");
                 return View(responseData.data);
             }
             catch (Exception ex)
@@ -38,7 +38,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<StoreViewResult> responseData = apiService.GetDataFromApi<StoreViewResult>($"{storeApiURLBase}GetStoreByID?storeID={id}");
+                BaseResponse<StoreViewResult> responseData = webService.GetDataFromApi<StoreViewResult>($"{storeApiURLBase}GetStoreByID?storeID={id}");
                 return View(responseData.data);
             }
             catch(Exception ex)
@@ -66,7 +66,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<StoreDtoAdd>>(apiUrl, storeDtoAdd);
+                webService.PostDataToApi<BaseResponse<StoreDtoAdd>>(apiUrl, storeDtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -82,7 +82,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<StoreViewResult> responseData = apiService.GetDataFromApi<StoreViewResult>($"{storeApiURLBase}GetStoreByID?storeID={id}");
+                BaseResponse<StoreViewResult> responseData = webService.GetDataFromApi<StoreViewResult>($"{storeApiURLBase}GetStoreByID?storeID={id}");
                 return View(responseData.data);
             }
             catch( Exception ex )
@@ -104,7 +104,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                apiService.PostDataToApi<BaseResponse<StoreDtoUpdate>>(apiUrl, storeDtoUpdate);
+                webService.PostDataToApi<BaseResponse<StoreDtoUpdate>>(apiUrl, storeDtoUpdate);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -119,7 +119,7 @@ namespace Publicaciones.Web.Controllers
         {
             try
             {
-                BaseResponse<StoreDtoRemove> responseData = apiService.GetDataFromApi<StoreDtoRemove>($"{storeApiURLBase}GetStoreByID?storeID={id}");
+                BaseResponse<StoreDtoRemove> responseData = webService.GetDataFromApi<StoreDtoRemove>($"{storeApiURLBase}GetStoreByID?storeID={id}");
                 return View(responseData.data);
             }
             catch ( Exception ex )
@@ -140,7 +140,7 @@ namespace Publicaciones.Web.Controllers
 
             try
             {
-                var response = apiService.PostDataToApi<BaseResponse<StoreDtoRemove>>(apiUrl, storeDtoRemove);
+                var response = webService.PostDataToApi<BaseResponse<StoreDtoRemove>>(apiUrl, storeDtoRemove);
 
                 return RedirectToAction(nameof(Index));
             }

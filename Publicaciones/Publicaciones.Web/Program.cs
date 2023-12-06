@@ -16,7 +16,7 @@ namespace Publicaciones.Web
             builder.Services.AddDiscountDependency();
             builder.Services.AddSaleDependency();
             builder.Services.AddStoreDependency();
-            builder.Services.AddScoped<IApiService, ApiService>();
+            builder.Services.AddScoped<IWebService, WebService>();
 
 
             // Add services to the container.
