@@ -4,5 +4,6 @@
     {
         public int StoreID { get; set; }
         public bool Deleted { get; set; }
+        public string StoreName { get; set; }
     }
 }

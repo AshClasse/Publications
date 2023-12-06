@@ -6,5 +6,7 @@ namespace Publicaciones.Application.Dtos.Discount
     {
         public int DiscountID { get; set; }
         public bool Deleted { get; set; }
+
+        public string DiscountType { get; set; }
     }
 }

@@ -53,6 +53,14 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
+      "Id": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-lux.css"
+    },
+    {
+      "Id": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-lux.min.css"
+    },
+    {
       "Id": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },

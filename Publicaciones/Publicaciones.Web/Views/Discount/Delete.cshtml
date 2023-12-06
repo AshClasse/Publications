@@ -16,6 +16,9 @@
             <dt class="col-sm-3">Discount ID:</dt>
             <dd class="col-sm-9">@Html.DisplayFor(model => model.DiscountID)</dd>
 
+            <dt class="col-sm-3">Discount Type:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.DiscountType)</dd>
+
             <dt class="col-sm-3">Deleted User:</dt>
             <dd class="col-sm-9"> @Html.DisplayFor(model => model.ChangeUser)</dd>
 
@@ -25,6 +28,7 @@
         <div class="card-footer">
             <form asp-controller="discount" asp-action="Delete" method="post">
                 <input asp-for="DiscountID" type="hidden" />
+                <input asp-for="DiscountType" type="hidden" />
                 <input asp-for="Deleted" type="hidden" />
                 <input asp-for="ChangeUser" type="hidden" />
                 <input asp-for="ChangeDate" type="hidden" />

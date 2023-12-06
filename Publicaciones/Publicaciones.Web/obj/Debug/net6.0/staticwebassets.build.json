@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/f8lHO3e/Qv7nZ/d+JHCUHvj7uRqi6dhJYfSTeyRDSM=",
+  "Hash": "r0NXSpOnB0lZV0cMGHzaVJxkuyzZSF3C75fNLW1gqA0=",
   "Source": "Publicaciones.Web",
   "BasePath": "_content/Publicaciones.Web",
   "Mode": "Default",
@@ -372,6 +372,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Identity": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.css",
+      "SourceId": "Publicaciones.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\",
+      "BasePath": "_content/Publicaciones.Web",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap-lux.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.css"
+    },
+    {
+      "Identity": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.min.css",
+      "SourceId": "Publicaciones.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\",
+      "BasePath": "_content/Publicaciones.Web",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap-lux.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.min.css"
     },
     {
       "Identity": "C:\\Pubs_Prueba\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
