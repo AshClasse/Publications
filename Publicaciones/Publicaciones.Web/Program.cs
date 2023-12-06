@@ -19,6 +19,7 @@ namespace Publicaciones.Web
             // Repositories dependencies
             builder.Services.AddAuthorsDependency();
             builder.Services.AddTitleAuthorDependency();
+            builder.Services.AddScoped<IApiService, ApiService>();
 
             var app = builder.Build();
 

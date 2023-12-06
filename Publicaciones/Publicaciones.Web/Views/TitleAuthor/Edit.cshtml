@@ -1,4 +1,4 @@
-﻿@model Publicaciones.Web.Models.Response.TitleAuthorResponse.TitleAuthorEditViewResponse
+﻿@model Publicaciones.Web.Models.Response.TitleAuthorResponse.TitleAuthorViewResult
 
 @{
     ViewData["Title"] = "Edit";
@@ -33,14 +33,14 @@
                 <span asp-validation-for="royaltyPer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idModifiedUser" class="control-label"></label>
-                <input asp-for="idModifiedUser" class="form-control" />
-                <span asp-validation-for="idModifiedUser" class="text-danger"></span>
+                <label asp-for="changeUser" class="control-label"></label>
+                <input asp-for="changeUser" class="form-control" />
+                <span asp-validation-for="changeUser" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="modifiedDate" class="control-label"></label>
-                <input asp-for="modifiedDate" class="form-control" />
-                <span asp-validation-for="modifiedDate" class="text-danger"></span>
+                <label asp-for="changeDate" class="control-label"></label>
+                <input asp-for="changeDate" class="form-control" />
+                <span asp-validation-for="changeDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

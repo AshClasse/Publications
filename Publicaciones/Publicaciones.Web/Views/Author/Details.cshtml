@@ -1,4 +1,4 @@
-﻿@model Publicaciones.Web.Models.Response.AuthorResponse.AuthorViewResponse
+﻿@model Publicaciones.Web.Models.Response.AuthorsViewResult
 
 @{
     ViewData["Title"] = "Detalles";
@@ -80,5 +80,6 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new {id = Model.au_ID }) |
+    @Html.ActionLink("Delete", "Delete", new {id=Model.au_ID })
     <a asp-action="Index">Back to List</a>
 </div>

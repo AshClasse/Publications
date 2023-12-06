@@ -111,7 +111,6 @@ namespace Publicaciones.Application.Service
                 };
                 
                 this.titleAuthorRepository.Remove(titleAuthors);
-                result.Data = titleAuthors;
                 result.Message = this.configuration["TitleAuthorSuccessMessages:RemoveSuccess"];
             }
             catch (Exception ex)

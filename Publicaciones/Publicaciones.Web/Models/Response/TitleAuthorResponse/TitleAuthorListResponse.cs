@@ -1,10 +1,7 @@
 ﻿namespace Publicaciones.Web.Models.Response.TitleAuthorResponse
 {
-    public class TitleAuthorListResponse
+    public class TitleAuthorListResponse : BaseResponse<List<TitleAuthorViewResult>>
     {
-        public bool success { get; set; }
-        public string message { get; set; }
-        public List<TitleAuthorViewResult> data { get; set; }
     }
     public class TitleAuthorViewResult
     {

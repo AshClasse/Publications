@@ -1,12 +1,11 @@
-﻿namespace Publicaciones.Web.Models.Response.TitleAuthorResponse
+﻿using Publicaciones.Application.Dtos.TitleAuthor;
+
+namespace Publicaciones.Web.Models.Response.TitleAuthorResponse
 {
-    public class TitleAuthorEditResponse
+    public class TitleAuthorUpdateResponse : BaseResponse<TitleAuthorDtoUpdate>
     {
-        public bool success { get; set; }
-        public string message { get; set; }
-        public TitleAuthorEditViewResponse data { get; set; }
     }
-    public class TitleAuthorEditViewResponse
+   /* public class TitleAuthorEditViewResponse
     {
         public int au_ID { get; set; }
         public int title_ID { get; set; }
@@ -14,5 +13,5 @@
         public int royaltyPer { get; set; }
         public int idModifiedUser { get; set; } = 1;
         public DateTime modifiedDate { get; set; } = DateTime.Now;
-    }
+    }*/
 }

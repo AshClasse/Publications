@@ -64,7 +64,7 @@ namespace Publicaciones.Infrastructure.Repository
         {
             var authorsToRemove = base.GetEntityByID(entity.Au_ID);
 			authorsToRemove.Au_ID = entity.Au_ID;
-            authorsToRemove.Deleted = entity.Deleted;
+            authorsToRemove.Deleted = true;
             authorsToRemove.DeletedDate = entity.DeletedDate;
 			authorsToRemove.IDDeletedUser = entity.IDDeletedUser;
 

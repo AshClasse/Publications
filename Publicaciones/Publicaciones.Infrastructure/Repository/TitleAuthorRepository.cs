@@ -75,7 +75,7 @@ namespace Publicaciones.Infrastructure.Repository
             var titleAuthorToUpdate = base.GetEntityByID(entity.Title_ID, entity.Au_ID);
 			titleAuthorToUpdate.Au_ID = entity.Au_ID;
 			titleAuthorToUpdate.Title_ID = entity.Title_ID;
-			titleAuthorToUpdate.Deleted = entity.Deleted;
+            titleAuthorToUpdate.Deleted = true;
 			titleAuthorToUpdate.IDDeletedUser = entity.IDDeletedUser;
 			titleAuthorToUpdate.DeletedDate = entity.DeletedDate;
 

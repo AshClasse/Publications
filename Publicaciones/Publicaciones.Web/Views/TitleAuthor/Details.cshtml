@@ -1,4 +1,4 @@
-﻿@model Publicaciones.Web.Models.Response.TitleAuthorResponse.TitleAuthorViewResponse
+﻿@model Publicaciones.Web.Models.Response.TitleAuthorResponse.TitleAuthorViewResult
 
 @{
     ViewData["Title"] = "Details";
@@ -35,20 +35,21 @@
             @Html.DisplayFor(model => model.royaltyPer)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idModifiedUser)
+            @Html.DisplayNameFor(model => model.changeUser)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idModifiedUser)
+            @Html.DisplayFor(model => model.changeUser)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.modifiedDate)
+            @Html.DisplayNameFor(model => model.changeDate)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.modifiedDate)
+            @Html.DisplayFor(model => model.changeDate)
         </dd>
     </dl>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { au_ID = Model.au_ID, title_id = Model.title_ID }) |
+    @Html.ActionLink("Delete", "Delete", new { au_ID = Model.au_ID, title_id = Model.title_ID }) |
     <a asp-action="Index">Back to List</a>
 </div>

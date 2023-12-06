@@ -85,7 +85,7 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-        [HttpPut("DeleteAuthor")]
+        [HttpPost("DeleteAuthor")]
         public IActionResult Delete([FromBody] AuthorsDtoRemove authorsDtoRemove)
         {
             var result = this._authorsService.Remove(authorsDtoRemove);
