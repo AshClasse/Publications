@@ -7,71 +7,70 @@
 <h1>Details</h1>
 
 <div>
-    <h4>AuthorViewResponse</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.au_ID)
+            ID
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.au_ID)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.au_FName)
+            First Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.au_FName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.au_LName)
+            Last Name
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.au_LName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.phone)
+            Phone
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.phone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.address)
+            Address
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.address)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.city)
+            City
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.city)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.state)
+            State
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.state)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.zip)
+            ZIP
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.zip)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.contract)
+            Contract
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.contract)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.changeUser)
+            Change User
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.changeUser)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.changeDate)
+            Change Date
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.changeDate)
@@ -80,6 +79,6 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new {id = Model.au_ID }) |
-    @Html.ActionLink("Delete", "Delete", new {id=Model.au_ID })
+    @Html.ActionLink("Delete", "Delete", new {id=Model.au_ID }) |
     <a asp-action="Index">Back to List</a>
 </div>

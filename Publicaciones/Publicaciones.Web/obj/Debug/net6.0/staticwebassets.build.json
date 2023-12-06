@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ksh0CHxgHVu/UHfun4wCGzzpmdO/UZkVlKIHwsRnIYc=",
+  "Hash": "HGR7X2qMlHMOB9FzqBG/vSDkilOfmhugaBvigeG2vZE=",
   "Source": "Publicaciones.Web",
   "BasePath": "_content/Publicaciones.Web",
   "Mode": "Default",
@@ -508,6 +508,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-Theme.min.css",
+      "SourceId": "Publicaciones.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\",
+      "BasePath": "_content/Publicaciones.Web",
+      "RelativePath": "lib/bootstrap/dist/css/bootstrap-Theme.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-Theme.min.css"
     },
     {
       "Identity": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",

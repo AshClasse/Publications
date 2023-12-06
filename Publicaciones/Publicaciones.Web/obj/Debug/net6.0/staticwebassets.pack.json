@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
+      "Id": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-Theme.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-Theme.min.css"
+    },
+    {
       "Id": "C:\\Users\\Geremy\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },

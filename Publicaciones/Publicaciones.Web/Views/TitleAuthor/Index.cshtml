@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Title-Authors</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.au_ID)
+                Author ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.title_ID)
+                Title ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.au_Ord)
+                Author Ord
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.royaltyPer)
+                Royalty Per
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.changeUser)
+                Change User
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.changeDate)
+                Change Date
             </th>
             <th></th>
         </tr>
@@ -57,7 +57,7 @@
             <td>
                     @Html.ActionLink("Edit", "Edit", new {au_id=item.au_ID, title_id = item.title_ID}) |
                     @Html.ActionLink("Details", "Details", new {au_id=item.au_ID, title_id = item.title_ID}) |
-                        @Html.ActionLink("Delete", "Delete", new {au_id=item.au_ID, title_id = item.title_ID}) |
+                        @Html.ActionLink("Delete", "Delete", new {au_id=item.au_ID, title_id = item.title_ID}) 
             </td>
         </tr>
 }
