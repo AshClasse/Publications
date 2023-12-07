@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Publicaciones.Web.ViewModels.Models;
+using Publicaciones.Web.ViewModels;
 using System.Diagnostics;
 
 namespace Publicaciones.Web.Controllers

@@ -2,39 +2,58 @@
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
 using Publicaciones.Application.DTO.Jobs;
+using Publicaciones.Web.Responses.Core;
+using Publicaciones.Web.ViewModels.ControllerService;
+using Publicaciones.Web.ViewModels.Models.EmpViewModels;
+using Publicaciones.Web.ViewModels.Models.JobViewModels;
 
 namespace Publicaciones.Web.Controllers
 {
     public class JobController : Controller
     {
-        private readonly IJobsService _jobsService;
+        public readonly string URL;
+        private readonly IEmployeeService _employeeService;
+        private readonly HttpClientHandler _httpClientHandler;
+        private readonly IWebService _webservice;
 
-        public JobController(IJobsService jobService)
+        public JobController(IEmployeeService employeeService,
+                                   IConfiguration configuration,
+                                   IWebService webService)
         {
-            _jobsService = jobService;
+            _employeeService = employeeService;
+            _httpClientHandler = new HttpClientHandler();
+            URL = configuration["BaseURL:BaseJobURL"];
+            _webservice = webService;
         }
         // GET: JobController
         public ActionResult Index()
         {
-            var result = _jobsService.GetAll();
-            if (!result.Success)
+            try
             {
-                ViewBag.Message = result.Message;
+                BaseResponse<List<JobDefaultViewModel>> result = _webservice.GetData<List<JobDefaultViewModel>>($"{URL}GetJobs");
+                return View(result.Data);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
-            return View(result.Data);
         }
 
         // GET: JobController/Details/5
         public ActionResult Details(int ID)
         {
-            var result = _jobsService.GetByID(ID);
-            if (!result.Success)
+            try
             {
-                ViewBag.Message = result.Message;
+                BaseResponse<JobDefaultViewModel>
+                result = _webservice.GetData<JobDefaultViewModel>($"{URL}GetJobsByID?ID={ID}");
+                return View(result.Data);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
-            return View(result.Data);
         }
 
         // GET: JobController/Create
@@ -46,67 +65,95 @@ namespace Publicaciones.Web.Controllers
         // POST: JobController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(JobsDtoAdd dtoadd)
+        public ActionResult Create(JobDefaultViewModel dtoadd)
         {
-            ServiceResult result = new ServiceResult();
+            dtoadd.ChangeDate = DateTime.Now;
+            dtoadd.ChangeUser = 1;
 
             try
             {
-                result = _jobsService.Save(dtoadd);
-                if(!result.Success)
-                {
-                    ViewBag.Message = result.Message;
-                    return View();
-                }
+                _webservice.PostData<BaseResponse<JobDefaultViewModel>>($"{URL}SaveJobs", dtoadd);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                ViewBag.Message = result.Message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
 
         // GET: JobController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int ID)
         {
-            return View();
+            try
+            {
+                BaseResponse<JobDefaultViewModel>
+                result = _webservice.GetData<JobDefaultViewModel>($"{URL}GetJobsByID?ID={ID}");
+                return View(result.Data);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // POST: JobController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int ID , JobDefaultViewModel updatemodel)
         {
+            updatemodel.JobID = ID;
+            updatemodel.ChangeDate = DateTime.Now;
+            updatemodel.ChangeUser = 1;
+
             try
             {
+                _webservice.PostData<BaseResponse<JobDefaultViewModel>>($"{URL}UpdateJobs", updatemodel);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
 
         // GET: JobController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int ID)
         {
-            return View();
+            try
+            {
+                BaseResponse<JobDeleteViewModel> result = _webservice.GetData<JobDeleteViewModel>($"{URL}GetJobsByID?ID={ID}");
+                return View(result.Data);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
         }
 
         // POST: JobController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int ID, JobDeleteViewModel detelemodel)
         {
+            detelemodel.JobID = ID;
+            detelemodel.ChangeDate = DateTime.Now;
+            detelemodel.ChangeUser = 1;
+
             try
             {
+                _webservice.PostData<BaseResponse<JobDeleteViewModel>>($"{URL}DeleteJobs", detelemodel);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
     }
 }
+

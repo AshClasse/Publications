@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Publicaciones.Ioc.Dependencies;
 using Publicaciones.Infrastructure.Context;
+using Publicaciones.Web.ViewModels.ControllerService;
 
 namespace Publicaciones.Web
 {
@@ -21,6 +22,7 @@ namespace Publicaciones.Web
 
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<IWebService , WebService>();
             builder.Services.AddEmployeeDependency();
             builder.Services.AddPublisherDependency();
             builder.Services.AddJobDependency();

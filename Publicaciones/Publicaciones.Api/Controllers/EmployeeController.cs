@@ -56,7 +56,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         //UPDATE_ENDPOINT
-        [HttpPut("UpdateEmployees")]
+        [HttpPost("UpdateEmployees")]
 
         public IActionResult UpdateEmployees([FromBody] EmployeeDtoUpdate empdtoupdate)
         {

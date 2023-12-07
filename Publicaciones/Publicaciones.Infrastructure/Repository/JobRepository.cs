@@ -2,6 +2,8 @@
 using Publicaciones.Infrastructure.Context;
 using Publicaciones.Infrastructure.Core;
 using Publicaciones.Infrastructure.Interface;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Publicaciones.Infrastructure.Repository
 {
@@ -12,6 +14,12 @@ namespace Publicaciones.Infrastructure.Repository
         public JobRepository(PublicacionesContext context) : base(context)
         {
             this.context = context;
+        }
+
+        public override List<Jobs> GetEntities()
+        {
+            return base.GetEntities().Where(job => !job.Deleted)
+                                   .OrderByDescending(job => job.CreationDate).ToList();
         }
 
         public override void Save(Jobs entity)

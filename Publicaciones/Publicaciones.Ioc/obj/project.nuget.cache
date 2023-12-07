@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RpO3M1cJORtQCGQTv3BAPFifoYLmaCMR5UvUY/mcLvfkfeVz1nEKriF8hZ8nGMsHgsfW0Fvb8BqcrHNFolvZHg==",
+  "dgSpecHash": "5u91XGgDcZNKmWxLyF1sOo8iDn9Vzp7ox6TPf0sVqMW4rE4qFpb0axI2waOOrnasYZ7hfMaP/3b34J1dcH1dFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\P2FINAL\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.32\\microsoft.aspnetcore.cryptography.internal.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.32\\microsoft.aspnetcore.cryptography.keyderivation.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.32\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -20,6 +23,8 @@
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.32\\microsoft.extensions.configuration.binder.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.32\\microsoft.extensions.dependencyinjection.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.32\\microsoft.extensions.dependencyinjection.abstractions.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.32\\microsoft.extensions.identity.core.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.32\\microsoft.extensions.identity.stores.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.logging\\3.1.32\\microsoft.extensions.logging.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.32\\microsoft.extensions.logging.abstractions.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.options\\3.1.32\\microsoft.extensions.options.3.1.32.nupkg.sha512",

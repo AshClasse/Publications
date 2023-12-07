@@ -1,4 +1,4 @@
-namespace Publicaciones.Web.Models
+namespace Publicaciones.Web.ViewModels
 {
     public class ErrorViewModel
     {

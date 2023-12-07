@@ -1,7 +1,8 @@
-﻿namespace Publicaciones.Web.ViewModels.Models
+﻿namespace Publicaciones.Web.ViewModels.Models.EmpViewModels
 {
-    public class AddEmpViewModel
+    public class EmpDefaultViewModel
     {
+        public int EmpID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int? Joblvl { get; set; }

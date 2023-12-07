@@ -55,7 +55,7 @@ namespace Publicaciones.Api.Controllers
 
 
         //UPDATE_ENDPOINT
-        [HttpPut("UpdateJobs")]
+        [HttpPost("UpdateJobs")]
 
         public IActionResult UpdateJobs([FromBody] JobsDtoUpdate jobdtoupdate)
         {
@@ -69,7 +69,7 @@ namespace Publicaciones.Api.Controllers
 
 
         //DELETE_ENDPOINT
-        [HttpDelete("DeleteJobs")]
+        [HttpPost("DeleteJobs")]
         public IActionResult RemoveJobs([FromBody] JobDtoRemove jobDtoRemove)
         {
             var result = _jobsService.Remove(jobDtoRemove);

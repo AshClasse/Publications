@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QXOScElyhzBL2RO9V+1JV8Tf172djyiMNxOijCHEMc9u6zF2xnxx8UpoLaAi3PpDaNmpWpB7ccxCBtTpqBotUQ==",
+  "dgSpecHash": "lD1B5QpHtfSaefpcMKNOXxMKKIZL1SbNohzZOXkMrFt2Pe5imRIHJmv+P+9El1dIUYweekIoVNo77ctHyf9R1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\P2FINAL\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,9 @@
     "C:\\Users\\misam\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.32\\microsoft.aspnetcore.cryptography.internal.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.32\\microsoft.aspnetcore.cryptography.keyderivation.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.32\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.0\\microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
@@ -88,6 +91,8 @@
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.32\\microsoft.extensions.configuration.binder.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.32\\microsoft.extensions.identity.core.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.32\\microsoft.extensions.identity.stores.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.logging\\3.1.32\\microsoft.extensions.logging.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.32\\microsoft.extensions.logging.abstractions.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.options\\3.1.32\\microsoft.extensions.options.3.1.32.nupkg.sha512",

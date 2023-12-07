@@ -1,4 +1,4 @@
-﻿namespace Publicaciones.Web.ViewModels.Models
+﻿namespace Publicaciones.Web.ViewModels.Models.EmpViewModels
 {
     public class GetEmpViewModel
     {

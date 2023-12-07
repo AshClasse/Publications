@@ -1,4 +1,4 @@
-﻿@model Publicaciones.Web.ViewModels.Models.DeleteEmpViewModel
+﻿@model Publicaciones.Web.ViewModels.Models.EmpViewModels.EmpDeleteViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -27,8 +27,8 @@
         </dl>
         <form asp-action="Delete" class="card-footer">
             <hr />
-            <input asp-route="@Model.EmpID" asp-route="@Model.ChangeDate"
-                   asp-route="@Model.ChangeUser" asp-route="@Model.Deleted" type="submit" value="Delete" class="btn btn-danger" /> |
+            <input asp-route="@Model.EmpID" asp-route="@Model.ChangeDate" 
+             asp-route="@Model.ChangeUser" asp-route="@Model.Deleted" type="submit" value="Delete" class="btn btn-danger" /> |
             <a asp-action="Index" class="btn btn-secondary">Back to List</a>
         </form>
     </div>

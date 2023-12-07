@@ -57,7 +57,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         //UPDATE_ENDPOINT
-        [HttpPut("UpdatePublisher")]
+        [HttpPost("UpdatePublisher")]
         public IActionResult Put(PublisherDtoUpdate pubdtoupdate)
         {
             var result = _publisherService.Update(pubdtoupdate);
@@ -69,7 +69,7 @@ namespace Publicaciones.Api.Controllers
         }
 
         //DELETE_ENDPOINT
-        [HttpDelete("DeletePublisher")]
+        [HttpPost("DeletePublisher")]
         public IActionResult RemoveJobs([FromBody] PublisherDtoRemove PubDtoRemove)
         {
             var result = _publisherService.Remove(PubDtoRemove);

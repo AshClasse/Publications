@@ -517,6 +517,7 @@ C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2F
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\Humanizer.dll
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\MessagePack.dll
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\MessagePack.Annotations.dll
+C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\misam\OneDrive\Escritorio\My_files\TAREAS DE LA UNI\CUATRI-6\Prog 2\P2FINAL\Publicaciones\Publicaciones.Web\bin\Debug\net6.0\Microsoft.Bcl.HashCode.dll

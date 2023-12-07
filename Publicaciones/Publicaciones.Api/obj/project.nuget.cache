@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "v8b0WPmvkHGlAHlkFysPutT1nK4anhkwdrY+KMZmbmTu6jMktR2KhQWqge7ZqNY9f1EnyPenBdmHriGHjrzIMA==",
+  "dgSpecHash": "77pOPx2YHaL9LOFo3Te2r0wT9baz+RoP3F3RfyyRDPaQ1IJT78izELDtRHoGP/dr3J4Hp9Pfh7ZFmnYcj+YmOQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\misam\\OneDrive\\Escritorio\\My_files\\TAREAS DE LA UNI\\CUATRI-6\\Prog 2\\P2FINAL\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.32\\microsoft.aspnetcore.cryptography.internal.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.32\\microsoft.aspnetcore.cryptography.keyderivation.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.32\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -21,6 +24,8 @@
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.32\\microsoft.extensions.configuration.binder.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.32\\microsoft.extensions.dependencyinjection.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.32\\microsoft.extensions.dependencyinjection.abstractions.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.32\\microsoft.extensions.identity.core.3.1.32.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.32\\microsoft.extensions.identity.stores.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.logging\\3.1.32\\microsoft.extensions.logging.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.32\\microsoft.extensions.logging.abstractions.3.1.32.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\microsoft.extensions.options\\3.1.32\\microsoft.extensions.options.3.1.32.nupkg.sha512",
@@ -107,7 +112,11 @@
     "C:\\Users\\misam\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\misam\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\misam\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\misam\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\misam\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }

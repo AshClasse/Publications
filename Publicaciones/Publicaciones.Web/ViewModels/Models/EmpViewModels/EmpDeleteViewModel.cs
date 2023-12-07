@@ -1,6 +1,6 @@
-﻿namespace Publicaciones.Web.ViewModels.Models
+﻿namespace Publicaciones.Web.ViewModels.Models.EmpViewModels
 {
-    public class DeleteEmpViewModel
+    public class EmpDeleteViewModel
     {
         public int EmpID { get; set; }
         public bool Deleted { get; set; }
