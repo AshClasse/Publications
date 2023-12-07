@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Publicaciones.Web
 build_property.RootNamespace = Publicaciones.Web
 build_property.ProjectDir = C:\Publicaciones\Publicaciones\Publicaciones.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -48,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -70,6 +76,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Details.cshtml]

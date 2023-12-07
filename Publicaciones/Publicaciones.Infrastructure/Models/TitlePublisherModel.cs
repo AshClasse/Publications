@@ -6,7 +6,7 @@ namespace Publicaciones.Infrastructure.Models
 {
 	public class TitlePublisherModel
 	{
-		public int TitleID { get; set; }
+		public int Title_ID { get; set; }
 		public int PubID { get; set; }
 		public string? Title { get; set; }
 		public string? Type { get; set; }

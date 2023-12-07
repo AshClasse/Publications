@@ -1,92 +1,54 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Publicaciones.Application.Contract;
-using Publicaciones.Application.Core;
 using Publicaciones.Application.Dtos.Pub_Info;
 using Publicaciones.Web.Models.Responses;
 using Publicaciones.Web.Models.Responses.Pub_Info;
-using System.Collections;
-using System.Security.Policy;
 
 namespace Publicaciones.Web.Controllers
 {
     public class Pub_InfoController : Controller
 	{
 		private readonly IPub_InfoService _pub_infoService;
+        private readonly string pubInfoApiURLBase;
+        private readonly IApiService apiService;
 
-        HttpClientHandler clientHandler = new HttpClientHandler();
-        public Pub_InfoController(IPub_InfoService pub_InfoService)
+        public Pub_InfoController(IPub_InfoService pub_InfoService, IApiService apiService, IConfiguration configuration)
 		{
 			this._pub_infoService = pub_InfoService;
-		}
+            this.apiService = apiService;
+            this.pubInfoApiURLBase = configuration["ApiSettings:Pub_InfoApiBaseUrl"];
+        }
 
 		// GET: Pub_InfoController
 		public ActionResult Index()
 		{
-            Pub_InfoListResponse pubInfoList = new Pub_InfoListResponse();
+            BaseResponse<List<Pub_InfoViewResult>> responseData = apiService.GetDataFromApi<List<Pub_InfoViewResult>>($"{pubInfoApiURLBase}GetPub_Infos");
 
-            using (var client = new HttpClient(this.clientHandler))
+            if (responseData.success)
             {
-                using (var response = client.GetAsync("http://localhost:5196/api/Pub_Info/GetPub_Infos").Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                        pubInfoList = JsonConvert.DeserializeObject<Pub_InfoListResponse>(apiResponse);
-
-                        if (!pubInfoList.success)
-                        {
-                            ViewBag.Message = pubInfoList.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        pubInfoList.message = "Error connecting to API.";
-                        pubInfoList.success = false;
-                        ViewBag.Message = pubInfoList.message;
-                        return View();
-                    }
-                }
+                return View(responseData.data);
             }
-
-            return View(pubInfoList.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
 		// GET: Pub_InfoController/Details/5
 		public ActionResult Details(int id)
 		{
-            Pub_InfoDetailsResponse pubInfoDetailsResponse = new Pub_InfoDetailsResponse();
+            BaseResponse<Pub_InfoViewResult> responseData = apiService.GetDataFromApi<Pub_InfoViewResult>($"{pubInfoApiURLBase}GetPub_InfoByID?ID={id}");
 
-            using (var client = new HttpClient(this.clientHandler))
+            if (responseData.success)
             {
-                var url = $"http://localhost:5196/api/Pub_Info/GetPub_InfoByID?ID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        pubInfoDetailsResponse = JsonConvert.DeserializeObject<Pub_InfoDetailsResponse>(apiResponse);
-
-                        if (!pubInfoDetailsResponse.success)
-                        {
-                            ViewBag.Message = pubInfoDetailsResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        pubInfoDetailsResponse.message = "Error connecting to API.";
-                        pubInfoDetailsResponse.success = false;
-                        ViewBag.Message = pubInfoDetailsResponse.message;
-                        return View();
-                    }
-                }
+                return View(responseData.data);
             }
-
-            return View(pubInfoDetailsResponse.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
 		// GET: Pub_InfoController/Create
@@ -100,49 +62,20 @@ namespace Publicaciones.Web.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(Pub_InfoDtoAdd dtoAdd)
 		{
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{pubInfoApiURLBase}SavePub_Info";
+
+            dtoAdd.ChangeDate = DateTime.Now;
+            dtoAdd.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
-
-                    var url = $"http://localhost:5196/api/Pub_Info/SavePub_Info";
-
-                    dtoAdd.ChangeDate = DateTime.Now;
-                    dtoAdd.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoAdd), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
+                var response = apiService.PostDataToApi<Pub_InfoAddResponse>(apiUrl, dtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -150,85 +83,38 @@ namespace Publicaciones.Web.Controllers
 		// GET: Pub_InfoController/Edit/5
 		public ActionResult Edit(int id)
 		{
-            Pub_InfoUpdateResponse updateResponse = new Pub_InfoUpdateResponse();
+            BaseResponse<Pub_InfoViewResult> responseData = apiService.GetDataFromApi<Pub_InfoViewResult>($"{pubInfoApiURLBase}GetPub_InfoByID?ID={id}");
 
-            using (var client = new HttpClient(this.clientHandler))
+            if (responseData.success)
             {
-                var url = $"http://localhost:5196/api/Pub_Info/GetPub_InfoByID?ID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        updateResponse = JsonConvert.DeserializeObject<Pub_InfoUpdateResponse>(apiResponse);
-
-                        if (!updateResponse.success)
-                        {
-                            ViewBag.Message = updateResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        updateResponse.message = "Error connecting to API.";
-                        updateResponse.success = false;
-                        ViewBag.Message = updateResponse.message;
-                        return View();
-                    }
-                }
+                return View(responseData.data);
             }
-
-            return View(updateResponse.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
 		// POST: Pub_InfoController/Edit/5
-		[HttpPut]
+		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(Pub_InfoDtoUpdate dtoUpdate)
 		{
-            Pub_InfoUpdateResponse updateResponse = new Pub_InfoUpdateResponse();
+            var apiUrl = $"{pubInfoApiURLBase}UpdatePub_Info";
+
+            dtoUpdate.ChangeDate = DateTime.Now;
+            dtoUpdate.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
+                var response = apiService.PostDataToApi<Pub_InfoUpdateResponse>(apiUrl, dtoUpdate);
 
-                    var url = $"http://localhost:5196/api/Pub_Info/UpdatePub_Info";
-
-                    dtoUpdate.ChangeDate = DateTime.Now;
-                    dtoUpdate.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoUpdate), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PutAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            updateResponse = JsonConvert.DeserializeObject<Pub_InfoUpdateResponse>(apiResponse);
-
-                            if (!updateResponse.success)
-                            {
-                                ViewBag.Message = updateResponse.message;
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            updateResponse.message = "Error connecting to API.";
-                            updateResponse.success = false;
-                            ViewBag.Message = updateResponse.message;
-                            return View();
-                        }
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = updateResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -236,36 +122,19 @@ namespace Publicaciones.Web.Controllers
         // GET: Pub_InfoController/Delete/5
         public ActionResult Delete(int id)
         {
-            Pub_InfoDeleteResponse removeResponse = new Pub_InfoDeleteResponse();
+            BaseResponse<Pub_InfoDtoRemove> responseData = apiService.GetDataFromApi<Pub_InfoDtoRemove>($"{pubInfoApiURLBase}GetPub_InfoByID?ID={id}");
 
-            using (var client = new HttpClient(this.clientHandler))
+            if (responseData.success)
             {
-                var url = $"http://localhost:5196/api/Pub_Info/GetPub_InfoByID?ID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        removeResponse = JsonConvert.DeserializeObject<Pub_InfoDeleteResponse>(apiResponse);
-
-                        if (!removeResponse.success)
-                        {
-                            ViewBag.Message = removeResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        removeResponse.message = "Error connecting to API.";
-                        removeResponse.success = false;
-                        ViewBag.Message = removeResponse.message;
-                        return View();
-                    }
-                }
+                responseData.data.Id = id;
+                responseData.data.ChangeUser = 1;
+                return View(responseData.data);
             }
-
-            return View(removeResponse.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
 
@@ -273,50 +142,22 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Pub_InfoDtoRemove dtoRemove)
         {
-            Pub_InfoDeleteResponse removeResponse = new Pub_InfoDeleteResponse();
+            var apiUrl = $"{pubInfoApiURLBase}RemovePub_Info";
+
+            dtoRemove.ChangeDate = DateTime.Now;
+            dtoRemove.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
-                    var url = $"http://localhost:5196/api/Pub_Info/RemovePub_Info";
+                var response = apiService.PostDataToApi<Pub_InfoDeleteResponse>(apiUrl, dtoRemove);
 
-                    dtoRemove.ChangeDate = DateTime.Now;
-                    dtoRemove.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoRemove), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            removeResponse = JsonConvert.DeserializeObject<Pub_InfoDeleteResponse>(apiResponse);
-
-                            if (!removeResponse.success)
-                            {
-                                ViewBag.Message = removeResponse.message;
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            removeResponse.message = "Error connecting to API.";
-                            removeResponse.success = false;
-                            ViewBag.Message = removeResponse.message;
-                            return View();
-                        }
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = removeResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
-
         }
     }
 }

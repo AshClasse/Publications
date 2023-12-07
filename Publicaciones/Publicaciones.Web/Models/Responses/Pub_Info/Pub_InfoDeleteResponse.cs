@@ -2,10 +2,7 @@
 
 namespace Publicaciones.Web.Models.Responses.Pub_Info
 {
-    public class Pub_InfoDeleteResponse
+    public class Pub_InfoDeleteResponse : BaseResponse<Pub_InfoDtoRemove>
     {
-        public bool success { get; set; }
-        public object message { get; set; }
-        public Pub_InfoDtoRemove data { get; set; }
     }
 }

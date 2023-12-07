@@ -19,10 +19,11 @@ namespace Publicaciones.Web
 			builder.Services.AddPubInfoDependency();
 			builder.Services.AddRoySchedDependency();
 			builder.Services.AddTitlesDependency();
+            builder.Services.AddScoped<IApiService, ApiService>();
 
 
-			// Add services to the container.
-			builder.Services.AddControllersWithViews();
+            // Add services to the container.
+            builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
 

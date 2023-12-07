@@ -13,25 +13,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.type)
+                @Html.DisplayNameFor(model => model.Type)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.pubName)
+                @Html.DisplayNameFor(model => model.PubName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.pubDate)
+                @Html.DisplayNameFor(model => model.PubDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.price)
+                @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.royalty)
+                @Html.DisplayNameFor(model => model.Royalty)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.notes)
+                @Html.DisplayNameFor(model => model.Notes)
             </th>
             <th></th>
         </tr>
@@ -40,29 +40,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.title)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.type)
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.pubName)
+                @Html.DisplayFor(modelItem => item.PubName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.pubDate)
+                @Html.DisplayFor(modelItem => item.PubDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.price)
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.royalty)
+                @Html.DisplayFor(modelItem => item.Royalty)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.notes)
+                @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.titleID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.titleID })
+                @Html.ActionLink("Edit", "Edit", new { id=item.Title_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Title_ID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Title_ID })
             </td>
         </tr>
 }

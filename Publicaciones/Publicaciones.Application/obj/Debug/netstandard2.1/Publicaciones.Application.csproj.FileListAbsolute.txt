@@ -13,3 +13,4 @@ C:\Publicaciones\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.
 C:\Publicaciones\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.csproj.CopyComplete
 C:\Publicaciones\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.dll
 C:\Publicaciones\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Application\obj\Debug\netstandard2.1\Publicaciones.Application.sourcelink.json

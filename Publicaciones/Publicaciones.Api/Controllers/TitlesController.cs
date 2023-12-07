@@ -5,15 +5,15 @@ using System;
 
 namespace Publicaciones.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TitlesController : ControllerBase
-    {
-        private readonly ITitlesService _titlesService;
-        public TitlesController(ITitlesService titlesService) 
-        {
-            this._titlesService = titlesService;
-        }
+	[Route("api/[controller]")]
+	[ApiController]
+	public class TitlesController : ControllerBase
+	{
+		private readonly ITitlesService _titlesService;
+		public TitlesController(ITitlesService titlesService)
+		{
+			this._titlesService = titlesService;
+		}
 
 		[HttpGet("GetTitles")]
 		public IActionResult GetTitles()
@@ -110,8 +110,8 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("UpdateTitle")]
-		public IActionResult Put([FromBody] TitlesDtoUpdate titlesDtoUpdate)
+		[HttpPost("UpdateTitle")]
+		public IActionResult Post([FromBody] TitlesDtoUpdate titlesDtoUpdate)
 		{
 			var existsResult = this._titlesService.Exists(titlesDtoUpdate.Title_ID);
 
@@ -137,7 +137,7 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("RemoveTitle")]
+		[HttpPost("RemoveTitle")]
 		public IActionResult Remove([FromBody] TitlesDtoRemove titlesDtoRemove)
 		{
 			var existsResult = this._titlesService.Exists(titlesDtoRemove.Id);

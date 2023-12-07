@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oEC7ZxFC3VCqvL1+8o2J9krt8OC6pPYuAO0JLT3bJhX/S58h13OkSuFtRpzWY9D3PSChi/AZocCRiP6XUfIJVw==",
+  "dgSpecHash": "0DZpV31vcJFhkjyttc/n3AoMeR1fc1xPKQVXjL8SenSm4XmjDQ1q7qKf1FP/TEvkilubdoxw2Dcx7yG4xD+pLA==",
   "success": true,
   "projectFilePath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
   "expectedPackageFiles": [
@@ -236,7 +236,11 @@
     "C:\\Users\\class\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\class\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\class\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\class\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\class\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\class\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\class\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\class\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
   ],
   "logs": []
 }

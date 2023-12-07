@@ -65,7 +65,7 @@ namespace Publicaciones.Infrastructure.Repository
 			var roySchedToRemove = base.GetEntityByID(entity.RoySched_ID);
 
 			roySchedToRemove.RoySched_ID = entity.RoySched_ID;
-			roySchedToRemove.Deleted = entity.Deleted;
+			roySchedToRemove.Deleted = true;
 			roySchedToRemove.DeletedDate = entity.DeletedDate;
 			roySchedToRemove.IDDeletedUser = entity.IDDeletedUser;
 
@@ -76,7 +76,7 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public List<RoySchedTitleModel> GetRoySchedsByTitleID(int titleId)
 		{
-			return this.GetRoySchedsTitles().Where(rt => rt.TitleID == titleId).ToList();
+			return this.GetRoySchedsTitles().Where(rt => rt.Title_ID == titleId).ToList();
 		}
 
 		public List<RoySchedTitleModel> GetRoySchedsTitles()
@@ -86,10 +86,10 @@ namespace Publicaciones.Infrastructure.Repository
 							 where !rs.Deleted
 							 select new RoySchedTitleModel()
 							 {
-								 RoySchedID = rs.RoySched_ID,
-								 TitleID = rs.Title_ID,
+								 RoySched_ID = rs.RoySched_ID,
+								 Title_ID = rs.Title_ID,
 								 Title = tt.Title,
-								 Royalty = tt.Royalty,
+								 Royalty = rs.Royalty,
 								 HiRange = rs.HiRange,
 								 LoRange = rs.LoRange,
 								 CreationDate = rs.CreationDate
@@ -100,7 +100,7 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public RoySchedTitleModel RoySchedTitle(int royId)
 		{
-			return this.GetRoySchedsTitles().SingleOrDefault(rt  => rt.RoySchedID == royId);
+			return this.GetRoySchedsTitles().SingleOrDefault(rt  => rt.RoySched_ID == royId);
 		}
 	}
 }

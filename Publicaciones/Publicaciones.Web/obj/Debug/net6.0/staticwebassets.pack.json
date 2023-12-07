@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-darkly.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-darkly.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-darkly.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-darkly.min.css"
+    },
+    {
       "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
@@ -51,6 +59,46 @@
     {
       "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-journal.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-journal.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-journal.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-journal.min.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-lux.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-lux.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-lux.min.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-morph.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-morph.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-morph.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-morph.min.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-pulse.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-pulse.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-pulse.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-pulse.min.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-quartz.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-quartz.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-quartz.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-quartz.min.css"
     },
     {
       "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
@@ -115,6 +163,14 @@
     {
       "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-vapor.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-vapor.css"
+    },
+    {
+      "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-vapor.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-vapor.min.css"
     },
     {
       "Id": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Web\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

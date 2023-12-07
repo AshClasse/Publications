@@ -1,3 +1,5 @@
 is_global = true
 build_property.RootNamespace = Publicaciones.Domain
-build_property.ProjectDir = C:\Proyecto_fina_progII\Publicaciones\Publicaciones.Domain\
+build_property.ProjectDir = C:\Publicaciones\Publicaciones\Publicaciones.Domain\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

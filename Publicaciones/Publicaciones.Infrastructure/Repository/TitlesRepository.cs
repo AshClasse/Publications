@@ -73,7 +73,7 @@ namespace Publicaciones.Infrastructure.Repository
 			var titleToRemove = base.GetEntityByID(entity.Title_ID);
 
 			titleToRemove.Title_ID = entity.Title_ID;
-			titleToRemove.Deleted = entity.Deleted;
+			titleToRemove.Deleted = true;
 			titleToRemove.DeletedDate = entity.DeletedDate;
 			titleToRemove.IDDeletedUser = entity.IDDeletedUser;
 
@@ -94,7 +94,7 @@ namespace Publicaciones.Infrastructure.Repository
 							where !tt.Deleted
 							select new TitlePublisherModel()
 							{
-								TitleID = tt.Title_ID,
+								Title_ID = tt.Title_ID,
 								Title = tt.Title,
 								PubID = tt.PubID,
 								PubName = pub.PubName,
@@ -111,7 +111,7 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public TitlePublisherModel TitlePublisher(int titleId)
 		{
-			return this.GetTitlesPublishers().SingleOrDefault(tp => tp.TitleID == titleId);
+			return this.GetTitlesPublishers().SingleOrDefault(tp => tp.Title_ID == titleId);
 		}
 	}
 }

@@ -2,10 +2,7 @@
 
 namespace Publicaciones.Web.Models.Responses.Pub_Info
 {
-    public class Pub_InfoUpdateResponse
+    public class Pub_InfoUpdateResponse : BaseResponse<Pub_InfoDtoUpdate>
     {
-        public bool success { get; set; }
-        public object message { get; set; }
-        public Pub_InfoDtoUpdate data { get; set; }
     }
 }

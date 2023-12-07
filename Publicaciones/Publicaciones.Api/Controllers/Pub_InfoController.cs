@@ -87,8 +87,8 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("UpdatePub_Info")]
-		public IActionResult Put([FromBody] Pub_InfoDtoUpdate pub_InfoDtoUpdate)
+		[HttpPost("UpdatePub_Info")]
+		public IActionResult Post([FromBody] Pub_InfoDtoUpdate pub_InfoDtoUpdate)
         {
 			var existsResult = this._pub_infoService.Exists(pub_InfoDtoUpdate.PubInfoID);
 

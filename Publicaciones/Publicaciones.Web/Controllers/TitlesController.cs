@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Publicaciones.Application.Contract;
 using Publicaciones.Application.Core;
+using Publicaciones.Application.Dtos.Pub_Info;
 using Publicaciones.Application.Dtos.Titles;
 using Publicaciones.Application.Service;
 using Publicaciones.Domain.Repository;
 using Publicaciones.Web.Models.Responses;
+using Publicaciones.Web.Models.Responses.Pub_Info;
 using Publicaciones.Web.Models.Responses.RoySched;
 using Publicaciones.Web.Models.Responses.Titles;
 
@@ -14,81 +16,47 @@ namespace Publicaciones.Web.Controllers
 {
     public class TitlesController : Controller
     {
-		private readonly ITitlesService _titlesService;
+        private readonly ITitlesService _titlesService;
+        private readonly string titlesApiURLBase;
+        private readonly IApiService apiService;
 
-        HttpClientHandler clientHandler = new HttpClientHandler();
-        public TitlesController(ITitlesService titlesService)
-		{
-			this._titlesService = titlesService;
-		}
-
-		// GET: TitlesController
-		public ActionResult Index()
+        public TitlesController(ITitlesService titlesService, IApiService apiService, IConfiguration configuration)
         {
-            TitlesListResponse titlesList = new TitlesListResponse();
+            this._titlesService = titlesService;
+            this.apiService = apiService;
+            this.titlesApiURLBase = configuration["ApiSettings:TitlesApiBaseUrl"];
+        }
 
-            using (var client = new HttpClient(this.clientHandler))
+        // GET: TitlesController
+        public ActionResult Index()
+        {
+            BaseResponse<List<TitlesViewResult>> responseData = apiService.GetDataFromApi<List<TitlesViewResult>>($"{titlesApiURLBase}GetTitles");
+
+            if (responseData.success)
             {
-                using (var response = client.GetAsync("http://localhost:5196/api/Titles/GetTitles").Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                        titlesList = JsonConvert.DeserializeObject<TitlesListResponse>(apiResponse);
-
-                        if (!titlesList.success)
-                        {
-                            ViewBag.Message = titlesList.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        titlesList.message = "Error connecting to API.";
-                        titlesList.success = false;
-                        ViewBag.Message = titlesList.message;
-                        return View();
-                    }
-                }
+                return View(responseData.data);
             }
-
-            return View(titlesList.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
         // GET: TitlesController/Details/5
         public ActionResult Details(int id)
         {
-            TitlesDetailsResponse titlesDetailsResponse = new TitlesDetailsResponse();
+            BaseResponse<TitlesViewResult> responseData = apiService.GetDataFromApi<TitlesViewResult>($"{titlesApiURLBase}GetTitleByID?ID={id}");
 
-            using (var client = new HttpClient(this.clientHandler))
+            if (responseData.success)
             {
-                var url = $"http://localhost:5196/api/Titles/GetTitleByID?ID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        titlesDetailsResponse = JsonConvert.DeserializeObject<TitlesDetailsResponse>(apiResponse);
-
-                        if (!titlesDetailsResponse.success)
-                        {
-                            ViewBag.Message = titlesDetailsResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        titlesDetailsResponse.message = "Error connecting to API.";
-                        titlesDetailsResponse.success = false;
-                        ViewBag.Message = titlesDetailsResponse.message;
-                        return View();
-                    }
-                }
+                return View(responseData.data);
             }
-
-            return View(titlesDetailsResponse.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
         // GET: TitlesController/Create
@@ -102,49 +70,21 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TitlesDtoAdd dtoAdd)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{titlesApiURLBase}SaveTitle";
+
+            dtoAdd.PubDate = DateTime.Now;
+            dtoAdd.ChangeDate = DateTime.Now;
+            dtoAdd.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
-
-                    var url = $"http://localhost:5196/api/Titles/SaveTitle";
-
-                    dtoAdd.ChangeDate = DateTime.Now;
-                    dtoAdd.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoAdd), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
+                var response = apiService.PostDataToApi<TitlesAddResponse>(apiUrl, dtoAdd);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }
@@ -152,36 +92,17 @@ namespace Publicaciones.Web.Controllers
         // GET: TitlesController/Edit/5
         public ActionResult Edit(int id)
         {
-            TitlesDetailsResponse titlesDetailsResponse = new TitlesDetailsResponse();
+            BaseResponse<TitlesViewResult> responseData = apiService.GetDataFromApi<TitlesViewResult>($"{titlesApiURLBase}GetTitleByID?ID={id}");
 
-            using (var client = new HttpClient(this.clientHandler))
+            if (responseData.success)
             {
-                var url = $"http://localhost:5196/api/Titles/GetTitleByID?ID={id}";
-
-                using (var response = client.GetAsync(url).Result)
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string apiResponse = response.Content.ReadAsStringAsync().Result;
-                        titlesDetailsResponse = JsonConvert.DeserializeObject<TitlesDetailsResponse>(apiResponse);
-
-                        if (!titlesDetailsResponse.success)
-                        {
-                            ViewBag.Message = titlesDetailsResponse.message;
-                            return View();
-                        }
-                    }
-                    else
-                    {
-                        titlesDetailsResponse.message = "Error connecting to API.";
-                        titlesDetailsResponse.success = false;
-                        ViewBag.Message = titlesDetailsResponse.message;
-                        return View();
-                    }
-                }
+                return View(responseData.data);
             }
-
-            return View(titlesDetailsResponse.data);
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
         }
 
         // POST: TitlesController/Edit/5
@@ -189,48 +110,61 @@ namespace Publicaciones.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TitlesDtoUpdate dtoUpdate)
         {
-            BaseResponse baseResponse = new BaseResponse();
+            var apiUrl = $"{titlesApiURLBase}UpdateTitle";
+
+            dtoUpdate.ChangeDate = DateTime.Now;
+            dtoUpdate.ChangeUser = 1;
 
             try
             {
-                using (var client = new HttpClient(this.clientHandler))
-                {
+                var response = apiService.PostDataToApi<TitlesUpdateResponse>(apiUrl, dtoUpdate);
 
-                    var url = $"http://localhost:5196/api/Titles/UpdateTitle";
-
-                    dtoUpdate.ChangeDate = DateTime.Now;
-                    dtoUpdate.ChangeUser = 1;
-
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(dtoUpdate), System.Text.Encoding.UTF8, "application/json");
-
-                    using (var response = client.PostAsync(url, content).Result)
-                    {
-                        if (response.IsSuccessStatusCode)
-                        {
-                            string apiResponse = response.Content.ReadAsStringAsync().Result;
-
-                            baseResponse = JsonConvert.DeserializeObject<BaseResponse>(apiResponse);
-
-                            if (!baseResponse.success)
-                            {
-                                ViewBag.Message = baseResponse.message;
-                                return View();
-                            }
-                        }
-                        else
-                        {
-                            baseResponse.message = "Error connecting to API.";
-                            baseResponse.success = false;
-                            ViewBag.Message = baseResponse.message;
-                            return View();
-                        }
-                    }
-                }
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (ApplicationException ex)
             {
-                ViewBag.Message = baseResponse.message;
+                ViewBag.ErrorMessage = ex.Message;
+                return View();
+            }
+        }
+
+        // GET: Pub_InfoController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            BaseResponse<TitlesDtoRemove> responseData = apiService.GetDataFromApi<TitlesDtoRemove>($"{titlesApiURLBase}GetTitleByID?ID={id}");
+
+            if (responseData.success)
+            {
+                responseData.data.Id = id;
+                responseData.data.ChangeUser = 1;
+                return View(responseData.data);
+            }
+            else
+            {
+                ViewBag.Message = responseData.message;
+                return View();
+            }
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(TitlesDtoRemove dtoRemove)
+        {
+            var apiUrl = $"{titlesApiURLBase}RemoveTitle";
+
+            dtoRemove.ChangeDate = DateTime.Now;
+            dtoRemove.ChangeUser = 1;
+
+            try
+            {
+                var response = apiService.PostDataToApi<TitlesDeleteResponse>(apiUrl, dtoRemove);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ApplicationException ex)
+            {
+                ViewBag.ErrorMessage = ex.Message;
                 return View();
             }
         }

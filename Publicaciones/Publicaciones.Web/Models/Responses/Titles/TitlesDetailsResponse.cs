@@ -1,9 +1,6 @@
 ﻿namespace Publicaciones.Web.Models.Responses.Titles
 {
-    public class TitlesDetailsResponse
+    public class TitlesDetailsResponse : BaseResponse<TitlesViewResult>
     {
-        public bool success { get; set; }
-        public object message { get; set; }
-        public TitlesViewResult data { get; set; }
     }
 }

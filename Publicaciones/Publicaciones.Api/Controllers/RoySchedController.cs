@@ -102,8 +102,8 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("UpdateRoySched")]
-		public IActionResult Put([FromBody] RoySchedDtoUpdate roySchedDtoUpdate)
+		[HttpPost("UpdateRoySched")]
+		public IActionResult Post([FromBody] RoySchedDtoUpdate roySchedDtoUpdate)
 		{
 			var existsResult = this._roySchedService.Exists(roySchedDtoUpdate.RoySched_ID);
 
@@ -129,7 +129,7 @@ namespace Publicaciones.Api.Controllers
 			return Ok(result);
 		}
 
-		[HttpPut("RemoveRoySched")]
+		[HttpPost("RemoveRoySched")]
 		public IActionResult Remove([FromBody] RoySchedDtoRemove roySchedDtoRemove)
 		{
 			var existsResult = this._roySchedService.Exists(roySchedDtoRemove.Id);

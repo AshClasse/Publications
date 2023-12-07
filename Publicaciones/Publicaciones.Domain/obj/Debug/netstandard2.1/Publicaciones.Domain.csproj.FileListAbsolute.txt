@@ -7,3 +7,4 @@ C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Pub
 C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.csproj.CoreCompileInputs.cache
 C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.dll
 C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.pdb
+C:\Publicaciones\Publicaciones\Publicaciones.Domain\obj\Debug\netstandard2.1\Publicaciones.Domain.sourcelink.json

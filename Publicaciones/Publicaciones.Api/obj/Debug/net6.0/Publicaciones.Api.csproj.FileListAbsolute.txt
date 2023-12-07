@@ -67,3 +67,4 @@ C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.
 C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Application.pdb
 C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Publicaciones.Ioc.pdb
 C:\Publicaciones\Publicaciones\Publicaciones.Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Api\obj\Debug\net6.0\Publicaciones.Api.sourcelink.json

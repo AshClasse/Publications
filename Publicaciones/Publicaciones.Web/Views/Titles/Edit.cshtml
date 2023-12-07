@@ -6,56 +6,56 @@
 
 <h1>Edit</h1>
 
-<h4>TitlesViewResult</h4>
+<h4>Title</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="titleID" class="control-label"></label>
-                <input asp-for="titleID" class="form-control" />
-                <span asp-validation-for="titleID" class="text-danger"></span>
+            <div class="form-group" style="display: none;">
+                <label asp-for="Title_ID" class="control-label"></label>
+                <input asp-for="Title_ID" class="form-control" readonly />
+                <span asp-validation-for="Title_ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="pubID" class="control-label"></label>
-                <input asp-for="pubID" class="form-control" />
-                <span asp-validation-for="pubID" class="text-danger"></span>
+                <label asp-for="PubID" class="control-label"></label>
+                <input asp-for="PubID" class="form-control" />
+                <span asp-validation-for="PubID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
-                <input asp-for="title" class="form-control" />
-                <span asp-validation-for="title" class="text-danger"></span>
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="type" class="control-label"></label>
-                <input asp-for="type" class="form-control" />
-                <span asp-validation-for="type" class="text-danger"></span>
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="pubName" class="control-label"></label>
-                <input asp-for="pubName" class="form-control" />
-                <span asp-validation-for="pubName" class="text-danger"></span>
+                <label asp-for="PubName" class="control-label"></label>
+                <input asp-for="PubName" class="form-control" />
+                <span asp-validation-for="PubName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="pubDate" class="control-label"></label>
-                <input asp-for="pubDate" class="form-control" />
-                <span asp-validation-for="pubDate" class="text-danger"></span>
+                <label asp-for="PubDate" class="control-label"></label>
+                <input asp-for="PubDate" class="form-control" />
+                <span asp-validation-for="PubDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="price" class="control-label"></label>
-                <input asp-for="price" class="form-control" />
-                <span asp-validation-for="price" class="text-danger"></span>
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="royalty" class="control-label"></label>
-                <input asp-for="royalty" class="form-control" />
-                <span asp-validation-for="royalty" class="text-danger"></span>
+                <label asp-for="Royalty" class="control-label"></label>
+                <input asp-for="Royalty" class="form-control" />
+                <span asp-validation-for="Royalty" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="notes" class="control-label"></label>
-                <input asp-for="notes" class="form-control" />
-                <span asp-validation-for="notes" class="text-danger"></span>
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

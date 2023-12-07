@@ -254,3 +254,4 @@ C:\Publicaciones\Publicaciones\Publicaciones.Web\obj\Debug\net6.0\refint\Publica
 C:\Publicaciones\Publicaciones\Publicaciones.Web\obj\Debug\net6.0\Publicaciones.Web.pdb
 C:\Publicaciones\Publicaciones\Publicaciones.Web\obj\Debug\net6.0\Publicaciones.Web.genruntimeconfig.cache
 C:\Publicaciones\Publicaciones\Publicaciones.Web\obj\Debug\net6.0\ref\Publicaciones.Web.dll
+C:\Publicaciones\Publicaciones\Publicaciones.Web\obj\Debug\net6.0\Publicaciones.Web.sourcelink.json

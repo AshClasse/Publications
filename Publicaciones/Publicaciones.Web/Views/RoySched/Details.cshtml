@@ -10,33 +10,40 @@
     <h4>RoySchedDtoGetAll</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.title)
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title_ID)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.title)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title_ID)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.royalty)
+            @Html.DisplayNameFor(model => model.Title)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.royalty)
+            @Html.DisplayFor(model => model.Title)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.loRange)
+            @Html.DisplayNameFor(model => model.Royalty)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.loRange)
+            @Html.DisplayFor(model => model.Royalty)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.hiRange)
+            @Html.DisplayNameFor(model => model.LoRange)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.hiRange)
+            @Html.DisplayFor(model => model.LoRange)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HiRange)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HiRange)
         </dd>
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.roySchedID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoySched_ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.RoySched_ID }) |
     <a asp-action="Index">Back to List</a>
 </div>

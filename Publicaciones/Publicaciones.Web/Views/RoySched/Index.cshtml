@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.royalty)
+                @Html.DisplayNameFor(model => model.Royalty)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.loRange)
+                @Html.DisplayNameFor(model => model.LoRange)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hiRange)
+                @Html.DisplayNameFor(model => model.HiRange)
             </th>
             <th></th>
         </tr>
@@ -31,20 +31,21 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.title)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.royalty)
+                @Html.DisplayFor(modelItem => item.Royalty)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.loRange)
+                @Html.DisplayFor(modelItem => item.LoRange)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.hiRange)
+                @Html.DisplayFor(modelItem => item.HiRange)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.roySchedID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.roySchedID })
+                @Html.ActionLink("Edit", "Edit", new { id=item.RoySched_ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.RoySched_ID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.RoySched_ID })
             </td>
         </tr>
 }

@@ -6,41 +6,36 @@
 
 <h1>Edit</h1>
 
-<h4>RoySchedViewResult</h4>
+<h4>RoySched</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="roySchedID" class="control-label"></label>
-                <input asp-for="roySchedID" class="form-control" />
-                <span asp-validation-for="roySchedID" class="text-danger"></span>
+            <div class="form-group" style="display: none;">
+                <label asp-for="RoySched_ID" class="control-label"></label>
+                <input asp-for="RoySched_ID" class="form-control" readonly />
+                <span asp-validation-for="RoySched_ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="titleID" class="control-label"></label>
-                <input asp-for="titleID" class="form-control" />
-                <span asp-validation-for="titleID" class="text-danger"></span>
+                <label asp-for="Title_ID" class="control-label"></label>
+                <input asp-for="Title_ID" class="form-control" />
+                <span asp-validation-for="Title_ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="title" class="control-label"></label>
-                <input asp-for="title" class="form-control" />
-                <span asp-validation-for="title" class="text-danger"></span>
+                <label asp-for="Royalty" class="control-label"></label>
+                <input asp-for="Royalty" class="form-control" />
+                <span asp-validation-for="Royalty" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="royalty" class="control-label"></label>
-                <input asp-for="royalty" class="form-control" />
-                <span asp-validation-for="royalty" class="text-danger"></span>
+                <label asp-for="LoRange" class="control-label"></label>
+                <input asp-for="LoRange" class="form-control" />
+                <span asp-validation-for="LoRange" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="loRange" class="control-label"></label>
-                <input asp-for="loRange" class="form-control" />
-                <span asp-validation-for="loRange" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="hiRange" class="control-label"></label>
-                <input asp-for="hiRange" class="form-control" />
-                <span asp-validation-for="hiRange" class="text-danger"></span>
+                <label asp-for="HiRange" class="control-label"></label>
+                <input asp-for="HiRange" class="form-control" />
+                <span asp-validation-for="HiRange" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

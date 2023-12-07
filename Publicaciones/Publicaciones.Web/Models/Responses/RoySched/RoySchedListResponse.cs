@@ -1,19 +1,16 @@
 ﻿namespace Publicaciones.Web.Models.Responses.RoySched
 {
-    public class RoySchedListResponse
+    public class RoySchedListResponse : BaseResponse<List<RoySchedViewResult>>
     {
-        public bool success { get; set; }
-        public object message { get; set; }
-        public List<RoySchedViewResult> data { get; set; }
     }
     public class RoySchedViewResult
     {
-        public int roySchedID { get; set; }
-        public int titleID { get; set; }
-        public string? title { get; set; }
-        public int? royalty { get; set; }
-        public int? loRange { get; set; }
-        public int? hiRange { get; set; }
-        public DateTime creationDate { get; set; }
+        public int RoySched_ID { get; set; }
+        public int Title_ID { get; set; }
+        public string? Title { get; set; }
+        public int? Royalty { get; set; }
+        public int? LoRange { get; set; }
+        public int? HiRange { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

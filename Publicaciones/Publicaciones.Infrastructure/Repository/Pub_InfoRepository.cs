@@ -53,7 +53,7 @@ namespace Publicaciones.Infrastructure.Repository
 
 			var pubInfoToRemove = base.GetEntityByID(entity.PubInfoID);
 			pubInfoToRemove.PubInfoID = entity.PubInfoID;
-			pubInfoToRemove.Deleted = entity.Deleted;
+			pubInfoToRemove.Deleted = true;
 			pubInfoToRemove.DeletedDate = entity.DeletedDate;
 			pubInfoToRemove.IDDeletedUser = entity.IDDeletedUser;
 
@@ -74,10 +74,11 @@ namespace Publicaciones.Infrastructure.Repository
 							where !pi.Deleted
 							select new Pub_InfoPublisherModel()
 							{
-								Pub_InfoID = pi.PubInfoID,
+								PubInfoID = pi.PubInfoID,
 								PubID = pub.PubID,
 								PubName = pub.PubName,
-								PrInfo = pi.Pr_Info,
+								Pr_Info = pi.Pr_Info,
+								Logo = pi.Logo,
 								City = pub.City,
 								State = pub.State,
 								CreationDate = pi.CreationDate
@@ -88,7 +89,7 @@ namespace Publicaciones.Infrastructure.Repository
 
 		public Pub_InfoPublisherModel GetInfoPublisherByID(int pubInfoId)
 		{
-			return this.GetPublishersInfos().SingleOrDefault(pi => pi.Pub_InfoID == pubInfoId);
+			return this.GetPublishersInfos().SingleOrDefault(pi => pi.PubInfoID == pubInfoId);
 		}
 	}
 }

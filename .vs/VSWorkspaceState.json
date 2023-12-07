@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Publicaciones",
+    "\\Publicaciones\\Publicaciones.Web",
+    "\\Publicaciones\\Publicaciones.Web\\Controllers"
   ],
-  "SelectedNode": "\\Publicaciones.sln",
+  "SelectedNode": "\\Publicaciones\\Publicaciones.Web\\Controllers\\Pub_InfoController.cs",
   "PreviewInSolutionExplorer": false
 }
