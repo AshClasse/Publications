@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\misam\\.nuget\\packages\\": {}
+    "C:\\Users\\Geremy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+      "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
       "projectName": "Publicaciones.Web",
-      "projectPath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
-      "packagesPath": "C:\\Users\\misam\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\obj\\",
+      "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+      "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\misam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -40,6 +40,9 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "default"
       }
     },
     "frameworks": {
@@ -56,6 +59,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.26, 6.0.26]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.26, 6.0.26]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.26, 6.0.26]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.26, 6.0.26]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -64,7 +85,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "c:\\program files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

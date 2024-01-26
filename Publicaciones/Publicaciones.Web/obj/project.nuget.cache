@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "gRIVluX/XG+nHt6nLWcNarfpG4zQDJGsAvOwN/2x8vOJ7lDgkgobTrYW+JV0Cvwl2mxPs6XyJHlVWjmPDZRgOg==",
+  "dgSpecHash": "rfznUiBSV6vKpvlw65JBp00te5ZBrwxd9wv1TnQugKImiW+61B+6uMzKGxgKqNaYhr8teOeWNPZDaHt4EI0zTQ==",
   "success": true,
-  "projectFilePath": "C:\\Proyecto_fina_progII\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Web\\Publicaciones.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\Geremy\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+  ],
   "logs": []
 }
