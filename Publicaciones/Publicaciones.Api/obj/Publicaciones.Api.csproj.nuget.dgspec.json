@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj": {}
+    "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj": {}
   },
   "projects": {
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj": {
+    "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
         "projectName": "Publicaciones.Api",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
-        "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Api\\obj\\",
+        "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Api\\Publicaciones.Api.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\class\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
-                "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+              "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
               },
-              "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
-                "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj"
+              "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj"
               }
             }
           }
@@ -45,6 +41,9 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -70,19 +69,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
+              "version": "[6.0.26, 6.0.26]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.25, 6.0.25]"
+              "version": "[6.0.26, 6.0.26]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
+              "version": "[6.0.26, 6.0.26]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.25, 6.0.25]"
+              "version": "[6.0.26, 6.0.26]"
             }
           ],
           "frameworkReferences": {
@@ -93,25 +92,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+    "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
         "projectName": "Publicaciones.Application",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
-        "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\obj\\",
+        "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\class\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -125,8 +120,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
-                "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj"
+              "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj"
               }
             }
           }
@@ -135,6 +130,9 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -162,25 +160,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
+    "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
         "projectName": "Publicaciones.Domain",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
-        "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\class\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -200,6 +194,9 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -221,25 +218,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
+    "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
         "projectName": "Publicaciones.Infrastructure",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Infrastructure\\Publicaciones.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\class\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -253,8 +246,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
-                "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj"
+              "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj"
               }
             }
           }
@@ -263,6 +256,9 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -294,25 +290,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
+    "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
         "projectName": "Publicaciones.Ioc",
-        "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
-        "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-        "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Ioc\\obj\\",
+        "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Ioc\\Publicaciones.Ioc.csproj",
+        "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Ioc\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\class\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -326,8 +318,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
-                "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
+              "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj": {
+                "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Application\\Publicaciones.Application.csproj"
               }
             }
           }
@@ -336,6 +328,9 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -363,7 +358,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

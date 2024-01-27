@@ -9,99 +9,99 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Publicaciones.Web
 build_property.RootNamespace = Publicaciones.Web
-build_property.ProjectDir = C:\Publicaciones\Publicaciones\Publicaciones.Web\
+build_property.ProjectDir = C:\Users\Geremy\Projects\P1 Francis\Publicaciones\Publicaciones.Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Publicaciones\Publicaciones\Publicaciones.Web
+build_property.MSBuildProjectDirectory = C:\Users\Geremy\Projects\P1 Francis\Publicaciones\Publicaciones.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Home/Index.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Home/Privacy.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Pub_Info/Create.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Pub_Info/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHViX0luZm9cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Pub_Info/Delete.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Pub_Info/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHViX0luZm9cRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Pub_Info/Details.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Pub_Info/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHViX0luZm9cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Pub_Info/Edit.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Pub_Info/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHViX0luZm9cRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Pub_Info/Index.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Pub_Info/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHViX0luZm9cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Create.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/RoySched/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Delete.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/RoySched/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Details.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/RoySched/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Edit.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/RoySched/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/RoySched/Index.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/RoySched/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm95U2NoZWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Shared/Error.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Create.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Titles/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Delete.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Titles/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Details.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Titles/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Edit.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Titles/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Titles/Index.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Titles/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGl0bGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/_ViewImports.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/_ViewStart.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Publicaciones/Publicaciones/Publicaciones.Web/Views/Shared/_Layout.cshtml]
+[C:/Users/Geremy/Projects/P1 Francis/Publicaciones/Publicaciones.Web/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-66in8uxvwu

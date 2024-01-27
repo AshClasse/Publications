@@ -8,24 +8,19 @@
     ".NETStandard,Version=v2.1": []
   },
   "packageFolders": {
-    "C:\\Users\\class\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Geremy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
       "projectName": "Publicaciones.Domain",
-      "projectPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
-      "packagesPath": "C:\\Users\\class\\.nuget\\packages\\",
-      "outputPath": "C:\\Publicaciones\\Publicaciones\\Publicaciones.Domain\\obj\\",
+      "projectPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\Publicaciones.Domain.csproj",
+      "packagesPath": "C:\\Users\\Geremy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Geremy\\Projects\\P1 Francis\\Publicaciones\\Publicaciones.Domain\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\class\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Geremy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -45,6 +40,9 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "default"
       }
     },
     "frameworks": {
@@ -66,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
